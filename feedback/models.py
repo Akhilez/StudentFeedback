@@ -67,7 +67,7 @@ class Notes(models.Model):
 class FdbkQuestions(models.Model):
     question_id = models.AutoField(
         primary_key=True,
-        validators=[MaxValueValidator(MAX_QUESTIONS), MinValueValidator(1)]
+        validators=[MaxValueValidator(MAX_QUESTIONS)]
     )
     question = models.TextField()
 
