@@ -1,4 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'feedback/base.html' %}
+
+{% block title %} Home {% endblock%}
+
+{% block navbar %}
+    {% if user.is_authenticated %}
+        <li><a href="{%  url 'conduct'  %}">Home</a></li>
+    {% endif %}
+    {% include 'feedback/includes/navbar.html' %}
+{% endblock %}
 
 {% block maincontent %}
     {{ user.username }}

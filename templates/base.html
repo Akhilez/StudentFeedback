@@ -5,8 +5,21 @@
     <title>{% block title %}Base{% endblock %}</title>
 </head>
 <body>
+
+{% block header %}
+    {% include 'includes/header.html' %}
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
 {% block maincontent %}
     main content
 {% endblock %}
+
+{% block footer %}
+    {% include 'includes/footer.html' %}
+{% endblock %}
+
 </body>
 </html>

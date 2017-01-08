@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3325979765">
+    <data-source source="LOCAL" name="PostgreSQL - nba_projects_db@localhost" uuid="89e270fe-7931-4d3b-9af2-c4cc57b4d2e5">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/nba_projects_db</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
