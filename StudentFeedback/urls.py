@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from feedback import views
+from django.contrib.auth.views import login, logout
 
 urlpatterns = [
     url(r'^$', views.login_redirect, name='login_redirect'),
     url(r'^feedback/', include('feedback.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^logout/$', logout, {'next_page': 'login'}),
 ]
