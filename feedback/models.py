@@ -4,9 +4,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator, validat
 from django.db import models
 
 # Create your models here.
-
-
-MAX_QUESTIONS = 20
+from StudentFeedback.settings import MAX_QUESTIONS
 
 
 class Classes(models.Model):
@@ -67,7 +65,10 @@ class Notes(models.Model):
 
 
 class FdbkQuestions(models.Model):
-    question_id = models.AutoField(primary_key=True, validators=[MaxValueValidator(MAX_QUESTIONS), MinValueValidator(1)])
+    question_id = models.AutoField(
+        primary_key=True,
+        validators=[MaxValueValidator(MAX_QUESTIONS), MinValueValidator(1)]
+    )
     question = models.TextField()
 
 
@@ -77,7 +78,7 @@ class Feedback(models.Model):
 
     ratings = models.CharField(
         validators=[validate_comma_separated_integer_list],
-        max_length=MAX_QUESTIONS**2-1
+        max_length=MAX_QUESTIONS*3
     )
 
     #ratings = models.CommaSeparatedIntegerField(max_length=20)  #Deprecated way to use it
@@ -110,5 +111,4 @@ class Feedback(models.Model):
     question_19 = models.IntegerField(validators=[MaxValueValidator(5)])
     question_20 = models.IntegerField(validators=[MaxValueValidator(5)])
     '''
-    remarks = models.ForeignKey(Notes, on_delete=models.CASCADE)
-    #idk = models.ForeignKey(Notes, on_delete=models.CASCADE)
+    remarks = models.ForeignKey(Notes, on_delete=models.CASCADE, null=True)
