@@ -22,7 +22,7 @@ class Faculty(models.Model):
 
 
 class Subject(models.Model):
-    subject_id = models.CharField(max_length=6, primary_key=True)
+    subject_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
 
 
@@ -56,7 +56,7 @@ class Session(models.Model):
 class Attendance(models.Model):
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
     student_id = models.ForeignKey(Student)
-    mac_address = models.GenericIPAddressField()#models.CharField(max_length=20)
+    #mac_address = models.GenericIPAddressField()#models.CharField(max_length=20)
 
 
 class Notes(models.Model):
