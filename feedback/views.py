@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
-from feedback.forms import LoginForm
+from feedback.forms import LoginForm, InitiateForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -46,7 +46,22 @@ def goto_user_page(user):
 def initiate(request):
     if not request.user.groups.filter(name=COORDINATOR_GROUP).exists():
         return HttpResponse("You don't have permissions to view this page")
-    return render(request, 'feedback/initiate.html')
+
+    template = "initiate.html"
+    context = {}
+    if request.method == "POST":
+        form = InitiateForm(request.POST)
+        if form.is_valid():
+            user = request.POST['user']
+            '''if user is not None:
+                login(request, user)
+                return goto_user_page(user)
+            else:
+                context['error'] = 'login error'
+            context['form'] = form'''
+    else:
+        context['form'] = InitiateForm()
+    return render(request, template, context)
 
 
 @login_required

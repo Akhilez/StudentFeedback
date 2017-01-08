@@ -1,0 +1,34 @@
+{% extends 'feedback/base.html' %}
+
+{% block title %} Home {% endblock%}
+
+{% block navbar %}
+    {% if user.is_authenticated %}
+        <li><a href="{%  url 'initiate'  %}">Home</a></li>
+    {% endif %}
+    {% include 'feedback/includes/navbar.html' %}
+{% endblock %}
+
+{% block maincontent %}
+    {{ user.username }}
+    {{ user.groups.all.0 }}
+
+    <form method="post" action="" id="test">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit" onclick="clicked()">
+    </form>
+{% endblock %}
+
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    function clicked(){
+        document.write("hii");
+        alert("hii");
+
+    }
+</script>
+
+
+
