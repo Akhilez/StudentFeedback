@@ -127,6 +127,9 @@ TEMPLATE_DIRS = (
     'feedback',
 )
 
-LOGIN_REDIRECT_URL = "/login/"
+LOGIN_URL = "/login/"
 
 MAX_QUESTIONS = 20
+
+COORDINATOR_GROUP = 'Coordinators'
+CONDUCTOR_GROUP = 'Conductors'

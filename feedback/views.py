@@ -1,20 +1,22 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
 from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
 
 
 def login_redirect(request):
-    return redirect('/feedback/login/')
+    return redirect(LOGIN_URL)
 
 
 def login_view(request):
     if request.user.is_authenticated:
-        if request.user.groups.filter(name='Coordinators').exists():
+        if request.user.groups.filter(name=COORDINATOR_GROUP).exists():
             return redirect('/feedback/initiate/')
-        elif request.user.groups.filter(name='Coordinators').exists():
+        elif request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
             return redirect('/feedback/conduct/')
+        return HttpResponse("You are already logged in")
     template = "login.html"
     context = {}
     if request.method == "POST":
@@ -25,9 +27,9 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                if user.groups.filter(name='Coordinators').exists():
+                if user.groups.filter(name=COORDINATOR_GROUP).exists():
                     return redirect('/feedback/initiate/')
-                elif request.user.groups.filter(name='Coordinators').exists():
+                elif request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
                     return redirect('/feedback/conduct/')
             else:
                 context['error'] = 'login error'
@@ -39,13 +41,13 @@ def login_view(request):
 
 @login_required
 def initiate(request):
-    if not request.user.groups.filter(name='Coordinators').exists():
+    if not request.user.groups.filter(name=COORDINATOR_GROUP).exists():
         return HttpResponse("You don't have permissions to view this page")
     return render(request, 'feedback/initiate.html')
 
 
 @login_required
 def conduct(request):
-    if not request.user.groups.filter(name='Conductors').exists():
+    if not request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
         return HttpResponse("You don't have permissions to view this page")
     return render(request, 'feedback/conduct.html')

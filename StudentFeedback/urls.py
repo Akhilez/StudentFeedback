@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^$', views.login_redirect, name='login_redirect'),
     url(r'^feedback/', include('feedback.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^logout/$', logout, {'next_page': 'login'}),
+    url(r'^login/$', views.login_view, name='login_view'),
+    url(r'^logout/$', logout, {'next_page': '/login'}),
 ]
