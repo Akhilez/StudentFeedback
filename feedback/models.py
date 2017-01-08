@@ -22,7 +22,7 @@ class Faculty(models.Model):
 
 
 class Subject(models.Model):
-    subject_id = models.CharField(max_length=6)
+    subject_id = models.CharField(max_length=6, primary_key=True)
     name = models.CharField(max_length=200)
 
 

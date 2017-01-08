@@ -12,11 +12,7 @@ def login_redirect(request):
 
 def login_view(request):
     if request.user.is_authenticated:
-        if request.user.groups.filter(name=COORDINATOR_GROUP).exists():
-            return redirect('/feedback/initiate/')
-        elif request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
-            return redirect('/feedback/conduct/')
-        return HttpResponse("You are already logged in")
+        return goto_user_page(request.user)
     template = "login.html"
     context = {}
     if request.method == "POST":
@@ -27,16 +23,23 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                if user.groups.filter(name=COORDINATOR_GROUP).exists():
-                    return redirect('/feedback/initiate/')
-                elif request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
-                    return redirect('/feedback/conduct/')
+                return goto_user_page(user)
             else:
                 context['error'] = 'login error'
             context['form'] = form
     else:
         context['form'] = LoginForm()
     return render(request, template, context)
+
+
+def goto_user_page(user):
+    if user.groups.filter(name=COORDINATOR_GROUP).exists():
+        return redirect('/feedback/initiate/')
+    elif user.groups.filter(name=CONDUCTOR_GROUP).exists():
+        return redirect('/feedback/conduct/')
+    elif user.is_superuser:
+        return redirect('/admin/')
+    return HttpResponse("You are already logged in")
 
 
 @login_required
