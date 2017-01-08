@@ -3,10 +3,5 @@
 {% block maincontent %}
     {{ user.username }}
     {{ user.groups.all.0 }}
-    {% ifequal user.group.all.0.as_string 'Coordinators' %}
-        {{ user.groups.all.0 }}
-    {% else %}
-        You don't have permission
-    {% endifequal %}
 {% endblock %}
 

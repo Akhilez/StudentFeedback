@@ -1,9 +1,8 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
-# Create your views here.
 from feedback.forms import LoginForm
+from django.contrib.auth.decorators import login_required
 
 
 def login_redirect(request):
@@ -38,9 +37,15 @@ def login_view(request):
     return render(request, template, context)
 
 
+@login_required
 def initiate(request):
+    if not request.user.groups.filter(name='Coordinators').exists():
+        return HttpResponse("You don't have permissions to view this page")
     return render(request, 'feedback/initiate.html')
 
 
+@login_required
 def conduct(request):
+    if not request.user.groups.filter(name='Conductors').exists():
+        return HttpResponse("You don't have permissions to view this page")
     return render(request, 'feedback/conduct.html')

@@ -127,4 +127,6 @@ TEMPLATE_DIRS = (
     'feedback',
 )
 
+LOGIN_REDIRECT_URL = "/login/"
+
 MAX_QUESTIONS = 20
