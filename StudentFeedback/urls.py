@@ -22,7 +22,7 @@ from django.contrib.auth.views import login, logout
 
 urlpatterns = [
     url(r'^$', views.login_redirect, name='login_redirect'),
-    url(r'^feedback/', include('feedback.urls')),
+    url(r'^feedback/', include('feedback.urls', namespace='feedback')),
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', views.login_view, name='login_view'),
     url(r'^logout/$', logout, {'next_page': '/login'}),

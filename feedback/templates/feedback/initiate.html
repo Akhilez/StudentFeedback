@@ -13,30 +13,58 @@
     {{ user.username }}
     {{ user.groups.all.0 }}
 
-    <div class="dropdown">
-        <button class="btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-            {% if year %}{{ year }}{% else %}Select year{% endif %}
+    <form method="post" action="" id="test">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit" onclick="clicked()">
+    </form>
+    <br/>
+    Year:
+    <div class="dropdown" id="year_selector">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            {% if selectedYear %}{{ selectedYear }}{% else %}Select year{% endif %}
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
             {% for yr in years %}
-                <li><a href="{% url 'initiate' year=yr.0 branch='' section='' %}">{{ yr.0 }}</a></li>
+                <li><a href="{% url 'feedback:initiate' yr.0 '0' '0' %}">{{ yr.0 }}</a></li>
             {% endfor %}
         </ul>
     </div>
-
-    <form method="post" action="" id="test">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <label for="yearChoice">Year : </label>
-        <select id="yearChoice">
-            {% for yr in years %}
-                <option value="{{ yr.0 }}" selected {% ifequal yr.0 selectedYear %}selected{% endifequal %} ><a href="#">{{ yr.0 }}</a></option>
+    <br/>
+    {% if selectedYear %}
+        Branch:
+        <div class="dropdown" id="branch_selector">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            {% if selectedBranch %}{{ selectedBranch }}{% else %}Select branch{% endif %}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            {% for br in branches %}
+                <li><a href="{% url 'feedback:initiate' selectedYear br.0 '0' %}">{{ br.0 }}</a></li>
             {% endfor %}
-        </select>
+        </ul>
+    </div>
+    {% endif %}
+    <br/>
+    {% if selectedBranch %}
+        Section:
+        <div class="dropdown" id="section_selector">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            {% if selectedSection %}{{ selectedSection }}{% else %}Select section{% endif %}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            {% for sec in sections %}
+                <li><a href="{% url 'feedback:initiate' selectedYear selectedBranch sec.0 %}">{{ sec.0 }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if selectedSection %}
+        HEY! Your class is: {{ selectedYear }} {{ selectedBranch }} {{ selectedSection }}
+    {% endif %}
 
-        <input type="submit" value="submit" onclick="clicked()">
-    </form>
 {% endblock %}
 
 

@@ -46,11 +46,10 @@ class Initiation(models.Model):
 
 
 class Session(models.Model):
-    session_id = models.AutoField(primary_key=True)
+    session_id = models.CharField(max_length=5, primary_key=True)
     timestamp = models.DateTimeField()
     initiation_id = models.ForeignKey(Initiation, on_delete=models.CASCADE)
     taken_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    otp = models.CharField(max_length=5, unique=True)
 
 
 class Attendance(models.Model):

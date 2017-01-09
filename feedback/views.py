@@ -53,8 +53,19 @@ def initiate(request, year, branch, section):
     context['years'] = years
     if year != '':
         context['selectedYear'] = year
-    if branch != '':
+        branches = Classes.objects.filter(year=year).values_list('branch').order_by('branch').distinct()
+        context['branches'] = branches
+    if branch != '0':
         context['selectedBranch'] = branch
+        sections = Classes.objects\
+            .filter(year=year, branch=branch)\
+            .values_list('section')\
+            .order_by('section')\
+            .distinct()
+        context['sections'] = sections
+    if section != '0':
+        context['selectedSection'] = section
+        #Do whatever we do with the selected class here!
 
     if request.method == "POST":
         form = InitiateForm(request.POST)
