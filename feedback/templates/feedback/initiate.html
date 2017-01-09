@@ -1,0 +1,51 @@
+{% extends 'feedback/base.html' %}
+
+{% block title %} Home {% endblock%}
+
+{% block navbar %}
+    {% if user.is_authenticated %}
+        <li><a href="#">Home</a></li>
+    {% endif %}
+    {% include 'feedback/includes/navbar.html' %}
+{% endblock %}
+
+{% block maincontent %}
+    {{ user.username }}
+    {{ user.groups.all.0 }}
+
+    <div class="dropdown">
+        <button class="btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            {% if year %}{{ year }}{% else %}Select year{% endif %}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            {% for yr in years %}
+                <li><a href="{% url 'initiate' year=yr.0 branch='' section='' %}">{{ yr.0 }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <form method="post" action="" id="test">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <label for="yearChoice">Year : </label>
+        <select id="yearChoice">
+            {% for yr in years %}
+                <option value="{{ yr.0 }}" selected {% ifequal yr.0 selectedYear %}selected{% endifequal %} ><a href="#">{{ yr.0 }}</a></option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="submit" onclick="clicked()">
+    </form>
+{% endblock %}
+
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    function clicked(){
+        document.write("hii");
+        alert("hii");
+
+    }
+</script>
+

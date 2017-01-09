@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
 from feedback.forms import LoginForm, InitiateForm
 from django.contrib.auth.decorators import login_required
+from feedback.models import Classes
 
 
 def login_redirect(request):
@@ -43,12 +44,18 @@ def goto_user_page(user):
 
 
 @login_required
-def initiate(request):
+def initiate(request, year, branch, section):
     if not request.user.groups.filter(name=COORDINATOR_GROUP).exists():
         return HttpResponse("You don't have permissions to view this page")
-
-    template = "initiate.html"
     context = {}
+    template = 'feedback/initiate.html'
+    years = Classes.objects.order_by('year').values_list('year').distinct()
+    context['years'] = years
+    if year != '':
+        context['selectedYear'] = year
+    if branch != '':
+        context['selectedBranch'] = branch
+
     if request.method == "POST":
         form = InitiateForm(request.POST)
         if form.is_valid():
@@ -62,6 +69,7 @@ def initiate(request):
     else:
         context['form'] = InitiateForm()
     return render(request, template, context)
+
 
 
 @login_required
