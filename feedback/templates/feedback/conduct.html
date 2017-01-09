@@ -4,7 +4,7 @@
 
 {% block navbar %}
     {% if user.is_authenticated %}
-        <li><a href="{%  url 'conduct'  %}">Home</a></li>
+        <li><a href="/feedback/conduct">Home</a></li>
     {% endif %}
     {% include 'feedback/includes/navbar.html' %}
 {% endblock %}

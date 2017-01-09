@@ -4,7 +4,7 @@
 
 {% block navbar %}
     {% if user.is_authenticated %}
-        <li><a href="#">Home</a></li>
+        <li><a href="/feedback/initiate">Home</a></li>
     {% endif %}
     {% include 'feedback/includes/navbar.html' %}
 {% endblock %}
@@ -27,7 +27,7 @@
         </button>
         <ul class="dropdown-menu">
             {% for yr in years %}
-                <li><a href="{% url 'feedback:initiate' yr.0 '0' '0' %}">{{ yr.0 }}</a></li>
+                <li><a href="/feedback/initiate/{{ yr.0 }}/">{{ yr.0 }}</a></li>
             {% endfor %}
         </ul>
     </div>
@@ -41,7 +41,7 @@
         </button>
         <ul class="dropdown-menu">
             {% for br in branches %}
-                <li><a href="{% url 'feedback:initiate' selectedYear br.0 '0' %}">{{ br.0 }}</a></li>
+                <li><a href="/feedback/initiate/{{ selectedYear }}/{{ br.0 }}/">{{ br.0 }}</a></li>
             {% endfor %}
         </ul>
     </div>
