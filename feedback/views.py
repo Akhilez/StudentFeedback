@@ -55,13 +55,9 @@ def initiate(request, year, branch, section):
         context['selectedYear'] = year
         branches = Classes.objects.filter(year=year).values_list('branch').order_by('branch').distinct()
         context['branches'] = branches
-    if branch != '0':
+    if year!='' and branch != '0':
         context['selectedBranch'] = branch
-        sections = Classes.objects\
-            .filter(year=year, branch=branch)\
-            .values_list('section')\
-            .order_by('section')\
-            .distinct()
+        sections = Classes.objects.filter(year=year, branch=branch).values_list('section').order_by('section').distinct()
         context['sections'] = sections
     if section != '0':
         context['selectedSection'] = section
