@@ -2,9 +2,9 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
-from feedback.forms import LoginForm, InitiateForm
+from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from feedback.models import Classes
+from feedback.models import Classes, Initiation
 
 
 def login_redirect(request):
@@ -47,7 +47,7 @@ def goto_user_page(user):
 def initiate(request, year, branch, section):
     if not request.user.groups.filter(name=COORDINATOR_GROUP).exists():
         return HttpResponse("You don't have permissions to view this page")
-    context = {}
+    context = {'total_history': Initiation.objects.all()}
     template = 'feedback/initiate.html'
     years = Classes.objects.order_by('year').values_list('year').distinct()
     context['years'] = years
@@ -55,26 +55,22 @@ def initiate(request, year, branch, section):
         context['selectedYear'] = year
         branches = Classes.objects.filter(year=year).values_list('branch').order_by('branch').distinct()
         context['branches'] = branches
-    if year!='' and branch != '0':
+    if year!='' and branch != '':
         context['selectedBranch'] = branch
         sections = Classes.objects.filter(year=year, branch=branch).values_list('section').order_by('section').distinct()
         context['sections'] = sections
-    if section != '0':
+    if year!='' and branch != '' and section != '':
         context['selectedSection'] = section
         #Do whatever we do with the selected class here!
 
-    if request.method == "POST":
-        form = InitiateForm(request.POST)
-        if form.is_valid():
-            user = request.POST['user']
-            '''if user is not None:
-                login(request, user)
-                return goto_user_page(user)
-            else:
-                context['error'] = 'login error'
-            context['form'] = form'''
-    else:
-        context['form'] = InitiateForm()
+        classobj = Classes.objects.get(year=year, branch=branch, section=section)
+        history = Initiation.objects.filter(class_id=classobj)
+        lastSession = history[len(history)-1]
+        context['history']=[lastSession.class_id, lastSession.timestamp, lastSession.initiated_by]
+        context['history']=history
+        if request.method == "POST":
+            pass
+
     return render(request, template, context)
 
 

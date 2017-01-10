@@ -12,12 +12,11 @@
 {% block maincontent %}
     {{ user.username }}
     {{ user.groups.all.0 }}
+    <br>
+    {% for his in total_history %}
+        {{ his.class_id.year }} {{ his.class_id.branch }} {{ his.class_id.section }} at {{ his.timestamp }} by {{ his.initiated_by.username }}<br/>
+    {% endfor %}
 
-    <form method="post" action="" id="test">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="submit" onclick="clicked()">
-    </form>
     <br/>
     Year:
     <div class="dropdown" id="year_selector">
@@ -62,18 +61,19 @@
     </div>
     {% endif %}
     {% if selectedSection %}
-        HEY! Your class is: {{ selectedYear }} {{ selectedBranch }} {{ selectedSection }}
+        <div class="col-sm-3">
+            {% if history %}
+                {% for his in history %}
+                    {{ his.class_id.year }} {{ his.class_id.branch }} {{ his.class_id.section }} at {{ his.timestamp }} by {{ his.initiated_by.username }}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <form method="post" action="" id="test">
+            {% csrf_token %}
+            <input type="submit" value="Initiate">
+        </form>
     {% endif %}
 
+
 {% endblock %}
-
-
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script type="text/javascript">
-    function clicked(){
-        document.write("hii");
-        alert("hii");
-
-    }
-</script>
 
