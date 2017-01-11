@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'StudentFeedback.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nba_projects_db',
-        'USER': 'postgres',
-        'PASSWORD': 'Kmit$321',
+        'USER': 'root',
+        'PASSWORD': 'kmit',
     }
 }
 
@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'IST'
 
 USE_I18N = True
 

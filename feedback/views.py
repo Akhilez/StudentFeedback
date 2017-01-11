@@ -5,6 +5,7 @@ from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_U
 from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
 from feedback.models import Classes, Initiation
+import datetime
 
 
 def login_redirect(request):
@@ -47,7 +48,7 @@ def goto_user_page(user):
 def initiate(request, year, branch, section):
     if not request.user.groups.filter(name=COORDINATOR_GROUP).exists():
         return HttpResponse("You don't have permissions to view this page")
-    context = {'total_history': Initiation.objects.all()}
+    context = {'total_history': Initiation.objects.all()[:10]}
     template = 'feedback/initiate.html'
     years = Classes.objects.order_by('year').values_list('year').distinct()
     context['years'] = years
@@ -69,7 +70,12 @@ def initiate(request, year, branch, section):
         context['history']=[lastSession.class_id, lastSession.timestamp, lastSession.initiated_by]
         context['history']=history
         if request.method == "POST":
-            pass
+            if lastSession.timestamp.date() == datetime.date.today():
+                return HttpResponse("no bro you cant initiate twice")
+            else:
+                dt = str(datetime.datetime.now())
+                Initiation.objects.create(timestamp=dt, initiated_by=request.user, class_id=classobj)
+                context['submitted'] = 'done'
 
     return render(request, template, context)
 

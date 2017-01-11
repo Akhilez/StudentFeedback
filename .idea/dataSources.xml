@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3832602810">
-    <data-source source="LOCAL" name="Django default" uuid="92f5bcbb-5355-4e38-8d7a-cbe5f002a757">
-      <driver-ref>postgresql</driver-ref>
+  <component name="DataSourceManagerImpl" format="xml" hash="3418571889">
+    <data-source source="LOCAL" name="MySQL - nba_projects_db@localhost" uuid="880b1b65-8a5e-44f9-93d8-deade808f740">
+      <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:nba_projects_db</jdbc-url>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/nba_projects_db</jdbc-url>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
+      </driver-properties>
       <libraries />
     </data-source>
   </component>
