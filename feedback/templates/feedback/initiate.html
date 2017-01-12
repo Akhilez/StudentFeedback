@@ -61,12 +61,13 @@
     </div>
     {% endif %}
     {% if selectedSection %}
-        <div class="col-sm-3">
+        <div class="col-sm-5">
             {% if history %}
+                <br/>History:<br/>
                 {% for his in history %}
                     {{ his.class_id.year }} {{ his.class_id.branch }} {{ his.class_id.section }} at {{ his.timestamp }} by {{ his.initiated_by.username }}
                 {% endfor %}
-            {% endif %}<br/>
+            {% endif %}<br/><br/>
             <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" form="confirmForm">Initiate</button>
         </div>
 
