@@ -66,16 +66,17 @@ def initiate(request, year, branch, section):
 
         classobj = Classes.objects.get(year=year, branch=branch, section=section)
         history = Initiation.objects.filter(class_id=classobj)
-        lastSession = history[len(history)-1]
-        context['history']=[lastSession.class_id, lastSession.timestamp, lastSession.initiated_by]
-        context['history']=history
+        if len(history)!=0:
+            lastSession = history[len(history)-1]
+            context['history']=[lastSession.class_id, lastSession.timestamp, lastSession.initiated_by]
+            context['history']=history
         if request.method == "POST":
-            if lastSession.timestamp.date() == datetime.date.today():
+            if len(history)!=0 and history[len(history)-1].timestamp.date() == datetime.date.today():
                 return HttpResponse("no bro you cant initiate twice")
-            else:
-                dt = str(datetime.datetime.now())
-                Initiation.objects.create(timestamp=dt, initiated_by=request.user, class_id=classobj)
-                context['submitted'] = 'done'
+
+            dt = str(datetime.datetime.now())
+            Initiation.objects.create(timestamp=dt, initiated_by=request.user, class_id=classobj)
+            context['submitted'] = 'done'
 
     return render(request, template, context)
 
