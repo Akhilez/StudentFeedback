@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
 from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from feedback.models import Classes, Initiation
+from feedback.models import Classes, Initiation, Session
 import datetime
 
 
@@ -56,30 +56,29 @@ def initiate(request, year, branch, section):
         context['selectedYear'] = year
         branches = Classes.objects.filter(year=year).values_list('branch').order_by('branch').distinct()
         context['branches'] = branches
-    if year!='' and branch != '':
+    if year != '' and branch != '':
         context['selectedBranch'] = branch
-        sections = Classes.objects.filter(year=year, branch=branch).values_list('section').order_by('section').distinct()
+        sections = Classes.objects.filter(year=year, branch=branch).values_list('section').order_by(
+            'section').distinct()
         context['sections'] = sections
-    if year!='' and branch != '' and section != '':
+    if year != '' and branch != '' and section != '':
         context['selectedSection'] = section
-        #Do whatever we do with the selected class here!
+        # Do whatever we do with the selected class here!
 
         classobj = Classes.objects.get(year=year, branch=branch, section=section)
         history = Initiation.objects.filter(class_id=classobj)
-        if len(history)!=0:
-            lastSession = history[len(history)-1]
-            context['history']=[lastSession.class_id, lastSession.timestamp, lastSession.initiated_by]
-            context['history']=history
+        context['history'] = history
+        if len(history) == 0 or history[len(history) - 1].timestamp.date() != datetime.date.today():
+                context['isEligible'] = 'true'
         if request.method == "POST":
-            if len(history)!=0 and history[len(history)-1].timestamp.date() == datetime.date.today():
-                return HttpResponse("no bro you cant initiate twice")
-
             dt = str(datetime.datetime.now())
             Initiation.objects.create(timestamp=dt, initiated_by=request.user, class_id=classobj)
             context['submitted'] = 'done'
+    # Are any sessions open?
+    currectSessions = Session.objects.filter(timestamp=datetime.date.today())
+    context['curs'] = currectSessions
 
     return render(request, template, context)
-
 
 
 @login_required

@@ -95,7 +95,14 @@ DATABASES = {
         },
     },
 }
-#'''
+'''
+host = db4free.net
+port = 3306
+database = nba_projects_db
+user = kmit
+password = kmit123
+default-character-set = utf8
+'''
 
 
 # Password validation
