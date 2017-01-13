@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="4042672927">
+  <component name="DataSourceManagerImpl" format="xml" hash="2918083691">
     <data-source source="LOCAL" name="MySQL - nba_projects_db@localhost" uuid="880b1b65-8a5e-44f9-93d8-deade808f740">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
@@ -20,6 +20,20 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://db4free.net:3306/nba_projects_db</jdbc-url>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
+      </driver-properties>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="MySQL - sql6153441@sql6.freemysqlhosting.net" uuid="e3b28813-f821-4dc8-9d6b-aed6599beb3b">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6153441</jdbc-url>
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
