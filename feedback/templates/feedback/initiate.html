@@ -13,19 +13,10 @@ function toggle(source) {
 
 {% block title %} Home {% endblock%}
 
-{% block navbar %}
-    {% if user.is_authenticated %}
-        <li><a href="/feedback/initiate">Home</a></li>
-    {% endif %}
-    {% include 'feedback/includes/navbar.html' %}
-{% endblock %}
-
 {% block maincontent %}
-    {{ user.username }}
-    {{ user.groups.all.0 }}
-    <br>
+    <h3>Recent feedbacks</h3>
     {% for his in total_history %}
-        {{ his.class_id.year }} {{ his.class_id.branch }} {{ his.class_id.section }} at {{ his.timestamp }} by {{ his.initiated_by.username }}<br/>
+        {{ his.class_id.year }} {{ his.class_id.branch }} {{ his.class_id.section }} on {{ his.timestamp }} by {{ his.initiated_by.username }}<br/>
     {% endfor %}
     <form method="post" action="" id="checks">
         {% csrf_token %}
@@ -85,7 +76,7 @@ function toggle(source) {
     </form>
 
 
-    Select a single class: <br/>
+    <h4>Select a single class: </h4>
     Year:
     <div class="dropdown" id="year_selector">
         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
