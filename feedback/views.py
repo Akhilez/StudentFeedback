@@ -1,16 +1,18 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
+from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL, FACULTY_URL
 from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from feedback.models import Classes, Initiation, Session
+from feedback.models import Classes, Initiation, Session, ClassFacSub
 import datetime
 
 
 def login_redirect(request):
     return redirect(LOGIN_URL)
 
+def faculty_redirect(request):
+    return redirect(FACULTY_URL)
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -47,7 +49,7 @@ def goto_user_page(user):
 @login_required
 def initiate(request, year, branch, section):
     if not request.user.groups.filter(name=COORDINATOR_GROUP).exists():
-        return HttpResponse("You don't have permissions to view this page")
+        return render(request, 'feedback/invalid_user.html')
 
     context = {'total_history': Initiation.objects.all().order_by('-timestamp')[:10]}
     template = 'feedback/initiate.html'
@@ -144,9 +146,34 @@ def initiate(request, year, branch, section):
 @login_required
 def conduct(request):
     if not request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
-        return HttpResponse("You don't have permissions to view this page")
+        return render(request, 'feedback/invalid_user.html')
     return render(request, 'feedback/conduct.html')
 
+
+def student(request):
+    template = 'feedback/student_login.html'
+    context = {}
+    #Are any sessions open?
+    sessions = Session.objects.all().order_by('-timestamp')[:50]
+    if len(sessions) != 0 and (datetime.datetime.now(datetime.timezone.utc) - sessions[0].timestamp).total_seconds()/60 > getStudentTimeout():
+        return redirect('/')
+    if request.method == 'POST':
+        lst = request.POST.getlist('OTP')[0]
+        classObj = None
+        for session in sessions:
+            context['lst'] = session.session_id
+            if str(session.session_id) == lst:
+                classObj = session.initiation_id.class_id
+                context['lst'] = str(classObj.year)+" "+str(classObj.branch)+" "+str(classObj.section)
+                context['sess'] = ClassFacSub.objects.filter(class_id=classObj)
+                break
+        if classObj is None:
+            context['otpError'] = 'otpError'
+            return render(request, template, context)
+
+
+
+    return render(request, template, context)
 
 def initiateFor(year, branch, section, by):
     classobj = Classes.objects.get(year=year, branch=branch, section=section)
@@ -157,3 +184,6 @@ def initiateFor(year, branch, section, by):
         return 'success'
     else:
         return 'failed'
+
+def getStudentTimeout():
+    return 5

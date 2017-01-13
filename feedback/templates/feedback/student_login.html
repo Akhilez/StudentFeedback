@@ -1,0 +1,22 @@
+{% extends 'feedback/base.html' %}
+{% block title %}Faculty feedback{% endblock %}
+{% block maincontent %}
+
+    <h3>Enter OTP</h3>
+    <p>Enter the OTP that is written on the writing board</p>
+    {% if otpError %}
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <strong>Error!</strong> The OTP you have entered is invalid
+        </div>
+    {% endif %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" id="OTP" name="OTP" required="true">
+        <input type="submit">
+    </form>
+
+    {{ lst }}
+    {{ sess }}
+
+{% endblock %}

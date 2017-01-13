@@ -9,9 +9,13 @@ function toggle(source) {
   }
 }
 </script>
-{% endblock %}
+{% endblock head %}
 
 {% block title %} Home {% endblock%}
+
+{% block navbar %}
+    {% include 'feedback/includes/navbar.html' %}
+{% endblock %}
 
 {% block maincontent %}
     <h3>Recent feedbacks</h3>
@@ -60,7 +64,6 @@ function toggle(source) {
                             <td>{{ s }}</td>
                         </tr>
                     {% endfor %}
-
                 {% else %}
                     {% for yrrr in years %}
                         <tr>
