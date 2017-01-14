@@ -150,7 +150,6 @@ TEMPLATE_DIRS = (
 )
 
 LOGIN_URL = "/login/"
-FACULTY_URL = '/feedback/student'
 
 MAX_QUESTIONS = 20
 

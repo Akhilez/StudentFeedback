@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f28d184d-98d4-4de7-b367-663dfacc6202" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/templates/feedback/questions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/base.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/models.py" afterPath="$PROJECT_DIR$/feedback/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/student_login.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/student_login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/tests.py" afterPath="$PROJECT_DIR$/feedback/tests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/urls.py" afterPath="$PROJECT_DIR$/feedback/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/login.html" afterPath="$PROJECT_DIR$/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentFeedback/settings.py" afterPath="$PROJECT_DIR$/StudentFeedback/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentFeedback/urls.py" afterPath="$PROJECT_DIR$/StudentFeedback/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/views.py" afterPath="$PROJECT_DIR$/feedback/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -67,19 +63,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/feedback/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23068433" vertical-offset="471" max-vertical-offset="1377">
-              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+              <caret line="3" column="82" selection-start-line="3" selection-start-column="82" selection-end-line="3" selection-end-column="82" />
               <folding>
-                <element signature="e#0#51#0" expanded="true" />
-                <element signature="e#1572#1896#0" expanded="false" />
-                <element signature="e#1965#6061#0" expanded="false" />
-                <element signature="e#6106#6284#0" expanded="false" />
-                <element signature="e#6313#7183#0" expanded="false" />
-                <element signature="e#7680#8086#0" expanded="false" />
+                <element signature="e#781#1479#0" expanded="false" />
+                <element signature="e#1512#1836#0" expanded="false" />
+                <element signature="e#1905#6001#0" expanded="false" />
+                <element signature="e#6046#6224#0" expanded="false" />
+                <element signature="e#6253#7123#0" expanded="false" />
+                <element signature="e#7154#7570#0" expanded="false" />
+                <element signature="e#7620#8026#0" expanded="false" />
+                <element signature="e#8057#8197#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/StudentFeedback/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1865" max-vertical-offset="2788">
+              <caret line="140" column="40" selection-start-line="140" selection-start-column="40" selection-end-line="140" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -89,6 +97,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="272">
               <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="invalid_user.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/invalid_user.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="170">
+              <caret line="3" column="73" selection-start-line="3" selection-start-column="73" selection-end-line="3" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -104,49 +122,52 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/urls.py">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
-              <caret line="16" column="60" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.3284091" vertical-offset="0" max-vertical-offset="880">
+              <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/models.py">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feedback/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="952">
-              <caret line="36" column="69" selection-start-line="36" selection-start-column="69" selection-end-line="36" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+              <caret line="14" column="54" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="initiate.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.65384614" vertical-offset="646" max-vertical-offset="2108">
+              <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
               <folding>
-                <element signature="e#816#922#0" expanded="false" />
-                <element signature="e#958#1049#0" expanded="false" />
-                <element signature="e#1089#1340#0" expanded="false" />
-                <element signature="e#1376#1509#0" expanded="false" />
-                <element signature="e#1548#1774#0" expanded="false" />
-                <element signature="e#1810#2051#0" expanded="false" />
-                <element signature="e#2090#2199#0" expanded="false" />
-                <element signature="e#2233#2307#0" expanded="false" />
-                <element signature="e#2349#2597#0" expanded="false" />
-                <element signature="e#2632#2750#0" expanded="false" />
-                <element signature="e#2787#5016#0" expanded="false" />
+                <element signature="n#if#0;n#!!top" expanded="false" />
+                <element signature="n#for#1;n#!!top" expanded="false" />
+                <element signature="n#for#3;n#!!top" expanded="false" />
+                <element signature="n#for#4;n#!!top" expanded="false" />
+                <element signature="n#if#5;n#!!top" expanded="false" />
+                <element signature="n#if#7;n#!!top" expanded="false" />
+                <element signature="n#if#10;n#!!top" expanded="false" />
+                <element signature="n#for#8;n#!!top" expanded="false" />
+                <element signature="n#if#13;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sql6153441.feedback_classes" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/dcfcaa18/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_classes">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+      <file leaf-file-name="conduct.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/conduct.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="306">
+              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
               <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -174,20 +195,20 @@
         <option value="$PROJECT_DIR$/StudentFeedback/onlineconnector.cnf" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/includes/navbar.html" />
-        <option value="$PROJECT_DIR$/StudentFeedback/urls.py" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/invalid_user.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/conduct.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" />
-        <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/feedback/admin.py" />
-        <option value="$PROJECT_DIR$/StudentFeedback/settings.py" />
         <option value="$PROJECT_DIR$/feedback/tests.py" />
-        <option value="$PROJECT_DIR$/feedback/urls.py" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/questions.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/base.html" />
         <option value="$PROJECT_DIR$/feedback/models.py" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/student_login.html" />
+        <option value="$PROJECT_DIR$/StudentFeedback/urls.py" />
+        <option value="$PROJECT_DIR$/feedback/urls.py" />
+        <option value="$PROJECT_DIR$/StudentFeedback/settings.py" />
         <option value="$PROJECT_DIR$/feedback/views.py" />
+        <option value="$PROJECT_DIR$/templates/login.html" />
       </list>
     </option>
   </component>
@@ -667,7 +688,13 @@
       <option name="project" value="LOCAL" />
       <updated>1484334294348</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Akhil- student2">
+      <created>1484371814325</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1484371814325</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -676,6 +703,7 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -688,7 +716,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -718,7 +745,8 @@
     <MESSAGE value="Akhil- Initiation 4" />
     <MESSAGE value="Akhil- minor tweaks" />
     <MESSAGE value="Akhil- student" />
-    <option name="LAST_COMMIT_MESSAGE" value="Akhil- student" />
+    <MESSAGE value="Akhil- student2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Akhil- student2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -727,32 +755,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1445">
-          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding>
-            <element signature="n#if#0;n#!!top" expanded="false" />
-            <element signature="n#for#1;n#!!top" expanded="false" />
-            <element signature="n#for#3;n#!!top" expanded="false" />
-            <element signature="n#for#4;n#!!top" expanded="false" />
-            <element signature="n#if#5;n#!!top" expanded="false" />
-            <element signature="n#if#7;n#!!top" expanded="false" />
-            <element signature="n#if#10;n#!!top" expanded="false" />
-            <element signature="n#for#8;n#!!top" expanded="false" />
-            <element signature="n#if#13;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="306">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/feedback/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="850">
@@ -778,12 +780,14 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="409" max-vertical-offset="1071">
           <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#1572#1896#0" expanded="false" />
-            <element signature="e#1965#6061#0" expanded="false" />
-            <element signature="e#6106#6284#0" expanded="false" />
-            <element signature="e#6313#7183#0" expanded="false" />
-            <element signature="e#7680#8086#0" expanded="false" />
+            <element signature="e#781#1479#0" expanded="false" />
+            <element signature="e#1512#1836#0" expanded="false" />
+            <element signature="e#1905#6001#0" expanded="false" />
+            <element signature="e#6046#6224#0" expanded="false" />
+            <element signature="e#6253#7123#0" expanded="false" />
+            <element signature="e#7154#7570#0" expanded="false" />
+            <element signature="e#7620#8026#0" expanded="false" />
+            <element signature="e#8057#8197#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -854,12 +858,14 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1071">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#1572#1896#0" expanded="false" />
-            <element signature="e#1965#6061#0" expanded="false" />
-            <element signature="e#6106#6284#0" expanded="false" />
-            <element signature="e#6313#7183#0" expanded="false" />
-            <element signature="e#7680#8086#0" expanded="false" />
+            <element signature="e#781#1479#0" expanded="false" />
+            <element signature="e#1512#1836#0" expanded="false" />
+            <element signature="e#1905#6001#0" expanded="false" />
+            <element signature="e#6046#6224#0" expanded="false" />
+            <element signature="e#6253#7123#0" expanded="false" />
+            <element signature="e#7154#7570#0" expanded="false" />
+            <element signature="e#7620#8026#0" expanded="false" />
+            <element signature="e#8057#8197#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -922,12 +928,14 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1071">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#1572#1896#0" expanded="false" />
-            <element signature="e#1965#6061#0" expanded="false" />
-            <element signature="e#6106#6284#0" expanded="false" />
-            <element signature="e#6313#7183#0" expanded="false" />
-            <element signature="e#7680#8086#0" expanded="false" />
+            <element signature="e#781#1479#0" expanded="false" />
+            <element signature="e#1512#1836#0" expanded="false" />
+            <element signature="e#1905#6001#0" expanded="false" />
+            <element signature="e#6046#6224#0" expanded="false" />
+            <element signature="e#6253#7123#0" expanded="false" />
+            <element signature="e#7154#7570#0" expanded="false" />
+            <element signature="e#7620#8026#0" expanded="false" />
+            <element signature="e#8057#8197#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -990,12 +998,14 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#1572#1896#0" expanded="false" />
-            <element signature="e#1965#6061#0" expanded="false" />
-            <element signature="e#6106#6284#0" expanded="false" />
-            <element signature="e#6313#7183#0" expanded="false" />
-            <element signature="e#7680#8086#0" expanded="false" />
+            <element signature="e#781#1479#0" expanded="false" />
+            <element signature="e#1512#1836#0" expanded="false" />
+            <element signature="e#1905#6001#0" expanded="false" />
+            <element signature="e#6046#6224#0" expanded="false" />
+            <element signature="e#6253#7123#0" expanded="false" />
+            <element signature="e#7154#7570#0" expanded="false" />
+            <element signature="e#7620#8026#0" expanded="false" />
+            <element signature="e#8057#8197#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1139,32 +1149,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentFeedback/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52538633" vertical-offset="0" max-vertical-offset="906">
-          <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
-          <folding>
-            <element signature="e#649#681#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/conduct.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17386363" vertical-offset="0" max-vertical-offset="880">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/invalid_user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.057954546" vertical-offset="0" max-vertical-offset="880">
-          <caret line="3" column="73" selection-start-line="3" selection-start-column="73" selection-end-line="3" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_session">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
@@ -1178,24 +1162,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="663" max-vertical-offset="2108">
-          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
-          <folding>
-            <element signature="n#if#0;n#!!top" expanded="false" />
-            <element signature="n#for#1;n#!!top" expanded="false" />
-            <element signature="n#for#3;n#!!top" expanded="false" />
-            <element signature="n#for#4;n#!!top" expanded="false" />
-            <element signature="n#if#5;n#!!top" expanded="false" />
-            <element signature="n#if#7;n#!!top" expanded="false" />
-            <element signature="n#if#10;n#!!top" expanded="false" />
-            <element signature="n#for#8;n#!!top" expanded="false" />
-            <element signature="n#if#13;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/feedback/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15011038" vertical-offset="0" max-vertical-offset="906">
@@ -1204,34 +1170,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentFeedback/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.5198677" vertical-offset="369" max-vertical-offset="2805">
-          <caret line="156" column="34" selection-start-line="156" selection-start-column="34" selection-end-line="156" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/feedback/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.018763797" vertical-offset="0" max-vertical-offset="906">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
-          <caret line="16" column="60" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="204">
-          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1276,7 +1218,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_classes">
+    <entry file="dbDummy://dbtable:/dcfcaa18/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_config">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1289,27 +1231,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="272">
-          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-          <folding />
+    <entry file="uml://DATABASE/e3b28813-f821-4dc8-9d6b-aed6599beb3b.schema:sql6153441">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>e3b28813-f821-4dc8-9d6b-aed6599beb3b.schema:sql6153441</OriginalElement>
+          <nodes>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.auth_group</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.django_content_type</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_subject</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_session</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_classes</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.django_admin_log</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.auth_user_user_permissions</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_notes</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.django_migrations</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_faculty</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_feedback</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.auth_user</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.auth_permission</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_attendance</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.auth_user_groups</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_student</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_classfacsub</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_initiation</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.django_session</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.auth_group_permissions</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_fdbkquestions</node>
+            <node x="" y="">e3b28813-f821-4dc8-9d6b-aed6599beb3b.table:sql6153441.feedback_config</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.7934046345811051" x="847.6825432487083" y="547.9418108290272" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Key columns</Category>
+            <Category>Columns</Category>
+          </Categories>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/student_login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="510">
-          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+    <entry file="dbDummy://dbtable:/dcfcaa18/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_classes">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28977272" vertical-offset="0" max-vertical-offset="880">
-          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
-          <folding />
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1333,18 +1304,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/StudentFeedback/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1865" max-vertical-offset="2788">
+          <caret line="140" column="40" selection-start-line="140" selection-start-column="40" selection-end-line="140" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentFeedback/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41280353" vertical-offset="0" max-vertical-offset="906">
+          <caret line="27" column="55" selection-start-line="27" selection-start-column="55" selection-end-line="27" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+          <caret line="14" column="54" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/feedback/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23068433" vertical-offset="471" max-vertical-offset="1377">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+          <caret line="3" column="82" selection-start-line="3" selection-start-column="82" selection-end-line="3" selection-end-column="82" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#1572#1896#0" expanded="false" />
-            <element signature="e#1965#6061#0" expanded="false" />
-            <element signature="e#6106#6284#0" expanded="false" />
-            <element signature="e#6313#7183#0" expanded="false" />
-            <element signature="e#7680#8086#0" expanded="false" />
+            <element signature="e#781#1479#0" expanded="false" />
+            <element signature="e#1512#1836#0" expanded="false" />
+            <element signature="e#1905#6001#0" expanded="false" />
+            <element signature="e#6046#6224#0" expanded="false" />
+            <element signature="e#6253#7123#0" expanded="false" />
+            <element signature="e#7154#7570#0" expanded="false" />
+            <element signature="e#7620#8026#0" expanded="false" />
+            <element signature="e#8057#8197#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="272">
+          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/invalid_user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="170">
+          <caret line="3" column="73" selection-start-line="3" selection-start-column="73" selection-end-line="3" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.65384614" vertical-offset="646" max-vertical-offset="2108">
+          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+          <folding>
+            <element signature="n#if#0;n#!!top" expanded="false" />
+            <element signature="n#for#1;n#!!top" expanded="false" />
+            <element signature="n#for#3;n#!!top" expanded="false" />
+            <element signature="n#for#4;n#!!top" expanded="false" />
+            <element signature="n#if#5;n#!!top" expanded="false" />
+            <element signature="n#if#7;n#!!top" expanded="false" />
+            <element signature="n#if#10;n#!!top" expanded="false" />
+            <element signature="n#for#8;n#!!top" expanded="false" />
+            <element signature="n#if#13;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/conduct.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="306">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="204">
+          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/student_login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="510">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3284091" vertical-offset="0" max-vertical-offset="880">
+          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>

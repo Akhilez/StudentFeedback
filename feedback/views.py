@@ -1,10 +1,10 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL, FACULTY_URL
+from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
 from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from feedback.models import Classes, Initiation, Session, ClassFacSub
+from feedback.models import Classes, Initiation, Session, ClassFacSub, Config
 import datetime
 
 
@@ -12,11 +12,9 @@ def login_redirect(request):
     #Are any sessions open?
     sessions = Session.objects.all().order_by('-timestamp')[:50]
     if len(sessions) != 0 and (datetime.datetime.now(datetime.timezone.utc) - sessions[0].timestamp).total_seconds()/60 < getStudentTimeout():
-        return redirect('/faculty')
+        return redirect('/feedback/student')
     return redirect(LOGIN_URL)
 
-def faculty_redirect(request):
-    return redirect(FACULTY_URL)
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -197,5 +195,8 @@ def initiateFor(year, branch, section, by):
     else: return 'failed'
 
 def getStudentTimeout():
-    #return 5
-    return 50
+    try:
+        timeInMin = Config.objects.get(key='studentTimeout')
+        return int(timeInMin.value)
+    except Exception:
+        return 5
