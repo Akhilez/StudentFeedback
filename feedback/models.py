@@ -8,12 +8,16 @@ from StudentFeedback.settings import MAX_QUESTIONS
 
 
 class Classes(models.Model):
+    class Meta:
+        unique_together = (('year', 'branch', 'section'),)
+
     class_id = models.AutoField(primary_key=True)
     year = models.IntegerField(
         validators=[MaxValueValidator(4), MinValueValidator(1)] #use IntegerRangeField when admin enters the years
     )
     branch = models.CharField(max_length=10)
-    section = models.CharField(max_length=1)
+    section = models.CharField(max_length=1, null=True)
+    no_of_students = models.IntegerField(default=75)
 
 
 class Faculty(models.Model):
@@ -27,7 +31,7 @@ class Subject(models.Model):
 
 
 class ClassFacSub(models.Model):
-    relation_id = models.AutoField(primary_key=True)
+    cfs_id = models.AutoField(primary_key=True)
     class_id = models.ForeignKey(Classes, on_delete=models.CASCADE)
     faculty_id = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     subject_id = models.ForeignKey(Subject, on_delete=models.CASCADE)
@@ -55,7 +59,6 @@ class Session(models.Model):
 class Attendance(models.Model):
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
     student_id = models.ForeignKey(Student)
-    #mac_address = models.GenericIPAddressField()#models.CharField(max_length=20)
 
 
 class Notes(models.Model):
@@ -69,11 +72,22 @@ class FdbkQuestions(models.Model):
         validators=[MaxValueValidator(MAX_QUESTIONS)]
     )
     question = models.TextField()
+    category = models.CharField(max_length=30)
+    subcategory = models.CharField(max_length=30)
+
+
+class Config(models.Model):
+    key = models.CharField(max_length=20)
+    value = models.CharField(max_length=20)
+    description = models.TextField()
 
 
 class Feedback(models.Model):
+    class Meta:
+        unique_together = (('session_id', 'student_no', 'cfs_id'),)
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
-    relation_id = models.ForeignKey(ClassFacSub, on_delete=models.CASCADE)
+    student_no = models.IntegerField()
+    cfs_id = models.ForeignKey(ClassFacSub, on_delete=models.CASCADE)
 
     ratings = models.CharField(
         validators=[validate_comma_separated_integer_list],

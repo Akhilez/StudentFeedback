@@ -9,6 +9,10 @@ import datetime
 
 
 def login_redirect(request):
+    #Are any sessions open?
+    sessions = Session.objects.all().order_by('-timestamp')[:50]
+    if len(sessions) != 0 and (datetime.datetime.now(datetime.timezone.utc) - sessions[0].timestamp).total_seconds()/60 < getStudentTimeout():
+        return redirect('/faculty')
     return redirect(LOGIN_URL)
 
 def faculty_redirect(request):
@@ -132,9 +136,6 @@ def initiate(request, year, branch, section):
                 lst.append(inst[0]+inst[1]+inst[2]+" - "+status)
             context['status'] = lst
 
-
-
-
     # Are any sessions open?
     currectSessions = Session.objects.filter(timestamp=datetime.date.today())
     context['curs'] = currectSessions
@@ -155,7 +156,7 @@ def student(request):
     context = {}
     #Are any sessions open?
     sessions = Session.objects.all().order_by('-timestamp')[:50]
-    if len(sessions) != 0 and (datetime.datetime.now(datetime.timezone.utc) - sessions[0].timestamp).total_seconds()/60 > getStudentTimeout():
+    if len(sessions) == 0 or (datetime.datetime.now(datetime.timezone.utc) - sessions[0].timestamp).total_seconds()/60 > getStudentTimeout():
         return redirect('/')
     if request.method == 'POST':
         lst = request.POST.getlist('OTP')[0]
@@ -163,15 +164,26 @@ def student(request):
         for session in sessions:
             context['lst'] = session.session_id
             if str(session.session_id) == lst:
-                classObj = session.initiation_id.class_id
-                context['lst'] = str(classObj.year)+" "+str(classObj.branch)+" "+str(classObj.section)
-                context['sess'] = ClassFacSub.objects.filter(class_id=classObj)
-                break
+                #Start a session and redirect to the feedback questions page
+                request.session['sessionObj'] = session.session_id
+                return redirect('/feedback/questions')
         if classObj is None:
             context['otpError'] = 'otpError'
-            return render(request, template, context)
+    return render(request, template, context)
 
 
+def questions(request):
+    session_id = request.session.get('sessionObj')
+    if session_id is None:
+        return redirect('/')
+
+    template = 'feedback/questions.html'
+    context = {}
+
+    session = Session.objects.get(session_id=session_id)
+    classObj = session.initiation_id.class_id
+    context['class_obj'] = classObj
+    context['sess'] = ClassFacSub.objects.filter(class_id=classObj)
 
     return render(request, template, context)
 
@@ -182,8 +194,8 @@ def initiateFor(year, branch, section, by):
         dt = str(datetime.datetime.now())
         Initiation.objects.create(timestamp=dt, initiated_by=by, class_id=classobj)
         return 'success'
-    else:
-        return 'failed'
+    else: return 'failed'
 
 def getStudentTimeout():
-    return 5
+    #return 5
+    return 50
