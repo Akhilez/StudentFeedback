@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f28d184d-98d4-4de7-b367-663dfacc6202" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/login.html" afterPath="$PROJECT_DIR$/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentFeedback/settings.py" afterPath="$PROJECT_DIR$/StudentFeedback/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentFeedback/urls.py" afterPath="$PROJECT_DIR$/StudentFeedback/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/views.py" afterPath="$PROJECT_DIR$/feedback/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -694,7 +690,13 @@
       <option name="project" value="LOCAL" />
       <updated>1484371814325</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Akhil- little better flow">
+      <created>1484374026696</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1484374026696</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -746,7 +748,8 @@
     <MESSAGE value="Akhil- minor tweaks" />
     <MESSAGE value="Akhil- student" />
     <MESSAGE value="Akhil- student2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Akhil- student2" />
+    <MESSAGE value="Akhil- little better flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="Akhil- little better flow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
