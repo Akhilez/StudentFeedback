@@ -54,8 +54,19 @@ def goto_user_page(user):
 def initiate(request, year, branch, section):
     if not request.user.groups.filter(name=COORDINATOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
+    #Running Sessions(Today)
+    allSessions = Session.objects.all()
+    session_lst = []
+    for i in allSessions:
+        if i.timestamp.date() == datetime.date.today():
+            session_lst.append(i)
+    init_lst = []
+    length = len(session_lst)
+    for i in range(0, length):
+        init_lst.append(session_lst[i].initiation_id.class_id)
 
-    context = {'total_history': Initiation.objects.all().order_by('-timestamp')[:10]}
+    context = {'total_history': Initiation.objects.all().order_by('-timestamp')[:10],
+               'running': init_lst}
     template = 'feedback/initiate.html'
 
     years = Classes.objects.order_by('year').values_list('year').distinct()  # returns a list of tuples
@@ -164,8 +175,12 @@ def conduct(request, class1):
         branch = class1[1:4]
         section = class1[4]
         classobj = Classes.objects.get(year=year, branch=branch, section=section)
-        initobj = Initiation.objects.get(class_id=classobj)
-        Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initobj.initiation_id, session_id=otp)
+        initobj = Initiation.objects.filter(class_id=classobj)
+        for i in initobj:
+            if i.timestamp.date() == datetime.date.today():
+                initid = i.initiation_id
+            #return HttpResponse(initid)
+        Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=Initiation(initid), session_id=otp)
         context = {
             'submitted': 'done',
             'otp': otp,
