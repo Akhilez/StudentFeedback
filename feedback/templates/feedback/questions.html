@@ -1,11 +1,66 @@
 {% extends 'feedback/base.html' %}
 
+{% block head %}
+
+{% endblock %}
+
 {% block maincontent %}
 
+    <br/><br/>
     <h3>{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
-    QUESTIONSSS
+    <h4>{{ question.0.subcategory }}</h4>
+    <h2>{{ question.number }}. {{ question.0.question }}</h2><br/>
 
-    {{ sess }}
-    {{ lst }}
+    <table class="table" >
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Rating</th>
+        <th>Don't know</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for subject in subjects %}
+          <tr>
+            <td>{{ subject.name }}</td>
+              <td>
+                <select>
+                    <option>Strongly Disagree</option>
+                    <option>Disagree</option>
+                    <option>Not Sure</option>
+                    <option>Agree</option>
+                    <option>Strongly Agree</option>
+                </select>
+            </td>
+            <td><input type="checkbox" name="idk" id="{{ forloop.counter }}" title="Please provide a reason" data-toggle="popover" data-placement="right" data-trigger="focus" data-content='<p>hiiii</p>'></td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+    <div style="float:right">
+        <ul class="pager">
+            {% if question.has_previous %}
+                <li><a href="?page={{ question.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            {% if question.has_next %}
+                <li><a href="?page={{ question.next_page_number }}">Next</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+
+    <ul class="pagination" style="float:left">
+        {% for i in range %}
+            <li {% ifequal forloop.counter question.number %}class="active"{% endifequal %}><a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+    });
+    </script>
+
 
 {% endblock %}

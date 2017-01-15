@@ -1,10 +1,11 @@
 from django.contrib.auth import authenticate, login
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
 from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from feedback.models import Classes, Initiation, Session, ClassFacSub, Config
+from feedback.models import Classes, Initiation, Session, ClassFacSub, Config, FdbkQuestions
 import datetime
 
 
@@ -181,7 +182,30 @@ def questions(request):
     session = Session.objects.get(session_id=session_id)
     classObj = session.initiation_id.class_id
     context['class_obj'] = classObj
-    context['sess'] = ClassFacSub.objects.filter(class_id=classObj)
+    cfs = ClassFacSub.objects.filter(class_id=classObj)
+    subjects = []
+    faculty = []
+    for i in cfs:
+        subjects.append(i.subject_id)
+        faculty.append(i.faculty_id)
+    context['subjects'] = subjects
+
+    questionsQList = FdbkQuestions.objects.all()
+    paginator = Paginator(questionsQList, 1)
+
+    page = request.GET.get('page')
+    try:
+        question = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        question = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        question = paginator.page(paginator.num_pages)
+
+    context['question'] = question
+    context['range'] = questionsQList
+
 
     return render(request, template, context)
 

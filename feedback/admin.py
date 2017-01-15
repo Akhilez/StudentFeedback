@@ -3,6 +3,7 @@ from feedback.models import *
 
 # Register your models here.
 
+admin.site.site_header = "Administration"
 
 admin.site.register(Classes)
 admin.site.register(Subject)

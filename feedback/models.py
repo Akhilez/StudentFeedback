@@ -19,15 +19,24 @@ class Classes(models.Model):
     section = models.CharField(max_length=1, null=True)
     no_of_students = models.IntegerField(default=75)
 
+    def __str__(self):
+        return str(str(self.year)+" "+str(self.branch)+" "+str(self.section))
+
 
 class Faculty(models.Model):
     faculty_id = models.CharField(max_length=10, primary_key=True)
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 
 class Subject(models.Model):
     subject_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
 
 
 class ClassFacSub(models.Model):
@@ -36,10 +45,16 @@ class ClassFacSub(models.Model):
     faculty_id = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     subject_id = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return str(self.class_id) +"------------"+ str(self.faculty_id) + "-------------" + str(self.subject_id)
+
 
 class Student(models.Model):
     hallticket_no = models.CharField(max_length=10, primary_key=True)
     class_id = models.ForeignKey(Classes, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.hallticket_no+str(self.class_id)
 
 
 class Initiation(models.Model):
@@ -65,6 +80,8 @@ class Notes(models.Model):
     note_id = models.AutoField(primary_key=True)
     note = models.TextField()
 
+class Category(models.Model):
+    category = models.CharField(max_length=30, primary_key=True)
 
 class FdbkQuestions(models.Model):
     question_id = models.AutoField(
@@ -72,8 +89,8 @@ class FdbkQuestions(models.Model):
         validators=[MaxValueValidator(MAX_QUESTIONS)]
     )
     question = models.TextField()
-    category = models.CharField(max_length=30)
-    subcategory = models.CharField(max_length=30)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    subcategory = models.CharField(max_length=30, null=True)
 
 
 class Config(models.Model):
@@ -84,10 +101,11 @@ class Config(models.Model):
 
 class Feedback(models.Model):
     class Meta:
-        unique_together = (('session_id', 'student_no', 'cfs_id'),)
+        unique_together = (('session_id', 'student_no', 'relation_id', 'category'),)
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     student_no = models.IntegerField()
-    cfs_id = models.ForeignKey(ClassFacSub, on_delete=models.CASCADE)
+    relation_id = models.ForeignKey(ClassFacSub, on_delete=models.CASCADE)
 
     ratings = models.CharField(
         validators=[validate_comma_separated_integer_list],
