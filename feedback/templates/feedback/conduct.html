@@ -1,12 +1,85 @@
 {% extends 'feedback/base.html' %}
 
-{% block title %} Home {% endblock%}
+{% block title %} Home {% endblock %}
+
+
+{% block head %}
+<script language="JavaScript">
+function toggle(source) {
+  checkboxes = document.getElementsByName('class');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+    checkboxes[i].checked = source.checked;
+  }
+}
+</script>
+{% endblock head %}
 
 {% block navbar %}
     {% include 'feedback/includes/navbar.html' %}
 {% endblock %}
 
 {% block maincontent %}
-    {{ user.username }}
-    {{ user.groups.all.0 }}
+     <!--#just to check-->
+     {% if class %}
+        <ul>
+            {% for cl in class %}
+                <li>{{ cl }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No classes are available</p>
+    {% endif %}
+
+    <h3>Select a class to start the session:</h3>
+    <div class="dropdown" id="class_selector">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            {% if selectClass %}{{ selectClass }}{% else %}Select class{% endif %}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            {% for cl in class %}
+                <li><a href="/feedback/conduct/{{ cl }}/">{{ cl }}</a></li>
+            {% endfor %}
+        </ul>
+
+     <form method="post" action="" id="confirmForm">
+                  {% csrf_token %}
+                   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Start Session</button>
+                    {% if otp %}
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">SHOW OTP</button>
+     </form>        {% endif %}
+    <!--#After Inserting-->
+    {% if submitted %}
+        <p> Session Started </p>
+    {% endif %}
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Confirmation</h4>
+          </div>
+          <div class="modal-body">
+                <p>You are about to start a session for {{ selectClass }}</p>
+                {% if otp %}
+                <b>{{ otp }}</b>
+              {% endif %}
+
+          </div>
+          <div class="modal-footer">
+              <form method="post" action="" id="sessionForm">
+                  {% csrf_token %}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+                      <input type="submit" value="Confirm" name="confirmSession" class="btn btn-default" >
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}

@@ -7,6 +7,7 @@ from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
 from feedback.models import Classes, Initiation, Session, ClassFacSub, Config, FdbkQuestions
 import datetime
+import random
 
 
 def login_redirect(request):
@@ -144,10 +145,32 @@ def initiate(request, year, branch, section):
 
 
 @login_required
-def conduct(request):
+def conduct(request, class1):
     if not request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
-    return render(request, 'feedback/conduct.html')
+
+    allClasses = Initiation.objects.all()
+    classlist = []
+    for i in allClasses:
+        if i.timestamp.date() == datetime.date.today():
+            classlist.append(str(i.class_id.year)+i.class_id.branch+i.class_id.section)
+    context = {'class': classlist, }
+    if class1 != " ":
+        context['selectClass'] = class1
+
+    if request.method == 'POST' and 'confirmSession' in request.POST:
+        otp = ''.join(random.choice('01J2345A6789R') for i in range(5))
+        dt = str(datetime.datetime.now())
+        for i in range(classlist.__len__()):
+            if classlist[i] == class1:
+                initobj = Initiation(allClasses[i].initiation_id)
+        Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initobj, session_id=otp)
+        context = {
+            'submitted': 'done',
+            'otp': otp,
+            }
+            #return render(request, 'feedback/conduct.html', context)
+    return render(request, 'feedback/conduct.html', context)
 
 
 def student(request):
