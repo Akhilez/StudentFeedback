@@ -247,7 +247,6 @@ def questions(request):
 
     context['question'] = question
     context['range'] = questionsQList
-    context['cfs'] = cfsList
 
     pgno = str(question.number)
 
@@ -293,9 +292,9 @@ def questions(request):
                         ratingsString += ","
                 Feedback.objects.create(session_id=session, category=category, relation_id=cfsList[i-1], student_no=student_no, ratings=ratingsString, remarks=None)
                 lst.append(request.session.get(str(i+1), None))
-
-            context['finish'] = lst
-
+            del request.session['sessionObj']
+            #TODO store macaddress so that this PC is not used again with the session id
+            return HttpResponse("Thank you for the most valuable review!")
 
 
     return render(request, template, context)

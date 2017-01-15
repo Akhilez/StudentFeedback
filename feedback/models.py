@@ -53,7 +53,7 @@ class Student(models.Model):
     class_id = models.ForeignKey(Classes, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.hallticket_no+str(self.class_id)
+        return self.hallticket_no+" --- "+str(self.class_id)
 
 
 class Initiation(models.Model):
@@ -78,6 +78,7 @@ class Attendance(models.Model):
 class Notes(models.Model):
     note_id = models.AutoField(primary_key=True)
     note = models.TextField()
+    session_id = models.ForeignKey(Session, on_delete=models.CASCADE, null=True)
 
 class Category(models.Model):
     category = models.CharField(max_length=30, primary_key=True)
@@ -110,36 +111,4 @@ class Feedback(models.Model):
         validators=[validate_comma_separated_integer_list],
         max_length=MAX_QUESTIONS*3
     )
-
-    #ratings = models.CommaSeparatedIntegerField(max_length=20)  #Deprecated way to use it
-
-    '''  #this works only with postgresql
-    questions = ArrayField(
-        models.IntegerField(validators=[MaxValueValidator(5)]),
-        size=MAX_QUESTIONS,
-    )
-    '''
-    '''  #this is a very bad way
-    question_1 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_2 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_3 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_4 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_5 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_6 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_7 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_8 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_9 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_10 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_11 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_12 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_13 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_14 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_15 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_16 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_17 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_18 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_19 = models.IntegerField(validators=[MaxValueValidator(5)])
-    question_20 = models.IntegerField(validators=[MaxValueValidator(5)])
-    '''
-    remarks = models.ForeignKey(Notes, on_delete=models.CASCADE, null=True)
-
+    #remarks = models.TextField(null=True)
