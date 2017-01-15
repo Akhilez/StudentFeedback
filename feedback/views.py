@@ -63,7 +63,6 @@ def initiate(request, year, branch, section):
     context['years'] = years
     context['allYears'] = years
 
-
     # Dynamic dropdowns
     if year != '':
         context['selectedYear'] = year
@@ -161,10 +160,12 @@ def conduct(request, class1):
     if request.method == 'POST' and 'confirmSession' in request.POST:
         otp = ''.join(random.choice('01J2345A6789R') for i in range(5))
         dt = str(datetime.datetime.now())
-        for i in range(classlist.__len__()):
-            if classlist[i] == class1:
-                initobj = Initiation(allClasses[i].initiation_id)
-        Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initobj, session_id=otp)
+        year = class1[0]
+        branch = class1[1:4]
+        section = class1[4]
+        classobj = Classes.objects.get(year=year, branch=branch, section=section)
+        initobj = Initiation.objects.get(class_id=classobj)
+        Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initobj.initiation_id, session_id=otp)
         context = {
             'submitted': 'done',
             'otp': otp,
