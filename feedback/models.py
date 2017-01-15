@@ -142,3 +142,4 @@ class Feedback(models.Model):
     question_20 = models.IntegerField(validators=[MaxValueValidator(5)])
     '''
     remarks = models.ForeignKey(Notes, on_delete=models.CASCADE, null=True)
+

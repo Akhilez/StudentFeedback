@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
 from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from feedback.models import Classes, Initiation, Session, ClassFacSub, Config, FdbkQuestions
+from feedback.models import Classes, Initiation, Session, ClassFacSub, Config, FdbkQuestions, Feedback, Category, Notes
 import datetime
 import random
 
@@ -207,9 +207,11 @@ def questions(request):
     classObj = session.initiation_id.class_id
     context['class_obj'] = classObj
     cfs = ClassFacSub.objects.filter(class_id=classObj)
+    cfsList = []
     subjects = []
     faculty = []
     for i in cfs:
+        cfsList.append(i)
         subjects.append(i.subject_id)
         faculty.append(i.faculty_id)
     context['subjects'] = subjects
@@ -220,6 +222,7 @@ def questions(request):
     page = request.GET.get('page')
     try:
         question = paginator.page(page)
+
     except PageNotAnInteger:
         # If page is not an integer, deliver first page.
         question = paginator.page(1)
@@ -229,6 +232,55 @@ def questions(request):
 
     context['question'] = question
     context['range'] = questionsQList
+    context['cfs'] = cfsList
+
+    pgno = str(question.number)
+
+    myRating = request.session.get(pgno, None)
+    if myRating is not None:
+        #TODO display all the ratings in HTML
+        context['allRatings'] = request.session[pgno]
+    else:
+        request.session[pgno] = None
+
+    if request.method == 'POST':
+        if 'next' in request.POST:
+            ratings = request.POST.getlist("review")
+            request.session[pgno] = ratings
+            for rating in ratings:
+                if rating == "None":
+                    context['error'] = "Please enter all the ratings"
+                    return render(request, template, context)
+            return redirect('/feedback/questions/?page='+str(question.number+1))
+
+        if 'finish' in request.POST:
+            ratings = request.POST.getlist("review")
+            request.session[pgno] = ratings
+            for rating in ratings:
+                if rating == "None":
+                    context['error'] = "Please enter all the ratings"
+                    return render(request, template, context)
+            lst=[]
+            for i in range(1, question.end_index()+1):
+                if request.session.get(str(i)) is None or None in request.session[str(i)]:
+                    return redirect('/feedback/questions/?page='+str(i))
+            category = Category.objects.get(category="faculty")
+            for i in range(len(cfsList)):
+                student_no = Feedback.objects.filter(session_id=session)
+                if len(student_no) == 0:
+                    student_no = 1
+                else:
+                    student_no = student_no.order_by('-student_no')[0].student_no+1
+                ratingsString = ""
+                for j in range(1, question.end_index()+1):
+                    ratingsString += str(request.session[str(j)][i])
+                    if j != question.end_index():
+                        ratingsString += ","
+                Feedback.objects.create(session_id=session, category=category, relation_id=cfsList[i-1], student_no=student_no, ratings=ratingsString, remarks=None)
+                lst.append(request.session.get(str(i+1), None))
+
+            context['finish'] = lst
+
 
 
     return render(request, template, context)
