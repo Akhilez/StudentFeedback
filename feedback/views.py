@@ -5,9 +5,10 @@ from django.shortcuts import render, redirect
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
 from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from feedback.models import Classes, Initiation, Session, ClassFacSub, Config, FdbkQuestions, Feedback, Category, Notes
+from feedback.models import Classes, Initiation, Session, ClassFacSub, Config, FdbkQuestions, Category, Notes, Feedback
 import datetime
 import random
+import string
 
 
 def login_redirect(request):
@@ -60,13 +61,9 @@ def initiate(request, year, branch, section):
     for i in allSessions:
         if i.timestamp.date() == datetime.date.today():
             session_lst.append(i)
-    init_lst = []
-    length = len(session_lst)
-    for i in range(0, length):
-        init_lst.append(session_lst[i].initiation_id.class_id)
 
     context = {'total_history': Initiation.objects.all().order_by('-timestamp')[:10],
-               'running': init_lst}
+               'running_sessions': session_lst}
     template = 'feedback/initiate.html'
 
     years = Classes.objects.order_by('year').values_list('year').distinct()  # returns a list of tuples
@@ -155,7 +152,7 @@ def initiate(request, year, branch, section):
 
 
 @login_required
-def conduct(request, class1):
+def conduct(request):
     if not request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
 
@@ -163,29 +160,24 @@ def conduct(request, class1):
     classlist = []
     for i in allClasses:
         if i.timestamp.date() == datetime.date.today():
-            classlist.append(str(i.class_id.year)+i.class_id.branch+i.class_id.section)
-    context = {'class': classlist, }
-    if class1 != " ":
-        context['selectClass'] = class1
+            classlist.append(i.class_id)
+    context = {'classes': classlist}
 
     if request.method == 'POST' and 'confirmSession' in request.POST:
-        otp = ''.join(random.choice('01J2345A6789R') for i in range(5))
+        classFromSelect = request.POST.getlist('selectClass')[0]
+        context['thisisit'] = classFromSelect
+        otp = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
         dt = str(datetime.datetime.now())
-        year = class1[0]
-        branch = class1[1:4]
-        section = class1[4]
-        classobj = Classes.objects.get(year=year, branch=branch, section=section)
-        initobj = Initiation.objects.filter(class_id=classobj)
+        initobj = Initiation.objects.filter(class_id=classFromSelect)
         for i in initobj:
             if i.timestamp.date() == datetime.date.today():
-                initid = i.initiation_id
-            #return HttpResponse(initid)
-        Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=Initiation(initid), session_id=otp)
+                initobj = i.initiation_id
+                break
+        Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=Initiation(initobj), session_id=otp)
         context = {
             'submitted': 'done',
             'otp': otp,
-            }
-            #return render(request, 'feedback/conduct.html', context)
+        }
     return render(request, 'feedback/conduct.html', context)
 
 
@@ -279,18 +271,18 @@ def questions(request):
                 if request.session.get(str(i)) is None or None in request.session[str(i)]:
                     return redirect('/feedback/questions/?page='+str(i))
             category = Category.objects.get(category="faculty")
+            student_no = Feedback.objects.filter(session_id=session)
+            if len(student_no) == 0:
+                student_no = 1
+            else:
+                student_no = student_no.order_by('-student_no')[0].student_no+1
             for i in range(len(cfsList)):
-                student_no = Feedback.objects.filter(session_id=session)
-                if len(student_no) == 0:
-                    student_no = 1
-                else:
-                    student_no = student_no.order_by('-student_no')[0].student_no+1
                 ratingsString = ""
                 for j in range(1, question.end_index()+1):
                     ratingsString += str(request.session[str(j)][i])
                     if j != question.end_index():
                         ratingsString += ","
-                Feedback.objects.create(session_id=session, category=category, relation_id=cfsList[i-1], student_no=student_no, ratings=ratingsString, remarks=None)
+                Feedback.objects.create(session_id=session, category=category, relation_id=cfsList[i-1], student_no=student_no, ratings=ratingsString)
                 lst.append(request.session.get(str(i+1), None))
             del request.session['sessionObj']
             #TODO store macaddress so that this PC is not used again with the session id
@@ -313,4 +305,5 @@ def getStudentTimeout():
         timeInMin = Config.objects.get(key='studentTimeout')
         return int(timeInMin.value)
     except Exception:
+        Config.objects.create(kay='studentTimeout', value='5', description="Expire the student login page after these many seconds")
         return 5

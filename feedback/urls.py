@@ -10,8 +10,7 @@ urlpatterns = [
     url(r'^initiate/([0-9])/()()$', views.initiate, name="initiate"),
     url(r'^initiate/([0-9])/(\w+)/()$', views.initiate, name="initiate"),
     url(r'^initiate/([0-9])/(\w+)/(\w+)/$', views.initiate, name="initiate"),
-    url(r'^conduct/()$', views.conduct, name="conduct"),
-    url(r'^conduct/(\w+)/$', views.conduct, name="conduct"),
+    url(r'^conduct/$', views.conduct, name="conduct"),
     url(r'^student/$', views.student, name="student"),
     url(r'^questions/$', views.questions, name="questions"),
 ]

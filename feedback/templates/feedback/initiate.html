@@ -135,7 +135,6 @@ function toggle(source) {
         {% endif %}
     {% endif %}
 
-    Status is here!
     {% if status %}
         STATUS : <br/>
         {% for i in status %}
@@ -145,8 +144,13 @@ function toggle(source) {
 
     {% if curs %} cursss: {{ curs }}{% endif %}
     <br>
-    <!--Running Sessions-->
-    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#running">Running Sessions</button>
+
+    <div id="running_sessions">
+        RUNNING SESSIONS : <br/>
+        {% for session in running_sessions %}
+            {{ session.initiation_id.class_id }}<br/>
+        {% endfor %}
+    </div>
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -175,36 +179,6 @@ function toggle(source) {
                   {% else %}
                       <input type="submit" value="Confirm" name="confirmSingle" class="btn btn-default" >
                   {% endif %}
-              </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-     <!-- Modal for running sessions-->
-    <div id="running" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Running Sessions(Today)</h4>
-          </div>
-          <div class="modal-body">
-               <ul>
-                    {% for i in running %}
-                        <li> {{ i }} </li>
-                    {% endfor %}
-                  </ul>
-
-          </div>
-          <div class="modal-footer">
-              <form method="post" action="" id="sessionForm">
-                  {% csrf_token %}
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-
-                      <input type="submit" value="OK" name="confirmSession" class="btn btn-default" >
               </form>
           </div>
         </div>

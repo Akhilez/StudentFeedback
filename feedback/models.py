@@ -105,10 +105,9 @@ class Feedback(models.Model):
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     student_no = models.IntegerField()
-    relation_id = models.ForeignKey(ClassFacSub, on_delete=models.CASCADE)
+    relation_id = models.ForeignKey(ClassFacSub, on_delete=models.CASCADE, null=True)
 
     ratings = models.CharField(
         validators=[validate_comma_separated_integer_list],
         max_length=MAX_QUESTIONS*3
     )
-    #remarks = models.TextField(null=True)
