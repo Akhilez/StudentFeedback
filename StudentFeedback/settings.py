@@ -74,6 +74,7 @@ WSGI_APPLICATION = 'StudentFeedback.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -82,6 +83,26 @@ DATABASES = {
         'PASSWORD': 'kmit',
     }
 }
+'''
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': 'StudentFeedback/onlineconnector.cnf',
+            #'read_default_file': 'StudentFeedback\offlineconnector.cnf',
+        },
+    },
+}
+'''
+host = db4free.net
+port = 3306
+database = nba_projects_db
+user = kmit
+password = kmit123
+default-character-set = utf8
+'''
 
 
 # Password validation
@@ -134,3 +155,5 @@ MAX_QUESTIONS = 20
 
 COORDINATOR_GROUP = 'Coordinators'
 CONDUCTOR_GROUP = 'Conductors'
+
+SESSION_COOKIE_AGE = 45*60

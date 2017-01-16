@@ -1,23 +1,85 @@
 {% extends 'feedback/base.html' %}
 
+{% block head %}
+<script language="JavaScript">
+function toggle(source) {
+  checkboxes = document.getElementsByName('class');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+    checkboxes[i].checked = source.checked;
+  }
+}
+</script>
+{% endblock head %}
+
 {% block title %} Home {% endblock%}
 
 {% block navbar %}
-    {% if user.is_authenticated %}
-        <li><a href="/feedback/initiate">Home</a></li>
-    {% endif %}
     {% include 'feedback/includes/navbar.html' %}
 {% endblock %}
 
 {% block maincontent %}
-    {{ user.username }}
-    {{ user.groups.all.0 }}
-    <br>
+    <h3>Recent feedbacks</h3>
     {% for his in total_history %}
-        {{ his.class_id.year }} {{ his.class_id.branch }} {{ his.class_id.section }} at {{ his.timestamp }} by {{ his.initiated_by.username }}<br/>
+        {{ his.class_id.year }} {{ his.class_id.branch }} {{ his.class_id.section }} on {{ his.timestamp }} by {{ his.initiated_by.username }}<br/>
     {% endfor %}
+    <form method="post" action="" id="checks">
+        {% csrf_token %}
+        <div class="container">
+          <h2>Initiate a feedback session</h2>
+          <p>Select the desired class to initiate and click next:</p>
+            {% if  completeList %}
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" style="float: right">Initiate</button>
+            {% elif fewBranches %}
+                <input type="submit" class="btn btn-default" name="nextSection" value="NEXT" style="float: right">
+            {% else %}
+                <input type="submit" class="btn btn-default" name="nextBranch" value="NEXT" style="float: right">
+            {% endif %}
+          <table class="table table-bordered table-hover table-striped">
+            <thead>
+              <tr>
+                  <th><input type="checkbox" onClick="toggle(this)"></th>
+                <th>Year</th>
+                {% if fewBranches %}<th>Branch</th>{% endif %}
+                {% if completeList %}<th>Branch</th><th>Section</th>{% endif %}
+              </tr>
+            </thead>
+            <tbody>
+                {% if fewBranches %}
+                    {% for yrrr,brrs in fewBranches.items %}
+                        {% for brrr in brrs %}
+                            <tr>
+                                <td><input type="checkbox" name="class" value="{{ yrrr }}-{{ brrr }}"></td>
+                                <td>{{ yrrr }}</td>
+                                <td>{{ brrr }}</td>
+                            </tr>
+                        {% endfor %}
 
-    <br/>
+                    {% endfor %}
+                {% elif completeList %}
+                    {% for y,b,s in completeList %}
+                        <tr>
+                            <td><input type="checkbox" name="class" value="{{ y }}-{{ b }}-{{ s }}"></td>
+                            <td>{{ y }}</td>
+                            <td>{{ b }}</td>
+                            <td>{{ s }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    {% for yrrr in years %}
+                        <tr>
+                            <td><input type="checkbox" name="class" value="{{ yrrr }}"></td>
+                            <td>{{ yrrr }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+
+            </tbody>
+          </table>
+        </div>
+    </form>
+
+
+    <h4>Select a single class: </h4>
     Year:
     <div class="dropdown" id="year_selector">
         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
@@ -25,12 +87,11 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-            {% for yr in years %}
-                <li><a href="/feedback/initiate/{{ yr.0 }}/">{{ yr.0 }}</a></li>
+            {% for yr in allYears %}
+                <li><a href="/feedback/initiate/{{ yr }}/">{{ yr }}</a></li>
             {% endfor %}
         </ul>
     </div>
-    <br/>
     {% if selectedYear %}
         Branch:
         <div class="dropdown" id="branch_selector">
@@ -45,7 +106,6 @@
         </ul>
     </div>
     {% endif %}
-    <br/>
     {% if selectedBranch %}
         Section:
         <div class="dropdown" id="section_selector">
@@ -61,15 +121,32 @@
     </div>
     {% endif %}
     {% if selectedSection %}
-        <div class="col-sm-3">
+        <div class="col-sm-5">
             {% if history %}
+                <br/>History:<br/><br/>
                 {% for his in history %}
                     {{ his.class_id.year }} {{ his.class_id.branch }} {{ his.class_id.section }} at {{ his.timestamp }} by {{ his.initiated_by.username }}
                 {% endfor %}
-            {% endif %}<br/>
-            <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" form="confirmForm">Initiate</button>
+            {% endif %}<br/><br/>
+            {% if isEligible %}<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" form="confirmForm">Initiate</button>{% endif %}
         </div>
+        {% if submitted %}
+            <br/><br/>Feedback session for {{ selectedYear }} {{ selectedBranch }} {{ selectedSection }} class has been initiated successfully!
+        {% endif %}
+    {% endif %}
 
+    Status is here!
+    {% if status %}
+        STATUS : <br/>
+        {% for i in status %}
+            {{ i }}<br/>
+        {% endfor %}
+    {% endif %}
+
+    {% if curs %} cursss: {{ curs }}{% endif %}
+    <br>
+    <!--Running Sessions-->
+    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#running">Running Sessions</button>
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -82,24 +159,56 @@
             <h4 class="modal-title">Confirmation</h4>
           </div>
           <div class="modal-body">
-            <p>You are about to initiate a faculty feedback session  for the class {{ his.class_id.year }} {{ his.class_id.branch }} {{ his.class_id.section }}. Do you want to confirm?</p>
+              {% if completeList %}
+                <p>You are about to initiate a faculty feedback session for all the selected classes. Do you want to confirm?</p>
+
+              {% else %}
+                  <p>You are about to initiate a faculty feedback session  for the class {{ selectedYear }} {{ selectedBranch }} {{ selectedSection }}. Do you want to confirm?</p>
+              {% endif %}
           </div>
           <div class="modal-footer">
               <form method="post" action="" id="confirmForm">
                   {% csrf_token %}
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <input type="submit" value="Confirm"  class="btn btn-default" >
+                  {% if completeList %}
+                    <input type="submit" value="Confirm" name="confirmSelected" class="btn btn-default" form="checks">
+                  {% else %}
+                      <input type="submit" value="Confirm" name="confirmSingle" class="btn btn-default" >
+                  {% endif %}
               </form>
           </div>
         </div>
       </div>
     </div>
-    {% if submitted %}
-        <br/><br/>Feedback session for {{ his.class_id.year }} {{ his.class_id.branch }} {{ his.class_id.section }} class has been initiated successfully!
-    {% endif %}
 
-    {% endif %}
+     <!-- Modal for running sessions-->
+    <div id="running" class="modal fade" role="dialog">
+      <div class="modal-dialog">
 
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Running Sessions(Today)</h4>
+          </div>
+          <div class="modal-body">
+               <ul>
+                    {% for i in running %}
+                        <li> {{ i }} </li>
+                    {% endfor %}
+                  </ul>
+
+          </div>
+          <div class="modal-footer">
+              <form method="post" action="" id="sessionForm">
+                  {% csrf_token %}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+                      <input type="submit" value="OK" name="confirmSession" class="btn btn-default" >
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
 {% endblock %}
-

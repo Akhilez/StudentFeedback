@@ -1,0 +1,98 @@
+{% extends 'feedback/base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block maincontent %}
+
+    <br/><br/>
+    <h3>{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
+    <h4>{{ question.0.subcategory }}</h4>
+    <h2>{{ question.number }}. {{ question.0.question }}</h2><br/>
+
+    <form method="post" action="" id="questionForm">
+        {% csrf_token %}
+        <table class="table" >
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Rating</th>
+                <th>Don't know</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for subject in subjects %}
+                  <tr>
+                    <td>{{ subject.name }}</td>
+                      <td>
+                        <select name="review">
+                            <option value="None">--select--</option>
+                            <option value="1">Strongly Disagree</option>
+                            <option value="2">Disagree</option>
+                            <option value="3">Not Sure</option>
+                            <option value="4">Agree</option>
+                            <option value="5">Strongly Agree</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="idk" value="{{ forloop.counter }}" title="Please provide a reason" data-toggle="popover" data-placement="right" data-trigger="focus" data-content='<p>hiiii</p>'></td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div style="float:right">
+            <ul class="pager">
+                {% if question.has_previous %}
+                    <li><a href="?page={{ question.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                {% if question.has_next %}
+                    <!--<li><a href="?page={{ question.next_page_number }}">Next</a></li>-->
+                    <input type="submit" value="next" name="next">
+                {% else %}
+                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">Finish</button>
+                {% endif %}
+            </ul>
+        </div>
+
+
+        <ul class="pagination" style="float:left">
+            {% for i in range %}
+                <li {% ifequal forloop.counter question.number %}class="active"{% endifequal %}><a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+            {% endfor %}
+        </ul>
+
+    </form>
+
+    {{ allRatings }}
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Confirmation</h4>
+          </div>
+          <div class="modal-body">
+              <p>Save all your ratings and finish?</p>
+          </div>
+          <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <input type="submit" value="Confirm" name="finish" class="btn btn-default" form="questionForm">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+    });
+    </script>
+
+
+{% endblock %}

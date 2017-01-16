@@ -1,0 +1,7 @@
+[client]
+host =  sql6.freemysqlhosting.net
+port = 3306
+user =  sql6153441
+database =  sql6153441
+password =  BCd8R2ZRkV
+default-character-set = utf8
