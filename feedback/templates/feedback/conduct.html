@@ -19,23 +19,48 @@ function toggle(source) {
 {% endblock %}
 
 {% block maincontent %}
+    {{ aList }}
+    {% if otp %}
+        <p> Session Started for {{ classSelected }}</p>
+        <h2>Session ID : {{ otp }}</h2>
+    {% elif classSelected %}
+       <form method="post" action="" id="attendance">
+            {% csrf_token %}
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th>Serial No.</th>
+                    <th>Hallticket No.</th>
+                    <th>present/absent</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for student in allStudetns %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ student.hallticket_no }}</td>
+                            <td><input type="checkbox" name="attendanceList" value="{{ student.hallticket_no }}" ></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit</button>
+        </form>
+    {% else %}
+         <h3>Select a class to start the session:</h3>
+        <form method="post" action="" id="confirmForm">
+            {% csrf_token %}
+            <select name="selectClass">
+                {% for cls in classes %}
+                    <option value="{{ cls.class_id.class_id }}">{{ cls.class_id }}</option>
+                {% endfor %}
+            </select>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Select</button>
+         </form>
 
-    <h3>Select a class to start the session:</h3>
-    <form method="post" action="" id="confirmForm">
-        {% csrf_token %}
-        <select name="selectClass">
-            {% for cls in classes %}
-                <option value="{{ cls.class_id }}">{{ cls }}</option>
-            {% endfor %}
-        </select>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Start Session</button>
-     </form>
-    {{ thisisit }}
-    <!--#After Inserting-->
-    {% if submitted %}
-        <p> Session Started </p>
-        {{ otp }}
     {% endif %}
+    <!--#After Inserting-->
+
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -48,11 +73,20 @@ function toggle(source) {
             <h4 class="modal-title">Confirmation</h4>
           </div>
           <div class="modal-body">
-                <p>You are about to start a session for the selected class</p>
+              {% if classSelected %}
+                <p>You are about to start a session for the selected class {{ classSelected }}.</p>
+              {% else %}
+                <p>Are you sure about the attendance taken?</p>
+              {% endif %}
           </div>
           <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <input type="submit" value="Confirm" name="confirmSession" class="btn btn-default" form="confirmForm">
+                {% if classSelected %}
+                    <input type="submit" value="Confirm session" name="confirmSession" class="btn btn-default" form="attendance">
+
+                {% else %}
+                    <input type="submit" value="Confirm class" name="take_attendance" class="btn btn-default" form="confirmForm">
+                {% endif %}
           </div>
         </div>
       </div>

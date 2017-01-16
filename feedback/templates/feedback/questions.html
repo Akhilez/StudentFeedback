@@ -43,11 +43,7 @@
 
         <div style="float:right">
             <ul class="pager">
-                {% if question.has_previous %}
-                    <li><a href="?page={{ question.previous_page_number }}">Previous</a></li>
-                {% endif %}
                 {% if question.has_next %}
-                    <!--<li><a href="?page={{ question.next_page_number }}">Next</a></li>-->
                     <input type="submit" value="next" name="next">
                 {% else %}
                     <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">Finish</button>
@@ -58,7 +54,7 @@
 
         <ul class="pagination" style="float:left">
             {% for i in range %}
-                <li {% ifequal forloop.counter question.number %}class="active"{% endifequal %}><a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                <li {% ifequal forloop.counter question.number %}class="active"{% endifequal %}>{{ forloop.counter }}</li>
             {% endfor %}
         </ul>
 

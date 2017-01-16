@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f28d184d-98d4-4de7-b367-663dfacc6202" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/StudentFeedback.iml" afterPath="$PROJECT_DIR$/.idea/StudentFeedback.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/conduct.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/conduct.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/models.py" afterPath="$PROJECT_DIR$/feedback/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/urls.py" afterPath="$PROJECT_DIR$/feedback/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/questions.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/questions.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/views.py" afterPath="$PROJECT_DIR$/feedback/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -78,12 +73,35 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/feedback/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56110156" vertical-offset="2122" max-vertical-offset="4896">
-              <caret line="170" column="69" selection-start-line="170" selection-start-column="69" selection-end-line="170" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.6437177" vertical-offset="2040" max-vertical-offset="5304">
+              <caret line="168" column="16" selection-start-line="168" selection-start-column="16" selection-end-line="168" selection-end-column="16" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
-                <element signature="e#924#1622#0" expanded="false" />
-                <element signature="e#1655#1979#0" expanded="false" />
+                <element signature="e#951#1649#0" expanded="false" />
+                <element signature="e#1682#2006#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feedback/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="202" max-vertical-offset="833">
+              <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+              <folding>
+                <element signature="e#298#828#0" expanded="false" />
+                <element signature="e#864#1019#0" expanded="false" />
+                <element signature="e#1055#1195#0" expanded="false" />
+                <element signature="e#1235#1623#0" expanded="false" />
+                <element signature="e#1659#1877#0" expanded="false" />
+                <element signature="e#1916#2142#0" expanded="false" />
+                <element signature="e#2178#2419#0" expanded="false" />
+                <element signature="e#2601#2756#0" expanded="false" />
+                <element signature="e#2792#2852#0" expanded="false" />
+                <element signature="e#2893#3174#0" expanded="false" />
+                <element signature="e#3209#3327#0" expanded="false" />
+                <element signature="e#3364#3858#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -92,8 +110,23 @@
       <file leaf-file-name="conduct.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/conduct.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.384615" vertical-offset="231" max-vertical-offset="1122">
-              <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+            <state vertical-scroll-proportion="20.26923" vertical-offset="918" max-vertical-offset="1700">
+              <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sql6153441.feedback_student" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/8ad230f8/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_student">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -102,9 +135,11 @@
       <file leaf-file-name="questions.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.769231" vertical-offset="306" max-vertical-offset="1751">
-              <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
-              <folding />
+            <state vertical-scroll-proportion="-36.615383" vertical-offset="0" max-vertical-offset="1683">
+              <caret line="56" column="117" selection-start-line="56" selection-start-column="117" selection-end-line="56" selection-end-column="117" />
+              <folding>
+                <marker date="1484586417108" expanded="true" signature="1656:1936" placeholder="{% if question.has_next ... %}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,16 +149,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
               <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="initiate.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-102.0" vertical-offset="0" max-vertical-offset="3281">
-              <caret line="156" column="14" selection-start-line="156" selection-start-column="14" selection-end-line="156" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -144,8 +169,10 @@
         <option value="$PROJECT_DIR$/feedback/models.py" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" />
         <option value="$PROJECT_DIR$/feedback/urls.py" />
-        <option value="$PROJECT_DIR$/feedback/views.py" />
+        <option value="$PROJECT_DIR$/feedback/templates/feedback/questions.html" />
+        <option value="$PROJECT_DIR$/feedback/templates/feedback/attendance.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/conduct.html" />
+        <option value="$PROJECT_DIR$/feedback/views.py" />
       </list>
     </option>
   </component>
@@ -278,6 +305,7 @@
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -555,15 +583,22 @@
       <option name="project" value="LOCAL" />
       <updated>1484142824365</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Akhil- Optimized some of the conduct page.">
+      <created>1484580777707</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1484580777707</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -571,13 +606,12 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2193646" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2624811" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19667171" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21482602" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -603,7 +637,8 @@
     </option>
     <MESSAGE value="Akhil- Initiation 1" />
     <MESSAGE value="Akhil- Initiation 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Akhil- Initiation 2" />
+    <MESSAGE value="Akhil- Optimized some of the conduct page." />
+    <option name="LAST_COMMIT_MESSAGE" value="Akhil- Optimized some of the conduct page." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -612,38 +647,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/feedback/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="1071">
-          <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#924#1622#0" expanded="false" />
-            <element signature="e#1655#1979#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1853">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="306">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/feedback/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="850">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="false" />
             <element signature="e#298#828#0" expanded="false" />
             <element signature="e#864#1019#0" expanded="false" />
             <element signature="e#1055#1195#0" expanded="false" />
@@ -667,8 +676,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#924#1622#0" expanded="false" />
-            <element signature="e#1655#1979#0" expanded="false" />
+            <element signature="e#951#1649#0" expanded="false" />
+            <element signature="e#1682#2006#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -692,7 +701,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="850">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="false" />
             <element signature="e#298#828#0" expanded="false" />
             <element signature="e#864#1019#0" expanded="false" />
             <element signature="e#1055#1195#0" expanded="false" />
@@ -716,8 +725,8 @@
           <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#924#1622#0" expanded="false" />
-            <element signature="e#1655#1979#0" expanded="false" />
+            <element signature="e#951#1649#0" expanded="false" />
+            <element signature="e#1682#2006#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -749,7 +758,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="850">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="false" />
             <element signature="e#298#828#0" expanded="false" />
             <element signature="e#864#1019#0" expanded="false" />
             <element signature="e#1055#1195#0" expanded="false" />
@@ -780,8 +789,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#924#1622#0" expanded="false" />
-            <element signature="e#1655#1979#0" expanded="false" />
+            <element signature="e#951#1649#0" expanded="false" />
+            <element signature="e#1682#2006#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -805,7 +814,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="850">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="false" />
             <element signature="e#298#828#0" expanded="false" />
             <element signature="e#864#1019#0" expanded="false" />
             <element signature="e#1055#1195#0" expanded="false" />
@@ -836,8 +845,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#924#1622#0" expanded="false" />
-            <element signature="e#1655#1979#0" expanded="false" />
+            <element signature="e#951#1649#0" expanded="false" />
+            <element signature="e#1682#2006#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -861,7 +870,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="850">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="false" />
             <element signature="e#298#828#0" expanded="false" />
             <element signature="e#864#1019#0" expanded="false" />
             <element signature="e#1055#1195#0" expanded="false" />
@@ -892,8 +901,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#924#1622#0" expanded="false" />
-            <element signature="e#1655#1979#0" expanded="false" />
+            <element signature="e#951#1649#0" expanded="false" />
+            <element signature="e#1682#2006#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -917,7 +926,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="850">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="false" />
             <element signature="e#298#828#0" expanded="false" />
             <element signature="e#864#1019#0" expanded="false" />
             <element signature="e#1055#1195#0" expanded="false" />
@@ -1052,19 +1061,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/8ad230f8/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_session">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/8ad230f8/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_fdbkquestions">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1099,34 +1095,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/models.py">
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7996633" vertical-offset="239" max-vertical-offset="833">
-          <caret line="101" column="29" selection-start-line="101" selection-start-column="29" selection-end-line="101" selection-end-column="29" />
+        <state vertical-scroll-proportion="-36.615383" vertical-offset="0" max-vertical-offset="1683">
+          <caret line="56" column="117" selection-start-line="56" selection-start-column="117" selection-end-line="56" selection-end-column="117" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
-            <element signature="e#298#828#0" expanded="false" />
-            <element signature="e#864#1019#0" expanded="false" />
-            <element signature="e#1055#1195#0" expanded="false" />
-            <element signature="e#1235#1623#0" expanded="false" />
-            <element signature="e#1659#1877#0" expanded="false" />
-            <element signature="e#1916#2142#0" expanded="false" />
-            <element signature="e#2178#2419#0" expanded="false" />
-            <element signature="e#2458#2567#0" expanded="false" />
-            <element signature="e#2601#2756#0" expanded="false" />
-            <element signature="e#2792#2852#0" expanded="false" />
-            <element signature="e#2893#3174#0" expanded="false" />
-            <element signature="e#3209#3327#0" expanded="false" />
-            <element signature="e#3364#3858#0" expanded="false" />
+            <marker date="1484586417108" expanded="true" signature="1656:1936" placeholder="{% if question.has_next ... %}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-102.0" vertical-offset="0" max-vertical-offset="3281">
-          <caret line="156" column="14" selection-start-line="156" selection-start-column="14" selection-end-line="156" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1138,30 +1113,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.769231" vertical-offset="306" max-vertical-offset="1751">
-          <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.43423423" vertical-offset="371" max-vertical-offset="2652">
+          <caret line="36" column="70" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="70" />
+          <folding>
+            <element signature="e#1462#1776#0#HTML" expanded="false" />
+            <element signature="e#1789#3070#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/8ad230f8/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_initiation">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/8ad230f8/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_session">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/8ad230f8/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_student">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/conduct.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.384615" vertical-offset="231" max-vertical-offset="1122">
-          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+        <state vertical-scroll-proportion="20.26923" vertical-offset="918" max-vertical-offset="1700">
+          <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/8ad230f8/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_attendance">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="202" max-vertical-offset="833">
+          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding>
+            <element signature="e#298#828#0" expanded="false" />
+            <element signature="e#864#1019#0" expanded="false" />
+            <element signature="e#1055#1195#0" expanded="false" />
+            <element signature="e#1235#1623#0" expanded="false" />
+            <element signature="e#1659#1877#0" expanded="false" />
+            <element signature="e#1916#2142#0" expanded="false" />
+            <element signature="e#2178#2419#0" expanded="false" />
+            <element signature="e#2601#2756#0" expanded="false" />
+            <element signature="e#2792#2852#0" expanded="false" />
+            <element signature="e#2893#3174#0" expanded="false" />
+            <element signature="e#3209#3327#0" expanded="false" />
+            <element signature="e#3364#3858#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/feedback/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56110156" vertical-offset="2122" max-vertical-offset="4896">
-          <caret line="170" column="69" selection-start-line="170" selection-start-column="69" selection-end-line="170" selection-end-column="69" />
+        <state vertical-scroll-proportion="0.6437177" vertical-offset="2040" max-vertical-offset="5304">
+          <caret line="168" column="16" selection-start-line="168" selection-start-column="16" selection-end-line="168" selection-end-column="16" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#924#1622#0" expanded="false" />
-            <element signature="e#1655#1979#0" expanded="false" />
+            <element signature="e#951#1649#0" expanded="false" />
+            <element signature="e#1682#2006#0" expanded="false" />
           </folding>
         </state>
       </provider>

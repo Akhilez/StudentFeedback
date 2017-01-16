@@ -5,7 +5,8 @@ from django.shortcuts import render, redirect
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
 from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from feedback.models import Classes, Initiation, Session, ClassFacSub, Config, FdbkQuestions, Category, Notes, Feedback
+from feedback.models import Classes, Initiation, Session, ClassFacSub, Config, FdbkQuestions, Category, Notes, Feedback, \
+    Student, Attendance
 import datetime
 import random
 import string
@@ -155,30 +156,53 @@ def initiate(request, year, branch, section):
 def conduct(request):
     if not request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
+    context = {}
+    template = 'feedback/conduct.html'
+    hasOtp = request.session.get('otp', None)
+    if hasOtp is not None:
+        context['otp'] = hasOtp
+        context['classSelected'] = Classes.objects.get(class_id=request.session.get('class', None))
+        return render(request, template, context)
 
-    allClasses = Initiation.objects.all()
-    classlist = []
-    for i in allClasses:
+    allInits = Initiation.objects.all()
+    initlist = []
+    for i in allInits:
         if i.timestamp.date() == datetime.date.today():
-            classlist.append(i.class_id)
-    context = {'classes': classlist}
+            initlist.append(i)
+    context['classes'] = initlist
 
-    if request.method == 'POST' and 'confirmSession' in request.POST:
-        classFromSelect = request.POST.getlist('selectClass')[0]
-        context['thisisit'] = classFromSelect
-        otp = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
-        dt = str(datetime.datetime.now())
-        initobj = Initiation.objects.filter(class_id=classFromSelect)
-        for i in initobj:
-            if i.timestamp.date() == datetime.date.today():
-                initobj = i.initiation_id
-                break
-        Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=Initiation(initobj), session_id=otp)
-        context = {
-            'submitted': 'done',
-            'otp': otp,
-        }
-    return render(request, 'feedback/conduct.html', context)
+    if request.method == 'POST' :
+        if 'confirmSession' in request.POST:
+            classFromSelect = request.session.get('class', None)
+            if classFromSelect is None:
+                return HttpResponse("None")
+            checkValues = request.POST.getlist("attendanceList")
+
+            otp = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+            dt = str(datetime.datetime.now())
+            initObj = None
+            for init in initlist:
+                if str(init.class_id.class_id) == str(classFromSelect):
+                    initObj=init
+                    break
+            context['classSelected'] = initObj.class_id
+            session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj, session_id=otp)
+            context['otp'] = otp
+            request.session['otp'] = otp
+
+
+            for htno in checkValues:
+                Attendance.objects.create(student_id=Student.objects.get(hallticket_no=htno), session_id=session)
+
+        if 'take_attendance' in request.POST:
+            classFromSelect = request.POST.getlist('selectClass')[0]
+            classObj = Classes.objects.get(class_id=classFromSelect)
+            context['classSelected'] = classObj
+            request.session['class'] = classObj.class_id
+            allStudents = Student.objects.filter(class_id=classObj)
+            context['allStudetns'] = allStudents
+
+    return render(request, template, context)
 
 
 def student(request):
