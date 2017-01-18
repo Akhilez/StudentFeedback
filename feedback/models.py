@@ -84,10 +84,7 @@ class Category(models.Model):
     category = models.CharField(max_length=30, primary_key=True)
 
 class FdbkQuestions(models.Model):
-    question_id = models.AutoField(
-        primary_key=True,
-        validators=[MaxValueValidator(MAX_QUESTIONS)]
-    )
+    question_id = models.AutoField(primary_key=True)
     question = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     subcategory = models.CharField(max_length=30, null=True)

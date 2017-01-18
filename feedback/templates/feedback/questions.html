@@ -5,18 +5,28 @@
 {% endblock %}
 
 {% block maincontent %}
-
+{{ error }}
     <br/><br/>
     <h3>{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
     <h4>{{ question.0.subcategory }}</h4>
-    <h2>{{ question.number }}. {{ question.0.question }}</h2><br/>
+    {% if category == 'facility' %}
+        <h2>Facility feedback</h2>
+    {% elif category == 'faculty' %}
+        <h2>{{ question.number }}. {{ question.0.question }}</h2><br/>
+    {% endif %}
 
     <form method="post" action="" id="questionForm">
         {% csrf_token %}
         <table class="table" >
             <thead>
               <tr>
-                <th>Subject</th>
+                <th>
+                    {% if category == 'faculty' %}
+                        Subjects
+                    {% elif category == 'facility' %}
+                        Questions
+                    {% endif %}
+                </th>
                 <th>Rating</th>
                 <th>Don't know</th>
               </tr>
@@ -24,7 +34,7 @@
             <tbody>
                 {% for subject in subjects %}
                   <tr>
-                    <td>{{ subject.name }}</td>
+                    <td>{{ subject }}</td>
                       <td>
                         <select name="review">
                             <option value="None">--select--</option>

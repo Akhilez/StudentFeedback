@@ -226,40 +226,52 @@ def student(request):
     return render(request, template, context)
 
 
-def questions(request):
+def questions(request, category):
     session_id = request.session.get('sessionObj')
     if session_id is None:
         return redirect('/')
+    session = Session.objects.get(session_id=session_id)
+    #TODO check attendance for session
+
 
     template = 'feedback/questions.html'
     context = {}
 
-    session = Session.objects.get(session_id=session_id)
+    if category == '': category = 'faculty'
+    category = Category.objects.get(category=category)
+    context['category'] = category.category
+
+
     classObj = session.initiation_id.class_id
     context['class_obj'] = classObj
-    cfs = ClassFacSub.objects.filter(class_id=classObj)
     cfsList = []
-    subjects = []
-    faculty = []
-    for i in cfs:
-        cfsList.append(i)
-        subjects.append(i.subject_id)
-        faculty.append(i.faculty_id)
-    context['subjects'] = subjects
+    questionsQList = []
+    if category == 'faculty':
+        cfs = ClassFacSub.objects.filter(class_id=classObj)
+        subjects = []
+        faculty = []
+        for i in cfs:
+            cfsList.append(i)
+            subjects.append(i.subject_id.name)
+            faculty.append(i.faculty_id)
+        context['subjects'] = subjects
+        questionsQList = FdbkQuestions.objects.filter(category=category)
+    elif category.category == 'facility':
+        quess = FdbkQuestions.objects.filter(category=category)
+        subjects = []
+        for i in quess:
+            subjects.append(i.question)
+        context['subjects'] = subjects
+        questionsQList = ['Facility feedback']
 
-    questionsQList = FdbkQuestions.objects.all()
+
+
     paginator = Paginator(questionsQList, 1)
 
     page = request.GET.get('page')
-    try:
-        question = paginator.page(page)
-
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        question = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        question = paginator.page(paginator.num_pages)
+    try: question = paginator.page(page)
+    except PageNotAnInteger: question = paginator.page(1)
+    except EmptyPage: question = paginator.page(paginator.num_pages)
 
     context['question'] = question
     context['range'] = questionsQList
@@ -290,27 +302,38 @@ def questions(request):
                 if rating == "None":
                     context['error'] = "Please enter all the ratings"
                     return render(request, template, context)
-            lst=[]
-            for i in range(1, question.end_index()+1):
-                if request.session.get(str(i)) is None or None in request.session[str(i)]:
-                    return redirect('/feedback/questions/?page='+str(i))
-            category = Category.objects.get(category="faculty")
             student_no = Feedback.objects.filter(session_id=session)
             if len(student_no) == 0:
                 student_no = 1
             else:
                 student_no = student_no.order_by('-student_no')[0].student_no+1
-            for i in range(len(cfsList)):
+            if category.category == 'faculty':
+                lst=[]
+                for i in range(1, question.end_index()+1):
+                    if request.session.get(str(i)) is None or None in request.session[str(i)]:
+                        return redirect('/feedback/questions/?page='+str(i))
+
+                for i in range(len(cfsList)):
+                    ratingsString = ""
+                    for j in range(1, question.end_index()+1):
+                        ratingsString += str(request.session[str(j)][i])
+                        if j != question.end_index():
+                            ratingsString += ","
+                    Feedback.objects.create(session_id=session, category=category, relation_id=cfsList[i-1], student_no=student_no, ratings=ratingsString)
+                    lst.append(request.session.get(str(i+1), None))
+                del request.session['sessionObj']
+                #TODO store macaddress so that this PC is not used again with the session id
+                return HttpResponse("Thank you for the most valuable review!")
+                #return redirect('facility')
+            if category.category == 'facility':
                 ratingsString = ""
-                for j in range(1, question.end_index()+1):
-                    ratingsString += str(request.session[str(j)][i])
-                    if j != question.end_index():
+                for i in range(0, len(ratings)):
+                    ratingsString += str(ratings[i])
+                    if i != len(ratings)-1:
                         ratingsString += ","
-                Feedback.objects.create(session_id=session, category=category, relation_id=cfsList[i-1], student_no=student_no, ratings=ratingsString)
-                lst.append(request.session.get(str(i+1), None))
-            del request.session['sessionObj']
-            #TODO store macaddress so that this PC is not used again with the session id
-            return HttpResponse("Thank you for the most valuable review!")
+                Feedback.objects.create(session_id=session, category=category, student_no=student_no, ratings=ratingsString)
+                del request.session['sessionObj']
+                return HttpResponse("Thank you for the most valuable review!")
 
 
     return render(request, template, context)
