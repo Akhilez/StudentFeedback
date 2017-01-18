@@ -313,11 +313,11 @@ def questions(request, category):
                     if request.session.get(str(i)) is None or None in request.session[str(i)]:
                         return redirect('/feedback/questions/?page='+str(i))
 
-                for i in range(len(cfsList)):
+                for i in range(0, len(cfsList)):
                     ratingsString = ""
-                    for j in range(1, pager.end_index()+1):
-                        ratingsString += str(request.session[str(j)][i])
-                        if j != pager.end_index():
+                    for j in range(0, len(questionsList)):
+                        ratingsString += str(request.session[str(i+1)][j])
+                        if j != len(questionsList)-1:
                             ratingsString += ","
                     Feedback.objects.create(session_id=session, category=category, relation_id=cfsList[i-1], student_no=student_no, ratings=ratingsString)
 
