@@ -19,7 +19,8 @@ class Classes(models.Model):
     no_of_students = models.IntegerField(default=75)
 
     def __str__(self):
-        return str(str(self.year)+" "+str(self.branch)+" "+str(self.section))
+        yearDict = {'1': 'I', '2': 'II', '3': 'III', '4': 'IV'}
+        return str(yearDict[str(self.year)]+" "+str(self.branch)+" "+str(self.section))
 
 
 class Faculty(models.Model):
@@ -106,5 +107,5 @@ class Feedback(models.Model):
 
     ratings = models.CharField(
         validators=[validate_comma_separated_integer_list],
-        max_length=MAX_QUESTIONS*3
+        max_length=MAX_QUESTIONS*4
     )

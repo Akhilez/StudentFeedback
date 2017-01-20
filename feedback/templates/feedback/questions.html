@@ -1,7 +1,8 @@
 {% extends 'feedback/base.html' %}
 
 {% block head %}
-
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'stars.css' %}">
 {% endblock %}
 
 {% block maincontent %}
@@ -35,14 +36,13 @@
                   <tr>
                     <td>{{ question.question }}</td>
                       <td>
-                        <select name="review">
-                            <option value="3">--select--</option>
-                            <option value="1">Strongly Disagree</option>
-                            <option value="2">Disagree</option>
-                            <option value="3">Not Sure</option>
-                            <option value="4">Agree</option>
-                            <option value="5">Strongly Agree</option>
-                        </select>
+                        <fieldset class="rating" name="review">
+                            <input type="radio" id="star5-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="5" /><label class = "full" for="star5-{{ forloop.counter }}" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="4" /><label class = "full" for="star4-{{ forloop.counter }}" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="3" /><label class = "full" for="star3-{{ forloop.counter }}" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="2" /><label class = "full" for="star2-{{ forloop.counter }}" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="1" /><label class = "full" for="star1-{{ forloop.counter }}" title="Sucks big time - 1 star"></label>
+                        </fieldset>
                     </td>
                     <td><input type="checkbox" name="idk" value="{{ forloop.counter }}" title="Please provide a reason" data-toggle="popover" data-placement="right" data-trigger="focus" data-content='<p>hiiii</p>'></td>
                   </tr>

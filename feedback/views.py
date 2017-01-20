@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.utils.datastructures import MultiValueDictKeyError
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
 from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
@@ -293,14 +294,20 @@ def questions(request, category):
         request.session[pgno] = None
 
     if request.method == 'POST':
-        ratings = request.POST.getlist("review")
-        request.session[pgno] = ratings
-        for rating in ratings:
-            if rating == "None":
-                context['error'] = "Please enter all the ratings"
-                return render(request, template, context)
+        try:
+            ratings = []
+            for i in range(1, len(questionsList)+1):
+                name = 'star' + str(i)
+                value = request.POST[name]
+                ratings.append(value)
+            request.session[pgno] = ratings
+        except MultiValueDictKeyError:
+            context['error'] = "Please enter all the ratings"
+            return render(request, template, context)
+
 
         if 'next' in request.POST:
+            #return render(request, template, context)
             return redirect('/feedback/questions/?page='+str(pager.number+1))
 
         if 'finish' in request.POST:
@@ -353,5 +360,5 @@ def getStudentTimeout():
         timeInMin = Config.objects.get(key='studentTimeout')
         return int(timeInMin.value)
     except Exception:
-        Config.objects.create(kay='studentTimeout', value='5', description="Expire the student login page after these many seconds")
+        Config.objects.create(key='studentTimeout', value='5', description="Expire the student login page after these many seconds")
         return 5
