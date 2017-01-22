@@ -26,6 +26,7 @@ function toggle(source) {
     {% elif classSelected %}
        <form method="post" action="" id="attendance">
             {% csrf_token %}
+            <h2>Please take attendance for {{ classSelected }}</h2><br/>
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                   <tr>
@@ -47,16 +48,20 @@ function toggle(source) {
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit</button>
         </form>
     {% else %}
-         <h3>Select a class to start the session:</h3>
-        <form method="post" action="" id="confirmForm">
-            {% csrf_token %}
-            <select name="selectClass">
-                {% for cls in classes %}
-                    <option value="{{ cls.class_id.class_id }}">{{ cls.class_id }}</option>
-                {% endfor %}
-            </select>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Select</button>
-         </form>
+        {% if classes %}
+             <h3>Select a class to start the session:</h3>
+            <form method="post" action="" id="confirmForm">
+                {% csrf_token %}
+                <select name="selectClass">
+                    {% for cls in classes %}
+                        <option value="{{ cls.class_id.class_id }}">{{ cls.class_id }}</option>
+                    {% endfor %}
+                </select>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Select</button>
+             </form>
+        {% else %}
+            <h4>There are no feedback sessions initiated. Please contact the corresponding coordinator to initiate a feedback session.</h4>
+        {% endif %}
 
     {% endif %}
     <!--#After Inserting-->

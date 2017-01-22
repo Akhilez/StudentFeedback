@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block maincontent %}
+    {{ subcategories }}
     <br/><br/>
     <h3>{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
     {% if category == 'facility' %}
@@ -33,6 +34,9 @@
             </thead>
             <tbody>
                 {% for question in questions %}
+                    {% if forloop.counter in subcategory %}
+                        <tr><td colspan="3"><b>{{ question.subcategory }}</b></td></tr>
+                    {% endif %}
                   <tr>
                     <td>{{ question.question }}</td>
                       <td>

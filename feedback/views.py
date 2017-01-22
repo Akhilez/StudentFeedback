@@ -6,8 +6,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
 from feedback.forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from feedback.models import Classes, Initiation, Session, ClassFacSub, Config, FdbkQuestions, Category, Notes, Feedback, \
-    Student, Attendance
+from feedback.models import *
 import datetime
 import random
 import string
@@ -55,8 +54,19 @@ def goto_user_page(user):
 
 @login_required
 def initiate(request, year, branch, section):
-    if not request.user.groups.filter(name=COORDINATOR_GROUP).exists():
+    groups = request.user.groups.all()
+    if not groups.filter(name=COORDINATOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
+
+    context = {}
+
+    myBranches = []
+    for group in groups:
+        if group.name != COORDINATOR_GROUP:
+            myBranches.append(group.name)
+
+    context['groups'] = myBranches
+
     #Running Sessions(Today)
     allSessions = Session.objects.all()
     session_lst = []
@@ -64,77 +74,32 @@ def initiate(request, year, branch, section):
         if i.timestamp.date() == datetime.date.today():
             session_lst.append(i)
 
-    context = {'total_history': Initiation.objects.all().order_by('-timestamp')[:10],
-               'running_sessions': session_lst}
+    context['total_history'] = Initiation.objects.all().order_by('-timestamp')[:10]
+    context['running_sessions'] = session_lst
     template = 'feedback/initiate.html'
+
+    context['recent_feedbacks'] = Session.objects.all().order_by('-timestamp')[:10]
 
     years = Classes.objects.order_by('year').values_list('year').distinct()  # returns a list of tuples
     years = [years[x][0] for x in range(len(years))]  # makes a list of first element of tuples in years
     context['years'] = years
     context['allYears'] = years
 
-    # Dynamic dropdowns
-    if year != '':
-        context['selectedYear'] = year
-        branches = Classes.objects.filter(year=year).values_list('branch').order_by('branch').distinct()
-        context['branches'] = branches
-    if year != '' and branch != '':
-        context['selectedBranch'] = branch
-        sections = Classes.objects.filter(year=year, branch=branch).values_list('section').order_by(
-            'section').distinct()
-        context['sections'] = sections
-    if year != '' and branch != '' and section != '':
-        context['selectedSection'] = section
-        classobj = Classes.objects.get(year=year, branch=branch, section=section)
-        history = Initiation.objects.filter(class_id=classobj).order_by('-timestamp')
-        context['history'] = history
-        if len(history) == 0 or history[0].timestamp.date() != datetime.date.today():
-            context['isEligible'] = 'true'
-        if request.method == 'POST' and 'confirmSingle' in request.POST:
-            dt = str(datetime.datetime.now())
-            Initiation.objects.create(timestamp=dt, initiated_by=request.user, class_id=classobj)
-            context['submitted'] = 'done'
-
-
     #handling the submit buttons
     if request.method == 'POST':
-        if 'nextBranch' in request.POST:
-            selectedYears = request.POST.getlist('class')
-            allClasses = {}
-            yrs_lst = []
-            for yrrr in selectedYears:
-                branches = Classes.objects.filter(year=yrrr).values_list('branch').order_by('year').distinct()
-                branches = [branches[x][0] for x in range(len(branches))]
-                allClasses[yrrr] = branches
-                for i in range(len(branches)):
-                    yrs_lst.append(yrrr)
-            context['fewBranches'] = allClasses
-            context['years'] = yrs_lst
 
         if 'nextSection' in request.POST:
-            allClasses = Classes.objects.all()
-            checkedList = request.POST.getlist('class')
-            selectedYears = []
-            selectedBranches = []
-            completeList = [[], [], []]
-            for i in checkedList:
-                splitList = i.split('-')
-                selectedYears.append(splitList[0])
-                selectedBranches.append(splitList[1])
-
-            for i in range(len(checkedList)):
-                sections = allClasses.filter(year=selectedYears[i], branch=selectedBranches[i]).values_list(
-                    'section').order_by('year')
-                sections = [sections[x][0] for x in range(len(sections))]
-                for sec in sections:
-                    completeList[0].append(selectedYears[i])
-                    completeList[1].append(selectedBranches[i])
-                    completeList[2].append(sec)
-            transList = []
-            for i in range(len(completeList[0])):
-                inst = [completeList[0][i], completeList[1][i], completeList[2][i]]
-                transList.append(inst)
-            context['completeList'] = transList
+            allClasses = Classes.objects.all().order_by('year')
+            selectedYears = request.POST.getlist('class')
+            classesOfYears = []
+            for yr in selectedYears:
+                myYear = allClasses.filter(year=yr)
+                for myYr in myYear:
+                    for myBranch in myBranches:
+                        if myYr.branch == myBranch:
+                            classesOfYears.append(myYr)
+                            break
+            context['myClasses'] = classesOfYears
 
         if 'confirmSelected' in request.POST:
             checkedList = request.POST.getlist('class')
@@ -145,9 +110,6 @@ def initiate(request, year, branch, section):
                 lst.append(inst[0]+inst[1]+inst[2]+" - "+status)
             context['status'] = lst
 
-    # Are any sessions open?
-    currectSessions = Session.objects.filter(timestamp=datetime.date.today())
-    context['curs'] = currectSessions
 
 
     return render(request, template, context)
@@ -170,7 +132,8 @@ def conduct(request):
     for i in allInits:
         if i.timestamp.date() == datetime.date.today():
             initlist.append(i)
-    context['classes'] = initlist
+    if len(initlist) != 0:
+        context['classes'] = initlist
 
     if request.method == 'POST' :
         if 'confirmSession' in request.POST:
@@ -258,6 +221,13 @@ def questions(request, category):
     for i in questionsQList:
         questionsList.append(i)
     context['questions'] = questionsList
+    currentSubCategory = ''
+    subcategoryOrder = []
+    for i in range(len(questionsList)):
+        if questionsList[i].subcategory != currentSubCategory and questionsList[i].subcategory is not None:
+            currentSubCategory = questionsList[i].subcategory
+            subcategoryOrder.append(i+1)
+    context['subcategory'] = subcategoryOrder
 
     paging = [0]
     subjects = []
