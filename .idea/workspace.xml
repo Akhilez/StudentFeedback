@@ -4,6 +4,7 @@
     <list default="true" id="f28d184d-98d4-4de7-b367-663dfacc6202" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/models.py" afterPath="$PROJECT_DIR$/feedback/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/views.py" afterPath="$PROJECT_DIR$/feedback/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -34,20 +35,6 @@
         <option name="myItemId" />
         <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
       </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - sql6154544@sql6.freemysqlhosting.net" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="sql6154544" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
     </PATH>
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
@@ -59,11 +46,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/feedback/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="3060">
-              <caret line="289" column="52" selection-start-line="289" selection-start-column="52" selection-end-line="289" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.6372657" vertical-offset="0" max-vertical-offset="907">
+              <caret line="210" column="33" selection-start-line="210" selection-start-column="33" selection-end-line="210" selection-end-column="33" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
                 <element signature="e#558#865#0" expanded="false" />
@@ -72,18 +59,75 @@
                 <element signature="e#2122#4369#0" expanded="false" />
                 <element signature="e#4415#6699#0" expanded="false" />
                 <element signature="e#6729#7807#0" expanded="false" />
-                <element signature="e#13053#13459#0" expanded="false" />
-                <element signature="e#13490#13763#0" expanded="false" />
+                <element signature="e#7848#13292#0" expanded="false" />
+                <element signature="e#13342#13748#0" expanded="false" />
+                <element signature="e#13779#14052#0" expanded="false" />
+                <element signature="e#14112#14255#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sql6154544.feedback_fdbkquestions" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_fdbkquestions">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sql6154544.feedback_feedback" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_feedback">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sql6154544.classFacSub" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..classFacSub">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="questions.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1904">
+              <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/feedback/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39403972" vertical-offset="0" max-vertical-offset="918">
-              <caret line="62" column="28" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="23" max-vertical-offset="952">
+              <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
                 <element signature="e#362#995#0" expanded="false" />
@@ -95,37 +139,12 @@
                 <element signature="e#2533#2774#0" expanded="false" />
                 <element signature="e#2813#2922#0" expanded="false" />
                 <element signature="e#2956#3111#0" expanded="false" />
-                <element signature="e#3147#3207#0" expanded="false" />
-                <element signature="e#3248#3460#0" expanded="false" />
-                <element signature="e#3495#3613#0" expanded="false" />
-                <element signature="e#3650#4144#0" expanded="false" />
-                <element signature="e#4197#4513#0" expanded="false" />
+                <element signature="e#3148#3208#0" expanded="false" />
+                <element signature="e#3250#3462#0" expanded="false" />
+                <element signature="e#3497#3615#0" expanded="false" />
+                <element signature="e#3652#4121#0" expanded="false" />
+                <element signature="e#4174#4490#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sql6154544.auth_group" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..auth_group">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="questions.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-31.384615" vertical-offset="0" max-vertical-offset="1904">
-              <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -150,8 +169,8 @@
         <option value="$PROJECT_DIR$/feedback/templates/feedback/conduct.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" />
         <option value="$PROJECT_DIR$/feedback/urls.py" />
-        <option value="$PROJECT_DIR$/feedback/views.py" />
         <option value="$PROJECT_DIR$/feedback/models.py" />
+        <option value="$PROJECT_DIR$/feedback/views.py" />
       </list>
     </option>
   </component>
@@ -203,7 +222,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -236,44 +254,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -613,7 +596,13 @@
       <option name="project" value="LOCAL" />
       <updated>1485074566865</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Akhil- Models renamed">
+      <created>1485082619604</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1485082619604</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -621,27 +610,27 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12793177" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15511727" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15458423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1913646" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -668,7 +657,8 @@
     <MESSAGE value="Akhil- stars working" />
     <MESSAGE value="Akhil- branch coordinators working" />
     <MESSAGE value="Akhil- questions page redirection restrictions done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Akhil- questions page redirection restrictions done" />
+    <MESSAGE value="Akhil- Models renamed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Akhil- Models renamed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -677,20 +667,60 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/feedback/views.py">
+    <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_feedback">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..classFacSub">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="409" max-vertical-offset="1071">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1904">
+          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#558#865#0" expanded="false" />
-            <element signature="e#898#1718#0" expanded="false" />
-            <element signature="e#1751#2075#0" expanded="false" />
-            <element signature="e#2122#4369#0" expanded="false" />
-            <element signature="e#4415#6699#0" expanded="false" />
-            <element signature="e#6729#7807#0" expanded="false" />
-            <element signature="e#13053#13459#0" expanded="false" />
-            <element signature="e#13490#13763#0" expanded="false" />
+            <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#362#995#0" expanded="false" />
+            <element signature="e#1031#1232#0" expanded="false" />
+            <element signature="e#1268#1454#0" expanded="false" />
+            <element signature="e#1494#1932#0" expanded="false" />
+            <element signature="e#1968#2232#0" expanded="false" />
+            <element signature="e#2271#2497#0" expanded="false" />
+            <element signature="e#2533#2774#0" expanded="false" />
+            <element signature="e#2813#2922#0" expanded="false" />
+            <element signature="e#2956#3111#0" expanded="false" />
+            <element signature="e#3148#3208#0" expanded="false" />
+            <element signature="e#3250#3462#0" expanded="false" />
+            <element signature="e#3497#3615#0" expanded="false" />
+            <element signature="e#3652#4121#0" expanded="false" />
+            <element signature="e#4174#4490#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -722,6 +752,20 @@
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#362#995#0" expanded="false" />
+            <element signature="e#1031#1232#0" expanded="false" />
+            <element signature="e#1268#1454#0" expanded="false" />
+            <element signature="e#1494#1932#0" expanded="false" />
+            <element signature="e#1968#2232#0" expanded="false" />
+            <element signature="e#2271#2497#0" expanded="false" />
+            <element signature="e#2533#2774#0" expanded="false" />
+            <element signature="e#2813#2922#0" expanded="false" />
+            <element signature="e#2956#3111#0" expanded="false" />
+            <element signature="e#3148#3208#0" expanded="false" />
+            <element signature="e#3250#3462#0" expanded="false" />
+            <element signature="e#3497#3615#0" expanded="false" />
+            <element signature="e#3652#4121#0" expanded="false" />
+            <element signature="e#4174#4490#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -745,8 +789,10 @@
             <element signature="e#2122#4369#0" expanded="false" />
             <element signature="e#4415#6699#0" expanded="false" />
             <element signature="e#6729#7807#0" expanded="false" />
-            <element signature="e#13053#13459#0" expanded="false" />
-            <element signature="e#13490#13763#0" expanded="false" />
+            <element signature="e#7848#13292#0" expanded="false" />
+            <element signature="e#13342#13748#0" expanded="false" />
+            <element signature="e#13779#14052#0" expanded="false" />
+            <element signature="e#14112#14255#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -771,6 +817,20 @@
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#362#995#0" expanded="false" />
+            <element signature="e#1031#1232#0" expanded="false" />
+            <element signature="e#1268#1454#0" expanded="false" />
+            <element signature="e#1494#1932#0" expanded="false" />
+            <element signature="e#1968#2232#0" expanded="false" />
+            <element signature="e#2271#2497#0" expanded="false" />
+            <element signature="e#2533#2774#0" expanded="false" />
+            <element signature="e#2813#2922#0" expanded="false" />
+            <element signature="e#2956#3111#0" expanded="false" />
+            <element signature="e#3148#3208#0" expanded="false" />
+            <element signature="e#3250#3462#0" expanded="false" />
+            <element signature="e#3497#3615#0" expanded="false" />
+            <element signature="e#3652#4121#0" expanded="false" />
+            <element signature="e#4174#4490#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -794,8 +854,10 @@
             <element signature="e#2122#4369#0" expanded="false" />
             <element signature="e#4415#6699#0" expanded="false" />
             <element signature="e#6729#7807#0" expanded="false" />
-            <element signature="e#13053#13459#0" expanded="false" />
-            <element signature="e#13490#13763#0" expanded="false" />
+            <element signature="e#7848#13292#0" expanded="false" />
+            <element signature="e#13342#13748#0" expanded="false" />
+            <element signature="e#13779#14052#0" expanded="false" />
+            <element signature="e#14112#14255#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -820,6 +882,20 @@
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#362#995#0" expanded="false" />
+            <element signature="e#1031#1232#0" expanded="false" />
+            <element signature="e#1268#1454#0" expanded="false" />
+            <element signature="e#1494#1932#0" expanded="false" />
+            <element signature="e#1968#2232#0" expanded="false" />
+            <element signature="e#2271#2497#0" expanded="false" />
+            <element signature="e#2533#2774#0" expanded="false" />
+            <element signature="e#2813#2922#0" expanded="false" />
+            <element signature="e#2956#3111#0" expanded="false" />
+            <element signature="e#3148#3208#0" expanded="false" />
+            <element signature="e#3250#3462#0" expanded="false" />
+            <element signature="e#3497#3615#0" expanded="false" />
+            <element signature="e#3652#4121#0" expanded="false" />
+            <element signature="e#4174#4490#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -843,8 +919,10 @@
             <element signature="e#2122#4369#0" expanded="false" />
             <element signature="e#4415#6699#0" expanded="false" />
             <element signature="e#6729#7807#0" expanded="false" />
-            <element signature="e#13053#13459#0" expanded="false" />
-            <element signature="e#13490#13763#0" expanded="false" />
+            <element signature="e#7848#13292#0" expanded="false" />
+            <element signature="e#13342#13748#0" expanded="false" />
+            <element signature="e#13779#14052#0" expanded="false" />
+            <element signature="e#14112#14255#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -869,6 +947,20 @@
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#362#995#0" expanded="false" />
+            <element signature="e#1031#1232#0" expanded="false" />
+            <element signature="e#1268#1454#0" expanded="false" />
+            <element signature="e#1494#1932#0" expanded="false" />
+            <element signature="e#1968#2232#0" expanded="false" />
+            <element signature="e#2271#2497#0" expanded="false" />
+            <element signature="e#2533#2774#0" expanded="false" />
+            <element signature="e#2813#2922#0" expanded="false" />
+            <element signature="e#2956#3111#0" expanded="false" />
+            <element signature="e#3148#3208#0" expanded="false" />
+            <element signature="e#3250#3462#0" expanded="false" />
+            <element signature="e#3497#3615#0" expanded="false" />
+            <element signature="e#3652#4121#0" expanded="false" />
+            <element signature="e#4174#4490#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -908,42 +1000,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_feedback">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_config">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_initiation">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15454546" vertical-offset="0" max-vertical-offset="880">
@@ -958,63 +1014,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/e3b28813-f821-4dc8-9d6b-aed6599beb3b/sql6153441..feedback_classes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_classes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_faculty">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_student">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_subject">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1022,19 +1066,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
           <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_category">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1042,7 +1073,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
           <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1053,29 +1083,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_feedback">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_config">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1083,54 +1099,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.653846" vertical-offset="267" max-vertical-offset="1785">
           <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..auth_user_groups">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_session">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_fdbkquestions">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.384615" vertical-offset="0" max-vertical-offset="1904">
-          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1138,7 +1130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18763797" vertical-offset="0" max-vertical-offset="906">
           <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1146,45 +1137,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.54901963" vertical-offset="0" max-vertical-offset="2346">
           <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="3060">
-          <caret line="289" column="52" selection-start-line="289" selection-start-column="52" selection-end-line="289" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-            <element signature="e#558#865#0" expanded="false" />
-            <element signature="e#898#1718#0" expanded="false" />
-            <element signature="e#1751#2075#0" expanded="false" />
-            <element signature="e#2122#4369#0" expanded="false" />
-            <element signature="e#4415#6699#0" expanded="false" />
-            <element signature="e#6729#7807#0" expanded="false" />
-            <element signature="e#13053#13459#0" expanded="false" />
-            <element signature="e#13490#13763#0" expanded="false" />
-          </folding>
+    <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_category">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..auth_group">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..auth_group">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1904">
+          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..classFacSub">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_feedback">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/6f1ada8a-ff6a-44a4-8701-6702a965cdf4/sql6154544..feedback_fdbkquestions">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/feedback/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39403972" vertical-offset="0" max-vertical-offset="918">
-          <caret line="62" column="28" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="23" max-vertical-offset="952">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
             <element signature="e#362#995#0" expanded="false" />
@@ -1196,11 +1226,31 @@
             <element signature="e#2533#2774#0" expanded="false" />
             <element signature="e#2813#2922#0" expanded="false" />
             <element signature="e#2956#3111#0" expanded="false" />
-            <element signature="e#3147#3207#0" expanded="false" />
-            <element signature="e#3248#3460#0" expanded="false" />
-            <element signature="e#3495#3613#0" expanded="false" />
-            <element signature="e#3650#4144#0" expanded="false" />
-            <element signature="e#4197#4513#0" expanded="false" />
+            <element signature="e#3148#3208#0" expanded="false" />
+            <element signature="e#3250#3462#0" expanded="false" />
+            <element signature="e#3497#3615#0" expanded="false" />
+            <element signature="e#3652#4121#0" expanded="false" />
+            <element signature="e#4174#4490#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6372657" vertical-offset="0" max-vertical-offset="907">
+          <caret line="210" column="33" selection-start-line="210" selection-start-column="33" selection-end-line="210" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#558#865#0" expanded="false" />
+            <element signature="e#898#1718#0" expanded="false" />
+            <element signature="e#1751#2075#0" expanded="false" />
+            <element signature="e#2122#4369#0" expanded="false" />
+            <element signature="e#4415#6699#0" expanded="false" />
+            <element signature="e#6729#7807#0" expanded="false" />
+            <element signature="e#7848#13292#0" expanded="false" />
+            <element signature="e#13342#13748#0" expanded="false" />
+            <element signature="e#13779#14052#0" expanded="false" />
+            <element signature="e#14112#14255#0" expanded="false" />
           </folding>
         </state>
       </provider>

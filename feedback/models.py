@@ -95,8 +95,10 @@ class Notes(models.Model):
     note = models.TextField()
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE, null=True)
 
+
 class Category(models.Model):
     category = models.CharField(max_length=30, primary_key=True)
+
 
 class FdbkQuestions(models.Model):
     question_id = models.AutoField(primary_key=True)
@@ -117,7 +119,7 @@ class Feedback(models.Model):
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     student_no = models.IntegerField()
-    relation_id = models.ForeignKey(ClassFacSub, on_delete=models.CASCADE, null=True)
+    relation_id = models.CharField(null=True, max_length=25)
 
     ratings = models.CharField(
         validators=[validate_comma_separated_integer_list],

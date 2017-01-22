@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1353503100">
-    <data-source source="LOCAL" name="MySQL - sql6153441@sql6.freemysqlhosting.net" uuid="e3b28813-f821-4dc8-9d6b-aed6599beb3b">
-      <driver-ref>mysql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6153441</jdbc-url>
-      <driver-properties>
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
-        <property name="tinyInt1isBit" value="false" />
-        <property name="characterEncoding" value="utf8" />
-        <property name="characterSetResults" value="utf8" />
-        <property name="yearIsDateType" value="false" />
-      </driver-properties>
-      <libraries />
-    </data-source>
+  <component name="DataSourceManagerImpl" format="xml" hash="855570514">
     <data-source source="LOCAL" name="MySQL - sql6154544@sql6.freemysqlhosting.net" uuid="6f1ada8a-ff6a-44a4-8701-6702a965cdf4">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

@@ -213,6 +213,11 @@ def questions(request, category):
     if session_id is None:
         return redirect('/')
 
+    maxPage = request.session.get('maxPage')
+    if maxPage is None:
+        maxPage = 1
+        request.session['maxPage'] = 1
+
     template = 'feedback/questions.html'
     context = {}
 
@@ -266,8 +271,8 @@ def questions(request, category):
     except PageNotAnInteger: pager = paginator.page(1)
     except EmptyPage: pager = paginator.page(paginator.num_pages)
 
-    if pager.number != request.session['maxPage']:
-        return redirect('/feedback/questions/?page='+str(request.session['maxPage']))
+    if pager.number != maxPage:
+        return redirect('/feedback/questions/'+category.category+'/?page='+str(request.session['maxPage']))
 
     context['pager'] = pager
     pgno = str(pager.number)
@@ -302,10 +307,11 @@ def questions(request, category):
 
         if 'next' in request.POST:
             #return render(request, template, context)
-            return redirect('/feedback/questions/?page='+str(pager.number+1))
+            return redirect('/feedback/questions/'+category.category+'/?page='+str(pager.number+1))
 
         if 'finish' in request.POST:
-            student_no = Feedback.objects.filter(session_id=session)
+            request.session['maxPage'] = 1
+            student_no = Feedback.objects.filter(session_id=session, category=category)
             if len(student_no) == 0: student_no = 1
             else: student_no = student_no.order_by('-student_no')[0].student_no+1
 
@@ -320,7 +326,7 @@ def questions(request, category):
                         ratingsString += str(request.session[str(i+1)][j])
                         if j != len(questionsList)-1:
                             ratingsString += ","
-                    Feedback.objects.create(session_id=session, category=category, relation_id=cfsList[i-1], student_no=student_no, ratings=ratingsString)
+                    Feedback.objects.create(session_id=session, category=category, relation_id=str(cfsList[i-1].cfs_id), student_no=student_no, ratings=ratingsString)
 
                 #del request.session['sessionObj']
                 #TODO store macaddress so that this PC is not used again with the session id
@@ -334,8 +340,9 @@ def questions(request, category):
                     if i != len(ratings)-1:
                         ratingsString += ","
                 Feedback.objects.create(session_id=session, category=category, student_no=student_no, ratings=ratingsString)
-                del request.session['sessionObj']
-                return HttpResponse("Thank you for the most valuable review!")
+                #del request.session['sessionObj']
+                #return HttpResponse("Thank you for the most valuable review!")
+                return redirect('/feedback/questions/LOA')
 
 
     return render(request, template, context)
@@ -357,7 +364,7 @@ def getStudentTimeout():
         Config.objects.create(key='studentTimeout', value='5', description="Expire the student login page after these many seconds")
         return 5
 
-def goto_questions_page(page_no):
+def goto_questions_page(page_no, category='faculty'):
     if page_no is None:
         return redirect('/feedback/questions/')
-    return redirect('/feedback/questions/?page='+str(page_no))
+    return redirect('/feedback/questions/'+category+'/?page='+str(page_no))
