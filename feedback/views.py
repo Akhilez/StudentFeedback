@@ -21,6 +21,10 @@ def login_redirect(request):
 
 
 def login_view(request):
+
+    if request.session.get('sessionObj') is not None:
+        return goto_questions_page(request.session.get('maxPage'))
+
     if request.user.is_authenticated:
         return goto_user_page(request.user)
     template = "login.html"
@@ -53,7 +57,11 @@ def goto_user_page(user):
 
 
 @login_required
-def initiate(request, year, branch, section):
+def initiate(request):
+
+    if request.session.get('sessionObj') is not None:
+        return goto_questions_page(request.session.get('maxPage'))
+
     groups = request.user.groups.all()
     if not groups.filter(name=COORDINATOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
@@ -117,8 +125,13 @@ def initiate(request, year, branch, section):
 
 @login_required
 def conduct(request):
+
+    if request.session.get('sessionObj') is not None:
+        return goto_questions_page(request.session.get('maxPage'))
+
     if not request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
+
     context = {}
     template = 'feedback/conduct.html'
     hasOtp = request.session.get('otp', None)
@@ -170,6 +183,10 @@ def conduct(request):
 
 
 def student(request):
+
+    if request.session.get('sessionObj') is not None:
+        return goto_questions_page(request.session.get('maxPage'))
+
     template = 'feedback/student_login.html'
     context = {}
     #Are any sessions open?
@@ -184,6 +201,7 @@ def student(request):
             if str(session.session_id) == lst:
                 #Start a session and redirect to the feedback questions page
                 request.session['sessionObj'] = session.session_id
+                request.session['classId'] = session.initiation_id.class_id.__str__()
                 return redirect('/feedback/questions')
         if classObj is None:
             context['otpError'] = 'otpError'
@@ -248,6 +266,9 @@ def questions(request, category):
     except PageNotAnInteger: pager = paginator.page(1)
     except EmptyPage: pager = paginator.page(paginator.num_pages)
 
+    if pager.number != request.session['maxPage']:
+        return redirect('/feedback/questions/?page='+str(request.session['maxPage']))
+
     context['pager'] = pager
     pgno = str(pager.number)
 
@@ -271,6 +292,9 @@ def questions(request, category):
                 value = request.POST[name]
                 ratings.append(value)
             request.session[pgno] = ratings
+            max = request.session.get('maxPage')
+            if max is None: max = 0
+            request.session['maxPage'] = max+1
         except MultiValueDictKeyError:
             context['error'] = "Please enter all the ratings"
             return render(request, template, context)
@@ -332,3 +356,8 @@ def getStudentTimeout():
     except Exception:
         Config.objects.create(key='studentTimeout', value='5', description="Expire the student login page after these many seconds")
         return 5
+
+def goto_questions_page(page_no):
+    if page_no is None:
+        return redirect('/feedback/questions/')
+    return redirect('/feedback/questions/?page='+str(page_no))
