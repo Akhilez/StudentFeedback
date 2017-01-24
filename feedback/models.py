@@ -22,7 +22,11 @@ class Classes(models.Model):
 
     def __str__(self):
         yearDict = {'1': 'I', '2': 'II', '3': 'III', '4': 'IV'}
-        return str(yearDict[str(self.year)]+" "+str(self.branch)+" "+str(self.section))
+        if self.section is None:
+            sec = ""
+        else:
+            sec = str(self.section)
+        return str(yearDict[str(self.year)]+" "+str(self.branch)+" "+sec)
 
 
 class Faculty(models.Model):
