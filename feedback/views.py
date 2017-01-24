@@ -229,18 +229,57 @@ def questions(request, category):
     if attendanceCount == attendance:
         return HttpResponse("Sorry, the attendance limit has been reached.")
 
-
+    #GET CATEGORY
     if category == '': category = 'faculty'
     category = Category.objects.get(category=category)
     context['category'] = category.category
 
 
+    #GET CLASS OBJECT
     classObj = session.initiation_id.class_id
     context['class_obj'] = classObj
+
+    #GET ALL THE CONTENT DETAILS - CLASSES, CFS, ETC
+    paging = [0]
+    subjects = []
+    faculty = []
     cfsList = []
+    if category.category == 'faculty' or category.category == 'LOA':
+        cfs = ClassFacSub.objects.filter(class_id=classObj)
+        for i in cfs:
+            cfsList.append(i)
+            subjects.append(i.subject_id.name)
+            faculty.append(i.faculty_id)
+            context['subjects'] = subjects
+        paging = subjects
+    paginator = Paginator(paging, 1)
+
+    #GET THE PAGE INFORMATION
+    page = request.GET.get('page')
+    try: pager = paginator.page(page)
+    except PageNotAnInteger: pager = paginator.page(1)
+    except EmptyPage: pager = paginator.page(paginator.num_pages)
+    context['pager'] = pager
+    pgno = str(pager.number)
+
+    #CHECK IF WE ARE ON THE RIGHT PAGE NUMBER
+    if pager.number != maxPage:
+        return redirect('/feedback/questions/'+category.category+'/?page='+str(request.session['maxPage']))
+
+
+    if category.category == 'faculty' or category.category == 'LOA':
+        context['subject'] = subjects[pager.number - 1]
+        context['faculty'] = faculty[pager.number - 1]
 
     questionsList = []
+    subCategsList = []
     questionsQList = FdbkQuestions.objects.filter(category=category)
+    if category.category == 'LOA':
+        subCategs = questionsQList.values_list('subcategory').distinct()
+        for subCateg in subCategs:
+            subCategsList.append(subCateg)
+        #TODO setup the relation id for the subcategory and subject
+        questionsQList = questionsQList.filter(subcategory=subCategsList[pager.number-1])
     for i in questionsQList:
         questionsList.append(i)
     context['questions'] = questionsList
@@ -251,36 +290,6 @@ def questions(request, category):
             currentSubCategory = questionsList[i].subcategory
             subcategoryOrder.append(i+1)
     context['subcategory'] = subcategoryOrder
-
-    paging = [0]
-    subjects = []
-    faculty = []
-    if category.category == 'faculty':
-        cfs = ClassFacSub.objects.filter(class_id=classObj)
-        for i in cfs:
-            cfsList.append(i)
-            subjects.append(i.subject_id.name)
-            faculty.append(i.faculty_id)
-            context['subjects'] = subjects
-        paging = subjects
-
-    paginator = Paginator(paging, 1)
-
-    page = request.GET.get('page')
-    try: pager = paginator.page(page)
-    except PageNotAnInteger: pager = paginator.page(1)
-    except EmptyPage: pager = paginator.page(paginator.num_pages)
-
-    if pager.number != maxPage:
-        return redirect('/feedback/questions/'+category.category+'/?page='+str(request.session['maxPage']))
-
-    context['pager'] = pager
-    pgno = str(pager.number)
-
-    if category.category == 'faculty':
-        context['subject'] = subjects[pager.number - 1]
-        context['faculty'] = faculty[pager.number - 1]
-
 
     myRating = request.session.get(pgno, None)
     if myRating is not None:
