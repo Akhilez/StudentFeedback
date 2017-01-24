@@ -29,7 +29,6 @@
               <tr>
                 <th>Questions</th>
                 <th>Rating</th>
-                <th>Don't know</th>
               </tr>
             </thead>
             <tbody>
@@ -40,7 +39,7 @@
                   <tr>
                     <td>{{ question.question }}</td>
                       <td>
-                        <fieldset class="rating" name="review">
+                        <fieldset class="rating" name="review" id="star-{{ forloop.counter }}">
                             <input type="radio" id="star5-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="5" /><label class = "full" for="star5-{{ forloop.counter }}" title="Awesome - 5 stars"></label>
                             <input type="radio" id="star4-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="4" /><label class = "full" for="star4-{{ forloop.counter }}" title="Pretty good - 4 stars"></label>
                             <input type="radio" id="star3-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="3" /><label class = "full" for="star3-{{ forloop.counter }}" title="Meh - 3 stars"></label>
@@ -48,7 +47,7 @@
                             <input type="radio" id="star1-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="1" /><label class = "full" for="star1-{{ forloop.counter }}" title="Sucks big time - 1 star"></label>
                         </fieldset>
                     </td>
-                    <td><input type="checkbox" name="idk" value="{{ forloop.counter }}" title="Please provide a reason" data-toggle="popover" data-placement="right" data-trigger="focus" data-content='<p>hiiii</p>'></td>
+
                   </tr>
                 {% endfor %}
             </tbody>
@@ -90,6 +89,7 @@
           </div>
           <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
                 <input type="submit" value="Confirm" name="finish" class="btn btn-default" form="questionForm">
           </div>
         </div>
@@ -101,6 +101,16 @@
     $(document).ready(function(){
         $('[data-toggle="popover"]').popover();
     });
+     $(document).ready(function() {
+         $('input[type="checkbox"]').click(function () {
+             if ($("#1").prop("checked") == true) {
+                 alert("Checkbox is checked.");
+                 $("#star-1").show();
+             }
+             else $("#star-1").hide();s
+
+         });
+     });
     </script>
 
 
