@@ -29,7 +29,6 @@
               <tr>
                 <th>Questions</th>
                 <th>Rating</th>
-                <th>Don't know</th>
               </tr>
             </thead>
             <tbody>
@@ -48,7 +47,7 @@
                             <input type="radio" id="star1-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="1" /><label class = "full" for="star1-{{ forloop.counter }}" title="Very poor"></label>
                         </fieldset>
                     </td>
-                    <td><input type="checkbox" name="idk" value="{{ forloop.counter }}" title="Please provide a reason" data-toggle="popover" data-placement="right" data-trigger="focus" data-content='<p>hiiii</p>'></td>
+
                   </tr>
                 {% endfor %}
             </tbody>
@@ -96,13 +95,5 @@
         </div>
       </div>
     </div>
-
-
-    <script>
-    $(document).ready(function(){
-        $('[data-toggle="popover"]').popover();
-    });
-    </script>
-
 
 {% endblock %}
