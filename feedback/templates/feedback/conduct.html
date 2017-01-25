@@ -6,7 +6,7 @@
 {% block head %}
 <script language="JavaScript">
 function toggle(source) {
-  checkboxes = document.getElementsByName('class');
+  checkboxes = document.getElementsByName('attendanceList');
   for(var i=0, n=checkboxes.length;i<n;i++) {
     checkboxes[i].checked = source.checked;
   }
@@ -32,7 +32,7 @@ function toggle(source) {
                   <tr>
                     <th>Serial No.</th>
                     <th>Hallticket No.</th>
-                    <th>present/absent</th>
+                    <th><input type="checkbox" onClick="toggle(this)"> present/absent</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -45,6 +45,10 @@ function toggle(source) {
                     {% endfor %}
                 </tbody>
             </table>
+            {% if not master %}
+                <input type="checkbox" name="master" id="master" >
+                <label for="master">Consider this session as master?</label><br/>
+            {% endif %}
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit</button>
         </form>
     {% else %}

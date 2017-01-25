@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block maincontent %}
-    {{ subcategories }}
+    {{ remarks }}
     <br/><br/>
     <h3>{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
     {% if category == 'facility' %}
@@ -41,11 +41,11 @@
                     <td>{{ question.question }}</td>
                       <td>
                         <fieldset class="rating" name="review">
-                            <input type="radio" id="star5-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="5" /><label class = "full" for="star5-{{ forloop.counter }}" title="Awesome - 5 stars"></label>
-                            <input type="radio" id="star4-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="4" /><label class = "full" for="star4-{{ forloop.counter }}" title="Pretty good - 4 stars"></label>
-                            <input type="radio" id="star3-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="3" /><label class = "full" for="star3-{{ forloop.counter }}" title="Meh - 3 stars"></label>
-                            <input type="radio" id="star2-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="2" /><label class = "full" for="star2-{{ forloop.counter }}" title="Kinda bad - 2 stars"></label>
-                            <input type="radio" id="star1-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="1" /><label class = "full" for="star1-{{ forloop.counter }}" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="star5-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="5" /><label class = "full" for="star5-{{ forloop.counter }}" title="Excellent"></label>
+                            <input type="radio" id="star4-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="4" /><label class = "full" for="star4-{{ forloop.counter }}" title="Good"></label>
+                            <input type="radio" id="star3-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="3" /><label class = "full" for="star3-{{ forloop.counter }}" title="Average"></label>
+                            <input type="radio" id="star2-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="2" /><label class = "full" for="star2-{{ forloop.counter }}" title="Poor"></label>
+                            <input type="radio" id="star1-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="1" /><label class = "full" for="star1-{{ forloop.counter }}" title="Very poor"></label>
                         </fieldset>
                     </td>
                     <td><input type="checkbox" name="idk" value="{{ forloop.counter }}" title="Please provide a reason" data-toggle="popover" data-placement="right" data-trigger="focus" data-content='<p>hiiii</p>'></td>
@@ -59,6 +59,7 @@
                 {% if pager.has_next %}
                     <input class="btn btn-default" type="submit" value="next" name="next">
                 {% else %}
+                    <textarea class="form-control" id="remarks" placeholder="Remarks" name="remarks" ></textarea><br/>
                     <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">Finish</button>
                 {% endif %}
             </ul>

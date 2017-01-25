@@ -98,6 +98,16 @@ def initiate(request):
 
         if 'nextSection' in request.POST:
             allClasses = Classes.objects.all().order_by('year')
+            allClassesList = []
+            notEligible = []
+            for cls in allClasses:
+                allClassesList.append(cls)
+            for i in range(len(allClassesList)):
+                if isNotEligible(allClassesList[i]):
+                    notEligible.append(i+1)
+            context['notEligible'] = notEligible
+
+
             selectedYears = request.POST.getlist('class')
             classesOfYears = []
             for yr in selectedYears:
@@ -140,11 +150,22 @@ def conduct(request):
         context['classSelected'] = Classes.objects.get(class_id=request.session.get('class', None))
         return render(request, template, context)
 
+
+    #GET ALL SESSIONS TO RESTRICT THE INITIATIONS
+    allSessions = Session.objects.all()
+    sessionsList = []
+    for session in allSessions:
+        if session.timestamp.date() == datetime.date.today():
+            if session.master == False:
+                sessionsList.append(session.initiation_id)
+
+    #GET ALL INITIATIONS
     allInits = Initiation.objects.all()
     initlist = []
     for i in allInits:
         if i.timestamp.date() == datetime.date.today():
-            initlist.append(i)
+            if i not in sessionsList:
+                initlist.append(i)
     if len(initlist) != 0:
         context['classes'] = initlist
 
@@ -167,17 +188,24 @@ def conduct(request):
             context['otp'] = otp
             request.session['otp'] = otp
 
-
             for htno in checkValues:
                 Attendance.objects.create(student_id=Student.objects.get(hallticket_no=htno), session_id=session)
 
         if 'take_attendance' in request.POST:
+            #TODO provide an attendance criteria based on master/slave
             classFromSelect = request.POST.getlist('selectClass')[0]
             classObj = Classes.objects.get(class_id=classFromSelect)
             context['classSelected'] = classObj
             request.session['class'] = classObj.class_id
             allStudents = Student.objects.filter(class_id=classObj)
             context['allStudetns'] = allStudents
+            masterClasses = []
+            for session in allSessions:
+                if classObj == session.initiation_id.class_id:
+                    if session.master:
+                        context['master'] = True
+                    break
+
 
     return render(request, template, context)
 
@@ -293,7 +321,6 @@ def questions(request, category):
 
     myRating = request.session.get(pgno, None)
     if myRating is not None:
-        #TODO display all the ratings in HTML
         context['allRatings'] = request.session[pgno]
     else:
         request.session[pgno] = None
@@ -324,10 +351,16 @@ def questions(request, category):
             if len(student_no) == 0: student_no = 1
             else: student_no = student_no.order_by('-student_no')[0].student_no+1
 
+            #GET THE REMARKS FROM HTML
+            remarks = request.POST.getlist('remarks')
+            if remarks is not None and len(remarks) == 1:
+                remarks = Notes.objects.create(note=remarks[0], session_id=session)
+
             if category.category == 'faculty':
                 for i in range(1, pager.end_index()+1):
                     if request.session.get(str(i)) is None or None in request.session[str(i)]:
                         return redirect('/feedback/questions/?page='+str(i))
+
 
                 for i in range(0, len(cfsList)):
                     ratingsString = ""
@@ -356,6 +389,7 @@ def questions(request, category):
 
     return render(request, template, context)
 
+
 def initiateFor(year, branch, section, by):
     classobj = Classes.objects.get(year=year, branch=branch, section=section)
     history = Initiation.objects.filter(class_id=classobj)
@@ -365,6 +399,7 @@ def initiateFor(year, branch, section, by):
         return 'success'
     else: return 'failed'
 
+
 def getStudentTimeout():
     try:
         timeInMin = Config.objects.get(key='studentTimeout')
@@ -373,7 +408,18 @@ def getStudentTimeout():
         Config.objects.create(key='studentTimeout', value='5', description="Expire the student login page after these many seconds")
         return 5
 
+
 def goto_questions_page(page_no, category='faculty'):
     if page_no is None:
         return redirect('/feedback/questions/')
     return redirect('/feedback/questions/'+category+'/?page='+str(page_no))
+
+
+def isNotEligible(cls):
+    initiations = Initiation.objects.all()
+    for initiation in initiations:
+        if initiation.timestamp.date() == datetime.date.today():
+            if cls == initiation.class_id:
+                return True
+
+    return False

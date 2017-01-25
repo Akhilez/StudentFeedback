@@ -87,6 +87,7 @@ class Session(models.Model):
     timestamp = models.DateTimeField()
     initiation_id = models.ForeignKey(Initiation, on_delete=models.CASCADE)
     taken_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    master = models.BooleanField(default=False)
 
 
 class Attendance(models.Model):

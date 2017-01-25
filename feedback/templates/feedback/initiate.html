@@ -58,7 +58,13 @@ function toggle(source) {
                 {% if myClasses %}
                     {% for class in myClasses %}
                         <tr>
-                            <td><input type="checkbox" name="class" value="{{ class.year }}-{{ class.branch }}-{{ class.section }}"></td>
+                            <td>
+                                {% if forloop.counter in notEligible %}
+                                    Already initiated. <a href="#">Check info</a>
+                                {% else %}
+                                    <input type="checkbox" name="class" value="{{ class.year }}-{{ class.branch }}-{{ class.section }}">
+                                {% endif %}
+                            </td>
                             <td>{{ class.year }}</td>
                             <td>{{ class.branch }}</td>
                             <td>{{ class.section }}</td>
