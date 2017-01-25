@@ -170,12 +170,14 @@ def conduct(request):
         context['classes'] = initlist
 
     if request.method == 'POST' :
+        #TODO Session id must be same if already exists
         if 'confirmSession' in request.POST:
-            classFromSelect = request.session.get('class', None)
-            if classFromSelect is None:
-                return HttpResponse("None")
+            split = request.POST.getlist('master')
+            if len(split) > 0:
+                master = True
+            else: master = False
+            classFromSelect = request.session.get('class')
             checkValues = request.POST.getlist("attendanceList")
-
             otp = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
             dt = str(datetime.datetime.now())
             initObj = None
@@ -183,8 +185,24 @@ def conduct(request):
                 if str(init.class_id.class_id) == str(classFromSelect):
                     initObj=init
                     break
+
+            session = None
+            alreadyThere = False
+            for session0 in allSessions:
+                if initObj == session0.initiation_id:
+                    session = session0
+                    otp = session0.session_id
+                    alreadyThere = True
+                    break
+
             context['classSelected'] = initObj.class_id
-            session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj, session_id=otp)
+            if not alreadyThere:
+                otp = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+                session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj, session_id=otp, master=master)
+            else:
+                session.master = False
+                session.save()
+
             context['otp'] = otp
             request.session['otp'] = otp
 
@@ -192,19 +210,39 @@ def conduct(request):
                 Attendance.objects.create(student_id=Student.objects.get(hallticket_no=htno), session_id=session)
 
         if 'take_attendance' in request.POST:
-            #TODO provide an attendance criteria based on master/slave
+            master = False
             classFromSelect = request.POST.getlist('selectClass')[0]
             classObj = Classes.objects.get(class_id=classFromSelect)
             context['classSelected'] = classObj
             request.session['class'] = classObj.class_id
-            allStudents = Student.objects.filter(class_id=classObj)
-            context['allStudetns'] = allStudents
-            masterClasses = []
+            alreadyThere = False
+            masterSession = None
+            initObj = None
+            for init in initlist:
+                if str(init.class_id.class_id) == str(classFromSelect):
+                    initObj=init
+                    break
             for session in allSessions:
-                if classObj == session.initiation_id.class_id:
+                if initObj == session.initiation_id:
                     if session.master:
+                        alreadyThere = True
+                        masterSession = session
+                        master = True
                         context['master'] = True
                     break
+            allStudents = Student.objects.filter(class_id=classObj)
+            if alreadyThere:
+                absentStudents = []
+                presentStudentsList = []
+                presentStudents = Attendance.objects.filter(session_id=masterSession)
+                for pS in presentStudents: presentStudentsList.append(pS.student_id)
+                for student in allStudents:
+                    if student not in presentStudentsList:
+                        absentStudents.append(student)
+                allStudents = absentStudents
+
+
+            context['allStudetns'] = allStudents
 
 
     return render(request, template, context)

@@ -9,11 +9,24 @@
     {{ remarks }}
     <br/><br/>
     <h3>{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
-    {% if category == 'facility' %}
-        <h2>Facility feedback</h2>
-    {% elif category == 'faculty' %}
-        <h2>{{ subject }} - {{ faculty }}</h2><br/>
-    {% endif %}
+    <div>
+        <div style="float:left">
+            {% if category == 'facility' %}
+                <h2>Facility feedback</h2>
+            {% elif category == 'faculty' %}
+                <h2>{{ subject }} - {{ faculty }}</h2><br/>
+            {% endif %}
+        </div>
+
+        <div style="float:right">
+            <ul class="pagination" style="float:right">
+                {% for i in subjects %}
+                    <li {% ifequal forloop.counter pager.number %}class="active" {% else %}class="disabled"{% endifequal %}><a>{{ forloop.counter }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
 
     {% if error %}
         <div class="alert alert-danger">
@@ -40,7 +53,7 @@
                     <td>{{ question.question }}</td>
                       <td>
                         <fieldset class="rating" name="review">
-                            <input type="radio" id="star5-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="5" /><label class = "full" for="star5-{{ forloop.counter }}" title="Excellent"></label>
+                            <input type="radio" id="star5-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="5" required /><label class = "full" for="star5-{{ forloop.counter }}" title="Excellent"></label>
                             <input type="radio" id="star4-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="4" /><label class = "full" for="star4-{{ forloop.counter }}" title="Good"></label>
                             <input type="radio" id="star3-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="3" /><label class = "full" for="star3-{{ forloop.counter }}" title="Average"></label>
                             <input type="radio" id="star2-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="2" /><label class = "full" for="star2-{{ forloop.counter }}" title="Poor"></label>
@@ -65,11 +78,7 @@
         </div>
 
 
-        <ul class="pagination" style="float:right">
-            {% for i in subjects %}
-                <li {% ifequal forloop.counter pager.number %}class="active" {% else %}class="disabled"{% endifequal %}><a>{{ forloop.counter }}</a></li>
-            {% endfor %}
-        </ul>
+
 
     </form>
 

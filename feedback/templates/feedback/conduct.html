@@ -19,7 +19,6 @@ function toggle(source) {
 {% endblock %}
 
 {% block maincontent %}
-    {{ aList }}
     {% if otp %}
         <p> Session Started for {{ classSelected }}</p>
         <h2>Session ID : {{ otp }}</h2>
@@ -47,7 +46,7 @@ function toggle(source) {
             </table>
             {% if not master %}
                 <input type="checkbox" name="master" id="master" >
-                <label for="master">Consider this session as master?</label><br/>
+                <label for="master">Split into two labs.</label><br/>
             {% endif %}
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit</button>
         </form>
