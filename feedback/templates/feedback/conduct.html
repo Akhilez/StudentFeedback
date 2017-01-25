@@ -23,6 +23,11 @@ function toggle(source) {
     {% if otp %}
         <p> Session Started for {{ classSelected }}</p>
         <h2>Session ID : {{ otp }}</h2>
+        <a href="/feedback/latelogin/">Latelogin</a>
+        {% if enable %}
+            {{ studid_form }}
+            <input type="submit" name="submit">
+        {% endif %}
     {% elif classSelected %}
        <form method="post" action="" id="attendance">
             {% csrf_token %}
