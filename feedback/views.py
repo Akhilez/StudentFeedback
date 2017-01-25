@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
-from feedback.forms import LoginForm
+from feedback.forms import *
 from django.contrib.auth.decorators import login_required
 from feedback.models import *
 import datetime
@@ -246,6 +246,22 @@ def conduct(request):
 
 
     return render(request, template, context)
+
+def latelogin(request):
+    presentClass = request.session.get('class')
+    context = {}
+    template = 'feedback/latelogin.html'
+    if request.method == "POST":
+        form = StudForm(request.POST)
+        if form.is_valid():
+            studid = request.POST['username']
+            sessid =  request.session.get("otp")
+            Attendance.create(session_id=sessid, student_id=studid)
+    else:
+        context['studform'] = StudForm()
+    return render(request, template, context)
+
+
 
 
 def student(request):
