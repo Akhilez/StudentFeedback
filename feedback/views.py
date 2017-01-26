@@ -245,6 +245,7 @@ def conduct(request):
 
     return render(request, template, context)
 
+@login_required()
 def latelogin(request):
     presentClass = request.session.get('class')
     context = {}
@@ -252,9 +253,13 @@ def latelogin(request):
     if request.method == "POST":
         form = StudForm(request.POST)
         if form.is_valid():
-            studid = request.POST['username']
+            #return HttpResponse("hii")
+            studid = request.POST['studid']
             sessid =  request.session.get("otp")
-            Attendance.create(session_id=sessid, student_id=studid)
+            att_obj = Attendance(session_id=Session(sessid), student_id=Student(studid))
+            att_obj.save()
+        else:
+            context['studform'] = StudForm()
     else:
         context['studform'] = StudForm()
     return render(request, template, context)
