@@ -98,15 +98,7 @@ def initiate(request):
 
         if 'nextSection' in request.POST:
             allClasses = Classes.objects.all().order_by('year')
-            allClassesList = []
             notEligible = []
-            for cls in allClasses:
-                allClassesList.append(cls)
-            for i in range(len(allClassesList)):
-                if isNotEligible(allClassesList[i]):
-                    notEligible.append(i+1)
-            context['notEligible'] = notEligible
-
 
             selectedYears = request.POST.getlist('class')
             classesOfYears = []
@@ -118,6 +110,12 @@ def initiate(request):
                             classesOfYears.append(myYr)
                             break
             context['myClasses'] = classesOfYears
+
+            for i in range(len(classesOfYears)):
+                if isNotEligible(classesOfYears[i]):
+                    notEligible.append(i+1)
+            context['notEligible'] = notEligible
+
 
         if 'confirmSelected' in request.POST:
             checkedList = request.POST.getlist('class')
