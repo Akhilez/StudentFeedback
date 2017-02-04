@@ -98,15 +98,7 @@ def initiate(request):
 
         if 'nextSection' in request.POST:
             allClasses = Classes.objects.all().order_by('year')
-            allClassesList = []
             notEligible = []
-            for cls in allClasses:
-                allClassesList.append(cls)
-            for i in range(len(allClassesList)):
-                if isNotEligible(allClassesList[i]):
-                    notEligible.append(i+1)
-            context['notEligible'] = notEligible
-
 
             selectedYears = request.POST.getlist('class')
             classesOfYears = []
@@ -118,6 +110,12 @@ def initiate(request):
                             classesOfYears.append(myYr)
                             break
             context['myClasses'] = classesOfYears
+
+            for i in range(len(classesOfYears)):
+                if isNotEligible(classesOfYears[i]):
+                    notEligible.append(i+1)
+            context['notEligible'] = notEligible
+
 
         if 'confirmSelected' in request.POST:
             checkedList = request.POST.getlist('class')
@@ -247,6 +245,7 @@ def conduct(request):
 
     return render(request, template, context)
 
+@login_required()
 def latelogin(request):
     presentClass = request.session.get('class')
     context = {}
@@ -254,9 +253,13 @@ def latelogin(request):
     if request.method == "POST":
         form = StudForm(request.POST)
         if form.is_valid():
-            studid = request.POST['username']
+            #return HttpResponse("hii")
+            studid = request.POST['studid']
             sessid =  request.session.get("otp")
-            Attendance.create(session_id=sessid, student_id=studid)
+            att_obj = Attendance(session_id=Session(sessid), student_id=Student(studid))
+            att_obj.save()
+        else:
+            context['studform'] = StudForm()
     else:
         context['studform'] = StudForm()
     return render(request, template, context)
