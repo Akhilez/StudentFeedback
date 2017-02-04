@@ -88,6 +88,8 @@ class Session(models.Model):
     initiation_id = models.ForeignKey(Initiation, on_delete=models.CASCADE)
     taken_by = models.ForeignKey(User, on_delete=models.CASCADE)
     master = models.BooleanField(default=False)
+    stutimeout = models.IntegerField(default=5)
+    mastersession = models.CharField(max_length=5, null=True)#references master session
 
 
 class Attendance(models.Model):
