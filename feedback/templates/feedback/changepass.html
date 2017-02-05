@@ -7,6 +7,24 @@
 {% endblock %}
 
 {% block maincontent %}
+    {% if repass %}
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <strong>Error! Your passwords did not match.Please Check them.</strong>
+        </div>
+    {% endif %}
+    {% if wrongpass %}
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <strong>Error! Enter the correct Old Password</strong>
+        </div>
+    {% endif %}
+    {% if passnotvalid %}
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <strong>Error! Enter a valid password with bla bla bla conditions</strong>
+        </div>
+    {% endif %}
      <h1 align="center">Update your Profile</h1>
     <div id="form1" align="center">
        <form method="post" action="">
@@ -17,24 +35,20 @@
            Email : {{ formset.email }}<br><br>
            New Password : {{ formset.newpass }}<br><br>
            Re-Enter Password : {{ formset.repass }}<br><br><br>
-           <h4>For the Changes to come into effect,Enter the password</h4><br>
-           Current Passowrd : {{ formset.password }}<br><br>
+           <h4>For the Changes to come into effect,Enter the Current Password</h4><br>
+           Current Password : {{ formset.password }}<br><br>
            <!--Name: <input id="name" placeholder="Name" type="text" required>
             Score:<input id="score" placeholder="Score" type="number" required>
-           Password:<input id="password" placeholder="Name" type="password" required>
+           Password:<input id="password" placeholer="Name" type="password" required>
            <input type="submit" value="submit" id="submit">-->
            <input type="submit" value="submit">
        </form>
     </div>
 
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="password" name="confPassword">
-        <input type="submit" value="Submit" name="check_password">
-    </form>
 
-    Thiss : {{ checkthis }}
+
+
 
 
 {% endblock%}

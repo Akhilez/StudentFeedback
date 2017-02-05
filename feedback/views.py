@@ -13,6 +13,7 @@ import random
 import string
 from django.contrib.auth.hashers import check_password
 from django.core.signing import *
+import re
 
 
 
@@ -613,38 +614,68 @@ def getGracePeriod():
 def changepass(request):
     template = 'feedback/changepass.html'
     context = {}
-
-
-
-    signer = Signer()
     if request.method == "POST":
-        '''formset=ProfileForm(request.POST)
+        formset=ProfileForm(request.POST)
         if(formset.is_valid()):
             #formset.save()
-            password = request.POST.get('password', '')
-            originalpass = User.objects.filter(username=request.user).values_list('password')
-            #return HttpResponse(originalpass)
-            originalpass = originalpass[0]
-            if not check_password(password, originalpass):
-                #return HttpResponse('hii')
-                pass
             firstname = request.POST.get('firstname', '')
             lastname = request.POST.get('lastname', '')
             newpass = request.POST.get('newpass', '')
             repass = request.POST.get('repass', '')
             email = request.POST.get('email', '')
+            password = request.POST.get('password', '')
+            if check_password(password, request.user.password):
+                if firstname:
+                    u = User.objects.get(username =request.user)
+                    u.first_name=firstname
+                    u.save()
+                if lastname:
+                    u = User.objects.get(username =request.user)
+                    u.last_name=lastname
+                    u.save()
+                if email:
+                    u = User.objects.get(username =request.user)
+                    u.email=email
+                    u.save()
+                if newpass==repass:
+                    x = True
+                    while x:
+                        if (len(newpass)<6 or len(newpass)>12):
+                            break
+                        elif not re.search("[a-z]",newpass):
+                            break
+                        elif not re.search("[0-9]",newpass):
+                            break
+                        elif not re.search("[A-Z]",newpass):
+                            break
+                        elif not re.search("[$#@]",newpass):
+                            break
+                        elif re.search("\s",newpass):
+                            break
+                        else:
+                            user=request.user
+                            user.set_password(newpass)
+                            user.save()
+                            x=False
+                            break
 
+                    if x:
+                        context['passnotvalid'] = 'notnull'
+                        formset = ProfileForm()
+                        context['formset'] = formset
+                        return render(request, template, context)
 
+                else:
+                    context['repass'] = 'notnull'
+                    formset = ProfileForm()
+                    context['formset'] = formset
+                    return render(request, template, context)
+            else:
+                context['wrongpass'] = 'notnull'
+                formset = ProfileForm()
+                context['formset'] = formset
+                return render(request, template, context)
     else:
         formset = ProfileForm()
-        return render(request, template, {'formset':formset})'''
-
-
-
-        plainPassword = request.POST.getlist('confPassword')
-        if len(plainPassword) == 1 : plainPassword = plainPassword[0]
-        context['checkthis'] = check_password(plainPassword, request.user.password)
-
-
-
+        context['formset'] = formset
     return render(request, template, context)
