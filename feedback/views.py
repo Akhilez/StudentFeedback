@@ -11,6 +11,9 @@ from feedback.models import *
 import datetime
 import random
 import string
+from django.contrib.auth.hashers import check_password
+from django.core.signing import *
+
 
 
 def login_redirect(request):
@@ -605,3 +608,33 @@ def getGracePeriod():
         return int(gp)
     except :
         return 2
+
+@login_required
+def changepass(request):
+    template = 'feedback/changepass.html'
+    signer = Signer()
+    if request.method == "POST":
+        formset=ProfileForm(request.POST)
+        if(formset.is_valid()):
+            #formset.save()
+            password = request.POST.get('password', '')
+            originalpass = User.objects.filter(username=request.user).values_list('password')
+            #return HttpResponse(originalpass)
+            originalpass = str(originalpass)
+            originalpass = originalpass.lstrip("(");
+            originalpass = originalpass.rstrip(")");
+            originalpass = originalpass.rstrip(",");
+            if not check_password(password, originalpass):
+                return HttpResponse('hii')
+            firstname = request.POST.get('firstname', '')
+            lastname = request.POST.get('lastname', '')
+            newpass = request.POST.get('newpass', '')
+            repass = request.POST.get('repass', '')
+            email = request.POST.get('email', '')
+
+
+    else:
+        formset = ProfileForm()
+        return render(request, template, {'formset':formset})
+    context = ''
+    return render(request, template, context)

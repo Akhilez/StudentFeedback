@@ -1,0 +1,29 @@
+{% extends 'feedback/base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block navbar %}
+   {% include 'feedback/includes/navbar.html' %}
+{% endblock %}
+
+{% block maincontent %}
+     <h1 align="center">Update your Profile</h1>
+    <div id="form1" align="center">
+       <form method="post" action="">
+           {% csrf_token %}
+           <br><br>
+           First Name : {{ formset.firstname }}<br><br>
+           Last Name : {{ formset.lastname }}<br><br>
+           Email : {{ formset.email }}<br><br>
+           New Password : {{ formset.newpass }}<br><br>
+           Re-Enter Password : {{ formset.repass }}<br><br><br>
+           <h4>For the Changes to come into effect,Enter the password</h4><br>
+           Current Passowrd : {{ formset.password }}<br><br>
+           <!--Name: <input id="name" placeholder="Name" type="text" required>
+            Score:<input id="score" placeholder="Score" type="number" required>
+           Password:<input id="password" placeholder="Name" type="password" required>
+           <input type="submit" value="submit" id="submit">-->
+           <input type="submit" value="submit">
+       </form>
+    </div>
+{% endblock%}
