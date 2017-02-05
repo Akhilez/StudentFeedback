@@ -648,7 +648,7 @@ def changepass(request):
                             break
                         elif not re.search("[A-Z]",newpass):
                             break
-                        elif not re.search("[$#@]",newpass):
+                        elif not re.search("[$#@!()*+=-_]",newpass):
                             break
                         elif re.search("\s",newpass):
                             break
@@ -658,7 +658,6 @@ def changepass(request):
                             user.save()
                             x=False
                             break
-
                     if x:
                         context['passnotvalid'] = 'notnull'
                         formset = ProfileForm()
