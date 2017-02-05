@@ -612,20 +612,22 @@ def getGracePeriod():
 @login_required
 def changepass(request):
     template = 'feedback/changepass.html'
+    context = {}
+
+
+
     signer = Signer()
     if request.method == "POST":
-        formset=ProfileForm(request.POST)
+        '''formset=ProfileForm(request.POST)
         if(formset.is_valid()):
             #formset.save()
             password = request.POST.get('password', '')
             originalpass = User.objects.filter(username=request.user).values_list('password')
             #return HttpResponse(originalpass)
-            originalpass = str(originalpass)
-            originalpass = originalpass.lstrip("(");
-            originalpass = originalpass.rstrip(")");
-            originalpass = originalpass.rstrip(",");
+            originalpass = originalpass[0]
             if not check_password(password, originalpass):
-                return HttpResponse('hii')
+                #return HttpResponse('hii')
+                pass
             firstname = request.POST.get('firstname', '')
             lastname = request.POST.get('lastname', '')
             newpass = request.POST.get('newpass', '')
@@ -635,6 +637,14 @@ def changepass(request):
 
     else:
         formset = ProfileForm()
-        return render(request, template, {'formset':formset})
-    context = ''
+        return render(request, template, {'formset':formset})'''
+
+
+
+        plainPassword = request.POST.getlist('confPassword')
+        if len(plainPassword) == 1 : plainPassword = plainPassword[0]
+        context['checkthis'] = check_password(plainPassword, request.user.password)
+
+
+
     return render(request, template, context)

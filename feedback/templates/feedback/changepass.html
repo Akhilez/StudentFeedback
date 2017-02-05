@@ -26,4 +26,15 @@
            <input type="submit" value="submit">
        </form>
     </div>
+
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="password" name="confPassword">
+        <input type="submit" value="Submit" name="check_password">
+    </form>
+
+    Thiss : {{ checkthis }}
+
+
 {% endblock%}
