@@ -4,10 +4,10 @@
 
     <h3>Enter OTP</h3>
     <p>Enter the OTP that is written on the writing board</p>
-    {% if otpError %}
+    {% if error %}
         <div class="alert alert-danger">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-            <strong>Error!</strong> The OTP you have entered is invalid
+            <strong>Error!</strong> {{ error }}
         </div>
     {% endif %}
     <form method="POST" action="">
