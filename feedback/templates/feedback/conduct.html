@@ -15,18 +15,41 @@ function toggle(source) {
 {% endblock head %}
 
 {% block navbar %}
-    {% include 'feedback/includes/navbar.html' %}
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="container-fluid">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/feedback/mysessions">My Sessions</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+              <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
 
 {% block maincontent %}
+    {% if warning %}
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> {{ warning }}
+            <div style="float: right;">
+                <form action="" method="post">{% csrf_token %}<input class="btn btn-warning" type="submit" value="disable" name="disableStuLogin"></form>
+            </div>
+            <br/><br/>
+        </div>
+    {% endif %}
     {% if otp %}
         <p> Session Started for {{ classSelected }}</p>
         <h2>Session ID : {{ otp }}</h2>
         <a href="/feedback/latelogin/">Latelogin</a>
-        {% if enable %}
-            {{ studid_form }}
-            <input type="submit" name="submit">
-        {% endif %}
+        <br/><br/>
+        <form action="" method="post" >
+            {% csrf_token %}
+            <input type="submit" name="newsession" value="New Session">
+        </form>
     {% elif classSelected %}
        <form method="post" action="" id="attendance">
             {% csrf_token %}

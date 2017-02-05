@@ -3,13 +3,68 @@
 {% block title %} Home {% endblock %}
 
 {% block navbar %}
-    {% include 'feedback/includes/navbar.html' %}
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="container-fluid">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/feedback/mysessions">My Sessions</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+              <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
 
 {% block maincontent %}
-    <form id="studform" method="post" action="">
-    {% csrf_token %}
-    {{ studform }}
-    <input type="submit" name="submit" value="add"></form>
-    {{ some }}
+    {% if error %}
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <strong>Error!</strong> {{ error }}
+        </div>
+    {% endif %}
+    <h3>Enable feedback form for: {{ session.initiation_id.class_id }}</h3>
+    <form action="" method="post" id="confirm">
+        {% csrf_token %}
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <th>Hallticket no</th>
+                <th>Attendance</th>
+            </tr>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.hallticket_no }}</td>
+                    <td>
+                        <input type="checkbox" value="{{ student.hallticket_no }}" name="attendance" >
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Enable</button>
+    </form>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Confirmation</h4>
+          </div>
+          <div class="modal-body">
+              <p>You are about to enable feedback form.<br/>Are you sure about the attendance?</p>
+          </div>
+          <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <input type="submit" value="Confirm" name="enable" class="btn btn-default" form="confirm">
+          </div>
+        </div>
+      </div>
+    </div>
+
 {% endblock %}

@@ -1,3 +1,4 @@
+from concurrent.futures import thread
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
@@ -137,15 +138,29 @@ def conduct(request):
 
     context = {}
     template = 'feedback/conduct.html'
-    hasOtp = request.session.get('otp', None)
+
+    #Check if the user has started a session today or not
+    allSessions = Session.objects.all()
+
+    if request.session.get('newsession') is None:
+        for session in allSessions:
+            if session.timestamp.date() == datetime.date.today():
+                if session.taken_by == request.user:
+                    if (datetime.datetime.now(datetime.timezone.utc) - session.timestamp).total_seconds() / 60 < 450:
+                        request.session['otp'] = session.session_id
+                        request.session['class'] = session.initiation_id.class_id.class_id
+    else:
+        del request.session['newsession']
+
+    hasOtp = request.session.get('otp')
     if hasOtp is not None:
         context['otp'] = hasOtp
         context['classSelected'] = Classes.objects.get(class_id=request.session.get('class', None))
-        return render(request, template, context)
-
+        session = Session.objects.get(session_id=hasOtp)
+        if session.stutimeout != getStudentTimeout():
+            context['warning'] = "The student login page is enabled!"
 
     # GET ALL SESSIONS TO RESTRICT THE INITIATIONS
-    allSessions = Session.objects.all()
     sessionsList = []
     for session in allSessions:
         if session.timestamp.date() == datetime.date.today():
@@ -163,8 +178,14 @@ def conduct(request):
         context['classes'] = initlist
 
     masterSession = None
+
     if request.method == 'POST':
-        #TODO Session id must be same if already exists
+
+        if 'newsession' in request.POST:
+            request.session['newsession'] = True
+            del context['otp']
+            del context['classSelected']
+
         if 'confirmSession' in request.POST:
 
             #is the session required to split? if yes, the current session is master
@@ -224,24 +245,24 @@ def conduct(request):
         if 'take_attendance' in request.POST:
             master = False
 
-            #            #get the class obj from the dropdown
+            # get the class obj from the dropdown
             classFromSelect = request.POST.getlist('selectClass')[0]
             classObj = Classes.objects.get(class_id=classFromSelect)
 
-            #            #set the context and session with class
+            # set the context and session with class
             context['classSelected'] = classObj
             request.session['class'] = classObj.class_id
 
             alreadyThere = False
 
-            #            #get the initiation object of the selected class
+            # get the initiation object of the selected class
             initObj = None
             for init in initlist:
                 if str(init.class_id.class_id) == str(classFromSelect):
                     initObj = init
                     break
 
-                #           check if there are any sessions with the initiation id, if yes, is it a master session?
+            # check if there are any sessions with the initiation id, if yes, is it a master session?
             for session in allSessions:
                 if initObj == session.initiation_id:
                     if session.master:
@@ -250,7 +271,7 @@ def conduct(request):
                         context['master'] = True
                     break
 
-                #            get all the student roll numbers for attendance
+            # get all the student roll numbers for attendance
             allStudents = Student.objects.filter(class_id=classObj)
             if alreadyThere:
                 absentStudents = []
@@ -264,26 +285,58 @@ def conduct(request):
 
             context['allStudetns'] = allStudents
 
+        if 'disableStuLogin' in request.POST:
+            try:
+                session = Session.objects.get(session_id=context['otp'])
+                session.stutimeout = getStudentTimeout()
+                session.save()
+                del context['warning']
+            except KeyError:
+                pass
+
     return render(request, template, context)
 
 
 @login_required()
 def latelogin(request):
-    presentClass = request.session.get('class')
     context = {}
     template = 'feedback/latelogin.html'
-    if request.method == "POST":
-        form = StudForm(request.POST)
-        if form.is_valid():
-            # return HttpResponse("hii")
-            studid = request.POST['studid']
-            sessid = request.session.get("otp")
-            att_obj = Attendance(session_id=Session(sessid), student_id=Student(studid))
-            att_obj.save()
-        else:
-            context['studform'] = StudForm()
+
+    #get the session from django session
+    session = request.session.get('otp')
+    if session is not None:
+        session = Session.objects.get(session_id=session)
+        context['session'] = session
+        presentClass = session.initiation_id.class_id
+
+        #get all the students
+        allStudents = Student.objects.filter(class_id=presentClass)
+        presentStudents = Attendance.objects.filter(session_id=session)
+        presentStudents = [student.student_id for student in presentStudents]
+        absentStudents = []
+        for student in allStudents:
+            if student not in presentStudents:
+                absentStudents.append(student)
+
+        context['students'] = absentStudents
     else:
-        context['studform'] = StudForm()
+        context['error'] = "No sessions found"
+
+    if request.method == 'POST':
+        attendance = request.POST.getlist('attendance')
+        for stud in attendance:
+            Attendance.objects.create(student_id=Student.objects.get(hallticket_no=stud), session_id=session)
+
+        tempTime = int((datetime.datetime.now(datetime.timezone.utc) - session.timestamp).total_seconds() / 60 + getGracePeriod())
+
+        session.stutimeout = tempTime
+        session.save()
+
+        return redirect('/feedback/conduct')
+
+
+
+
     return render(request, template, context)
 
 
@@ -316,7 +369,15 @@ def student(request):
                     context['error'] = "Feedback session expired, please contact your lab in-charge"
                     return render(request, template, context)
 
-                # Start a session and redirect to the feedback questions page
+                #check the attendance
+                attendance = Attendance.objects.filter(session_id=session).count()
+                attendanceCount = Feedback.objects.filter(session_id=session).values_list('student_no').distinct().count()
+                context['attendance'] = str(attendance) + ' ' + str(attendanceCount)
+                if attendanceCount > attendance:
+                    context['error'] = "Sorry, the attendance limit has been reached."
+                    return render(request, template, context)
+
+                # Start a django session and redirect to the feedback questions page
                 request.session['sessionObj'] = session.session_id
                 request.session['classId'] = session.initiation_id.class_id.__str__()
                 return redirect('/feedback/questions')
@@ -343,12 +404,17 @@ def questions(request, category):
     attendance = Attendance.objects.filter(session_id=session).count()
     attendanceCount = Feedback.objects.filter(session_id=session).values_list('student_no').distinct().count()
     context['attendance'] = str(attendance) + ' ' + str(attendanceCount)
-    if attendanceCount == attendance:
+    if attendanceCount > attendance:
+        del request.session['sessionObj']
         return HttpResponse("Sorry, the attendance limit has been reached.")
 
     # GET CATEGORY
     if category == '': category = 'faculty'
-    category = Category.objects.get(category=category)
+    try:
+        category = Category.objects.get(category=category)
+    except :
+        del request.session['sessionObj']
+        return HttpResponse("Thank you for the feedback. There is an error, please call your lab coordinator")
     context['category'] = category.category
 
 
@@ -445,7 +511,7 @@ def questions(request, category):
 
             #GET THE REMARKS FROM HTML
             remarks = request.POST.getlist('remarks')
-            if remarks is not None and len(remarks) == 1:
+            if remarks is not None and len(remarks) == 1 and remarks[0] != '':
                 remarks = Notes.objects.create(note=remarks[0], session_id=session)
 
             if category.category == 'faculty':
@@ -479,6 +545,19 @@ def questions(request, category):
                 #del request.session['sessionObj']
                 #return HttpResponse("Thank you for the most valuable review!")
                 return redirect('/feedback/questions/LOA')
+
+    return render(request, template, context)
+
+
+@login_required
+def mysessions(request):
+    template = "feedback/mysessions.html"
+    context = {}
+
+    #get all sessions started by the user
+    allSessions = Session.objects.filter(taken_by=request.user).order_by('-timestamp')[:50]
+
+    context['allSessions'] = allSessions
 
     return render(request, template, context)
 
@@ -518,3 +597,11 @@ def isNotEligible(cls):
                 return True
 
     return False
+
+
+def getGracePeriod():
+    try:
+        gp = Config.objects.get(key="gracePeriod")
+        return int(gp)
+    except :
+        return 2

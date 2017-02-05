@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^questions/()$', views.questions, name="questions"),
     url(r'^questions/(\w+)/$', views.questions, name="questions"),
     url(r'^latelogin/$', views.latelogin, name="latelogin"),
+    url(r'^mysessions/$', views.mysessions, name="mysessions"),
 ]

@@ -1,0 +1,36 @@
+{% extends 'feedback/base.html' %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="container-fluid">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li class="active"><a href="/feedback/mysessions">My Sessions</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+              <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block maincontent %}
+    <h3>My Sessions</h3>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>Session id</th>
+            <th>Date and time</th>
+            <th>Class</th>
+        </tr>
+        {% for session in allSessions %}
+        <tr>
+            <td>{{ session.session_id }}</td>
+            <td>{{ session.timestamp }}</td>
+            <td>{{ session.initiation_id.class_id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
