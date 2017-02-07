@@ -627,48 +627,48 @@ def changepass(request):
             if check_password(password, request.user.password):
                 if firstname:
                     u = User.objects.get(username =request.user)
-                    u.first_name=firstname
+                    u.first_name = firstname
                     u.save()
                 if lastname:
                     u = User.objects.get(username =request.user)
-                    u.last_name=lastname
+                    u.last_name = lastname
                     u.save()
                 if email:
                     u = User.objects.get(username =request.user)
-                    u.email=email
+                    u.email = email
                     u.save()
-                if newpass==repass:
-                    x = True
-                    while x:
-                        if (len(newpass)<6 or len(newpass)>12):
-                            break
-                        elif not re.search("[a-z]",newpass):
-                            break
-                        elif not re.search("[0-9]",newpass):
-                            break
-                        elif not re.search("[A-Z]",newpass):
-                            break
-                        elif not re.search("[$#@!()*+=-_]",newpass):
-                            break
-                        elif re.search("\s",newpass):
-                            break
-                        else:
-                            user=request.user
-                            user.set_password(newpass)
-                            user.save()
-                            x=False
-                            break
-                    if x:
-                        context['passnotvalid'] = 'notnull'
-                        formset = ProfileForm()
-                        context['formset'] = formset
-                        return render(request, template, context)
+                if newpass:
+                    if repass:
+                        if newpass==repass:
+                            x = True
+                            while x:
+                                if (len(newpass)<6 or len(newpass)>12):
+                                    break
+                                elif not re.search("[a-z]",newpass):
+                                    break
+                                elif not re.search("[0-9]",newpass):
+                                    break
+                                elif not re.search("[A-Z]",newpass):
+                                    break
+                                elif re.search("\s",newpass):
+                                    break
+                                else:
+                                    user=request.user
+                                    user.set_password(newpass)
+                                    user.save()
+                                    x=False
+                                    break
+                            if x:
+                                context['passnotvalid'] = 'notnull'
+                                formset = ProfileForm()
+                                context['formset'] = formset
+                                return render(request, template, context)
 
-                else:
-                    context['repass'] = 'notnull'
-                    formset = ProfileForm()
-                    context['formset'] = formset
-                    return render(request, template, context)
+                        else:
+                            context['repass'] = 'notnull'
+                            formset = ProfileForm()
+                            context['formset'] = formset
+                            return render(request, template, context)
             else:
                 context['wrongpass'] = 'notnull'
                 formset = ProfileForm()
@@ -677,4 +677,6 @@ def changepass(request):
     else:
         formset = ProfileForm()
         context['formset'] = formset
+    formset = ProfileForm()
+    context['formset'] = formset
     return render(request, template, context)
