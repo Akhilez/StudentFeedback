@@ -25,7 +25,7 @@ SECRET_KEY = '!m3f75)07c*@7=f=9rll9c#fb5&lie303l22s0(j^@48*1=_t2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','192.168.0.108', '192.168.43.61']
 
 
 # Application definition
@@ -90,8 +90,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': 'StudentFeedback/onlineconnector.cnf',
-            #'read_default_file': 'StudentFeedback\offlineconnector.cnf',
+            #'read_default_file': 'StudentFeedback/onlineconnector.cnf',
+            'read_default_file': 'StudentFeedback\offlineconnector.cnf',
         },
     },
 }

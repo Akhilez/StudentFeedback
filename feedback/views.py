@@ -1,4 +1,3 @@
-from concurrent.futures import thread
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
@@ -8,13 +7,11 @@ from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_U
 from feedback.forms import *
 from django.contrib.auth.decorators import login_required
 from feedback.models import *
-import datetime
 import random
 import string
 from django.contrib.auth.hashers import check_password
 from django.core.signing import *
 import re
-
 
 
 def login_redirect(request):
@@ -79,15 +76,7 @@ def initiate(request):
 
     context['groups'] = myBranches
 
-    # Running Sessions(Today)
-    allSessions = Session.objects.all()
-    session_lst = []
-    for i in allSessions:
-        if i.timestamp.date() == datetime.date.today():
-            session_lst.append(i)
-
     context['total_history'] = Initiation.objects.all().order_by('-timestamp')[:10]
-    context['running_sessions'] = session_lst
     template = 'feedback/initiate.html'
 
     context['recent_feedbacks'] = Session.objects.all().order_by('-timestamp')[:10]

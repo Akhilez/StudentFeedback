@@ -94,15 +94,6 @@ function toggle(source) {
     {% endif %}
     <br>
 
-    <div id="running_sessions">
-        {% if running_sessions %}
-            <h3>Running sessions:</h3>
-            {% for session in running_sessions %}
-                {{ session.initiation_id.class_id }}<br/>
-            {% endfor %}
-        {% endif %}
-    </div>
-
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
