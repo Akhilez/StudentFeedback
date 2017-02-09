@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.datastructures import MultiValueDictKeyError
-from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL
+from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL, DIRECTOR_GROUP
 from feedback.forms import *
 from django.contrib.auth.decorators import login_required
 from feedback.models import *
@@ -53,6 +53,8 @@ def goto_user_page(user):
         return redirect('/feedback/initiate/')
     elif user.groups.filter(name=CONDUCTOR_GROUP).exists():
         return redirect('/feedback/conduct/')
+    elif user.groups.filter(name=DIRECTOR_GROUP).exists():
+        return redirect('/analytics/')
     elif user.is_superuser:
         return redirect('/admin/')
     return HttpResponse("You are already logged in")

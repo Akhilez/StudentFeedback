@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'feedback',
+    'analytics',
 ]
 
 MIDDLEWARE = [
@@ -155,5 +156,6 @@ MAX_QUESTIONS = 20
 
 COORDINATOR_GROUP = 'Coordinators'
 CONDUCTOR_GROUP = 'Conductors'
+DIRECTOR_GROUP = 'Directors'
 
 SESSION_COOKIE_AGE = 45*60
