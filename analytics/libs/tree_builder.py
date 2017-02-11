@@ -57,7 +57,7 @@ class Year:
     def get_branches(self):
         return self.branches
     def __str__(self):
-        format = {'1': 'Ist year', '2': 'IInd year', '3': 'IIIrd year', '4': 'IVth year'}
+        format = {'1': 'I', '2': 'II', '3': 'III', '4': 'IV'}
         try:
             return format[self.name]
         except:
