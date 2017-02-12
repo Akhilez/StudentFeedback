@@ -29,7 +29,7 @@ def get_subjects(year, branch):
     return subjects
 
 def get_faculty(year, branch, section):
-    classes = Classes.objects.filter(year=int(year), branch=branch)
+    classes = Classes.objects.filter(year=int(year), branch=branch, section=section)
     cfs = ClassFacSub.objects.all()
     subjects = []
     for cls in classes:

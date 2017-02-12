@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2138205206">
+  <component name="DataSourceManagerImpl" format="xml" hash="106901421">
     <data-source source="LOCAL" name="MySQL - sql6157145@sql6.freemysqlhosting.net" uuid="d9b00344-d2ff-493c-b0ed-5ad604b111e3">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
@@ -15,7 +15,7 @@
       </driver-properties>
       <libraries />
     </data-source>
-    <data-source source="LOCAL" name="MySQL - nba_projects_db@localhost" uuid="5d11cf80-c11b-4663-9d94-876eb5dbed2f">
+    <data-source source="LOCAL" name="MySQL - nba_projects_db@localhost" uuid="93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>

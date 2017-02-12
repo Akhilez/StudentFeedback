@@ -27,13 +27,13 @@
             <li id="fac">By Faculty
                 <ul>
                     {% for year in year_objs %}
-                        <li id="ignore/{{ year }}">{{ year }} year
+                        <li id="ignorefac/{{ year }}">{{ year }} year
                             <ul>
                                 {% for branch in year.branches %}
-                                    <li id="ignore/{{ year }}/{{ branch }}">{{ branch }}
+                                    <li id="ignorefac/{{ year }}/{{ branch }}">{{ branch }}
                                         <ul>
                                             {% for section in branch.sections %}
-                                                <li id="ignore/{{ year }}/{{ branch }}/{{ section }}">{{ section }}
+                                                <li id="ignorefac/{{ year }}/{{ branch }}/{{ section }}">{{ section }}
                                                     <ul>
                                                         {% for fac in section.faculty %}
                                                             <li id="fac/{{ year }}/{{ branch }}/{{ section }}/{{ fac }}">
