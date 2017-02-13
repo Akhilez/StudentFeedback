@@ -17,9 +17,8 @@ def director(request, category, year, branch, sub, subsub):
                'year_objs': tree_builder.getTree()}
 
     graph = graph_builder.Graph(category, year, branch, sub, subsub)
-    graph.build()
 
     context['graph'] = graph
-
+    context['Drilldown'] = graph_builder.Graph.drilldown
 
     return render(request, template, context)

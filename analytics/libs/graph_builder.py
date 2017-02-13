@@ -1,77 +1,6 @@
 __author__ = 'Akhil'
 
-
-class Graph:
-    def __init__(self, category, year, branch, sub, subsub):
-        self.category = category
-        self.year = year
-        self.branch = branch
-        self.sub = sub
-        self.subsub = subsub
-        self.s_no = self.get_s_no()
-        self.title = "Title"
-        self.subtitle = "Subtitle"
-        self.type = "column" # "pie" , bar, scatter
-        self.y_title = "Performance"
-        self.series = None
-        self.drilldown = None
-
-
-    def build(self):
-        """
-        step1: get the x axis parameters
-        step2: get the points for each x parameter
-        step3: make title
-        """
-
-        x_axis = self.get_x_params()
-        y_points = self.get_y_points()
-
-        self.series = Series(self.year, self.year)
-
-        for i in range(len(x_axis)):
-            #self.chart.series.bars.append(Bar(x_axis[i], y_points[i]))
-            self.series.bars.append(Bar(x_axis[i], y_points[i]))
-
-
-    def get_x_params(self):
-        return ['Akhil', 'Raj', 'Ravi']
-
-    def get_y_points(self):
-        return [1.5, 2.5, 4.25]
-
-    def get_s_no(self):
-        itr = 0
-        if self.category == 'class':
-            if len(self.year) == 0:
-                # By Class table
-                itr = 1
-            elif len(self.branch) == 0:
-                # all branches(sec, fac) in i year
-                itr = 2
-            elif len(self.sub) == 0:
-                # all sections(fac) in i year, j branch
-                itr = 3
-            else:
-                # all faculty in i year, j branch, k section
-                itr = 4
-        elif self.category == 'fac':
-            if len(self.subsub) == 0:
-                # By Faculty table
-                itr = 5
-            else:
-                # selected faculty
-                itr = 6
-        elif self.category == 'stu':
-            if len(self.year) == 0:
-                itr = 7
-            elif len(self.branch) == 0:
-                itr = 8
-            elif len(self.sub) == 0:
-                itr = 9
-            else:
-                itr = 10
-        return itr
+from analytics.libs import db_helper
 
 
 class Series:
@@ -79,13 +8,132 @@ class Series:
         self.name = name
         self.id = series_id
         self.bars = []
+        Graph.drilldown.append(self)
+    def __str__(self):
+        return str(self.id)
 
-class Drilldown:
-    def __init__(self):
-        self.series = []
 
 class Bar:
-    def __init__(self, name, value):
+    def __init__(self, name, value, drilldown):
         self.name = name
         self.value = value
-        self.drilldown = None
+        self.drilldown = drilldown
+
+
+class Graph:
+    drilldown = []
+    def __init__(self, category, year, branch, sub, subsub):
+        self.category = category
+        self.year = year
+        self.branch = branch
+        self.sub = sub
+        self.subsub = subsub
+        self.s_no = 0
+        self.title = "Title"
+        self.subtitle = "Subtitle"
+        self.type = "column" # 'column' "pie" , bar, scatter, line
+        self.y_title = "Performance"
+        Graph.drilldown = []
+        self.series = self.get_series()
+
+
+    def get_series(self):
+        itr = 0
+        series = None
+
+        if self.category == 'class':
+            if len(self.year) == 0:
+                # By Class table
+                series = Series('All Years', 'all_years')
+                series.bars = self.get_all_years_bars()
+                itr = 1
+            elif self.year == 'all_branches':
+                # By Class all years all branches
+                series = Series('All Years, Branches', 'all_branches')
+                itr = 2
+            elif self.year == 'all_sections':
+                # By Class all years all branches all sections
+                series = Series('All Years, Branches, Sections', 'all_sections')
+                itr = 3
+
+        elif self.category == 'fac':
+            if len(self.subsub) == 0:
+                # By Faculty table
+                series = Series('All Faculty', 'all_faculty')
+                itr = 4
+            else:
+                # selected faculty - subsub
+                series = Series(self.subsub, self.subsub)
+                itr = 5
+
+        elif self.category == 'stu':
+            if len(self.branch) == 0:
+                # All subjects table
+                series = Series('All Subjects', 'all_subjects')
+                itr = 6
+            else:
+                # Selected subject graph - year, branch
+                series = Series(self.year+'-'+self.branch, self.year+'-'+self.branch)
+                itr = 7
+        self.s_no = itr
+
+        Graph.drilldown = [Graph.drilldown[x] for x in range(1, len(Graph.drilldown))]
+        return series
+
+
+    def get_all_years_bars(self):
+        bars = []
+        years = db_helper.get_years()
+
+        for i in range(len(years)):
+            bars.append(Bar(years[i], db_helper.get_year_value(years[i]), self.build_class_branch_series(years[i])))
+
+        return bars
+
+
+
+    def build_class_branch_series(self, year):
+        series = Series(year, year)
+        branches = db_helper.get_branches(year)
+        bars = []
+
+        for i in range(len(branches)):
+            bars.append(
+                Bar(
+                    branches[i],
+                    db_helper.get_branch_value(year, branches[i]),
+                    self.build_section_series(year, branches[i])
+                )
+            )
+        series.bars = bars
+        return series
+
+    def build_section_series(self, year, branch):
+        series = Series(year+' '+branch, year+' '+branch)
+        sections = db_helper.get_sections(year, branch)
+        bars = []
+
+        for i in range(len(sections)):
+            bars.append(Bar(
+                sections[i],
+                db_helper.get_section_value(year, branch, sections[i]),
+                self.build_faculty_series(year, branch, sections[i])
+            ))
+
+        series.bars = bars
+        return series
+
+    def build_faculty_series(self, year, branch, section):
+        series = Series(year+' '+branch+' '+section, year+' '+branch+' '+section)
+        faculty = db_helper.get_faculty(year, branch, section)
+        bars = []
+
+        for i in range(len(faculty)):
+            bars.append(Bar(
+                faculty[i],
+                db_helper.get_faculty_value(year, branch, section, faculty[i]),
+                'null'
+            ))
+
+        series.bars = bars
+        return series

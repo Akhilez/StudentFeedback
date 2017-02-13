@@ -2,18 +2,14 @@
 
     Graph number: {{ graph.s_no }}
 
-    <div id="graph">
-
-    </div>
+    <div id="graph"></div>
 
     <script language="JavaScript">
 
-
-
         Highcharts.chart('graph', {
-            chart: {type: 'column'},
-            title: {text: 'Graph: {{ graph.s_no }}'},
-            subtitle: {text: 'graph: {{ graph.s_no }}'},
+            chart: {type: '{{ graph.type }}'},
+            title: {text: '{{ graph.title }}'},
+            subtitle: {text: '{{ graph.subtitle }}'},
             xAxis: {type: 'category'},
             yAxis: {
                 title: {text: 'Performance'}
@@ -28,29 +24,52 @@
                     }
                 }
             },
-
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                 pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
             },
-
             series: [
                 {
-                    name: 'Brands',
+                    name: '{{ graph.series.name }}',
                     colorByPoint: true,
                     data: [
-                        {name: 'Microsoft Internet Explorer', y: 56.33, drilldown: 'Microsoft Internet Explorer'},
-                        {name: 'Chrome', y: 24.03, drilldown: 'Chrome'},
-
-                        {% for bar in graph.bars %}
-                            {name: '{{ bar.name }}', y: {{ bar.value }}, drilldown: null},
+                        {% for bar in graph.series.bars %}
+                            {
+                                name: '{{ bar.name }}',
+                                y: {{bar.value}},
+                                {% ifequal bar.drilldown 'null' %}
+                                    drilldown: null
+                                {% else %}
+                                    drilldown: '{{ bar.drilldown }}'
+                                {% endifequal %}
+                            },
                         {% endfor %}
-
                     ]
                 }
             ],
             drilldown: {
                 series: [
+                    {% for series in Drilldown %}
+                        {
+                            name: '{{ series.name }}',
+                            id: '{{ series.id }}',
+                            colorByPoint: true,
+                            data: [
+                                {% for bar in series.bars %}
+                                    {
+                                        name: '{{ bar.name }}',
+                                        y: {{ bar.value }},
+                                        {% ifequal bar.drilldown 'null' %}
+                                            drilldown: null
+                                        {% else %}
+                                            drilldown: '{{ bar.drilldown }}'
+                                        {% endifequal %}
+                                    },
+                                {% endfor %}
+                            ]
+                        },
+                    {% endfor %}
+
                     {
                         name: 'Microsoft Internet Explorer',
                         id: 'Microsoft Internet Explorer',

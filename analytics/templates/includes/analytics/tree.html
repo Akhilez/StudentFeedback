@@ -6,21 +6,8 @@
         <ul>
             <li id="class">By Class
                 <ul>
-                    {% for year in year_objs %}
-                        <li id="class/{{ year }}">{{ year }} year
-                            <ul>
-                                {% for branch in year.branches %}
-                                    <li id="class/{{ year }}/{{ branch }}">{{ branch }}
-                                        <ul>
-                                            {% for section in branch.sections %}
-                                                <li id="class/{{ year }}/{{ branch }}/{{ section }}">{{ section }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% endfor %}
+                    <li id="class/all_branches">All Branches</li>
+                    <li id="class/all_sections">All sections</li>
                 </ul>
             </li>
 
@@ -55,16 +42,10 @@
             <li id="stu">By Subject
                 <ul>
                     {% for year in year_objs %}
-                        <li id="stu/{{ year }}">{{ year }} year
+                        <li id="ignorestu/{{ year }}">{{ year }} year
                             <ul>
                                 {% for branch in year.branches %}
-                                    <li id="stu/{{ year }}/{{ branch }}">{{ branch }}
-                                        <ul>
-                                            {% for sub in branch.subjects %}
-                                                <li id="stu/{{ year }}/{{ branch }}/{{ sub }}">{{ sub }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </li>
+                                    <li id="stu/{{ year }}/{{ branch }}">{{ branch }}</li>
                                 {% endfor %}
                             </ul>
                         </li>
