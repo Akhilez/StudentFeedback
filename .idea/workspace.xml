@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f28d184d-98d4-4de7-b367-663dfacc6202" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/StudentFeedback.iml" afterPath="$PROJECT_DIR$/.idea/StudentFeedback.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/db_helper.py" afterPath="$PROJECT_DIR$/analytics/libs/db_helper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html" afterPath="$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/graph_builder.py" afterPath="$PROJECT_DIR$/analytics/libs/graph_builder.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentFeedback/settings.py" afterPath="$PROJECT_DIR$/StudentFeedback/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html" afterPath="$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/views.py" afterPath="$PROJECT_DIR$/analytics/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -81,7 +73,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analytics/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+            <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="493">
               <caret line="21" column="56" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
@@ -90,10 +82,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="graph_builder.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="graph_builder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analytics/libs/graph_builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65824914" vertical-offset="102" max-vertical-offset="2448">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2448">
               <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
               <folding />
             </state>
@@ -103,18 +95,18 @@
       <file leaf-file-name="graph.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="7.8461537" vertical-offset="1224" max-vertical-offset="1870">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="1870">
               <caret line="60" column="56" selection-start-line="60" selection-start-column="56" selection-end-line="60" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db_helper.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="db_helper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="511" max-vertical-offset="1105">
-              <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.6851852" vertical-offset="630" max-vertical-offset="1411">
+              <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -133,7 +125,7 @@
       <file leaf-file-name="director.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/director.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2307692" vertical-offset="460" max-vertical-offset="1054">
+            <state vertical-scroll-proportion="0.0" vertical-offset="460" max-vertical-offset="1054">
               <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
               <folding />
             </state>
@@ -143,7 +135,7 @@
       <file leaf-file-name="tree.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.5" vertical-offset="51" max-vertical-offset="1445">
+            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1445">
               <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
               <folding />
             </state>
@@ -187,8 +179,8 @@
         <option value="$PROJECT_DIR$/StudentFeedback/settings.py" />
         <option value="$PROJECT_DIR$/analytics/views.py" />
         <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html" />
-        <option value="$PROJECT_DIR$/analytics/libs/db_helper.py" />
         <option value="$PROJECT_DIR$/analytics/libs/graph_builder.py" />
+        <option value="$PROJECT_DIR$/analytics/libs/db_helper.py" />
       </list>
     </option>
   </component>
@@ -781,14 +773,20 @@
       <option name="project" value="LOCAL" />
       <updated>1486830384695</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Akhil- Graph 1 done. db helper pending.">
+      <created>1487012193521</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1487012193522</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3215434" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31993568" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279743" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -796,7 +794,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31511253" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279743" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17549168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17776097" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15279879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -847,7 +845,8 @@
     <MESSAGE value="Akhil- Director page. (nothing)" />
     <MESSAGE value="Akhil- Tree structure done" />
     <MESSAGE value="Akhil- graph pending" />
-    <option name="LAST_COMMIT_MESSAGE" value="Akhil- graph pending" />
+    <MESSAGE value="Akhil- Graph 1 done. db helper pending." />
+    <option name="LAST_COMMIT_MESSAGE" value="Akhil- Graph 1 done. db helper pending." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1057,50 +1056,50 @@
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/8ad230f8/d9b00344-d2ff-493c-b0ed-5ad604b111e3/sql6157145..django_session">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/8ad230f8/d9b00344-d2ff-493c-b0ed-5ad604b111e3/sql6157145..student">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/8ad230f8/d9b00344-d2ff-493c-b0ed-5ad604b111e3/sql6157145..feedback_session">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/8ad230f8/d9b00344-d2ff-493c-b0ed-5ad604b111e3/sql6157145..feedback_feedback">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1183,7 +1182,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/director.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2307692" vertical-offset="460" max-vertical-offset="1054">
+        <state vertical-scroll-proportion="0.0" vertical-offset="460" max-vertical-offset="1054">
           <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
           <folding />
         </state>
@@ -1191,7 +1190,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.5" vertical-offset="51" max-vertical-offset="1445">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1445">
           <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
           <folding />
         </state>
@@ -1230,24 +1229,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.8461537" vertical-offset="1224" max-vertical-offset="1870">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="1870">
           <caret line="60" column="56" selection-start-line="60" selection-start-column="56" selection-end-line="60" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="511" max-vertical-offset="1105">
-          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/analytics/libs/graph_builder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65824914" vertical-offset="102" max-vertical-offset="2448">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2448">
           <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6851852" vertical-offset="630" max-vertical-offset="1411">
+          <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
           <folding />
         </state>
       </provider>

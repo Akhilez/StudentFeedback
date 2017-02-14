@@ -47,7 +47,25 @@ def get_faculty(year, branch, section):
 
 
 def get_year_value(year):
-    return 3.75
+    classes = Classes.objects.filter(year=deformatter[year])
+    sum = 0
+    itr = 0
+    for cls in classes:
+        initiations = Initiation.objects.filter(class_id=cls)
+        for initiation in initiations:
+            sessions = Session.objects.filter(initiation_id=initiation)
+            for session in sessions:
+                feedbacks = Feedback.objects.filter(session_id=session)
+                for feedback in feedbacks:
+                    ratings = feedback.ratings.split(',')
+                    for rating in ratings:
+                        sum += int(rating)
+                        itr += 1
+    if itr != 0:
+        avg = sum/itr
+    else:
+        avg = 0.0
+    return avg
 
 def get_branch_value(year, branch):
     return 2.55
