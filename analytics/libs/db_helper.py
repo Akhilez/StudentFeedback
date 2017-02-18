@@ -1,3 +1,5 @@
+import logging
+
 __author__ = 'Akhil'
 
 from feedback.models import *
@@ -55,7 +57,7 @@ def get_year_value(year):
         for initiation in initiations:
             sessions = Session.objects.filter(initiation_id=initiation)
             for session in sessions:
-                feedbacks = Feedback.objects.filter(session_id=session)
+                feedbacks = Feedback.objects.filter(session_id=session, category=Category.objects.get(category='faculty'))
                 for feedback in feedbacks:
                     ratings = feedback.ratings.split(',')
                     for rating in ratings:
@@ -68,10 +70,81 @@ def get_year_value(year):
     return avg
 
 def get_branch_value(year, branch):
-    return 2.55
+    classes = Classes.objects.filter(year=deformatter[year], branch=branch)
+    sum = 0
+    itr = 0
+    for cls in classes:
+        initiations = Initiation.objects.filter(class_id=cls)
+        for initiation in initiations:
+            sessions = Session.objects.filter(initiation_id=initiation)
+            for session in sessions:
+                feedbacks = Feedback.objects.filter(session_id=session, category=Category.objects.get(category='faculty'))
+                for feedback in feedbacks:
+                    ratings = feedback.ratings.split(',')
+                    for rating in ratings:
+                        sum += int(rating)
+                        itr += 1
+    if itr != 0:
+        avg = sum/itr
+    else:
+        avg = 0.0
+    return avg
 
 def get_section_value(year, branch, section):
-    return 3.0
+    classes = Classes.objects.filter(year=deformatter[year], branch=branch, section=section)
+    sum = 0
+    itr = 0
+    for cls in classes:
+        initiations = Initiation.objects.filter(class_id=cls)
+        for initiation in initiations:
+            sessions = Session.objects.filter(initiation_id=initiation)
+            for session in sessions:
+                feedbacks = Feedback.objects.filter(session_id=session, category=Category.objects.get(category='faculty'))
+                for feedback in feedbacks:
+                    ratings = feedback.ratings.split(',')
+                    for rating in ratings:
+                        sum += int(rating)
+                        itr += 1
+    if itr != 0:
+        avg = sum/itr
+    else:
+        avg = 0.0
+    return avg
 
-def get_faculty_value(year, branch, section, faculty):
-    return 2.9
+def get_cfs(faculty, year, branch, section):
+    cls = Classes.objects.get(year=deformatter[year], branch=branch, section=section)
+    cfs_list = []
+    cfss = ClassFacSub.objects.filter(class_id=cls, faculty_id=Faculty.objects.get(name=faculty))
+    for cfs in cfss:
+        cfs_list.append(cfs)
+    return cfs_list
+
+def get_cfs_value(cfs):
+    sum = 0
+    itr = 0
+    feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id, category=Category.objects.get(category='faculty'))
+    for feedback in feedbacks:
+        ratings = feedback.ratings.split(',')
+        for rating in ratings:
+            sum += int(rating)
+            itr += 1
+    if itr != 0:
+        avg = sum/itr
+    else:
+        avg = 0.0
+    return avg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

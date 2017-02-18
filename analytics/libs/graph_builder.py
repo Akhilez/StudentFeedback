@@ -30,7 +30,7 @@ class Graph:
         self.subsub = subsub
         self.s_no = 0
         self.title = "Title"
-        self.subtitle = "Subtitle"
+        self.subtitle = "click a bar for more info."
         self.type = "column" # 'column' "pie" , bar, scatter, line
         self.y_title = "Performance"
         Graph.drilldown = []
@@ -41,10 +41,11 @@ class Graph:
         itr = 0
         series = None
 
-        if self.category == 'class':
+        if self.category == 'class' or self.category == '':
             if len(self.year) == 0:
                 # By Class table
                 series = Series('All Years', 'all_years')
+                self.title = 'All Years'
                 series.bars = self.get_all_years_bars()
                 itr = 1
             elif self.year == 'all_branches':
@@ -127,13 +128,13 @@ class Graph:
         series = Series(year+' '+branch+' '+section, year+' '+branch+' '+section)
         faculty = db_helper.get_faculty(year, branch, section)
         bars = []
-
         for i in range(len(faculty)):
-            bars.append(Bar(
-                faculty[i],
-                db_helper.get_faculty_value(year, branch, section, faculty[i]),
-                'null'
-            ))
-
+            cfss = db_helper.get_cfs(faculty[i], year, branch, section)
+            for cfs in cfss:
+                bars.append(Bar(
+                    faculty[i]+' ('+cfs.subject_id.name+')',
+                    db_helper.get_cfs_value(cfs),
+                    'null'
+                ))
         series.bars = bars
         return series
