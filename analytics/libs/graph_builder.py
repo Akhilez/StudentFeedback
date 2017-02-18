@@ -21,6 +21,11 @@ class Bar:
 
 
 class Graph:
+    column_type = 'column'
+    bar_type = 'bar'
+    pie_type = 'pie'
+    scatter_type = 'scatter'
+    line_type = 'line'
     drilldown = []
     def __init__(self, category, year, branch, sub, subsub):
         self.category = category
@@ -29,6 +34,8 @@ class Graph:
         self.sub = sub
         self.subsub = subsub
         self.s_no = 0
+        self.height = 'null'
+        self.width = 'null'
         self.title = "Title"
         self.subtitle = "click a bar for more info."
         self.type = "column" # 'column' "pie" , bar, scatter, line
@@ -40,47 +47,75 @@ class Graph:
     def get_series(self):
         itr = 0
         series = None
+        title = 'Title'
 
         if self.category == 'class' or self.category == '':
             if len(self.year) == 0:
                 # By Class table
-                series = Series('All Years', 'all_years')
-                self.title = 'All Years'
+                title = 'All Years'
+                series = Series(title, 'all_years')
                 series.bars = self.get_all_years_bars()
                 itr = 1
             elif self.year == 'all_branches':
                 # By Class all years all branches
-                series = Series('All Years, Branches', 'all_branches')
+                title = 'All Years, Branches'
+                series = Series(title, 'all_branches')
                 itr = 2
             elif self.year == 'all_sections':
                 # By Class all years all branches all sections
-                series = Series('All Years, Branches, Sections', 'all_sections')
+                title = 'All Years, Branches, Sections'
+                series = Series(title, 'all_sections')
                 itr = 3
 
         elif self.category == 'fac':
             if len(self.subsub) == 0:
                 # By Faculty table
-                series = Series('All Faculty', 'all_faculty')
+                title = 'All Faculty'
+                self.type = Graph.bar_type
+                series = Series(title, 'all_faculty')
+                series.bars = self.get_all_faculty_bars()
                 itr = 4
             else:
                 # selected faculty - subsub
-                series = Series(self.subsub, self.subsub)
+                title = self.subsub
+                series = Series(title, title)
                 itr = 5
 
         elif self.category == 'stu':
             if len(self.branch) == 0:
                 # All subjects table
-                series = Series('All Subjects', 'all_subjects')
+                title = 'All Subjects'
+                series = Series(title, 'all_subjects')
                 itr = 6
             else:
                 # Selected subject graph - year, branch
-                series = Series(self.year+'-'+self.branch, self.year+'-'+self.branch)
+                title = self.year+'-'+self.branch
+                series = Series(title, title)
                 itr = 7
         self.s_no = itr
+        self.title = title
 
         Graph.drilldown = [Graph.drilldown[x] for x in range(1, len(Graph.drilldown))]
         return series
 
+
+    def get_all_faculty_bars(self):
+        height = 0
+        bars = []
+        all_faculty = db_helper.get_all_faculty()
+
+        for i in range(len(all_faculty)):
+            height += 50
+            bars.append(Bar(
+                all_faculty[i],
+                db_helper.get_faculty_value(all_faculty[i]),
+                self.build_faculty_ques_series(all_faculty[i]))
+            )
+        self.height = height
+        return bars
+
+    def build_faculty_ques_series(self, faculty):
+        return 'null'
 
     def get_all_years_bars(self):
         bars = []

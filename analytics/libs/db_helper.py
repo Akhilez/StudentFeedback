@@ -134,7 +134,27 @@ def get_cfs_value(cfs):
         avg = 0.0
     return avg
 
+def get_all_faculty():
+    facultys = Faculty.objects.all().values_list('name')
+    return [faculty[0] for faculty in facultys]
 
+
+def get_faculty_value(faculty):
+    sum = 0
+    itr = 0
+    cfss = ClassFacSub.objects.filter(faculty_id=Faculty.objects.get(name=faculty))
+    for cfs in cfss:
+        feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id, category=Category.objects.get(category='faculty'))
+        for feedback in feedbacks:
+            ratings = feedback.ratings.split(',')
+            for rating in ratings:
+                sum += int(rating)
+                itr += 1
+    if itr != 0:
+        avg = sum/itr
+    else:
+        avg = 0.0
+    return avg
 
 
 

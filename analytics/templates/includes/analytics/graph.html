@@ -12,6 +12,8 @@
             chart: {
                 type: '{{ graph.type }}',
                 renderTo: 'container',
+                width: {{ graph.width }},
+                height: {{ graph.height }},
                 events: {
                     drilldown: function(e) {
                         chrt.setTitle({ text: e.point.series.name + ' ' + e.point.name });
