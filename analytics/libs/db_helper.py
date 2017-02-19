@@ -157,6 +157,37 @@ def get_faculty_value(faculty):
     return avg
 
 
+def get_all_question_texts():
+    questions = FdbkQuestions.objects.filter(category=Category.objects.get(category='faculty'))
+    return [question for question in questions]
+
+
+def get_question_value(faculty, question):
+    question_number = get_question_number(question, 'faculty')
+    if question_number == -1:
+        return 0
+    sum = 0
+    itr = 0
+    cfss = ClassFacSub.objects.filter(faculty_id=Faculty.objects.get(name=faculty))
+    for cfs in cfss:
+        feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id, category=Category.objects.get(category='faculty'))
+        for feedback in feedbacks:
+            ratings = feedback.ratings.split(',')
+            sum += int(ratings[question_number])
+            itr += 1
+    if itr != 0:
+        avg = sum/itr
+    else:
+        avg = 0.0
+    return avg
+
+
+def get_question_number(question, category):
+    questions = FdbkQuestions.objects.filter(category=Category.objects.get(category=category))
+    for i in range(len(questions)):
+        if questions[i] == question:
+            return i
+    return -1
 
 
 

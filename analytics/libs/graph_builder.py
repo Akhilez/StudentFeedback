@@ -26,6 +26,7 @@ class Graph:
     pie_type = 'pie'
     scatter_type = 'scatter'
     line_type = 'line'
+    height_per_bar = 50
     drilldown = []
     def __init__(self, category, year, branch, sub, subsub):
         self.category = category
@@ -105,7 +106,7 @@ class Graph:
         all_faculty = db_helper.get_all_faculty()
 
         for i in range(len(all_faculty)):
-            height += 50
+            height += Graph.height_per_bar
             bars.append(Bar(
                 all_faculty[i],
                 db_helper.get_faculty_value(all_faculty[i]),
@@ -115,7 +116,26 @@ class Graph:
         return bars
 
     def build_faculty_ques_series(self, faculty):
-        return 'null'
+        graph_height = None
+        if self.height != 'null':
+            graph_height = self.height/Graph.height_per_bar
+        questions = db_helper.get_all_question_texts()
+        if len(questions) > graph_height:
+            self.height = len(questions) * Graph.height_per_bar
+
+        bars = []
+        series = Series(faculty, faculty)
+
+        for i in range(len(questions)):
+            bars.append(Bar(
+                questions[i].question,
+                db_helper.get_question_value(faculty, questions[i]),
+                'null'
+            ))
+
+        series.bars = bars
+        return series
+
 
     def get_all_years_bars(self):
         bars = []
