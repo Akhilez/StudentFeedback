@@ -26,7 +26,7 @@ class Graph:
     pie_type = 'pie'
     scatter_type = 'scatter'
     line_type = 'line'
-    height_per_bar = 50
+    height_per_bar = 100
     drilldown = []
 
 
@@ -61,12 +61,14 @@ class Graph:
             elif self.year == 'all_branches':
                 # By Class all years all branches
                 title = 'All Years, Branches'
+                self.type = Graph.bar_type
                 series = Series(title, 'all_branches')
                 series.bars = self.get_all_branches_bars()
                 itr = 2
             elif self.year == 'all_sections':
                 # By Class all years all branches all sections
                 title = 'All Years, Branches, Sections'
+                self.type = Graph.bar_type
                 series = Series(title, 'all_sections')
                 series.bars = self.get_all_sections_bars()
                 itr = 3
@@ -82,6 +84,7 @@ class Graph:
             else:
                 # selected faculty - subsub
                 title = self.subsub
+                self.type = Graph.bar_type
                 series = self.build_faculty_ques_series(self.subsub)
                 itr = 5
 
@@ -121,11 +124,7 @@ class Graph:
         questions = db_helper.get_all_question_texts()
 
         if self.type == Graph.bar_type:
-            graph_height = 0
-            if self.height != 'null':
-                graph_height = self.height/Graph.height_per_bar
-            if len(questions) > graph_height:
-                self.height = len(questions) * Graph.height_per_bar
+            self.height = len(questions) * Graph.height_per_bar
 
         bars = []
         series = Series(faculty, faculty)
