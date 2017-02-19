@@ -190,6 +190,12 @@ def get_question_number(question, category):
     return -1
 
 
+def get_all_year_branches():
+    return Classes.objects.values_list('year', 'branch')
+
+def get_all_year_sections():
+    return Classes.objects.values_list('year', 'branch', 'section')
+
 
 
 
