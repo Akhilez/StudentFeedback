@@ -14,18 +14,28 @@ from django.core.signing import *
 import re
 
 
+def get_todays_initiations():
+    all_initiations = Initiation.objects.all()
+    initiations_list = []
+    for initiation in all_initiations:
+        if initiation.timestamp.date() == datetime.date.today():
+            initiations_list.append(initiation)
+    return initiations_list
+
+
 def login_redirect(request):
-    # Are any sessions open?
-    sessions = Session.objects.all().order_by('-timestamp')[:50]
-    if len(sessions) != 0 and (datetime.datetime.now(datetime.timezone.utc) - sessions[
-        0].timestamp).total_seconds() / 60 < getStudentTimeout():
+    if request.user.is_authenticated():
+        return redirect(LOGIN_URL)
+    # is any initiation open? then go to student otp page.
+    if len(get_todays_initiations()) > 0:
         return redirect('/feedback/student')
     return redirect(LOGIN_URL)
 
 
 def login_view(request):
     if request.session.get('sessionObj') is not None:
-        return goto_questions_page(request.session.get('maxPage'))
+        maxPage = request.session.get('maxPage', [1, 'faculty'])
+        return goto_questions_page(maxPage[0], maxPage[1])
 
     if request.user.is_authenticated:
         return goto_user_page(request.user)
@@ -63,7 +73,8 @@ def goto_user_page(user):
 @login_required
 def initiate(request):
     if request.session.get('sessionObj') is not None:
-        return goto_questions_page(request.session.get('maxPage'))
+        maxPage = request.session.get('maxPage', [1, 'faculty'])
+        return goto_questions_page(maxPage[0], maxPage[1])
 
     groups = request.user.groups.all()
     if not groups.filter(name=COORDINATOR_GROUP).exists():
@@ -126,7 +137,8 @@ def initiate(request):
 @login_required
 def conduct(request):
     if request.session.get('sessionObj') is not None:
-        return goto_questions_page(request.session.get('maxPage'))
+        maxPage = request.session.get('maxPage', [1, 'faculty'])
+        return goto_questions_page(maxPage[0], maxPage[1])
 
     if not request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
@@ -134,18 +146,21 @@ def conduct(request):
     context = {}
     template = 'feedback/conduct.html'
 
-    #Check if the user has started a session today or not
+    if request.method == 'POST' and 'newsession' in request.POST:
+        request.session['new_session'] = True
+        del request.session['otp']
+
     allSessions = Session.objects.all()
 
-    if request.session.get('newsession') is None:
+    #Check if the user has started a session today or not
+    if not request.session.get('new_session', False):
         for session in allSessions:
             if session.timestamp.date() == datetime.date.today():
                 if session.taken_by == request.user:
-                    if (datetime.datetime.now(datetime.timezone.utc) - session.timestamp).total_seconds() / 60 < 450:
+                    if (datetime.datetime.now(datetime.timezone.utc) - session.timestamp).total_seconds() / 60 < 45:
                         request.session['otp'] = session.session_id
                         request.session['class'] = session.initiation_id.class_id.class_id
-    else:
-        del request.session['newsession']
+
 
     hasOtp = request.session.get('otp')
     if hasOtp is not None:
@@ -176,12 +191,9 @@ def conduct(request):
 
     if request.method == 'POST':
 
-        if 'newsession' in request.POST:
-            request.session['newsession'] = True
-            del context['otp']
-            del context['classSelected']
-
         if 'confirmSession' in request.POST:
+
+            request.session['new_session'] = False
 
             #is the session required to split? if yes, the current session is master
             split = request.POST.getlist('master')
@@ -226,7 +238,7 @@ def conduct(request):
                 masterSession.master = False
                 masterSession.save()
                 session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj,
-                                                 session_id=otp, master=False, mastersession=masterSession,
+                                                 session_id=otp, master=False, mastersession=masterSession.session_id,
                                                  stutimeout=getStudentTimeout())
 
             #save the otp in session
@@ -292,6 +304,12 @@ def conduct(request):
     return render(request, template, context)
 
 
+def get_master_session(session):
+    if session.mastersession is None:
+        return session
+    return Session.objects.get(session_id=session.mastersession)
+
+
 @login_required()
 def latelogin(request):
     context = {}
@@ -299,8 +317,10 @@ def latelogin(request):
 
     #get the session from django session
     session = request.session.get('otp')
+    main_session = None
     if session is not None:
-        session = Session.objects.get(session_id=session)
+        main_session = Session.objects.get(session_id=session)
+        session = get_master_session(main_session)
         context['session'] = session
         presentClass = session.initiation_id.class_id
 
@@ -324,20 +344,18 @@ def latelogin(request):
 
         tempTime = int((datetime.datetime.now(datetime.timezone.utc) - session.timestamp).total_seconds() / 60 + getGracePeriod())
 
-        session.stutimeout = tempTime
-        session.save()
+        main_session.stutimeout = tempTime
+        main_session.save()
 
         return redirect('/feedback/conduct')
-
-
-
 
     return render(request, template, context)
 
 
 def student(request):
     if request.session.get('sessionObj') is not None:
-        return goto_questions_page(request.session.get('maxPage'))
+        maxPage = request.session.get('maxPage', [1, 'faculty'])
+        return goto_questions_page(maxPage[0], maxPage[1])
 
     template = 'feedback/student_login.html'
     context = {}
@@ -352,7 +370,8 @@ def student(request):
 
     # disable page condition:
     if len(sessions) == 0 or (datetime.datetime.now(datetime.timezone.utc) - sessions[0].timestamp).total_seconds() / 60 > max_timeout:
-        return redirect('/')
+        context['disabled'] = True
+
 
     if request.method == 'POST':
         otpFromBox = request.POST.getlist('OTP')[0]
@@ -388,8 +407,8 @@ def questions(request, category):
 
     maxPage = request.session.get('maxPage')
     if maxPage is None:
-        maxPage = 1
-        request.session['maxPage'] = 1
+        maxPage = [1, 'faculty']
+        request.session['maxPage'] = maxPage
 
     template = 'feedback/questions.html'
     context = {}
@@ -422,7 +441,7 @@ def questions(request, category):
     subjects = []
     faculty = []
     cfsList = []
-    if category.category == 'faculty' or category.category == 'LOA':
+    if category.category == 'faculty':
         cfs = ClassFacSub.objects.filter(class_id=classObj)
         for i in cfs:
             cfsList.append(i)
@@ -444,22 +463,17 @@ def questions(request, category):
     pgno = str(pager.number)
 
     #CHECK IF WE ARE ON THE RIGHT PAGE NUMBER
-    if pager.number != maxPage:
-        return redirect('/feedback/questions/' + category.category + '/?page=' + str(request.session['maxPage']))
+    if pager.number != maxPage[0]:
+        return redirect('/feedback/questions/' + maxPage[1] + '/?page=' + str(maxPage[0]))
 
-    if category.category == 'faculty' or category.category == 'LOA':
+    if category.category == 'faculty':
         context['subject'] = subjects[pager.number - 1]
         context['faculty'] = faculty[pager.number - 1]
 
     questionsList = []
     subCategsList = []
     questionsQList = FdbkQuestions.objects.filter(category=category)
-    if category.category == 'LOA':
-        subCategs = questionsQList.values_list('subcategory').distinct()
-        for subCateg in subCategs:
-            subCategsList.append(subCateg)
-        #TODO setup the relation id for the subcategory and subject
-        questionsQList = questionsQList.filter(subcategory=subCategsList[pager.number - 1])
+
     for i in questionsQList:
         questionsList.append(i)
     context['questions'] = questionsList
@@ -485,9 +499,9 @@ def questions(request, category):
                 value = request.POST[name]
                 ratings.append(value)
             request.session[pgno] = ratings
-            max = request.session.get('maxPage')
-            if max is None: max = 0
-            request.session['maxPage'] = max + 1
+            max = request.session.get('maxPage', [1, 'faculty'])
+            max[0] += 1
+            request.session['maxPage'] = max
         except MultiValueDictKeyError:
             context['error'] = "Please enter all the ratings"
             return render(request, template, context)
@@ -497,7 +511,7 @@ def questions(request, category):
             return redirect('/feedback/questions/' + category.category + '/?page=' + str(pager.number + 1))
 
         if 'finish' in request.POST:
-            request.session['maxPage'] = 1
+            del request.session['maxPage']
             student_no = Feedback.objects.filter(session_id=session, category=category)
             if len(student_no) == 0:
                 student_no = 1
@@ -537,9 +551,9 @@ def questions(request, category):
                         ratingsString += ","
                 Feedback.objects.create(session_id=session, category=category, student_no=student_no,
                                         ratings=ratingsString)
-                #del request.session['sessionObj']
-                #return HttpResponse("Thank you for the most valuable review!")
-                return redirect('/feedback/questions/LOA')
+                del request.session['sessionObj']
+                return HttpResponse("Thank you for the most valuable review!")
+                #return redirect('/feedback/questions/LOA')
 
     return render(request, template, context)
 

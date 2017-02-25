@@ -2,6 +2,10 @@
 {% block title %}Faculty feedback{% endblock %}
 {% block maincontent %}
 
+    {% if disabled %}
+        <h2>Disabled</h2>
+        <p>The feedback page is disabled, your coordinator must initiate feedback sessions</p>
+    {% else %}
     <h3>Enter OTP</h3>
     <p>Enter the OTP that is written on the writing board</p>
     {% if error %}
@@ -16,10 +20,9 @@
         <input type="submit">
     </form>
 
+    <br/><br/>
+    {% endif %}
 
-    {{ sess }}
-
-    <br/>
-    <br/><a href="/login">Staff Login</a>
+    <a href="/login">Login</a> as staff
 
 {% endblock %}

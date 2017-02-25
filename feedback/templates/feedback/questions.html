@@ -65,13 +65,15 @@
             </tbody>
         </table>
 
+        <div id="fillall" align="center" style="color:orangered"></div>
+
         <div align="center">
             <ul class="pager">
                 {% if pager.has_next %}
-                    <input class="btn btn-default" type="submit" value="next" name="next">
+                    <input id="next_button" class="btn btn-default" type="submit" value="next" name="next">
                 {% else %}
                     <textarea class="form-control" id="remarks" placeholder="Remarks" name="remarks" ></textarea><br/>
-                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">Finish</button>
+                    <button id="finish_button" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">Finish</button>
                 {% endif %}
             </ul>
         </div>
@@ -94,13 +96,27 @@
             <h4 class="modal-title">Confirmation</h4>
           </div>
           <div class="modal-body">
+              <div id="fillallmodal" style="color:orangered"></div>
               <p>Save all your ratings and finish?</p>
           </div>
           <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <input type="submit" value="Confirm" name="finish" class="btn btn-default" form="questionForm">
+                <input id="confirm_finish" type="submit" value="Confirm" name="finish" class="btn btn-default" form="questionForm">
           </div>
         </div>
       </div>
     </div>
+
+    <script>
+        var next = document.getElementById("next_button");
+        var finish = document.getElementById("confirm_finish");
+        finish.onclick = function(){
+            document.getElementById('fillallmodal').innerHTML = 'Please answer all of the questions';
+        };
+        next.onclick = function(){
+            document.getElementById('fillall').innerHTML = 'Please answer all of the questions';
+        };
+
+    </script>
+
 {% endblock %}
