@@ -1,6 +1,15 @@
 <div>
 
-    Graph number: {{ graph.s_no }}
+    Graph number: {{ graph.s_no }}<br/>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="btn-group">
+            {% for typ in graph.types %}
+                <input type="submit" class="btn btn-primary" name="{{ typ }}" value="{{ typ }}">
+            {% endfor %}
+        </div>
+    </form>
 
     <div id="graph"></div>
 
@@ -10,7 +19,11 @@
 
         var chrt = Highcharts.chart('graph', {
             chart: {
-                type: '{{ graph.type }}',
+                {% ifequal graph.type 'null' %}
+                    type: 'column',
+                {% else %}
+                    type: '{{ graph.type }}',
+                {% endifequal %}
                 renderTo: 'container',
                 width: {{ graph.width }},
                 height: {{ graph.height }},
@@ -23,6 +36,9 @@
                         chrt.setTitle({ text: prev_title.pop() });
                     }
                 }
+            },
+            credits: {
+                enabled: false
             },
             title: {text: '{{ graph.title }}'},
             subtitle: {text: '{{ graph.subtitle }}'},

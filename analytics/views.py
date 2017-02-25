@@ -14,7 +14,16 @@ def director(request, category, year, branch, sub, subsub):
 
     template = 'analytics/director.html'
     context = {'category': category, 'year': year, 'branch': branch, 'sub': sub, 'subsub': subsub,
-               'year_objs': tree_builder.getTree(), 'graph': graph_builder.Graph(category, year, branch, sub, subsub),
-               'Drilldown': graph_builder.Graph.drilldown}
+               'year_objs': tree_builder.getTree()}
+    graph_type = 'null'
+    if request.method == 'POST':
+        for typ in graph_builder.Graph.types:
+            if typ in request.POST:
+                graph_type = typ
+                break
+
+    context['graph'] = graph_builder.Graph(category, year, branch, sub, subsub, graph_type=graph_type)
+    context['Drilldown'] = graph_builder.Graph.drilldown
+
 
     return render(request, template, context)

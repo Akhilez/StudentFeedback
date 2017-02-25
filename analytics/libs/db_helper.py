@@ -196,7 +196,72 @@ def get_all_year_branches():
 def get_all_year_sections():
     return Classes.objects.values_list('year', 'branch', 'section')
 
+def get_all_subjects_all_years():
+    subjects = Subject.objects.all()
+    subjects = [subject.name for subject in subjects]
+    subjects.sort()
+    return subjects
 
+def get_subject_value(subject):
+    """
+    :param subject:
+     get subject_id from Subject
+     get cfs_id from CFS using subject_id
+     get feedback from Feedback using cfs_id
+     calculate avg
+    :return: avg
+    """
+    sum = 0
+    itr = 0
+    subject = Subject.objects.get(name=subject)
+    cfss = ClassFacSub.objects.filter(subject_id=subject)
+    for cfs in cfss:
+        feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id)
+        for feedback in feedbacks:
+            ratings_list = feedback.ratings.split(",")
+            for rating in ratings_list:
+                sum += int(rating)
+                itr += 1
+    if itr != 0:
+        avg = sum/itr
+    else:
+        avg = 0.0
+    return avg
+
+def get_faculty_for_subject(subject):
+    subject = Subject.objects.get(name=subject)
+    cfss = ClassFacSub.objects.filter(subject_id=subject).values_list('faculty_id').distinct()
+    cfss = [x[0] for x in cfss]
+    faculty = []
+    for cfs in cfss:
+        faculty.append(Faculty.objects.get(faculty_id=cfs))
+    return faculty
+
+def get_faculty_value_for_subject(subject, faculty):
+    """
+    :param subject:
+    :param faculty:
+     get cfs for the subject, faculty
+     get feedback for each cfs
+     find avg
+    :return: avg
+    """
+    sum = 0
+    itr = 0
+    subject = Subject.objects.get(name=subject)
+    cfss = ClassFacSub.objects.filter(subject_id=subject, faculty_id=faculty)
+    for cfs in cfss:
+        feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id)
+        for feedback in feedbacks:
+            ratings = feedback.ratings.split(',')
+            for rating in ratings:
+                sum += int(rating)
+                itr += 1
+    if itr != 0:
+        avg = sum/itr
+    else:
+        avg = 0.0
+    return avg
 
 
 

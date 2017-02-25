@@ -21,16 +21,12 @@ class Bar:
 
 
 class Graph:
-    column_type = 'column'
-    bar_type = 'bar'
-    pie_type = 'pie'
-    scatter_type = 'scatter'
-    line_type = 'line'
+    types = {'column': 'column', 'bar': 'bar', 'pie': 'pie', 'line': 'line', 'scatter': 'scatter'}
     height_per_bar = 100
     drilldown = []
 
 
-    def __init__(self, category, year, branch, sub, subsub):
+    def __init__(self, category, year, branch, sub, subsub, graph_type='null'):
         self.category = category
         self.year = year
         self.branch = branch
@@ -41,7 +37,7 @@ class Graph:
         self.width = 'null'
         self.title = "Title"
         self.subtitle = "click a bar for more info."
-        self.type = Graph.column_type # 'column' "pie" , bar, scatter, line
+        self.type = graph_type # 'column' "pie" , bar, scatter, line
         self.y_title = "Performance"
         Graph.drilldown = []
         self.series = self.get_series()
@@ -61,14 +57,14 @@ class Graph:
             elif self.year == 'all_branches':
                 # By Class all years all branches
                 title = 'All Years, Branches'
-                self.type = Graph.bar_type
+                if self.type == 'null': self.type = Graph.types['bar']
                 series = Series(title, 'all_branches')
                 series.bars = self.get_all_branches_bars()
                 itr = 2
             elif self.year == 'all_sections':
                 # By Class all years all branches all sections
                 title = 'All Years, Branches, Sections'
-                self.type = Graph.bar_type
+                if self.type == 'null': self.type = Graph.types['bar']
                 series = Series(title, 'all_sections')
                 series.bars = self.get_all_sections_bars()
                 itr = 3
@@ -77,14 +73,14 @@ class Graph:
             if len(self.subsub) == 0:
                 # By Faculty table
                 title = 'All Faculty'
-                self.type = Graph.bar_type
+                if self.type == 'null': self.type = Graph.types['bar']
                 series = Series(title, 'all_faculty')
                 series.bars = self.get_all_faculty_bars()
                 itr = 4
             else:
                 # selected faculty - subsub
                 title = self.subsub
-                self.type = Graph.bar_type
+                if self.type == 'null': self.type = Graph.types['bar']
                 series = self.build_faculty_ques_series(self.subsub)
                 itr = 5
 
@@ -92,7 +88,8 @@ class Graph:
             if len(self.branch) == 0:
                 # All subjects table
                 title = 'All Subjects'
-                series = Series(title, 'all_subjects')
+                if self.type == 'null': self.type = Graph.types['bar']
+                series = self.build_all_subjects_series()
                 itr = 6
             else:
                 # Selected subject graph - year, branch
@@ -106,24 +103,25 @@ class Graph:
         return series
 
     def get_all_faculty_bars(self):
-        height = 0
         bars = []
         all_faculty = db_helper.get_all_faculty()
 
+        if self.type == Graph.types['bar']:
+            self.height = len(all_faculty) * Graph.height_per_bar
+
         for i in range(len(all_faculty)):
-            height += Graph.height_per_bar
             bars.append(Bar(
                 all_faculty[i],
                 db_helper.get_faculty_value(all_faculty[i]),
                 self.build_faculty_ques_series(all_faculty[i]))
             )
-        self.height = height
+
         return bars
 
     def build_faculty_ques_series(self, faculty):
         questions = db_helper.get_all_question_texts()
 
-        if self.type == Graph.bar_type:
+        if self.height < len(questions) * Graph.height_per_bar:
             self.height = len(questions) * Graph.height_per_bar
 
         bars = []
@@ -138,6 +136,43 @@ class Graph:
 
         series.bars = bars
         return series
+
+    def build_all_subjects_series(self):
+        subjects = db_helper.get_all_subjects_all_years()
+
+        if self.type == Graph.types['bar']:
+            self.height = len(subjects) * Graph.height_per_bar
+
+        bars = []
+        title = 'All Subjects'
+        series = Series(title, title)
+
+        for i in range(len(subjects)):
+            bars.append(Bar(
+                subjects[i],
+                db_helper.get_subject_value(subjects[i]),
+                self.build_faculty_for_subject_series(subjects[i])
+            ))
+
+        series.bars = bars
+        return series
+
+    def build_faculty_for_subject_series(self, subject):
+        faculty = db_helper.get_faculty_for_subject(subject)
+
+        bars = []
+        series = Series(subject, subject)
+
+        for i in range(len(faculty)):
+            bars.append(Bar(
+                faculty[i].name,
+                db_helper.get_faculty_value_for_subject(subject, faculty[i]),
+                'null'
+            ))
+
+        series.bars = bars
+        return series
+
 
     def get_all_years_bars(self):
         bars = []
