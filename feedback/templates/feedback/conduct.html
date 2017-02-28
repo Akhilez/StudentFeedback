@@ -41,6 +41,15 @@ function toggle(source) {
             <br/><br/>
         </div>
     {% endif %}
+    {% if success %}
+        <div class="alert alert-success">
+            {{ success }}
+            <div style="float: right;">
+                <form action="" method="post">{% csrf_token %}<input class="btn btn-success" type="submit" value="enable" name="enableStuLogin"></form>
+            </div>
+            <br/><br/>
+        </div>
+    {% endif %}
     {% if otp %}
         <p> Session Started for {{ classSelected }}</p>
         <h2>Session ID : {{ otp }}</h2>

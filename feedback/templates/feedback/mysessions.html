@@ -27,7 +27,12 @@
         </tr>
         {% for session in allSessions %}
         <tr>
-            <td>{{ session.session_id }}</td>
+            <td>
+                {{ session.session_id }}
+                {% if session.session_id in running %}
+                    <a href="/feedback/conduct/{{ session.session_id }}">Edit</a>
+                {% endif %}
+            </td>
             <td>{{ session.timestamp }}</td>
             <td>{{ session.initiation_id.class_id }}</td>
         </tr>

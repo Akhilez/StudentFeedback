@@ -111,10 +111,14 @@
         var next = document.getElementById("next_button");
         var finish = document.getElementById("confirm_finish");
         finish.onclick = function(){
-            document.getElementById('fillallmodal').innerHTML = 'Please answer all of the questions';
+            if ( $("input[type=radio]:checked").length < {{ questions|length }} ) {
+                document.getElementById('fillallmodal').innerHTML = 'Please answer all of the questions';
+            }
         };
         next.onclick = function(){
-            document.getElementById('fillall').innerHTML = 'Please answer all of the questions';
+            if ( $("input[type=radio]:checked").length < {{ questions|length }} ) {
+                document.getElementById('fillall').innerHTML = 'Please answer all of the questions';
+            }
         };
 
     </script>

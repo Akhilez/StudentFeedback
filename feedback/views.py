@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.datastructures import MultiValueDictKeyError
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL, DIRECTOR_GROUP
 from feedback.forms import *
@@ -21,6 +21,10 @@ def get_todays_initiations():
         if initiation.timestamp.date() == datetime.date.today():
             initiations_list.append(initiation)
     return initiations_list
+
+
+def get_session_length():
+    return 45
 
 
 def login_redirect(request):
@@ -134,8 +138,12 @@ def initiate(request):
     return render(request, template, context)
 
 
+def get_cur_time_offset(session):
+    return int((datetime.datetime.now(datetime.timezone.utc) - session.timestamp).total_seconds() / 60)
+
+
 @login_required
-def conduct(request):
+def conduct(request, editable):
     if request.session.get('sessionObj') is not None:
         maxPage = request.session.get('maxPage', [1, 'faculty'])
         return goto_questions_page(maxPage[0], maxPage[1])
@@ -146,9 +154,42 @@ def conduct(request):
     context = {}
     template = 'feedback/conduct.html'
 
-    if request.method == 'POST' and 'newsession' in request.POST:
-        request.session['new_session'] = True
-        del request.session['otp']
+    if editable != '':
+        session = get_object_or_404(Session, session_id=editable)
+        context['otp'] = editable
+        context['classSelected'] = session.initiation_id.class_id
+
+        cur_time = get_cur_time_offset(session)
+        if session.stutimeout > cur_time:
+            context['warning'] = str(session.stutimeout)+"The student login page is enabled!"
+        if cur_time > int(session.stutimeout):
+            context['success'] = "Enable the student page"
+
+        if request.method == 'POST':
+            if 'disableStuLogin' in request.POST:
+                try:
+                    session = Session.objects.get(session_id=editable)
+                    session.stutimeout = getStudentTimeout()
+                    session.save()
+                    del context['warning']
+                    context['success'] = "Enable the student page"
+                except KeyError: pass
+            if 'enableStuLogin' in request.POST:
+                try:
+                    session = Session.objects.get(session_id=editable)
+                    session.stutimeout = get_cur_time_offset(session) + getGracePeriod()
+                    session.save()
+                    del context['success']
+                    context['warning'] = "The student login page is enabled!"
+                except KeyError:pass
+
+        return render(request, template, context)
+
+    if request.method == 'POST':
+        if 'newsession' in request.POST:
+            request.session['new_session'] = True
+            del request.session['otp']
+
 
     allSessions = Session.objects.all()
 
@@ -167,8 +208,12 @@ def conduct(request):
         context['otp'] = hasOtp
         context['classSelected'] = Classes.objects.get(class_id=request.session.get('class', None))
         session = Session.objects.get(session_id=hasOtp)
-        if session.stutimeout != getStudentTimeout():
+        cur_time = get_cur_time_offset(session)
+        if session.stutimeout > cur_time:
             context['warning'] = "The student login page is enabled!"
+        if cur_time > int(session.stutimeout):
+            context['success'] = "Enable the student page"
+
 
     # GET ALL SESSIONS TO RESTRICT THE INITIATIONS
     sessionsList = []
@@ -232,7 +277,7 @@ def conduct(request):
 
             #insert new session record
             if not alreadyThere:
-                masterSession = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj,
+                session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj,
                                                        session_id=otp, master=master, stutimeout=getStudentTimeout())
             else:
                 masterSession.master = False
@@ -247,7 +292,7 @@ def conduct(request):
 
             #insert the attendance into table
             for htno in checkValues:
-                Attendance.objects.create(student_id=Student.objects.get(hallticket_no=htno), session_id=masterSession)
+                Attendance.objects.create(student_id=Student.objects.get(hallticket_no=htno), session_id=session)
 
         if 'take_attendance' in request.POST:
             master = False
@@ -298,6 +343,18 @@ def conduct(request):
                 session.stutimeout = getStudentTimeout()
                 session.save()
                 del context['warning']
+                context['success'] = "Enable the student page"
+
+            except KeyError:
+                pass
+
+        if 'enableStuLogin' in request.POST:
+            try:
+                session = Session.objects.get(session_id=context['otp'])
+                session.stutimeout = get_cur_time_offset(session) + getGracePeriod()
+                session.save()
+                del context['success']
+                context['warning'] = "The student login page is enabled!"
             except KeyError:
                 pass
 
@@ -317,16 +374,19 @@ def latelogin(request):
 
     #get the session from django session
     session = request.session.get('otp')
-    main_session = None
     if session is not None:
-        main_session = Session.objects.get(session_id=session)
-        session = get_master_session(main_session)
+        session = Session.objects.get(session_id=session)
         context['session'] = session
         presentClass = session.initiation_id.class_id
 
         #get all the students
         allStudents = Student.objects.filter(class_id=presentClass)
         presentStudents = Attendance.objects.filter(session_id=session)
+        presentStudents = [x for x in presentStudents]
+        if session.mastersession is not None:
+            more_students =  Attendance.objects.filter(session_id=get_master_session(session))
+            for att in more_students:
+                presentStudents.append(att)
         presentStudents = [student.student_id for student in presentStudents]
         absentStudents = []
         for student in allStudents:
@@ -342,10 +402,11 @@ def latelogin(request):
         for stud in attendance:
             Attendance.objects.create(student_id=Student.objects.get(hallticket_no=stud), session_id=session)
 
-        tempTime = int((datetime.datetime.now(datetime.timezone.utc) - session.timestamp).total_seconds() / 60 + getGracePeriod())
-
-        main_session.stutimeout = tempTime
-        main_session.save()
+        cur_time = get_cur_time_offset(session)
+        if cur_time > int(getStudentTimeout()):
+            tempTime = cur_time + getGracePeriod()
+            session.stutimeout = tempTime
+            session.save()
 
         return redirect('/feedback/conduct')
 
@@ -386,8 +447,11 @@ def student(request):
                 #check the attendance
                 attendance = Attendance.objects.filter(session_id=session).count()
                 attendanceCount = Feedback.objects.filter(session_id=session).values_list('student_no').distinct().count()
+                if session.mastersession is not None:
+                    attendance += Attendance.objects.filter(session_id=get_master_session(session)).count()
+                    attendanceCount += Feedback.objects.filter(session_id=get_master_session(session)).values_list('student_no').distinct().count()
                 context['attendance'] = str(attendance) + ' ' + str(attendanceCount)
-                if attendanceCount > attendance:
+                if attendanceCount >= attendance:
                     context['error'] = "Sorry, the attendance limit has been reached."
                     return render(request, template, context)
 
@@ -566,7 +630,15 @@ def mysessions(request):
     #get all sessions started by the user
     allSessions = Session.objects.filter(taken_by=request.user).order_by('-timestamp')[:50]
 
+    running_sessions = []
+
+    for session in allSessions:
+        cur_time = get_cur_time_offset(session)
+        if session.timestamp.date() == datetime.date.today() and get_session_length() > cur_time:
+            running_sessions.append(session.session_id)
+
     context['allSessions'] = allSessions
+    context['running'] = running_sessions
 
     return render(request, template, context)
 

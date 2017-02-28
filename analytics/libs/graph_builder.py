@@ -33,7 +33,7 @@ class Graph:
         self.sub = sub
         self.subsub = subsub
         self.s_no = 0
-        self.height = 'null'
+        self.height = 500
         self.width = 'null'
         self.title = "Title"
         self.subtitle = "click a bar for more info."
