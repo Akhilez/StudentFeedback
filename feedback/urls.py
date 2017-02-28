@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^student/$', views.student, name="student"),
     url(r'^questions/()$', views.questions, name="questions"),
     url(r'^questions/(\w+)/$', views.questions, name="questions"),
-    url(r'^latelogin/$', views.latelogin, name="latelogin"),
+    url(r'^latelogin/(\w+)/$', views.latelogin, name="latelogin"),
     url(r'^mysessions/$', views.mysessions, name="mysessions"),
     url(r'^changepass/$', views.changepass, name="changepass"),
 ]

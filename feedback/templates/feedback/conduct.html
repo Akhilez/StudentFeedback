@@ -15,20 +15,7 @@ function toggle(source) {
 {% endblock head %}
 
 {% block navbar %}
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <div class="container-fluid">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="/feedback/mysessions">My Sessions</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/feedback/changepass/"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-              <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-            </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'feedback/includes/conductor_navbar.html' %}
 {% endblock %}
 
 {% block maincontent %}
@@ -53,12 +40,8 @@ function toggle(source) {
     {% if otp %}
         <p> Session Started for {{ classSelected }}</p>
         <h2>Session ID : {{ otp }}</h2>
-        <a href="/feedback/latelogin/">Latelogin</a>
+        <a href="/feedback/latelogin/{{ otp }}/">Latelogin</a>
         <br/><br/>
-        <form action="" method="post" >
-            {% csrf_token %}
-            <input type="submit" name="newsession" value="New Session">
-        </form>
     {% elif classSelected %}
        <form method="post" action="" id="attendance">
             {% csrf_token %}
@@ -97,7 +80,7 @@ function toggle(source) {
                         <option value="{{ cls.class_id.class_id }}">{{ cls.class_id }}</option>
                     {% endfor %}
                 </select>
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Select</button>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Select</button>
              </form>
         {% else %}
             <h4>There are no feedback sessions initiated. Please contact the corresponding coordinator to initiate a feedback session.</h4>

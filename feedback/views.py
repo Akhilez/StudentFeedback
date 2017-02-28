@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.datastructures import MultiValueDictKeyError
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL, DIRECTOR_GROUP
@@ -84,7 +84,7 @@ def initiate(request):
     if not groups.filter(name=COORDINATOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
 
-    context = {}
+    context = {'active': 'home'}
 
     myBranches = []
     for group in groups:
@@ -151,18 +151,20 @@ def conduct(request, editable):
     if not request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
 
-    context = {}
+    context = {'active': 'home'}
     template = 'feedback/conduct.html'
 
     if editable != '':
         session = get_object_or_404(Session, session_id=editable)
+        if get_cur_time_offset(session) > get_session_length():
+            raise Http404
         context['otp'] = editable
         context['classSelected'] = session.initiation_id.class_id
 
         cur_time = get_cur_time_offset(session)
         if session.stutimeout > cur_time:
-            context['warning'] = str(session.stutimeout)+"The student login page is enabled!"
-        if cur_time > int(session.stutimeout):
+            context['warning'] = "The student login page is enabled!"
+        else:
             context['success'] = "Enable the student page"
 
         if request.method == 'POST':
@@ -185,33 +187,17 @@ def conduct(request, editable):
 
         return render(request, template, context)
 
-    if request.method == 'POST':
-        if 'newsession' in request.POST:
-            request.session['new_session'] = True
-            del request.session['otp']
-
-
-    allSessions = Session.objects.all()
-
-    #Check if the user has started a session today or not
-    if not request.session.get('new_session', False):
-        for session in allSessions:
-            if session.timestamp.date() == datetime.date.today():
-                if session.taken_by == request.user:
-                    if (datetime.datetime.now(datetime.timezone.utc) - session.timestamp).total_seconds() / 60 < 45:
-                        request.session['otp'] = session.session_id
-                        request.session['class'] = session.initiation_id.class_id.class_id
-
+    allSessions = Session.objects.all().order_by('-timestamp')
 
     hasOtp = request.session.get('otp')
     if hasOtp is not None:
         context['otp'] = hasOtp
-        context['classSelected'] = Classes.objects.get(class_id=request.session.get('class', None))
         session = Session.objects.get(session_id=hasOtp)
+        context['classSelected'] = Classes.objects.get(class_id=session.initiation_id.class_id.class_id)
         cur_time = get_cur_time_offset(session)
         if session.stutimeout > cur_time:
             context['warning'] = "The student login page is enabled!"
-        if cur_time > int(session.stutimeout):
+        else:
             context['success'] = "Enable the student page"
 
 
@@ -237,8 +223,6 @@ def conduct(request, editable):
     if request.method == 'POST':
 
         if 'confirmSession' in request.POST:
-
-            request.session['new_session'] = False
 
             #is the session required to split? if yes, the current session is master
             split = request.POST.getlist('master')
@@ -285,6 +269,9 @@ def conduct(request, editable):
                 session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj,
                                                  session_id=otp, master=False, mastersession=masterSession.session_id,
                                                  stutimeout=getStudentTimeout())
+
+            #Add disable button
+            context['warning'] = "The student login page is enabled!"
 
             #save the otp in session
             context['otp'] = otp
@@ -367,35 +354,48 @@ def get_master_session(session):
     return Session.objects.get(session_id=session.mastersession)
 
 
+def get_slave(session):
+    sessions = Session.objects.all().order_by('-timestamp')[:20]
+    for sess in sessions:
+        if sess.mastersession == session.session_id:
+            return sess
+    return None
+
+
 @login_required()
-def latelogin(request):
+def latelogin(request, session_id):
     context = {}
     template = 'feedback/latelogin.html'
 
-    #get the session from django session
-    session = request.session.get('otp')
-    if session is not None:
-        session = Session.objects.get(session_id=session)
-        context['session'] = session
-        presentClass = session.initiation_id.class_id
+    #get the session from session_id url
+    session = get_object_or_404(Session, session_id=session_id)
+    if get_cur_time_offset(session) > get_session_length():
+        raise Http404
 
-        #get all the students
-        allStudents = Student.objects.filter(class_id=presentClass)
-        presentStudents = Attendance.objects.filter(session_id=session)
-        presentStudents = [x for x in presentStudents]
-        if session.mastersession is not None:
-            more_students =  Attendance.objects.filter(session_id=get_master_session(session))
-            for att in more_students:
-                presentStudents.append(att)
-        presentStudents = [student.student_id for student in presentStudents]
-        absentStudents = []
-        for student in allStudents:
-            if student not in presentStudents:
-                absentStudents.append(student)
+    context['session'] = session
+    presentClass = session.initiation_id.class_id
 
-        context['students'] = absentStudents
-    else:
-        context['error'] = "No sessions found"
+    #get all the students
+    allStudents = Student.objects.filter(class_id=presentClass)
+    presentStudents = Attendance.objects.filter(session_id=session)
+    presentStudents = [x for x in presentStudents]
+    if session.mastersession is not None:
+        more_students =  Attendance.objects.filter(session_id=get_master_session(session))
+        for att in more_students:
+            presentStudents.append(att)
+    slav = get_slave(session)
+    if slav is not None:
+        more_students =  Attendance.objects.filter(session_id=slav)
+        for att in more_students:
+            presentStudents.append(att)
+    presentStudents = [student.student_id for student in presentStudents]
+    absentStudents = []
+    for student in allStudents:
+        if student not in presentStudents:
+            absentStudents.append(student)
+
+    context['students'] = absentStudents
+
 
     if request.method == 'POST':
         attendance = request.POST.getlist('attendance')
@@ -625,7 +625,7 @@ def questions(request, category):
 @login_required
 def mysessions(request):
     template = "feedback/mysessions.html"
-    context = {}
+    context = {'active': 'mysessions'}
 
     #get all sessions started by the user
     allSessions = Session.objects.filter(taken_by=request.user).order_by('-timestamp')[:50]
@@ -690,7 +690,7 @@ def getGracePeriod():
 @login_required
 def changepass(request):
     template = 'feedback/changepass.html'
-    context = {}
+    context = {'conductor_group': CONDUCTOR_GROUP, 'active': 'changepass'}
     if request.method == "POST":
         formset=ProfileForm(request.POST)
         if(formset.is_valid()):

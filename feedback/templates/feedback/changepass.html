@@ -3,7 +3,11 @@
 {% block title %} Home {% endblock %}
 
 {% block navbar %}
-   {% include 'feedback/includes/navbar.html' %}
+    {% if user.groups.all.0 == conductor_group %}
+        {% include 'feedback/includes/conductor_navbar.html' %}
+    {% else %}
+        {% include 'feedback/includes/navbar.html' %}
+    {% endif %}
 {% endblock %}
 
 {% block maincontent %}

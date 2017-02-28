@@ -10,7 +10,7 @@
     <form method="post" action="">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="login">
+        <input class="btn btn-default" type="submit" value="login">
     </form>
 
     <br/><br/><a href="{% url 'feedback:student' %}">Go to faculty feedback</a>

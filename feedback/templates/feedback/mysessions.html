@@ -1,20 +1,7 @@
 {% extends 'feedback/base.html' %}
 
 {% block navbar %}
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <div class="container-fluid">
-            <ul class="nav navbar-nav">
-              <li><a href="/">Home</a></li>
-              <li class="active"><a href="/feedback/mysessions">My Sessions</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-              <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-            </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'feedback/includes/conductor_navbar.html' %}
 {% endblock %}
 
 {% block maincontent %}

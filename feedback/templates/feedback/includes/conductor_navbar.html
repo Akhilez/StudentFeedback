@@ -1,0 +1,16 @@
+
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="container-fluid">
+            <ul class="nav navbar-nav">
+              <li {% ifequal active 'home' %}class="active"{% endifequal %}><a href="/">Home</a></li>
+              <li {% ifequal active 'mysessions' %}class="active"{% endifequal %}><a href="/feedback/mysessions">My Sessions</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li {% ifequal active 'changepass' %}class="active"{% endifequal %}><a href="/feedback/changepass"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+              <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
