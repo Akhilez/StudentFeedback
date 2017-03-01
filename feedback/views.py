@@ -403,7 +403,7 @@ def latelogin(request, session_id):
             Attendance.objects.create(student_id=Student.objects.get(hallticket_no=stud), session_id=session)
 
         cur_time = get_cur_time_offset(session)
-        if cur_time > int(getStudentTimeout()):
+        if cur_time > int(session.stutimeout)-getGracePeriod():
             tempTime = cur_time + getGracePeriod()
             session.stutimeout = tempTime
             session.save()
