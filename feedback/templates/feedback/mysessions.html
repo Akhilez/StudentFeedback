@@ -9,8 +9,8 @@
     <table class="table table-bordered table-hover table-striped">
         <tr>
             <th>Session id</th>
-            <th>Date and time</th>
             <th>Class</th>
+            <th>Date and time</th>
         </tr>
         {% for session in allSessions %}
         <tr>
@@ -20,8 +20,8 @@
                     <a href="/feedback/conduct/{{ session.session_id }}">Edit</a>
                 {% endif %}
             </td>
-            <td>{{ session.timestamp }}</td>
             <td>{{ session.initiation_id.class_id }}</td>
+            <td>{{ session.timestamp }}</td>
         </tr>
         {% endfor %}
     </table>

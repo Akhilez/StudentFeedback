@@ -21,12 +21,12 @@ class Classes(models.Model):
     no_of_students = models.IntegerField(default=75)
 
     def __str__(self):
-        yearDict = {'1': 'I', '2': 'II', '3': 'III', '4': 'IV'}
+        yearDict = {1: 'I', 2: 'II', 3: 'III', 4: 'IV'}
         if self.section is None:
             sec = ""
         else:
             sec = str(self.section)
-        return str(yearDict[str(self.year)]+" "+str(self.branch)+" "+sec)
+        return str(yearDict[self.year]+" "+str(self.branch)+" "+sec)
 
 
 class Faculty(models.Model):

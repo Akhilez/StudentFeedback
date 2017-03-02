@@ -22,7 +22,7 @@ function toggle(source) {
         <div style="float:left">
             <h3>Recent Initiations</h3>
             {% for his in total_history %}
-                {{ his.class_id.year }} {{ his.class_id.branch }} {{ his.class_id.section }} on {{ his.timestamp }} by {{ his.initiated_by.username }}<br/>
+                {{ his.class_id }} on {{ his.timestamp }} by {{ his.initiated_by.username }}<br/>
             {% endfor %}
         </div>
 

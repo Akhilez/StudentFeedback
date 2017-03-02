@@ -189,17 +189,6 @@ def conduct(request, editable):
 
     allSessions = Session.objects.all().order_by('-timestamp')
 
-    hasOtp = request.session.get('otp')
-    if hasOtp is not None:
-        context['otp'] = hasOtp
-        session = Session.objects.get(session_id=hasOtp)
-        context['classSelected'] = Classes.objects.get(class_id=session.initiation_id.class_id.class_id)
-        cur_time = get_cur_time_offset(session)
-        if session.stutimeout > cur_time:
-            context['warning'] = "The student login page is enabled!"
-        else:
-            context['success'] = "Enable the student page"
-
 
     # GET ALL SESSIONS TO RESTRICT THE INITIATIONS
     sessionsList = []
@@ -275,7 +264,6 @@ def conduct(request, editable):
 
             #save the otp in session
             context['otp'] = otp
-            request.session['otp'] = otp
 
             #insert the attendance into table
             for htno in checkValues:
