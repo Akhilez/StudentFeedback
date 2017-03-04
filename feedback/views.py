@@ -590,10 +590,22 @@ def questions(request, category):
                                             relation_id=str(cfsList[i - 1].cfs_id), student_no=student_no,
                                             ratings=ratingsString)
 
-                #del request.session['sessionObj']
+                # Setting up the classs_id cookie for facility feedback
+                class_id_for_cookie = str(session.initiation_id.class_id.class_id)
+                request.session['class_id'] = class_id_for_cookie
+                response = HttpResponse('blah')
+                response.set_cookie('class_id2', class_id_for_cookie)
+
+
+                # Deleting all the session variables
+                del request.session['sessionObj']
+                #for key in list(request.session.keys()):
+                #    del request.session[key]
+
+
                 #TODO store macaddress so that this PC is not used again with the session id
                 #return HttpResponse("Thank you for the most valuable review!")
-                return redirect('/feedback/questions/facility')
+                return redirect('http://facility.feedback.com/')#('/feedback/questions/facility')
 
             if category.category == 'facility':
                 ratingsString = ""
