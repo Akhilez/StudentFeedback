@@ -143,3 +143,24 @@ def create_branch_group(sender, **kwargs):
             Group.objects.create(name=currentBranch)
 
 pre_save.connect(create_branch_group, sender=Classes)
+
+
+
+class LOAquestions(models.Model):
+    question_id = models.AutoField(primary_key=True)
+    question = models.TextField()
+    subject_id=models.ForeignKey(Subject,on_delete=models.CASCADE)
+
+class FeedbackLoa(models.Model):
+    class Meta:
+        unique_together = (('session_id', 'student_no', 'relation_id'),)
+    session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
+    student_no = models.IntegerField()
+    relation_id = models.CharField(null=True, max_length=25)
+
+    loaratings = models.CharField(
+        validators=[validate_comma_separated_integer_list],
+        max_length=MAX_QUESTIONS*4
+
+    )
+

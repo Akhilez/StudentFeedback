@@ -12,6 +12,7 @@ import string
 from django.contrib.auth.hashers import check_password
 from django.core.signing import *
 import re
+from analytics.libs import db_updater
 
 
 def get_todays_initiations():
@@ -46,17 +47,20 @@ def login_view(request):
     template = "login.html"
     context = {}
     if request.method == "POST":
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return goto_user_page(user)
-            else:
-                context['error'] = 'login error'
-            context['form'] = form
+        if 'login' in request.POST:
+            form = LoginForm(request.POST)
+            if form.is_valid():
+                username = request.POST['username']
+                password = request.POST['password']
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    login(request, user)
+                    return goto_user_page(user)
+                else:
+                    context['error'] = 'login error'
+                context['form'] = form
+        if 'updatedb' in request.POST:
+            return redirect('/feedback/updatedb')
     else:
         context['form'] = LoginForm()
     return render(request, template, context)
@@ -598,14 +602,15 @@ def questions(request, category):
 
 
                 # Deleting all the session variables
-                del request.session['sessionObj']
+                #del request.session['sessionObj']
                 #for key in list(request.session.keys()):
                 #    del request.session[key]
 
 
                 #TODO store macaddress so that this PC is not used again with the session id
                 #return HttpResponse("Thank you for the most valuable review!")
-                return redirect('http://facility.feedback.com/')#('/feedback/questions/facility')
+                #return redirect('http://facility.feedback.com/')#('/feedback/questions/facility')
+                return redirect('/feedback/LoaQuestions')
 
             if category.category == 'facility':
                 ratingsString = ""
@@ -756,4 +761,134 @@ def changepass(request):
         context['formset'] = formset
     formset = ProfileForm()
     context['formset'] = formset
+    return render(request, template, context)
+
+
+def LoaQuestions(request):
+    session_id = request.session.get('sessionObj')
+    if session_id is None:
+        return redirect('/')
+
+    maxPage = request.session.get('maxPage')
+    if maxPage is None:
+        maxPage = 1
+        request.session['maxPage'] = 1
+
+
+    template = 'feedback/loaquestions.html'
+    context = {}
+
+
+
+    session = Session.objects.get(session_id=session_id)
+
+    attendance = Attendance.objects.filter(session_id=session).count()
+    attendanceCount = FeedbackLoa.objects.filter(session_id=session).values_list('student_no').distinct().count()
+    context['attendance'] = str(attendance) + ' ' + str(attendanceCount)
+    if attendanceCount > attendance:
+        del request.session['sessionObj']
+        return HttpResponse("Sorry, the attendance limit has been reached.")
+
+
+    classObj = session.initiation_id.class_id
+    context['class_obj'] = classObj
+    #paging = [0]
+    subjects = []
+
+    cfsList = []
+
+    cfs = ClassFacSub.objects.filter(class_id=classObj)
+    for i in cfs:
+        cfsList.append(i)
+        subjects.append(i.subject_id)
+    context['subjects'] = subjects
+    paging = subjects
+
+
+
+    paginator = Paginator(subjects, 1)
+    page = request.GET.get('page')
+    try:
+        pager = paginator.page(page)
+    except PageNotAnInteger:
+        pager = paginator.page(1)
+    except EmptyPage:
+        pager = paginator.page(paginator.num_pages)
+    context['pager'] = pager
+    pgno = str(pager.number)
+
+
+
+    context['current']=subjects[pager.number-1]
+    mysubid=subjects[pager.number-1]
+    #return HttpResponse(mysubid)
+    myques=LOAquestions.objects.filter(subject_id=mysubid)
+    loaquestions=[]
+    for q in myques:
+        loaquestions.append(q.question)
+    context['learningquestions']=loaquestions
+
+    context['akhilrat']=request.session.get(pgno)
+    if request.method == 'POST':
+        try:
+            ratings = []
+
+            for i in range(1, len(loaquestions)+1):
+                name = 'star' + str(i)
+                value = request.POST[name]
+                ratings.append(value)
+
+            request.session[pgno] = ratings
+            context['currat']=ratings
+            max = request.session.get('maxPage')
+            if max is None: max = 0
+            request.session['maxPage'] = max + 1
+
+        except MultiValueDictKeyError:
+            context['error'] = "Please enter all the ratings"
+            return render(request, template, context)
+
+        if 'next' in request.POST:
+
+            return redirect('/feedback/LoaQuestions/?page='+str(pager.number+1))
+
+        if 'submit' in request.POST:
+            student_no = FeedbackLoa.objects.filter(session_id=session)
+
+            if len(student_no) == 0:
+                student_no = 1
+            else:
+                student_no = student_no.order_by('-student_no')[0].student_no + 1
+
+
+
+
+
+            for i in range(len(subjects)):
+                 loaratings = ""
+                 temp=[]
+                 temp=request.session.get(str(i+1))
+                 for k in range(len(temp)):
+                    loaratings+=temp[k]
+                    if k!= len(temp)-1:
+                        loaratings+=','
+                 FeedbackLoa.objects.create(session_id=session,student_no=student_no, relation_id=subjects[i].subject_id,loaratings=loaratings)
+
+            del request.session['sessionObj']
+            return redirect('http://10.11.46.162/')
+
+
+
+
+
+    return render(request,template,context)
+
+
+def updatedb(request):
+    template = 'feedback/updatedb.html'
+    context = {}
+
+    db_updater.update_classes()
+
+
     return render(request, template, context)

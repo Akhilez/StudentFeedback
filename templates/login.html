@@ -10,7 +10,8 @@
     <form method="post" action="">
         {% csrf_token %}
         {{ form.as_p }}
-        <input class="btn btn-default" type="submit" value="login">
+        <input class="btn btn-default" type="submit" value="login" name="login"><br/><br/>
+        <input class="btn btn-default" type="submit" value="update database" name="updatedb">
     </form>
 
     <br/><br/><a href="{% url 'feedback:student' %}">Go to faculty feedback</a>

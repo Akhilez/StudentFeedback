@@ -15,4 +15,6 @@ urlpatterns = [
     url(r'^latelogin/(\w+)/$', views.latelogin, name="latelogin"),
     url(r'^mysessions/$', views.mysessions, name="mysessions"),
     url(r'^changepass/$', views.changepass, name="changepass"),
+    url(r'^LoaQuestions/$', views.LoaQuestions, name="LoaQuestions"),
+    url(r'^updatedb/$', views.updatedb, name='updatedb'),
 ]

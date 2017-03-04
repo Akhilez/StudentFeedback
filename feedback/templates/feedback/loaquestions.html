@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" width="device-width" initial-scale="1.0">
+    {% load static %}
+        <link rel="stylesheet"  type="text/css" href="{% static 'loamain.css' %}" />
+    {% load static %}
+        <link rel="stylesheet" type="text/css"  href="{% static 'stars.css' %}"  />
+
+    <title></title>
+</head>
+<body>
+
+<div id="header" align="center">
+
+		<h1><img src="{% static "images/logo.png" %}" alt="Kmit" style="float:left;width:400px;height:75px;">Keshav Memorial Institute of technology</h1>
+        <h3>Department of Information Technology</h3><br /><hr>
+        <h2>Learning Outcomes Assessment</h2><hr>
+    <table>
+        <tr colspan="3">
+            <td>2015-2016</td>
+            <td>{{ subjects.number }} </td>
+            <td>Excellent-3</td>
+            <td>Average-2</td>
+            <td>Poor-1</td>
+        </tr>
+        </table>
+    <h4>PLEASE EVALUATE ON THE FOLLOWING SCALE</h4>
+</div>
+
+<form method="post" action="" id="questionPage">
+ {% csrf_token %}
+<table>
+ <tr>
+     <th style="float: left">Subject</th>
+     <th>Rating</th>
+ </tr>
+
+
+    <tr><td><strong>{{ current }}</strong></td></tr>
+    {% for n in learningquestions %}
+        <tr><td style="font-size: smaller">{{ n }}</td>
+         <td></td>
+        <td>
+            <fieldset class="rating" name="review">
+
+                            <input type="radio" id="star3-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="3" /><label class = "full" for="star3-{{ forloop.counter }}" title="Excellent"></label>
+                            <input type="radio" id="star2-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="2" /><label class = "full" for="star2-{{ forloop.counter }}" title="Average"></label>
+                            <input type="radio" id="star1-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="1" /><label class = "full" for="star1-{{ forloop.counter }}" title="Poor"></label>
+            </fieldset>
+        </td>
+        </tr>
+    {% endfor %}
+
+
+
+</table>
+<div class="pagination" align="center">
+    <span class="step-links">
+
+        <span class="current">
+            Page {{ pager.number }} of {{ pager.paginator.num_pages }}.
+        </span>
+
+        {% if pager.has_next %}
+            <input type="submit" value="next" name="next">
+        {% else %}
+            <input type="submit" value="submit" name="submit">
+
+        {% endif %}
+    </span>
+</div>
+
+</form>
+
+
+
+
+    </body>
+</html>
