@@ -48,16 +48,19 @@ function toggle(source) {
           <table class="table table-bordered table-hover table-striped">
             <thead>
               <tr>
-                  <th><input type="checkbox" onClick="toggle(this)"></th>
                 <th>Year</th>
                 {% if fewBranches %}<th>Branch</th>{% endif %}
                 {% if myClasses %}<th>Branch</th><th>Section</th>{% endif %}
+                <th><input type="checkbox" onClick="toggle(this)"></th>
               </tr>
             </thead>
             <tbody>
                 {% if myClasses %}
                     {% for class in myClasses %}
                         <tr>
+                            <td>{{ class.year }}</td>
+                            <td>{{ class.branch }}</td>
+                            <td>{{ class.section }}</td>
                             <td>
                                 {% if forloop.counter in notEligible %}
                                     Already initiated.
@@ -65,16 +68,13 @@ function toggle(source) {
                                     <input type="checkbox" name="class" value="{{ class.year }}-{{ class.branch }}-{{ class.section }}">
                                 {% endif %}
                             </td>
-                            <td>{{ class.year }}</td>
-                            <td>{{ class.branch }}</td>
-                            <td>{{ class.section }}</td>
                         </tr>
                     {% endfor %}
                 {% else %}
                     {% for yrrr in years %}
                         <tr>
-                            <td><input type="checkbox" name="class" value="{{ yrrr }}"></td>
                             <td>{{ yrrr }}</td>
+                            <td><input type="checkbox" name="class" value="{{ yrrr }}"></td>
                         </tr>
                     {% endfor %}
                 {% endif %}

@@ -30,8 +30,8 @@ class Classes(models.Model):
 
 
 class Faculty(models.Model):
-    faculty_id = models.CharField(max_length=10, primary_key=True)
-    name = models.CharField(max_length=100)
+    faculty_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
@@ -42,7 +42,7 @@ class Faculty(models.Model):
 
 class Subject(models.Model):
     subject_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
         return self.name
@@ -62,6 +62,7 @@ class ClassFacSub(models.Model):
 
     class Meta:
         db_table = 'classFacSub'
+        unique_together = (('class_id', 'faculty_id', 'subject_id'),)
 
 
 class Student(models.Model):
@@ -140,7 +141,10 @@ def create_branch_group(sender, **kwargs):
             allBranches.append(branch[0])
         currentBranch = kwargs['instance'].branch
         if currentBranch not in allBranches:
-            Group.objects.create(name=currentBranch)
+            try:
+                Group.objects.create(name=currentBranch)
+            except:
+                pass
 
 pre_save.connect(create_branch_group, sender=Classes)
 

@@ -888,7 +888,12 @@ def updatedb(request):
     template = 'feedback/updatedb.html'
     context = {}
 
-    db_updater.update_classes()
+    data = db_updater.update_classes()
+    data = db_updater.update_students()
+    data = db_updater.update_faculty()
+    data = db_updater.update_subjects()
+    data = db_updater.update_class_fac_sub()
 
+    context['classes'] = data
 
     return render(request, template, context)

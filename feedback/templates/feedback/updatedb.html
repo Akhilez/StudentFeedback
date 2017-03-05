@@ -2,7 +2,10 @@
 
 
 {% block maincontent %}
+{{ content }}
+{% for class in classes %}
+    {{ class }}<br/><br/>
 
-
+{% endfor %}
 
 {% endblock maincontent %}
