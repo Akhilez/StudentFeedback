@@ -1,5 +1,3 @@
-__author__ = 'Akhil'
-
 
 from analytics.libs import db_helper
 

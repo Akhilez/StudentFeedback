@@ -92,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
             #'read_default_file': 'StudentFeedback/onlineconnector.cnf',
-            'read_default_file': 'StudentFeedback\offlineconnector.cnf',
+            'read_default_file': 'StudentFeedback/offlineconnector.cnf',
         },
     },
 }
