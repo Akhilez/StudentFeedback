@@ -255,6 +255,20 @@ def get_faculty_value_for_subject(subject, faculty):
     return avg
 
 
+def get_subjects(year, branch):
+    classes = Classes.objects.filter(year=int(deformatter[year]), branch=branch)
+    cfs = ClassFacSub.objects.all()
+    subjects = []
+    for cls in classes:
+        subs = cfs.filter(class_id=cls)
+        for sub in subs:
+            sub_name = sub.subject_id.name
+            if sub_name not in subjects:
+                subjects.append(sub_name)
+    return subjects
+
+
+
 
 
 
