@@ -591,7 +591,7 @@ def questions(request, category):
                         if j != len(questionsList) - 1:
                             ratingsString += ","
                     Feedback.objects.create(session_id=session, category=category,
-                                            relation_id=str(cfsList[i - 1].cfs_id), student_no=student_no,
+                                            relation_id=str(cfsList[i].cfs_id), student_no=student_no,
                                             ratings=ratingsString)
 
                 # Setting up the classs_id cookie for facility feedback
@@ -892,8 +892,9 @@ def updatedb(request):
     data = db_updater.update_students()
     data = db_updater.update_faculty()
     data = db_updater.update_subjects()
-    data = db_updater.update_class_fac_sub()
+    #data = db_updater.update_class_fac_sub()
+    #data = db_updater.update_faculty_questions()
 
-    context['classes'] = data
+    #context['classes'] = data
 
     return render(request, template, context)

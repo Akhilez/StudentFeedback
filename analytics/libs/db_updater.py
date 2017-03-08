@@ -2,7 +2,7 @@ from _mysql import DatabaseError
 import datetime
 import re
 from analytics.libs import db_helper
-from feedback.models import Classes, Student, Faculty, Subject, ClassFacSub
+from feedback.models import Classes, Student, Faculty, Subject, ClassFacSub, Feedback, FdbkQuestions, Category
 
 __author__ = 'Akhil'
 
@@ -77,7 +77,7 @@ def update_faculty():
     faculty = set()
     for line in lines:
         fields = line.split(',')
-        faculty.add((fields[1].split('/'))[0].strip())
+        faculty.add(fields[1].strip())
 
     for fac in faculty:
         try:
@@ -129,6 +129,28 @@ def update_class_fac_sub():
             pass
 
     return relations
+
+
+def update_faculty_questions():
+    file = open('externals/faculty-questions.csv', 'r')
+    lines = file.readlines()
+    questions = set()
+    try:
+        category = Category.objects.get(category='faculty')
+    except:
+        category = Category.objects.create(category='faculty')
+    for line in lines:
+        fields = line.split(',')
+        question = fields[0].strip()
+        subcategory = fields[1].strip()
+        try:
+            FdbkQuestions.objects.get(question=question, subcategory=subcategory)
+            continue
+        except:
+            FdbkQuestions.objects.create(question=question, subcategory=subcategory, category=category)
+            questions.add(question+'\t'+subcategory)
+
+    return questions
 
 
 
