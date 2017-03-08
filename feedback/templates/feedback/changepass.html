@@ -11,10 +11,17 @@
 {% endblock %}
 
 {% block maincontent %}
-    {% if repass %}
-        <div class="alert alert-danger">
+    {% if fir or sec or em or pas %}
+        <div class="alert alert-success">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-            <strong>Your Passwords did not match.Please Check them.</strong>
+            <strong>Your Profiles Details are Updated.</strong>
+        </div>
+    {% endif %}
+
+    {% if repass %}
+        <div class="alert alert-warning">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <strong>Your New Passwords did not match. Please Check them.</strong>
         </div>
     {% endif %}
 

@@ -711,14 +711,17 @@ def changepass(request):
                     u = User.objects.get(username =request.user)
                     u.first_name = firstname
                     u.save()
+                    context['fir'] = 'notnull'
                 if lastname:
                     u = User.objects.get(username =request.user)
                     u.last_name = lastname
                     u.save()
+                    context['sec'] = 'notnull'
                 if email:
                     u = User.objects.get(username =request.user)
                     u.email = email
                     u.save()
+                    context['ec'] = 'notnull'
                 if newpass:
                     if repass:
                         if newpass==repass:
@@ -738,27 +741,15 @@ def changepass(request):
                                     user=request.user
                                     user.set_password(newpass)
                                     user.save()
+                                    context['pas'] = 'notnull'
                                     x=False
                                     break
                             if x:
                                 context['passnotvalid'] = 'notnull'
-                                formset = ProfileForm()
-                                context['formset'] = formset
-                                return render(request, template, context)
-
                         else:
                             context['repass'] = 'notnull'
-                            formset = ProfileForm()
-                            context['formset'] = formset
-                            return render(request, template, context)
             else:
                 context['wrongpass'] = 'notnull'
-                formset = ProfileForm()
-                context['formset'] = formset
-                return render(request, template, context)
-    else:
-        formset = ProfileForm()
-        context['formset'] = formset
     formset = ProfileForm()
     context['formset'] = formset
     return render(request, template, context)
