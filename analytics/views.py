@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
+from analytics.libs.drilldown_chart import Graphable
 from .libs import tree_builder, graph_builder
 from StudentFeedback.settings import DIRECTOR_GROUP
 
@@ -23,7 +24,7 @@ def director(request, category, year, branch, sub, subsub):
                 break
 
     context['graph'] = graph_builder.Graph(category, year, branch, sub, subsub, graph_type=graph_type)
-    context['Drilldown'] = graph_builder.Graph.drilldown
+    context['Drilldown'] = Graphable.drilldown
 
 
     return render(request, template, context)

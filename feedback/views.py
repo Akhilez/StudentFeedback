@@ -762,8 +762,8 @@ def LoaQuestions(request):
 
     maxPage = request.session.get('maxPage')
     if maxPage is None:
-        maxPage = 1
-        request.session['maxPage'] = 1
+        maxPage = [1, 'LOA']
+        request.session['maxPage'] = maxPage
 
 
     template = 'feedback/loaquestions.html'
@@ -808,7 +808,9 @@ def LoaQuestions(request):
     context['pager'] = pager
     pgno = str(pager.number)
 
-
+    #CHECK IF WE ARE ON THE RIGHT PAGE NUMBER
+    if pager.number != maxPage[0]:
+        return redirect('/feedback/questions/' + 'LoaQuestions' + '/?page=' + str(maxPage[0]))
 
     context['current']=subjects[pager.number-1]
     mysubid=subjects[pager.number-1]
@@ -831,9 +833,9 @@ def LoaQuestions(request):
 
             request.session[pgno] = ratings
             context['currat']=ratings
-            max = request.session.get('maxPage')
-            if max is None: max = 0
-            request.session['maxPage'] = max + 1
+            max = request.session.get('maxPage', [1, 'LOA'])
+            max[0] += 1
+            request.session['maxPage'] = max
 
         except MultiValueDictKeyError:
             context['error'] = "Please enter all the ratings"
@@ -866,7 +868,10 @@ def LoaQuestions(request):
                  FeedbackLoa.objects.create(session_id=session,student_no=student_no, relation_id=subjects[i].subject_id,loaratings=loaratings)
 
             del request.session['sessionObj']
-            return redirect('http://10.11.46.162/')
+            del request.session['maxPage']
+            response = redirect('http://10.11.46.162/')
+            response.set_cookie('class_id', session.initiation_id.class_id.class_id)
+            return response
 
 
 
