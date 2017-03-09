@@ -4,6 +4,19 @@
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+        {%load static %}
+
+        <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}" >
+        <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" >
+        <link rel="stylesheet" href="{% static 'bootstrap/bootstrap-theme.css' %}" >
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+
         <style>
             body, html {
                 height: 100%;
@@ -119,6 +132,44 @@
               -webkit-font-smoothing: antialiased;
               -moz-osx-font-smoothing: grayscale;
             }
+                        hr.star-light,
+            hr.star-primary {
+                margin: 25px auto 30px;
+                padding: 0;
+                max-width: 250px;
+                border: 0;
+                border-top: solid 5px;
+                text-align: center;
+            }
+
+            hr.star-light:after,
+            hr.star-primary:after {
+                content: "\2605";
+                display: inline-block;
+                position: relative;
+                top: -.8em;
+                padding: 0 .25em;
+                font-family: FontAwesome;
+                font-size: 2em;
+            }
+
+            hr.star-light {
+                border-color: #fff;
+            }
+
+            hr.star-light:after {
+                color: #fff;
+                background-color: #18bc9c;
+            }
+
+            hr.star-primary {
+                border-color: #2c3e50;
+            }
+
+            hr.star-primary:after {
+                color: #2c3e50;
+                background-color: #18bc9c;
+            }
         </style>
         <script>
             $('.message a').click(function(){
@@ -168,22 +219,22 @@
       <a href="#" onclick="w3_close()">SOMETHING</a>
       <a href="#contact" onclick="w3_close()">CONTACT</a>
     </nav>
-    <br><br><br>
+    <br><br>
     {% if error %}
-            <div class="alert alert-warning">
+            <div class="alert alert-danger">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                <strong>Please check your Login Credentials.</strong>
+                <strong>Please Check your Login Credentials.</strong>
             </div>
     {% endif %}
-    <body>
+    <body><br>
         <h1 align="center" style="color:honeydew">LOGIN</h1>
-
+        <hr class="star-light">
         <div class="login-page">
             <div class="form">
                 <form method="post" action="" class="login-form">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <input class="btn btn-default" type="submit" value="SIGN IN" name="login">
+                    <button type="submit" value="SIGN IN" name="login">SIGN IN</button>
                 </form>
             </div>
         </div>
