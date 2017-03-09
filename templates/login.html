@@ -1,19 +1,111 @@
-{% extends 'base.html' %}
+<html>
 
 {% block title %} Login {% endblock %}
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+{% load static %}
+<link rel="stylesheet" href="{% static feedback/static/loginc.css%}">
+<link rel="javascript" href="{% static feedback/static/loginj.js%}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body, html {
+    height: 100%;
+    line-height: 1.8;
+}
+/* Full height image header */
+.bgimg-1 {
+    background-position: center;
+    background-size: cover;
+    background-image: url("/w3images/mac.jpg");
+    min-height: 100%;
+}
+.w3-bar .w3-button {
+    padding: 16px;
+}
+</style>
 
-{% block maincontent %}
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card-2" id="myNavbar">
+    <a href="/" class="w3-bar-item w3-button w3-wide">Keshav Memorial Institute of Technology</a>
+    <!-- Right-sided navbar links -->
+        <div class="w3-right w3-hide-small">
+          <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+          <a href="/feedback/changepass/" class="w3-bar-item w3-button"><i class="fa fa-user"></i> PROFILE</a>
+            <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+            <a href="/logout/" class="w3-bar-item w3-button"><i class="fa fa-th"></i> LOGOUT</a>
+        </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+          <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
+        </a>
+  </div>
+</div>
+
+<!-- Sidenav on small screens when clicking the menu icon -->
+<nav class="w3-sidenav w3-black w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidenav">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Close ×</a>
+  <a href="#about" onclick="w3_close()">ABOUT</a>
+  <a href="#" onclick="w3_close()">PROFILE</a>
+  <a href="#" onclick="w3_close()">SOMETHING</a>
+  <a href="#contact" onclick="w3_close()">CONTACT</a>
+</nav>
+
     <h2>Login</h2>
     {% if error %}
         <p>Error while loggin in, please try again</p>
     {% endif %}
-    <form method="post" action="">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input class="btn btn-default" type="submit" value="login" name="login"><br/><br/>
-        <input class="btn btn-default" type="submit" value="update database" name="updatedb">
-    </form>
+    <div class="login-page">
+        <div class="form">
+
+            <form method="post" action="" class="login-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="btn btn-default" type="submit" value="login" name="login"><br/><br/>
+                <input class="btn btn-default" type="submit" value="update database" name="updatedb">
+            </form></div></div>
 
     <br/><br/><a href="{% url 'feedback:student' %}">Go to faculty feedback</a>
 
-{% endblock %}
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-60">
+
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-text-indigo"></i>
+    <i class="fa fa-flickr w3-hover-text-red"></i>
+    <i class="fa fa-instagram w3-hover-text-purple"></i>
+    <i class="fa fa-twitter w3-hover-text-light-blue"></i>
+    <i class="fa fa-linkedin w3-hover-text-indigo"></i>
+  </div>
+  <p>Powered by KMIT</p>
+</footer>
+
+
+<script>
+
+
+// Toggle between showing and hiding the sidenav when clicking the menu icon
+var mySidenav = document.getElementById("mySidenav");
+
+function w3_open() {
+    if (mySidenav.style.display === 'block') {
+        mySidenav.style.display = 'none';
+    } else {
+        mySidenav.style.display = 'block';
+    }
+}
+
+// Close the sidenav with the close button
+function w3_close() {
+    mySidenav.style.display = "none";
+}
+</script>
+
+</body>
+</html>
+
+
+

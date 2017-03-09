@@ -17,8 +17,10 @@ function toggle(source) {
     {% include 'feedback/includes/navbar.html' %}
 {% endblock %}
 
+
 {% block maincontent %}
     <div class="container">
+    <br><br><br>
         <div style="float:left">
             <h3>Recent Initiations</h3>
             {% for his in total_history %}
@@ -85,14 +87,13 @@ function toggle(source) {
     </form>
 
 
-
     {% if status %}
         STATUS : <br/>
         {% for i in status %}
             {{ i }}<br/>
         {% endfor %}
     {% endif %}
-    <br>
+    <br><br><br><br><br><br><br>
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -128,3 +129,9 @@ function toggle(source) {
     </div>
 
 {% endblock %}
+
+{% block footer %}
+    {% include 'feedback/includes/footer.html' %}
+{% endblock %}
+
+
