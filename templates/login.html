@@ -1,110 +1,206 @@
 <html>
+    <head>
+        {% block title %} Login {% endblock %}
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body, html {
+                height: 100%;
+                line-height: 1.8;
+            }
+            /* Full height image header */
+            .bgimg-1 {
+                background-position: center;
+                background-size: cover;
+                background-image: url("/w3images/mac.jpg");
+                min-height: 100%;
+            }
+            .w3-bar .w3-button {
+                padding: 16px;
+            }
+            @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-{% block title %} Login {% endblock %}
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
-{% load static %}
-<link rel="stylesheet" href="{% static feedback/static/loginc.css%}">
-<link rel="javascript" href="{% static feedback/static/loginj.js%}">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body, html {
-    height: 100%;
-    line-height: 1.8;
-}
-/* Full height image header */
-.bgimg-1 {
-    background-position: center;
-    background-size: cover;
-    background-image: url("/w3images/mac.jpg");
-    min-height: 100%;
-}
-.w3-bar .w3-button {
-    padding: 16px;
-}
-</style>
+            .login-page {
+              width: 360px;
+              padding: 3% 0 0;
+              margin: auto;
+            }
+            .form {
+              position: relative;
+              z-index: 1;
+              background: #FFFFFF;
+              max-width: 360px;
+              margin: 0 auto 100px;
+              padding: 40px;
+              text-align: center;
+              box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+            }
+            .form input {
+              font-family: "Roboto", sans-serif;
+              outline: 0;
+              background: #f2f2f2;
+              width: 100%;
+              border: 0;
+              margin: 0 0 15px;
+              padding: 10px;
+              box-sizing: border-box;
+              font-size: 12px;
+            }
+            .form button {
+              font-family: "Roboto", sans-serif;
+              text-transform: uppercase;
+              outline: 0;
+              background: #4CAF50;
+              width: 100%;
+              border: 0;
+              padding: 15px;
+              color: #FFFFFF;
+              font-size: 14px;
+              -webkit-transition: all 0.3 ease;
+              transition: all 0.3 ease;
+              cursor: pointer;
+            }
+            .form button:hover,.form button:active,.form button:focus {
+              background: #43A047;
+            }
+            .form .message {
+              margin: 15px 0 0;
+              color: #b3b3b3;
+              font-size: 12px;
+            }
+            .form .message a {
+              color: #4CAF50;
+              text-decoration: none;
+            }
+            .form .register-form {
+              display: none;
+            }
+            .container {
+              position: relative;
+              z-index: 1;
+              max-width: 300px;
+              margin: 0 auto;
+            }
+            .container:before, .container:after {
+              content: "";
+              display: block;
+              clear: both;
+            }
+            .container .info {
+              margin: 50px auto;
+              text-align: center;
+            }
+            .container .info h1 {
+              margin: 0 0 15px;
+              padding: 0;
+              font-size: 36px;
+              font-weight: 300;
+              color: #1a1a1a;
+            }
+            .container .info span {
+              color: #4d4d4d;
+              font-size: 12px;
+            }
+            .container .info span a {
+              color: #000000;
+              text-decoration: none;
+            }
+            .container .info span .fa {
+              color: #EF3B3A;
+            }
+            body {
+              background: #76b852; /* fallback for old browsers */
+              background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+              background: -moz-linear-gradient(right, #76b852, #8DC26F);
+              background: -o-linear-gradient(right, #76b852, #8DC26F);
+              background: linear-gradient(to left, #76b852, #8DC26F);
+              font-family: "Roboto", sans-serif;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+            }
+        </style>
+        <script>
+            $('.message a').click(function(){
+            $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+            });
+            // Toggle between showing and hiding the sidenav when clicking the menu icon
+            var mySidenav = document.getElementById("mySidenav");
 
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-card-2" id="myNavbar">
-    <a href="/" class="w3-bar-item w3-button w3-wide">Keshav Memorial Institute of Technology</a>
-    <!-- Right-sided navbar links -->
-        <div class="w3-right w3-hide-small">
-          <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
-          <a href="/feedback/changepass/" class="w3-bar-item w3-button"><i class="fa fa-user"></i> PROFILE</a>
-            <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
-            <a href="/logout/" class="w3-bar-item w3-button"><i class="fa fa-th"></i> LOGOUT</a>
-        </div>
-    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+            function w3_open() {
+                if (mySidenav.style.display === 'block') {
+                    mySidenav.style.display = 'none';
+                } else {
+                    mySidenav.style.display = 'block';
+                }
+            }
 
-        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
-          <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
-        </a>
-  </div>
-</div>
+            // Close the sidenav with the close button
+            function w3_close() {
+                mySidenav.style.display = "none";
+            }
+        </script>
+    </head>
 
-<!-- Sidenav on small screens when clicking the menu icon -->
-<nav class="w3-sidenav w3-black w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidenav">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Close ×</a>
-  <a href="#about" onclick="w3_close()">ABOUT</a>
-  <a href="#" onclick="w3_close()">PROFILE</a>
-  <a href="#" onclick="w3_close()">SOMETHING</a>
-  <a href="#contact" onclick="w3_close()">CONTACT</a>
-</nav>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+      <div class="w3-bar w3-white w3-card-2" id="myNavbar">
+        <a href="/" class="w3-bar-item w3-button w3-wide">Keshav Memorial Institute of Technology</a>
+        <!-- Right-sided navbar links -->
+            <div class="w3-right w3-hide-small">
+              <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+              <a href="/feedback/updatedb" class="w3-bar-item w3-button"><i class="fa fa-user"></i> UPDATE DATABASE</a>
+              <a href="/feedback/student/" class="w3-bar-item w3-button"><i class="fa fa-th"></i>FEEDBACK</a>
+              <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+            </div>
+            <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+              <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
+            </a>
+      </div>
+    </div>
 
-    <h2>Login</h2>
+    <!-- Sidenav on small screens when clicking the menu icon -->
+    <nav class="w3-sidenav w3-black w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidenav">
+      <a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Close ×</a>
+      <a href="#about" onclick="w3_close()">ABOUT</a>
+      <a href="#" onclick="w3_close()">PROFILE</a>
+      <a href="#" onclick="w3_close()">SOMETHING</a>
+      <a href="#contact" onclick="w3_close()">CONTACT</a>
+    </nav>
+    <br><br><br>
     {% if error %}
-        <p>Error while loggin in, please try again</p>
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                <strong>Please check your Login Credentials.</strong>
+            </div>
     {% endif %}
-    <div class="login-page">
-        <div class="form">
+    <body>
+        <h1 align="center" style="color:honeydew">LOGIN</h1>
 
-            <form method="post" action="" class="login-form">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input class="btn btn-default" type="submit" value="login" name="login"><br/><br/>
-                <input class="btn btn-default" type="submit" value="update database" name="updatedb">
-            </form></div></div>
+        <div class="login-page">
+            <div class="form">
+                <form method="post" action="" class="login-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="btn btn-default" type="submit" value="SIGN IN" name="login">
+                </form>
+            </div>
+        </div>
+    </body>
 
-    <br/><br/><a href="{% url 'feedback:student' %}">Go to faculty feedback</a>
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-60" style="position: fixed;width:100%">
 
-
-
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-60">
-
-  <div class="w3-xlarge w3-section">
-    <i class="fa fa-facebook-official w3-hover-text-indigo"></i>
-    <i class="fa fa-flickr w3-hover-text-red"></i>
-    <i class="fa fa-instagram w3-hover-text-purple"></i>
-    <i class="fa fa-twitter w3-hover-text-light-blue"></i>
-    <i class="fa fa-linkedin w3-hover-text-indigo"></i>
-  </div>
-  <p>Powered by KMIT</p>
-</footer>
-
-
-<script>
-
-
-// Toggle between showing and hiding the sidenav when clicking the menu icon
-var mySidenav = document.getElementById("mySidenav");
-
-function w3_open() {
-    if (mySidenav.style.display === 'block') {
-        mySidenav.style.display = 'none';
-    } else {
-        mySidenav.style.display = 'block';
-    }
-}
-
-// Close the sidenav with the close button
-function w3_close() {
-    mySidenav.style.display = "none";
-}
-</script>
-
-</body>
+      <div class="w3-xlarge w3-section">
+        <i class="fa fa-facebook-official w3-hover-text-indigo"></i>
+        <i class="fa fa-flickr w3-hover-text-red"></i>
+        <i class="fa fa-instagram w3-hover-text-purple"></i>
+        <i class="fa fa-twitter w3-hover-text-light-blue"></i>
+        <i class="fa fa-linkedin w3-hover-text-indigo"></i>
+      </div>
+      <p>Copyright &copy;2017 Keshav Memorial Institute of Technology</p>
+    </footer>
 </html>
 
 
