@@ -4,7 +4,7 @@ from feedback.models import Student
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=100)
+    username = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     password = forms.CharField(max_length=20, widget=forms.PasswordInput)
 
 class ProfileForm(forms.Form):
