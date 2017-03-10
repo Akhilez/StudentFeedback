@@ -5,6 +5,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'stars.css' %}">
 {% endblock %}
 
+{% block navbar %}
+    {% include 'feedback/includes/navbar.html' %}
+{% endblock %}
+
 {% block maincontent %}
     <br/><br/>
     <h3>{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
@@ -118,4 +122,8 @@
 
     </script>
 
+{% endblock %}
+
+{% block footer %}
+    {% include 'feedback/includes/footer.html' %}
 {% endblock %}

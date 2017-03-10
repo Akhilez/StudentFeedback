@@ -1,5 +1,8 @@
 {% extends 'feedback/base.html' %}
 
+{% block navbar %}
+    {% include 'feedback/includes/navbar.html' %}
+{% endblock %}
 
 {% block maincontent %}
 {{ content }}
@@ -9,3 +12,7 @@
 {% endfor %}
 
 {% endblock maincontent %}
+
+{% block footer %}
+    {% include 'feedback/includes/footer.html' %}
+{% endblock %}

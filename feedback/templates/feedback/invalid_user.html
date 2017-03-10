@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
+{% block navbar %}
+    {% include 'feedback/includes/navbar.html' %}
+{% endblock %}
+
 {% block maincontent %}
     You don't have permissions to view this page. Please go to <a href="/">home page.</a>
+{% endblock %}
+
+{% block footer %}
+    {% include 'feedback/includes/footer.html' %}
 {% endblock %}
