@@ -19,6 +19,7 @@ function toggle(source) {
 {% endblock %}
 
 {% block maincontent %}
+    <br><br><br>
     {% if warning %}
         <div class="alert alert-warning">
             <strong>Warning!</strong> {{ warning }}
@@ -27,7 +28,7 @@ function toggle(source) {
             </div>
             <br/><br/>
         </div>
-    {% endif %}
+    {% endif %}<br><br>
     {% if success %}
         <div class="alert alert-success">
             {{ success }}
@@ -37,6 +38,7 @@ function toggle(source) {
             <br/><br/>
         </div>
     {% endif %}
+    <br><br>
     {% if otp %}
         <p> Session Started for {{ classSelected }}</p>
         <h2>Session ID : {{ otp }}</h2>
@@ -120,3 +122,7 @@ function toggle(source) {
       </div>
     </div>
 {% endblock %}
+{% block footer %}
+  {% include 'feedback/includes/footer.html' %}
+{% endblock %}
+
