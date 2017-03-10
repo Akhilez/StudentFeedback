@@ -423,7 +423,7 @@ def student(request):
 
     # disable page condition:
     if len(sessions) == 0 or (datetime.datetime.now(datetime.timezone.utc) - sessions[0].timestamp).total_seconds() / 60 > max_timeout:
-        context['disabled'] = True
+        pass
 
 
     if request.method == 'POST':
@@ -879,13 +879,13 @@ def updatedb(request):
     template = 'feedback/updatedb.html'
     context = {}
 
-    #data = db_updater.update_classes()
-    #data = db_updater.update_students()
-    #data = db_updater.update_faculty()
-    #data = db_updater.update_subjects()
-    #data = db_updater.update_class_fac_sub()
-    #data = db_updater.update_faculty_questions()
+    data = db_updater.update_classes()
+    data = db_updater.update_students()
+    data = db_updater.update_faculty()
+    data = db_updater.update_subjects()
+    data = db_updater.update_class_fac_sub()
+    data = db_updater.update_faculty_questions()
 
-    #context['classes'] = data
+    context['classes'] = data
 
     return render(request, template, context)

@@ -1,28 +1,64 @@
+<html>
 {% extends 'feedback/base.html' %}
+
 {% block title %}Faculty feedback{% endblock %}
+
+{% block navbar %}
+    <div class="w3-top">
+  <div class="w3-bar w3-white w3-card-2" id="myNavbar">
+    <a href="/" class="w3-bar-item w3-button w3-wide">Keshav Memorial Institute of Technology</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#" class="w3-bar-item w3-button"></a>
+      <a href="#" class="w3-bar-item w3-button"></a>
+        <a href="#" class="w3-bar-item w3-button"></a>
+        <a href="/logout/" class="w3-bar-item w3-button"><i class="fa fa-user"></i> FACULTY LOGIN</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
+    </a>
+  </div>
+</div>
+
+{% endblock %}
+
 {% block maincontent %}
 
     {% if disabled %}
-        <h2>Disabled</h2>
-        <p>The feedback page is disabled, your coordinator must initiate feedback sessions</p>
+        <br><br><br><br>
+         <h2>Disabled</h2>
+         <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <strong>The feedback page is disabled, your coordinator must initiate feedback sessions</strong>
+        </div>
     {% else %}
-    <h3>Enter OTP</h3>
-    <p>Enter the OTP that is written on the writing board</p>
+
     {% if error %}
         <div class="alert alert-danger">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
             <strong>Error!</strong> {{ error }}
         </div>
     {% endif %}
-    <form method="POST" action="">
-        {% csrf_token %}
-        <input type="text" id="OTP" name="OTP" required="true">
-        <input class="btn btn-default" type="submit">
-    </form>
-
-    <br/><br/>
+    <br><br><br><br>
+    <h1 style="color:#FFFFFF;"><strong>FACULTY FEEDBACK</strong></h1>
+    <hr class="star-light">
+    <div class="login-page" align="center">
+        <div class="form">
+            <h3>Enter OTP</h3>
+            <p>Enter the OTP that is written on the writing board</p>
+            <form method="POST" action="" class="login-form">
+                {% csrf_token %}
+                <input type="text" id="OTP" name="OTP" required="true" placeholder="OTP">
+                <button type="submit">TAKE FEEDBACK</button>
+            </form>
+        </div>
+    </div>
     {% endif %}
 
-    <a href="/login">Login</a> as staff
 
+{% endblock %}
+{% block footer %}
+    {% include 'feedback/includes/footer.html' %}
 {% endblock %}

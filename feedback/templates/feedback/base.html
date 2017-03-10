@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}Feedback{% endblock %}
-
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'loginc.css' %}">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'loginj.js' %}">
+{% endblock %}
 {% block navbar %}
 
 {% endblock %}

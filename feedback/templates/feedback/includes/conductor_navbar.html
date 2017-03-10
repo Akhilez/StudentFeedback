@@ -1,16 +1,26 @@
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card-2" id="myNavbar">
+    <a href="/" class="w3-bar-item w3-button w3-wide">Keshav Memorial Institute of Technology</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="/feedback/mysessions" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="/feedback/changepass/" class="w3-bar-item w3-button"><i class="fa fa-user"></i> PROFILE</a>
+        <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+        <a href="/logout/" class="w3-bar-item w3-button"><i class="fa fa-th"></i> LOGOUT</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
+    </a>
+  </div>
+</div>
 
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <div class="container-fluid">
-            <ul class="nav navbar-nav">
-              <li {% ifequal active 'home' %}class="active"{% endifequal %}><a href="/">Home</a></li>
-              <li {% ifequal active 'mysessions' %}class="active"{% endifequal %}><a href="/feedback/mysessions">My Sessions</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li {% ifequal active 'changepass' %}class="active"{% endifequal %}><a href="/feedback/changepass"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-              <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-            </ul>
-            </div>
-        </div>
+<!-- Sidenav on small screens when clicking the menu icon -->
+    <nav class="w3-sidenav w3-black w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidenav">
+      <a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Close ×</a>
+      <a href="#about" onclick="w3_close()">ABOUT</a>
+      <a href="#" onclick="w3_close()">PROFILE</a>
+      <a href="#" onclick="w3_close()">SOMETHING</a>
+      <a href="#contact" onclick="w3_close()">CONTACT</a>
     </nav>

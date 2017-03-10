@@ -41,17 +41,19 @@
 
     <h2 align="center">Update your Profile</h2><br><br>
     <div id="form1" align="center">
+    <div class="login-page" align="center" ><h3 style="color:#FFFFFF">Update Profile</h3>
+        <div class="form" style="padding: 60px">
 
        <form method="post" action="">
            {% csrf_token %}
-           First Name : {{ formset.firstname }}<br><br>
-           Last Name : {{ formset.lastname }}<br><br>
-           Email : {{ formset.email }}<br><br>
-           New Password : {{ formset.newpass }}<br><br>
-           Re-Enter Password : {{ formset.repass }}<br><br>
+           {{ formset.firstname }}
+           {{ formset.lastname }}
+           {{ formset.email }}<br><br>
+           {{ formset.newpass }}<br><br>
+           {{ formset.repass }}<br><br>
            <h4>For the Changes to come into effect,Enter the Current Password</h4><br>
-           Current Password : {{ formset.password }}<br><br>
-           <input type="submit" value="submit">
+           {{ formset.password }}<br><br>
+           <button type="submit">UPDATE</button>
        </form>
 
     </div>
