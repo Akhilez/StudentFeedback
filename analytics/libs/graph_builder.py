@@ -1,47 +1,10 @@
+from analytics.libs.drilldown_chart import Graphable, Series, Bar
+
 __author__ = 'Akhil'
 
 from analytics.libs import db_helper
 
-
-class Series:
-    def __init__(self, name, series_id):
-        self.name = name
-        self.id = series_id
-        self.bars = []
-        Graph.drilldown.append(self)
-    def __str__(self):
-        return str(self.id)
-
-
-class Bar:
-    def __init__(self, name, value, drilldown):
-        self.name = name
-        self.value = value
-        self.drilldown = drilldown
-
-
-class Graph:
-    types = {'column': 'column', 'bar': 'bar', 'pie': 'pie', 'line': 'line', 'scatter': 'scatter'}
-    height_per_bar = 100
-    drilldown = []
-
-
-    def __init__(self, category, year, branch, sub, subsub, graph_type='null'):
-        self.category = category
-        self.year = year
-        self.branch = branch
-        self.sub = sub
-        self.subsub = subsub
-        self.s_no = 0
-        self.height = 500
-        self.width = 'null'
-        self.title = "Title"
-        self.subtitle = "click a bar for more info."
-        self.type = graph_type # 'column' "pie" , bar, scatter, line
-        self.y_title = "Performance"
-        Graph.drilldown = []
-        self.series = self.get_series()
-
+class Graph(Graphable):
     def get_series(self):
         itr = 0
         series = None
@@ -99,7 +62,7 @@ class Graph:
         self.s_no = itr
         self.title = title
 
-        Graph.drilldown = [Graph.drilldown[x] for x in range(1, len(Graph.drilldown))]
+        del Graphable.drilldown[0]
         return series
 
     def get_all_faculty_bars(self):
