@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -13,9 +14,10 @@
 <body>
 
 <div id="header" align="center">
-
-		<h1><img src="{% static "images/logo.png" %}" alt="Kmit" style="float:left;width:400px;height:75px;">Keshav Memorial Institute of technology</h1>
-        <h3>Department of Information Technology</h3><br /><hr>
+    {% block navbar %}
+    {% include 'feedback/includes/navbar.html' %}
+    {% endblock %}
+{% block maincontent %}
         <h2>Learning Outcomes Assessment</h2><hr>
     <table>
         <tr colspan="3">
@@ -79,3 +81,7 @@
 
     </body>
 </html>
+{% endblock %}
+{% block footer %}
+    {% include 'feedback/includes/footer.html' %}
+{% endblock %}
