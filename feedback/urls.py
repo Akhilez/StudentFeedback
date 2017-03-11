@@ -1,5 +1,5 @@
 from feedback import views
-
+from django.contrib.auth.views import password_reset_confirm
 from django.conf.urls import url
 from django.contrib import admin
 
@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^changepass/$', views.changepass, name="changepass"),
     url(r'^LoaQuestions/$', views.LoaQuestions, name="LoaQuestions"),
     url(r'^updatedb/$', views.updatedb, name='updatedb'),
+    url(r'^forgotPassword/$', views.forgotPassword, name='updatedb'),
 ]

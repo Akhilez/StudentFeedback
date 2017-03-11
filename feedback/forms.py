@@ -14,3 +14,6 @@ class ProfileForm(forms.Form):
     newpass = forms.CharField(max_length=100, required=False, widget=forms.PasswordInput(attrs={'placeholder': 'New Password'}))
     repass = forms.CharField(max_length=100, required=False, widget=forms.PasswordInput(attrs={'placeholder': 'Re-Enter Password'}))
     password = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'placeholder': 'Current Password'}))
+
+class PasswordResetRequestForm(forms.Form):
+    email_or_username = forms.CharField(label=("Email Or Username"), max_length=254)

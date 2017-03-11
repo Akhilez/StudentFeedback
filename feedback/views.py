@@ -13,6 +13,8 @@ from django.contrib.auth.hashers import check_password
 from django.core.signing import *
 import re
 from analytics.libs import db_updater
+from django.core.mail import send_mail,EmailMessage
+
 
 
 def get_todays_initiations():
@@ -894,3 +896,13 @@ def updatedb(request):
     context['classes'] = data
 
     return render(request, template, context)
+
+def forgotPassword(request):
+
+    template='feedback/forgotPassword.html/'
+    email = EmailMessage('hii','hiiiiii',to=['rajrocksdeworld@gmail.com'])
+    email.send()
+    return render(request, template, context)
+
+
+

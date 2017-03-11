@@ -39,20 +39,20 @@
         </div>
     {% endif %}
 
-    <h2 align="center">Update your Profile</h2><br><br>
+    <br>
     <div id="form1" align="center">
-    <div class="login-page" align="center" ><h3 style="color:#FFFFFF">Update Profile</h3>
+    <div class="login-page" align="center" ><h3 style="color:#FFFFFF"><strong>Update Profile</strong></h3>
         <div class="form" style="padding: 60px">
 
        <form method="post" action="">
            {% csrf_token %}
            {{ formset.firstname }}
            {{ formset.lastname }}
-           {{ formset.email }}<br><br>
-           {{ formset.newpass }}<br><br>
-           {{ formset.repass }}<br><br>
-           <h4>For the Changes to come into effect,Enter the Current Password</h4><br>
-           {{ formset.password }}<br><br>
+           {{ formset.email }}
+           {{ formset.newpass }}
+           {{ formset.repass }}
+           <h4><strong>For the Changes to come into effect, Enter the Current Password</strong></h4><br>
+           {{ formset.password }}
            <button type="submit">UPDATE</button>
        </form>
 

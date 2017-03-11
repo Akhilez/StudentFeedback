@@ -2,6 +2,7 @@ from django.contrib.auth.models import User, Group
 from django.core.validators import MinValueValidator, MaxValueValidator, validate_comma_separated_integer_list
 from django.db import models
 
+
 # Create your models here.
 from django.db.models.signals import post_save, pre_save
 from StudentFeedback.settings import MAX_QUESTIONS
