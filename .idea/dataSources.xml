@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1691508560">
+  <component name="DataSourceManagerImpl" format="xml" hash="355298039">
     <data-source source="LOCAL" name="MySQL - nba_projects_db@localhost" uuid="93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
