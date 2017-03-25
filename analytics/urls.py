@@ -6,6 +6,7 @@ from django.conf.urls import url
 
 
 urlpatterns = [
+    url(r'^faculty/', views.faculty_info, name="faculty_info"),
     url(r'^()()()()()$', views.director, name="director"),
     url(r'^(\w+)/()()()()$', views.director, name="director"),
     url(r'^(\w+)/(\w+)/()()()$', views.director, name="director"),

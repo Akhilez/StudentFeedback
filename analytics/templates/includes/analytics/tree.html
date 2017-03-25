@@ -4,13 +4,6 @@
     <div id="jstree">
     <!-- in this example the tree is populated from inline HTML -->
         <ul>
-            <li id="class">By Class
-                <ul>
-                    <li id="class/all_branches">All Branches</li>
-                    <li id="class/all_sections">All sections</li>
-                </ul>
-            </li>
-
             <li id="fac">By Faculty
                 <ul>
                     {% for year in year_objs %}
@@ -23,8 +16,8 @@
                                                 <li id="ignorefac/{{ year }}/{{ branch }}/{{ section }}">{{ section }}
                                                     <ul>
                                                         {% for fac in section.faculty %}
-                                                            <li id="fac/{{ year }}/{{ branch }}/{{ section }}/{{ fac }}">
-                                                                {{ fac }}
+                                                            <li id="fac/{{ year }}/{{ branch }}/{{ section }}/{{ fac.faculty_id }}">
+                                                                {{ fac.name }}
                                                             </li>
                                                         {% endfor %}
                                                     </ul>
@@ -36,6 +29,13 @@
                             </ul>
                         </li>
                     {% endfor %}
+                </ul>
+            </li>
+
+            <li id="class">By Class
+                <ul>
+                    <li id="class/all_branches">All Branches</li>
+                    <li id="class/all_sections">All sections</li>
                 </ul>
             </li>
 

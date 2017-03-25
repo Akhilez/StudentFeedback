@@ -73,43 +73,16 @@
                     <input id="next_button" class="btn btn-default" type="submit" value="next" name="next">
                 {% else %}
                     <textarea class="form-control" id="remarks" placeholder="Remarks" name="remarks" ></textarea><br/>
-                    <button id="finish_button" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">Finish</button>
+                    <input id="confirm_finish" type="submit" value="Finish" name="finish" class="btn btn-default" form="questionForm">
                 {% endif %}
             </ul>
         </div>
 
     </form>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Confirmation</h4>
-          </div>
-          <div class="modal-body">
-              <div id="fillallmodal" style="color:orangered"></div>
-              <p>Save all your ratings and finish?</p>
-          </div>
-          <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <input id="confirm_finish" type="submit" value="Confirm" name="finish" class="btn btn-default" form="questionForm">
-          </div>
-        </div>
-      </div>
-    </div>
-
     <script>
         var next = document.getElementById("next_button");
         var finish = document.getElementById("confirm_finish");
-        finish.onclick = function(){
-            if ( $("input[type=radio]:checked").length < {{ questions|length }} ) {
-                document.getElementById('fillallmodal').innerHTML = 'Please answer all of the questions';
-            }
-        };
         next.onclick = function(){
             if ( $("input[type=radio]:checked").length < {{ questions|length }} ) {
                 document.getElementById('fillall').innerHTML = 'Please answer all of the questions';

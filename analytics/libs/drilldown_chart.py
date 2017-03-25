@@ -10,6 +10,17 @@ class Series:
     def __str__(self):
         return str(self.id)
 
+    def rev_sort(self):
+        alist = self.bars
+        for passnum in range(len(alist)-1, 0, -1):
+            for i in range(passnum):
+                if alist[i].value < alist[i+1].value:
+                    temp = alist[i]
+                    alist[i] = alist[i+1]
+                    alist[i+1] = temp
+        self.bars = alist
+        return self
+
 
 class Bar:
     def __init__(self, name, value, drilldown):
@@ -20,16 +31,11 @@ class Bar:
 
 class Graphable:
     types = {'column': 'column', 'bar': 'bar', 'pie': 'pie', 'line': 'line', 'scatter': 'scatter'}
-    height_per_bar = 100
+    height_per_bar = 50
     drilldown = []
 
 
-    def __init__(self, category, year, branch, sub, subsub, graph_type='null'):
-        self.category = category
-        self.year = year
-        self.branch = branch
-        self.sub = sub
-        self.subsub = subsub
+    def __init__(self, graph_type='null'):
         self.s_no = 0
         self.height = 500
         self.width = 'null'
@@ -54,4 +60,7 @@ class Graphable:
                 )
             )
         series.bars = bars
-        return series
+        return series.rev_sort()
+
+    #def set_height(self, no_of_bars):
+        #return sqrt(no_of_bars)

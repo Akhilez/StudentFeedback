@@ -29,16 +29,17 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 
-    {#% load static %#}
-    <!--
-    <script src="{#% static 'highcharts.js' %#}"></script>
-    <script src="{#% static 'data.js' %#}"></script>
-    <script src="{#% static 'drilldown.js' %#}"></script>
-    -->
-
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.bootstrap2.css"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/selectize.js" />
+    <script>
+    $(function() {
+        $('select').selectize(options);
+    });
+    </script>
 
 
 {% endblock head %}
@@ -56,6 +57,20 @@
         </div>
 
         <div class="col-sm-9">
+
+            <div style="float:right">
+            <form action="/analytics/faculty/" method="post">
+                {% csrf_token %}
+              <input list="facultys" name="faculty" placeholder="Search faculty">
+              <datalist id="facultys">
+                  {% for faculty in facultys %}<option value="{{ faculty }}">{% endfor %}
+              </datalist>
+              <button class="searchbutton" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
+            </div>
+
             {% include 'includes/analytics/graph.html' %}
         </div>
       </div>

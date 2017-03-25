@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+{% endblock head %}
+
+{% block title %} Faculty Graph {% endblock title %}
+
+{% block navbar %}
+    {% include 'feedback/includes/navbar.html' %}
+{% endblock %}
+
+{% block maincontent %}
+    <br/><br/><br/><br/>
+    Faculty: {{ faculty }}
+
+    {% include 'includes/analytics/graph.html' %}
+
+{% endblock maincontent %}

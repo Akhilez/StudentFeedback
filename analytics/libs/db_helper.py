@@ -28,7 +28,7 @@ def get_faculty(year, branch, section):
     for cls in classes:
         subs = cfs.filter(class_id=cls)
         for sub in subs:
-            sub_name = sub.faculty_id.name
+            sub_name = sub.faculty_id
             if sub_name not in subjects:
                 subjects.append(sub_name)
     return subjects
@@ -258,20 +258,13 @@ def get_faculty_value_for_subject(subject, faculty):
 def get_subjects(year, branch):
     classes = Classes.objects.filter(year=int(deformatter[year]), branch=branch)
     cfs = ClassFacSub.objects.all()
-    subjects = []
+    subjects = set()
     for cls in classes:
         subs = cfs.filter(class_id=cls)
         for sub in subs:
-            sub_name = sub.subject_id.name
-            if sub_name not in subjects:
-                subjects.append(sub_name)
+            subjects.add(sub.subject_id)
     return subjects
 
 
-
-
-
-
-
-
-
+def get_faculty_name(faculty_id):
+    return Faculty.objects.get(faculty_id=faculty_id).name
