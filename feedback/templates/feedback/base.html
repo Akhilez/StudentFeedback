@@ -1,14 +1,27 @@
 {% extends 'base.html' %}
-
+<html>
+    <head>
 {% block title %}Feedback{% endblock %}
-{% block head %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'loginc.css' %}">
-    {% load static %}
-    <link rel="stylesheet" type="text/js" href="{% static 'loginj.js' %}">
+{% block staticfiles %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.js' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap-theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/jquery.js' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'data.js' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'drilldown.js' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'highcharts.js' %}">
+
 {% endblock %}
+    <style>
+        .w3-bar .w3-button {
+                padding: 16px;
+            }
+            @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+    </style>
+    </head>
 {% block navbar %}
 
 {% endblock %}

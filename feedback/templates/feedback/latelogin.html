@@ -6,7 +6,7 @@
     {% include 'feedback/includes/conductor_navbar.html' %}
 {% endblock %}
 
-{% block maincontent %}
+{% block maincontent %}<br><br><br><br>
     {% if error %}
         <div class="alert alert-danger">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -31,7 +31,7 @@
             {% endfor %}
         </table>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Enable</button>
-    </form>
+    </form><br><br><br><br>
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">

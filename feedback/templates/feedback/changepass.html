@@ -10,7 +10,14 @@
     {% endif %}
 {% endblock %}
 
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'loginc.css' %}">
+    <link rel="stylesheet" type="text/js" href="{% static 'loginj.js' %}">
+{% endblock %}
+
 {% block maincontent %}
+    <br><br><br>
     {% if fir or sec or em or pas %}
         <div class="alert alert-success">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -39,7 +46,7 @@
         </div>
     {% endif %}
 
-    <br>
+
     <div id="form1" align="center">
     <div class="login-page" align="center" ><h3 style="color:#FFFFFF"><strong>Update Profile</strong></h3>
         <div class="form" style="padding: 60px">

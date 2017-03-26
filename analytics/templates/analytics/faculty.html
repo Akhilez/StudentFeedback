@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'feedback/base.html' %}
 
 {% block head %}
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -23,5 +23,10 @@
         {% include 'includes/analytics/graph_2.html' %}
         {% include 'includes/analytics/graph_3.html' %}
     {% endif %}
+    <br><br>
 
 {% endblock maincontent %}
+
+{% block footer %}
+    {% include 'feedback/includes/footer.html' %}
+{% endblock %}

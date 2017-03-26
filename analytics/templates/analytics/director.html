@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'feedback/base.html' %}
 
 {% block title %} feedback {% endblock %}
 
@@ -28,7 +28,6 @@
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
-
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
@@ -75,6 +74,10 @@
         </div>
       </div>
     </div>
+    <br><br>
 
+{% endblock %}
 
+{% block footer %}
+    {% include 'feedback/includes/footer.html' %}
 {% endblock %}

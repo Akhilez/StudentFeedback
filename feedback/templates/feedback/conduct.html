@@ -72,6 +72,7 @@ function toggle(source) {
             {% endif %}
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit</button>
         </form>
+        <br><br><br><br>
     {% else %}
         {% if classes %}
              <h3>Select a class to start the session:</h3>
@@ -122,6 +123,13 @@ function toggle(source) {
       </div>
     </div>
 {% endblock %}
+
+
+
+{% block footer %}
+    {% include 'feedback/includes/footer.html' %}
+{% endblock %}
+
 
 
 

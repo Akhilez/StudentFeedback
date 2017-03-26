@@ -3,6 +3,12 @@
 
 {% block title %}Faculty feedback{% endblock %}
 
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'loginc.css' %}">
+    <link rel="stylesheet" type="text/js" href="{% static 'loginj.js' %}">
+{% endblock %}
+
 {% block navbar %}
     <div class="w3-top">
   <div class="w3-bar w3-white w3-card-2" id="myNavbar">
@@ -28,7 +34,7 @@
 
     {% if disabled %}
         <br><br><br><br>
-         <h2>Disabled</h2>
+         <h2 style="color:#ffffff">Disabled</h2>
          <div class="alert alert-danger">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
             <strong>The feedback page is disabled, your coordinator must initiate feedback sessions</strong>
@@ -42,7 +48,7 @@
         </div>
     {% endif %}
     <br><br><br><br>
-    <h1 style="color:#FFFFFF;"><strong>FACULTY FEEDBACK</strong></h1>
+    <h1 style="color:#FFFFFF;">RATE YOUR FACULTY</h1>
     <hr class="star-light">
     <div class="login-page" align="center">
         <div class="form">
