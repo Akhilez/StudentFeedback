@@ -1,60 +1,51 @@
 <div>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <div class="btn-group">
-            {% for typ in graph.types %}
-                <input type="submit" class="btn btn-primary" name="{{ typ }}" value="{{ typ }}">
-            {% endfor %}
-        </div>
-    </form>
-
-    <div id="graph"></div>
+    <div id="graph3"></div>
 
     <script language="JavaScript">
 
-        var prev_title = [];
+        var prev_title3 = [];
 
-        var chrt = Highcharts.chart('graph', {
+        var chrt3 = Highcharts.chart('graph3', {
             chart: {
-                {% ifequal graph.type 'null' %}
+                {% ifequal graph3.type 'null' %}
                     type: 'column',
                 {% else %}
-                    type: '{{ graph.type }}',
+                    type: '{{ graph3.type }}',
                 {% endifequal %}
                 renderTo: 'container',
-                width: {{ graph.width }},
-                height: {{ graph.height }},
+                width: {{ graph3.width }},
+                height: {{ graph3.height }},
                 events: {
                     drilldown: function(e) {
-                        {% if graph.type == 'bar' %}
+                        {% if graph3.type == 'bar' %}
                             var len = e.seriesOptions.data.length;
-                            var height_per_bar = {{ graph.height_per_bar }};
+                            var height_per_bar = {{ graph3.height_per_bar }};
                             var height = len * height_per_bar * 1.5;
                             this.setSize(this.width, height);
                         {% endif %}
-                        chrt.setTitle({ text: e.point.series.name + ' ' + e.point.name });
-                        prev_title.push(e.point.series.name)
+                        chrt3.setTitle({ text: e.point.series.name + ' ' + e.point.name });
+                        prev_title3.push(e.point.series.name)
                     },
                     drillup: function(e) {
-                        {% if graph.type == 'bar' %}
+                        {% if graph3.type == 'bar' %}
                             var len = e.seriesOptions.data.length;
-                            var height_per_bar = {{ graph.height_per_bar }};
+                            var height_per_bar = {{ graph3.height_per_bar }};
                             var height = len * height_per_bar * 1.5;
                             this.setSize(this.width, height);
                         {% endif %}
-                        chrt.setTitle({ text: prev_title.pop() });
+                        chrt3.setTitle({ text: prev_title3.pop() });
                     }
                 }
             },
             credits: {
                 enabled: false
             },
-            title: {text: '{{ graph.title }}'},
-            subtitle: {text: '{{ graph.subtitle }}'},
+            title: {text: '{{ graph3.title }}'},
+            subtitle: {text: '{{ graph3.subtitle }}'},
             xAxis: {
-                {% if graph.type == 'line' %}
-                    categories:[{% for bar in graph.series.bars %}'{{ bar.name }}',{% endfor %}]
+                {% if graph3.type == 'line' %}
+                    categories:[{% for bar in graph3.series.bars %}'{{ bar.name }}',{% endfor %}]
                 {% else %}
                     type:'category'
                 {% endif %}
@@ -64,7 +55,7 @@
             },
             legend: {enabled: false},
             plotOptions: {
-                {% if graph.type == 'pie' %}
+                {% if graph3.type == 'pie' %}
                     pie: {
                         allowPointSelect: true,
                         cursor: 'pointer',
@@ -88,19 +79,15 @@
             },
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span>{point.name}</span>: <b>{point.y:.2f}</b> of 5<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of 5<br/>'
             },
             series: [
                 {
-                    name: '{{ graph.series.name }}',
-                    {% if graph.type == 'line' %}
-                        colorByPoint: false,
-                    {% else %}
-                        colorByPoint: {{ graph.series.color_by_point }},
-                    {% endif %}
+                    name: '{{ graph3.series.name }}',
+                    colorByPoint: {{ graph3.series.color_by_point }},
                     data: [
-                        {% for bar in graph.series.bars %}
-                            {% if graph.type == 'line' %}
+                        {% for bar in graph3.series.bars %}
+                            {% if graph3.type == 'line' %}
                                 {{ bar.value }},
                             {% else %}
                                 {
@@ -119,7 +106,7 @@
             ],
             drilldown: {
                 series: [
-                    {% for series in graph.drilldown %}
+                    {% for series in graph3.drilldown %}
                         {
                             name: '{{ series.name }}',
                             id: '{{ series.id }}',

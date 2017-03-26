@@ -1,8 +1,16 @@
-
 from feedback.models import *
 
 formatter = {'1': 'I', '2': 'II', '3': 'III', '4': 'IV', }
 deformatter = {'I': '1', 'II': '2', 'III': '3', 'IV': '4', }
+
+
+class Timeline:
+    def __init__(self, date, rating):
+        self.date = date
+        self.rating = rating
+
+    def __str__(self):
+        return str(self.date)+self.rating
 
 
 def get_years():
@@ -12,13 +20,33 @@ def get_years():
 
 
 def get_branches(year):
-    branches = Classes.objects.filter(year=int(deformatter[year])).values_list('branch').order_by('branch').distinct()
-    return [x[0] for x in branches]
+    classes = Classes.objects.filter(year=int(deformatter[year]))
+    branches = []
+    for cls in classes:
+        if cls.branch in branches:
+            continue
+        cfss = ClassFacSub.objects.filter(class_id=cls)
+        for cfs in cfss:
+            if cfs.cfs_id in get_fdbk_cfs():
+                branches.append(cls.branch)
+                break
+
+    return branches
 
 
 def get_sections(year, branch):
-    sections = Classes.objects.filter(year=int(deformatter[year]), branch=branch).values_list('section').order_by('branch').distinct()
-    return [x[0] for x in sections]
+    classes = Classes.objects.filter(year=int(deformatter[year]), branch=branch)
+    sections = []
+    for cls in classes:
+        if cls.section in sections:
+            continue
+        cfss = ClassFacSub.objects.filter(class_id=cls)
+        for cfs in cfss:
+            if cfs.cfs_id in get_fdbk_cfs():
+                sections.append(cls.section)
+                break
+
+    return sections
 
 
 def get_faculty(year, branch, section):
@@ -28,9 +56,10 @@ def get_faculty(year, branch, section):
     for cls in classes:
         subs = cfs.filter(class_id=cls)
         for sub in subs:
-            sub_name = sub.faculty_id
-            if sub_name not in subjects:
-                subjects.append(sub_name)
+            if sub.cfs_id in get_fdbk_cfs():
+                sub_name = sub.faculty_id
+                if sub_name not in subjects:
+                    subjects.append(sub_name)
     return subjects
 
 
@@ -120,9 +149,17 @@ def get_cfs_value(cfs):
         avg = 0.0
     return avg
 
+
 def get_all_faculty():
-    facultys = Faculty.objects.all().values_list('name')
-    return [faculty[0] for faculty in facultys]
+    faculty = Faculty.objects.all()
+    faculty_set = []
+    for fac in faculty:
+        cfss = ClassFacSub.objects.filter(faculty_id=fac)
+        for cfs in cfss:
+            if cfs.cfs_id in get_fdbk_cfs():
+                faculty_set.append(fac)
+                break
+    return faculty_set
 
 def get_all_subjects():
     subjects = Subject.objects.all().values_list('name')
@@ -132,7 +169,7 @@ def get_all_subjects():
 def get_faculty_value(faculty):
     sum = 0
     itr = 0
-    cfss = ClassFacSub.objects.filter(faculty_id=Faculty.objects.get(name=faculty))
+    cfss = ClassFacSub.objects.filter(faculty_id=faculty)
     for cfs in cfss:
         feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id, category=Category.objects.get(category='faculty'))
         for feedback in feedbacks:
@@ -189,9 +226,15 @@ def get_all_year_sections():
 
 def get_all_subjects_all_years():
     subjects = Subject.objects.all()
-    subjects = [subject.name for subject in subjects]
-    subjects.sort()
-    return subjects
+    subject_list = []
+    for subject in subjects:
+        if subject.name in subject_list:
+            continue
+        cfss = ClassFacSub.objects.filter(subject_id=subject)
+        for cfs in cfss:
+            if cfs.cfs_id in get_fdbk_cfs():
+                subject_list.append(subject.name)
+    return subject_list
 
 def get_subject_value(subject):
     """
@@ -268,3 +311,76 @@ def get_subjects(year, branch):
 
 def get_faculty_name(faculty_id):
     return Faculty.objects.get(faculty_id=faculty_id).name
+
+
+def get_fdbk_cfs():
+    cfs = Feedback.objects.all().values_list('relation_id').distinct()
+    cfs = [int(x[0]) for x in cfs]
+    return cfs
+
+
+def get_faculty_cfs(faculty):
+    cfss = ClassFacSub.objects.filter(faculty_id=Faculty.objects.get(name=faculty))
+    cfs_list = []
+    for cfs in cfss:
+        if cfs.cfs_id in get_fdbk_cfs():
+            cfs_list.append(cfs)
+    return cfs_list
+
+
+def get_question_value_for_cfs(cfs, question):
+    question_number = get_question_number(question, 'faculty')
+    if question_number == -1:
+        return 0
+    sum = 0
+    itr = 0
+
+    feedbacks = Feedback.objects.filter(relation_id=cfs, category=Category.objects.get(category='faculty'))
+    for feedback in feedbacks:
+        ratings = feedback.ratings.split(',')
+        sum += int(ratings[question_number])
+        itr += 1
+    if itr != 0:
+        avg = sum/itr
+    else:
+        avg = 0.0
+    return avg
+
+
+def get_all_timelines(faculty):
+    """
+    get faculty object
+    get cfs objects from faculty
+    get dates from feedback using cfs = relation
+    1. get all the timelines of the faculty
+    2. for each timeline, get all the ratings
+    :return:
+    """
+    faculty = Faculty.objects.get(name=faculty)
+    cfss = ClassFacSub.objects.filter(faculty_id=faculty)
+    date_list = []
+    date_dict = {}
+    timelines = []
+    for cfs in cfss:
+        if cfs.cfs_id in get_fdbk_cfs():
+            feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id)
+            for feedback in feedbacks:
+                date_obj = feedback.session_id.timestamp.date()
+                try:
+                    old_ratings = date_dict[date_obj]
+                    cur_ratings = feedback.ratings.split(',')
+                    for i in range(len(old_ratings)):
+                        old_ratings[i] = (old_ratings[i] + float(cur_ratings[i])) / 2.0
+                        date_dict[date_obj] = old_ratings
+                except KeyError:
+                    str_list = feedback.ratings.split(',')
+                    float_list = []
+                    for str1 in str_list:
+                        float_list.append(float(str1))
+                    date_dict[date_obj] = float_list
+                    date_list.append(date_obj)
+    for date in date_list:
+        timelines.append(
+            Timeline(date, date_dict[date])
+        )
+    return timelines

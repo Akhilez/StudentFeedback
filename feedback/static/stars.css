@@ -15,7 +15,7 @@ h1 { font-size: 1.5em; margin: 10px; }
 .rating > label:before {
   margin: 5px;
   font-size: 1.25em;
-  font-family: FontAwesome;
+    font-family: FontAwesome, serif;
   display: inline-block;
   content: "\f005";
 }

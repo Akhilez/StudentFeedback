@@ -1,14 +1,5 @@
 <div>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <div class="btn-group">
-            {% for typ in graph.types %}
-                <input type="submit" class="btn btn-primary" name="{{ typ }}" value="{{ typ }}">
-            {% endfor %}
-        </div>
-    </form>
-
     <div id="graph"></div>
 
     <script language="JavaScript">

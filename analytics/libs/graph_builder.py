@@ -12,7 +12,7 @@ class Graph(Graphable):
         self.branch = branch
         self.sub = sub
         self.subsub = subsub
-        super().__init__()
+        super().__init__(graph_type)
 
 
     def get_series(self):
@@ -25,7 +25,7 @@ class Graph(Graphable):
                 # By Faculty table
                 title = 'All Faculty'
                 if self.type == 'null': self.type = Graph.types['bar']
-                series = Series(title, 'all_faculty')
+                series = Series(title, 'all_faculty', self)
                 series.bars = self.get_all_faculty_bars()
                 itr = 4
             else:
@@ -40,21 +40,21 @@ class Graph(Graphable):
             if len(self.year) == 0:
                 # By Class table
                 title = 'All Years'
-                series = Series(title, 'all_years')
+                series = Series(title, 'all_years', self)
                 series.bars = self.get_all_years_bars()
                 itr = 1
             elif self.year == 'all_branches':
                 # By Class all years all branches
                 title = 'All Years, Branches'
                 if self.type == 'null': self.type = Graph.types['bar']
-                series = Series(title, 'all_branches')
+                series = Series(title, 'all_branches', self)
                 series.bars = self.get_all_branches_bars()
                 itr = 2
             elif self.year == 'all_sections':
                 # By Class all years all branches all sections
                 title = 'All Years, Branches, Sections'
                 if self.type == 'null': self.type = Graph.types['bar']
-                series = Series(title, 'all_sections')
+                series = Series(title, 'all_sections', self)
                 series.bars = self.get_all_sections_bars()
                 itr = 3
 
@@ -68,12 +68,11 @@ class Graph(Graphable):
             else:
                 # Selected subject graph - year, branch
                 title = self.year+'-'+self.branch
-                series = Series(title, title)
+                series = Series(title, title, self)
                 itr = 7
         self.s_no = itr
         self.title = title
 
-        del Graphable.drilldown[0]
         return series.rev_sort()
 
     def get_all_faculty_bars(self):
@@ -85,9 +84,9 @@ class Graph(Graphable):
 
         for i in range(len(all_faculty)):
             bars.append(Bar(
-                all_faculty[i],
+                all_faculty[i].name,
                 db_helper.get_faculty_value(all_faculty[i]),
-                self.build_faculty_ques_series(all_faculty[i])
+                self.build_faculty_ques_series(all_faculty[i].name)
             ))
 
         return bars
@@ -100,7 +99,7 @@ class Graph(Graphable):
                 self.height = len(questions) * Graph.height_per_bar
 
         bars = []
-        series = Series(faculty, faculty)
+        series = Series(faculty, faculty, self)
 
         for i in range(len(questions)):
             bars.append(Bar(
@@ -120,7 +119,7 @@ class Graph(Graphable):
 
         bars = []
         title = 'All Subjects'
-        series = Series(title, title)
+        series = Series(title, title, self)
 
         for i in range(len(subjects)):
             bars.append(Bar(
@@ -136,7 +135,7 @@ class Graph(Graphable):
         faculty = db_helper.get_faculty_for_subject(subject)
 
         bars = []
-        series = Series(subject, subject)
+        series = Series(subject, subject, self)
 
         for i in range(len(faculty)):
             bars.append(Bar(
@@ -159,7 +158,7 @@ class Graph(Graphable):
         return bars
 
     def build_class_branch_series(self, year):
-        series = Series(year, year)
+        series = Series(year, year, self)
         branches = db_helper.get_branches(year)
         bars = []
 
@@ -175,7 +174,7 @@ class Graph(Graphable):
         return series.rev_sort()
 
     def build_section_series(self, year, branch):
-        series = Series(year+' '+branch, year+' '+branch)
+        series = Series(year+' '+branch, year+' '+branch, self)
         sections = db_helper.get_sections(year, branch)
         bars = []
 
@@ -190,7 +189,7 @@ class Graph(Graphable):
         return series.rev_sort()
 
     def build_faculty_series(self, year, branch, section):
-        series = Series(year+' '+branch+' '+section, year+' '+branch+' '+section)
+        series = Series(year+' '+branch+' '+section, year+' '+branch+' '+section, self)
         faculty = db_helper.get_faculty(year, branch, section)
         bars = []
         for i in range(len(faculty)):
@@ -208,6 +207,10 @@ class Graph(Graphable):
     def get_all_branches_bars(self):
         bars = []
         all_years_branches = db_helper.get_all_year_branches()
+
+        if self.type == 'bar':
+            self.height = self.height_per_bar * len(all_years_branches)/2
+
         for each in all_years_branches:
             bars.append(Bar(
                 db_helper.formatter[str(each[0])]+' '+each[1],
@@ -219,6 +222,10 @@ class Graph(Graphable):
     def get_all_sections_bars(self):
         bars = []
         all_years_sections = db_helper.get_all_year_sections()
+
+        if self.type == 'bar':
+            self.height = self.height_per_bar * len(all_years_sections)
+
         for each in all_years_sections:
             bars.append(Bar(
                 db_helper.formatter[str(each[0])]+' '+each[1]+' '+each[2],

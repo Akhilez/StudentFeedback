@@ -2,11 +2,12 @@ __author__ = 'Akhil'
 
 
 class Series:
-    def __init__(self, name, series_id):
+    def __init__(self, name, series_id, graph, color_by_point='true'):
         self.name = name
         self.id = series_id
         self.bars = []
-        Graphable.drilldown.append(self)
+        self.color_by_point = color_by_point
+        graph.drilldown.append(self)
     def __str__(self):
         return str(self.id)
 
@@ -32,8 +33,6 @@ class Bar:
 class Graphable:
     types = {'column': 'column', 'bar': 'bar', 'pie': 'pie', 'line': 'line', 'scatter': 'scatter'}
     height_per_bar = 50
-    drilldown = []
-
 
     def __init__(self, graph_type='null'):
         self.s_no = 0
@@ -43,11 +42,12 @@ class Graphable:
         self.subtitle = "click a bar for more info."
         self.type = graph_type # 'column' "pie" , bar, scatter, line
         self.y_title = "Performance"
-        Graphable.drilldown = []
+        self.drilldown = []
         self.series = self.get_series()
+        del self.drilldown[0]
 
     def get_series(self):
-        series = Series('Title', 'id')
+        series = Series('Title', 'id', self)
         bars = []
         names = ['a', 'b', 'c']
         values = [1, 2, 3]
@@ -56,7 +56,7 @@ class Graphable:
                 Bar(
                     names[i],
                     values[i], # get the value for the bar
-                    Series('Apple', 'Apple') # get a series for drilldown of the bar or leave 'null' if no drilldown
+                    Series('Apple', 'Apple', self) # get a series for drilldown of the bar or leave 'null' if no drilldown
                 )
             )
         series.bars = bars

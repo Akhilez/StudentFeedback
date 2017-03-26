@@ -14,8 +14,14 @@
 
 {% block maincontent %}
     <br/><br/><br/><br/>
-    Faculty: {{ faculty }}
 
-    {% include 'includes/analytics/graph.html' %}
+    {% if error %}
+        ERROR: {{ error }}
+    {% else %}
+        Faculty: {{ faculty }}
+        {% include 'includes/analytics/graph1.html' %}
+        {% include 'includes/analytics/graph_2.html' %}
+        {% include 'includes/analytics/graph_3.html' %}
+    {% endif %}
 
 {% endblock maincontent %}
