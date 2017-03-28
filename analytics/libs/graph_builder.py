@@ -3,7 +3,7 @@ from analytics.libs.drilldown_chart import Graphable, Series, Bar
 __author__ = 'Akhil'
 
 from analytics.libs import db_helper
-from analytics.libs.db_helper import selected_questions
+from analytics.libs.db_helper import Timeline
 
 
 class Graph(Graphable):
@@ -103,7 +103,7 @@ class Graph(Graphable):
         series = Series(faculty, faculty, self)
 
         for i in range(len(questions)):
-            if i in selected_questions:
+            if i in Timeline.selected_questions:
                 bars.append(Bar(
                     questions[i].question,
                     db_helper.get_question_value(faculty, questions[i]),

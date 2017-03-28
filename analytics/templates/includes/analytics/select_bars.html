@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-sm-8" style=" margin-bottom: 50px" >
+        <form action="" method="post">
+            {% csrf_token %}
+            <select data-placeholder="Select your questions.." class="selectpicker" multiple style="width: 400px;"
+                    tabindex="4" name="ques">
+                {% for question in all_questions %}
+                <option value="q{{ forloop.counter0 }}" {% if forloop.counter0 in selected_indices %}selected{% endif %}>{{ forloop.counter }}. {{ question.question }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Select" name="select_ques" class="btn">
+        </form>
+    </div>
+
+    <form action="/analytics/faculty/" method="post">
+        {% csrf_token %}
+        <div class="col-sm-2">
+            <select class="selectpicker" name="faculty" style="width: 200px">
+                {% for faculty in facultys %}<option value="{{ faculty.name }}">{{ faculty.name }}</option>{% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-1" style="float: right;">
+            <button class="btn" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </form>
+</div>

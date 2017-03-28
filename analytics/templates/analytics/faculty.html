@@ -4,6 +4,17 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
+
 {% endblock head %}
 
 {% block title %} Faculty Graph {% endblock title %}
@@ -15,22 +26,14 @@
 {% block maincontent %}
     <br/><br/><br/><br/>
 
-    <div style="float:right">
-        <form action="/analytics/faculty/" method="post">
-            {% csrf_token %}
-          <input list="facultys" name="faculty" placeholder="Search faculty">
-          <datalist id="facultys">
-              {% for faculty in facultys %}<option value="{{ faculty.name }}">{% endfor %}
-          </datalist>
-          <button class="searchbutton" type="submit">
-            <i class="fa fa-search"></i>
-          </button>
-        </form>
+    {% include 'includes/analytics/select_bars.html' %}
+    <div>
+        <h1 align="center">Faculty: <b>{{ faculty }}</b></h1>
+        <h2 align="center">Score: <b>{{ faculty_value }}/5</b></h2>
     </div>
     {% if error %}
         ERROR: {{ error }}
     {% else %}
-        Faculty: {{ faculty }}
         {% include 'includes/analytics/graph1.html' %}
         {% include 'includes/analytics/graph_2.html' %}
         {% include 'includes/analytics/graph_3.html' %}

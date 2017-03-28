@@ -3,10 +3,13 @@ from feedback.models import *
 formatter = {'1': 'I', '2': 'II', '3': 'III', '4': 'IV', }
 deformatter = {'I': '1', 'II': '2', 'III': '3', 'IV': '4', }
 
-selected_questions = [x for x in range(6)]
+
+def get_selected_questions():
+    return Timeline.selected_questions
 
 
 class Timeline:
+    selected_questions = [x for x in range(len(FdbkQuestions.objects.values_list('question')))]
     def __init__(self, date, rating):
         self.date = date
         self.rating = rating
@@ -73,7 +76,7 @@ def get_average(summ, itr, session=None, rel=None):
     for feedback in feedbacks:
         ratings = feedback.ratings.split(',')
         for i in range(len(ratings)):
-            if i in selected_questions:
+            if i in Timeline.selected_questions:
                 summ += int(ratings[i])
                 itr += 1
     return summ, itr
@@ -329,40 +332,29 @@ def get_question_value_for_cfs(cfs, question):
 
 
 def get_all_timelines(faculty):
-    """
-    get faculty object
-    get cfs objects from faculty
-    get dates from feedback using cfs = relation
-    1. get all the timelines of the faculty
-    2. for each timeline, get all the ratings
-    :return:
-    """
     faculty = Faculty.objects.get(name=faculty)
     cfss = ClassFacSub.objects.filter(faculty_id=faculty)
-    date_list = []
-    date_dict = {}
     timelines = []
+    timeline_objs = []
     for cfs in cfss:
-        if cfs.cfs_id in get_fdbk_cfs():
-            feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id)
-            for feedback in feedbacks:
-                date_obj = feedback.session_id.timestamp.date()
-                try:
-                    old_ratings = date_dict[date_obj]
-                    cur_ratings = feedback.ratings.split(',')
-                    for i in range(len(old_ratings)):
-                        if i in selected_questions:
-                            old_ratings[i] = (old_ratings[i] + float(cur_ratings[i])) / 2.0
-                            date_dict[date_obj] = old_ratings
-                except KeyError:
-                    str_list = feedback.ratings.split(',')
-                    float_list = []
-                    for str1 in str_list:
-                        float_list.append(float(str1))
-                    date_dict[date_obj] = float_list
-                    date_list.append(date_obj)
-    for date in date_list:
-        timelines.append(
-            Timeline(date, date_dict[date])
-        )
-    return timelines
+        for feedback in Feedback.objects.filter(relation_id=cfs.cfs_id):
+            my_date = feedback.session_id.timestamp.date()
+            if my_date in timelines:
+                continue
+            timelines.append(my_date)
+    for cfs in cfss:
+        for timeline in timelines:
+            summ = 0
+            itr = 0
+            for feedback in Feedback.objects.filter(relation_id=cfs.cfs_id):
+                if feedback.session_id.timestamp.date() == timeline:
+                    ratings = feedback.ratings.split(',')
+                    for i in range(len(ratings)):
+                        if i in Timeline.selected_questions:
+                            summ += int(ratings[i])
+                            itr += 1
+            if itr == 0: avg = 0.0
+            else: avg = summ/itr
+            timeline_objs.append(Timeline(timeline, avg))
+
+    return timeline_objs

@@ -30,7 +30,7 @@
                         {% if graph.type == 'bar' %}
                             var len = e.seriesOptions.data.length;
                             var height_per_bar = {{ graph.height_per_bar }};
-                            var height = len * height_per_bar * 1.5;
+                            var height = Math.sqrt(len) * height_per_bar * 5;
                             this.setSize(this.width, height);
                         {% endif %}
                         chrt.setTitle({ text: e.point.series.name + ' ' + e.point.name });
@@ -40,7 +40,7 @@
                         {% if graph.type == 'bar' %}
                             var len = e.seriesOptions.data.length;
                             var height_per_bar = {{ graph.height_per_bar }};
-                            var height = len * height_per_bar * 1.5;
+                            var height =  Math.sqrt(len) * height_per_bar * 5;
                             this.setSize(this.width, height);
                         {% endif %}
                         chrt.setTitle({ text: prev_title.pop() });

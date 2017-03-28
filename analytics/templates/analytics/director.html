@@ -32,13 +32,14 @@
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.bootstrap2.css"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/selectize.js" />
-    <script>
-    $(function() {
-        $('select').selectize(options);
-    });
-    </script>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
 
 
 {% endblock head %}
@@ -57,20 +58,11 @@
 
         <div class="col-sm-9">
 
-            <div style="float:right">
-            <form action="/analytics/faculty/" method="post">
-                {% csrf_token %}
-              <input list="facultys" name="faculty" placeholder="Search faculty">
-              <datalist id="facultys">
-                  {% for faculty in facultys %}<option value="{{ faculty.name }}">{% endfor %}
-              </datalist>
-              <button class="searchbutton" type="submit">
-                <i class="fa fa-search"></i>
-              </button>
-            </form>
-            </div>
+            {% include 'includes/analytics/select_bars.html' %}
 
-            {% include 'includes/analytics/graph.html' %}
+            <div class="row">
+                {% include 'includes/analytics/graph.html' %}
+            </div>
         </div>
       </div>
     </div>

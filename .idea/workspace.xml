@@ -2,18 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f28d184d-98d4-4de7-b367-663dfacc6202" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analytics/static/analytics/chosen.jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analytics/static/analytics/chosen.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analytics/templates/includes/analytics/select_bars.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analytics/static/analytics/semantic.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analytics/static/analytics/semantic.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/StudentFeedback.iml" afterPath="$PROJECT_DIR$/.idea/StudentFeedback.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py" afterPath="$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/db_helper.py" afterPath="$PROJECT_DIR$/analytics/libs/db_helper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/externals/faculty-questions.csv" afterPath="$PROJECT_DIR$/externals/faculty-questions.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/analytics/director.html" afterPath="$PROJECT_DIR$/analytics/templates/analytics/director.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/analytics/faculty.html" afterPath="$PROJECT_DIR$/analytics/templates/analytics/faculty.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py" afterPath="$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html" afterPath="$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/graph_builder.py" afterPath="$PROJECT_DIR$/analytics/libs/graph_builder.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentFeedback/settings.py" afterPath="$PROJECT_DIR$/StudentFeedback/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/faculty_graphs/timeline_graph.py" afterPath="$PROJECT_DIR$/analytics/libs/faculty_graphs/timeline_graph.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentFeedback/urls.py" afterPath="$PROJECT_DIR$/StudentFeedback/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/views.py" afterPath="$PROJECT_DIR$/analytics/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/views.py" afterPath="$PROJECT_DIR$/feedback/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -48,16 +55,6 @@
         <option name="myItemId" value="MySQL - nba_projects_db@localhost" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - nba_projects_db@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
       <PATH_ELEMENT>
         <option name="myItemId" value="nba_projects_db" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
@@ -73,45 +70,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="db_helper.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
+      <file leaf-file-name="graph.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="6341">
-              <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
+            <state vertical-scroll-proportion="-21.115385" vertical-offset="165" max-vertical-offset="2635">
+              <caret line="42" column="78" selection-start-line="42" selection-start-column="78" selection-end-line="42" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class_sub_graph.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py">
+      <file leaf-file-name="select_bars.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/select_bars.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="426" max-vertical-offset="1020">
-              <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+            <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="561">
+              <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
               <folding>
-                <element signature="e#0#36#0" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="timeline_graph.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/timeline_graph.py">
+      <file leaf-file-name="graph1.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="222" max-vertical-offset="816">
-              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#36#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="director.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/director.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1496">
-              <caret line="70" column="18" selection-start-line="59" selection-start-column="12" selection-end-line="70" selection-end-column="18" />
+            <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="2482">
+              <caret line="23" column="61" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -120,8 +108,8 @@
       <file leaf-file-name="faculty_graph.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="680">
-              <caret line="28" column="48" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
+              <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -129,21 +117,65 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analytics/views.py">
+      <file leaf-file-name="faculty.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/faculty.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="341" max-vertical-offset="1003">
-              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6181818" vertical-offset="0" max-vertical-offset="884">
+              <caret line="32" column="10" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="faculty.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/faculty.html">
+      <file leaf-file-name="drilldown_chart.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/libs/drilldown_chart.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="112" max-vertical-offset="833">
-              <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="276" max-vertical-offset="1207">
+              <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="625" max-vertical-offset="1581">
+              <caret line="75" column="79" selection-start-line="75" selection-start-column="79" selection-end-line="75" selection-end-column="79" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="timeline_graph.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/timeline_graph.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
+              <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class_sub_graph.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="1020">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db_helper.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2537" max-vertical-offset="6222">
+              <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -162,41 +194,51 @@
         <option value="$PROJECT_DIR$/feedback/static/stars.html" />
         <option value="$PROJECT_DIR$/feedback/admin.py" />
         <option value="$PROJECT_DIR$/StudentFeedback/onlineconnector.cnf" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/questions.html" />
+        <option value="$PROJECT_DIR$/feedback/templates/feedback/student_login.html" />
+        <option value="$PROJECT_DIR$/feedback/templates/feedback/latelogin.html" />
+        <option value="$PROJECT_DIR$/feedback/templates/feedback/conduct.html" />
         <option value="$PROJECT_DIR$/feedback/urls.py" />
         <option value="$PROJECT_DIR$/feedback/forms.py" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/includes/navbar.html" />
-        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html" />
+        <option value="$PROJECT_DIR$/feedback/templates/feedback/changepass.html" />
+        <option value="$PROJECT_DIR$/feedback/templates/feedback/mysessions.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/updatedb.html" />
         <option value="dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..classfacsub" />
+        <option value="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" />
         <option value="$PROJECT_DIR$/feedback/models.py" />
         <option value="db-console:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/" />
-        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html" />
-        <option value="$PROJECT_DIR$/analytics/libs/drilldown_chart.py" />
-        <option value="$PROJECT_DIR$/analytics/libs/db_updater.py" />
-        <option value="$PROJECT_DIR$/StudentFeedback/settings.py" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/invalid_user.html" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/feedback/static/stars.css" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/changepass.html" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/conduct.html" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/mysessions.html" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/latelogin.html" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/student_login.html" />
-        <option value="$PROJECT_DIR$/templates/login.html" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/includes/footer.html" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/base.html" />
-        <option value="$PROJECT_DIR$/analytics/templates/analytics/director.html" />
-        <option value="$PROJECT_DIR$/externals/faculty-questions.csv" />
         <option value="$PROJECT_DIR$/feedback/views.py" />
+        <option value="$PROJECT_DIR$/analytics/libs/db_updater.py" />
+        <option value="$PROJECT_DIR$/analytics/libs/tree_builder.py" />
+        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html" />
+        <option value="$PROJECT_DIR$/analytics/urls.py" />
+        <option value="$PROJECT_DIR$/analytics/static/typehead.js" />
+        <option value="$PROJECT_DIR$/analytics/static/select2.css" />
+        <option value="$PROJECT_DIR$/analytics/static/select2.js" />
+        <option value="$PROJECT_DIR$/analytics/libs/faculty_graph.py" />
+        <option value="$PROJECT_DIR$/feedback/static/font-awesome.css" />
+        <option value="$PROJECT_DIR$/feedback/static/fonts/font-awesome.css" />
+        <option value="$PROJECT_DIR$/feedback/templates/feedback/questions.html" />
+        <option value="$PROJECT_DIR$/feedback/static/stars.css" />
+        <option value="$PROJECT_DIR$/analytics/libs/drilldown_chart.py" />
+        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/graph_2.html" />
+        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/graph_3.html" />
+        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/graph1.html" />
+        <option value="$PROJECT_DIR$/StudentFeedback/settings.py" />
+        <option value="$PROJECT_DIR$/StudentFeedback/urls.py" />
+        <option value="$PROJECT_DIR$/feedback/templates/feedback/base.html" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/select bars.html" />
+        <option value="$PROJECT_DIR$/analytics/templates/analytics/director.html" />
         <option value="$PROJECT_DIR$/analytics/libs/graph_builder.py" />
         <option value="$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py" />
-        <option value="$PROJECT_DIR$/analytics/libs/faculty_graphs/timeline_graph.py" />
         <option value="$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py" />
-        <option value="$PROJECT_DIR$/analytics/templates/analytics/faculty.html" />
-        <option value="$PROJECT_DIR$/analytics/views.py" />
+        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/select_bars.html" />
+        <option value="$PROJECT_DIR$/analytics/libs/faculty_graphs/timeline_graph.py" />
         <option value="$PROJECT_DIR$/analytics/libs/db_helper.py" />
+        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html" />
+        <option value="$PROJECT_DIR$/analytics/views.py" />
+        <option value="$PROJECT_DIR$/analytics/templates/analytics/faculty.html" />
       </list>
     </option>
   </component>
@@ -206,8 +248,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="754" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -248,88 +290,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="StudentFeedback">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="StudentFeedback">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="analytics">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="StudentFeedback">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="analytics">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="templates">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="includes/analytics">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="StudentFeedback">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="analytics">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="templates">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="StudentFeedback">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT=".idea">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -345,6 +305,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -470,6 +444,88 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="StudentFeedback">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="StudentFeedback">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="analytics">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="StudentFeedback">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="analytics">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="templates">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="includes/analytics">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="StudentFeedback">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="analytics">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="templates">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="StudentFeedback">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT=".idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -492,9 +548,17 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Programming\Django projects\StudentFeedback\analytics\static\analytics" />
+      <recent name="F:\Programming\Django projects\StudentFeedback\analytics\templates\includes\analytics" />
+      <recent name="F:\Programming\Django projects\StudentFeedback\feedback\static\fonts" />
+      <recent name="F:\Programming\Django projects\StudentFeedback\feedback\static" />
+      <recent name="F:\Programming\Django projects\StudentFeedback\analytics\static" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Rajkumar\PycharmProjects\StudentFeedback\feedback\static\bootstrap" />
-      <recent name="C:\Users\Rajkumar\PycharmProjects\StudentFeedback\feedback\static" />
+      <recent name="F:\Programming\Django projects\StudentFeedback\analytics\libs\faculty_graphs" />
+      <recent name="F:\Programming\Django projects\StudentFeedback\feedback\static\fonts" />
+      <recent name="F:\Programming\Django projects\StudentFeedback\feedback\static" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.StudentFeedback">
@@ -912,65 +976,53 @@
       <option name="project" value="LOCAL" />
       <updated>1489069670320</updated>
     </task>
-    <task id="LOCAL-00027" summary="Rajkumar - deployment patches2">
-      <created>1489820780421</created>
+    <task id="LOCAL-00027" summary="Akhil- Deployment 1">
+      <created>1489807511542</created>
       <option name="number" value="00027" />
       <option name="project" value="LOCAL" />
-      <updated>1489820780421</updated>
+      <updated>1489807511542</updated>
     </task>
-    <task id="LOCAL-00028" summary="Rajkumar - deployment patches2">
-      <created>1489821078092</created>
+    <task id="LOCAL-00028" summary="Akhil- &#10;Phase 1-&#10;&gt;static stars&#10;&gt;modal in questions removed&#10;Phase 2-&#10;&gt;search faculty&#10;&gt;faculty info page&#10;&gt;graph layout improvements">
+      <created>1490459729499</created>
       <option name="number" value="00028" />
       <option name="project" value="LOCAL" />
-      <updated>1489821078092</updated>
+      <updated>1490459729499</updated>
     </task>
-    <task id="LOCAL-00029" summary="Rajkumar - static css for navbar added">
-      <created>1490117638601</created>
+    <task id="LOCAL-00029" summary="Akhil-faculty info page- added 3 graphs">
+      <created>1490524099643</created>
       <option name="number" value="00029" />
       <option name="project" value="LOCAL" />
-      <updated>1490117638601</updated>
+      <updated>1490524099643</updated>
     </task>
-    <task id="LOCAL-00030" summary="Rajkumar - push was unsuccessful">
-      <created>1490117701270</created>
-      <option name="number" value="00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1490117701270</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Rajkumar - push was unsuccessful">
-      <created>1490544017139</created>
-      <option name="number" value="00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1490544017139</updated>
-    </task>
-    <option name="localTasksCounter" value="32" />
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32441112" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1785174" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3275401" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32762313" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23676248" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32762313" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32441112" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32655245" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1748401" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15298508" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32636657" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3231511" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1010,85 +1062,212 @@
     <MESSAGE value="Akhil- data entry done." />
     <MESSAGE value="Akhil- data entry done. 2" />
     <MESSAGE value="Akhil- Made an api for drilldown charts" />
-    <MESSAGE value="Rajkumar - deployment patches2" />
-    <MESSAGE value="Rajkumar - static css for navbar added" />
-    <MESSAGE value="Rajkumar - push was unsuccessful" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rajkumar - push was unsuccessful" />
+    <MESSAGE value="Akhil- Deployment 1" />
+    <MESSAGE value="Akhil- &#10;Phase 1-&#10;&gt;static stars&#10;&gt;modal in questions removed&#10;Phase 2-&#10;&gt;search faculty&#10;&gt;faculty info page&#10;&gt;graph layout improvements" />
+    <MESSAGE value="Akhil-faculty info page- added 3 graphs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Akhil-faculty info page- added 3 graphs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4045" max-vertical-offset="4505">
-          <caret line="244" column="119" selection-start-line="244" selection-start-column="119" selection-end-line="244" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2380">
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..django_admin_log">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/includes/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="527">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentFeedback/settings.py">
+    <entry file="file://$PROJECT_DIR$/externals/faculty-questions.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3060">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="876">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15686275" vertical-offset="0" max-vertical-offset="1904">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..subject">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentFeedback/onlineconnector.cnf">
+    <entry file="dbDummy://db-console:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="876">
+          <caret line="0" column="62" selection-start-line="0" selection-start-column="62" selection-end-line="0" selection-end-column="62" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26269317" vertical-offset="0" max-vertical-offset="906">
-          <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_session">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2125" vertical-offset="0" max-vertical-offset="880">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_notes">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python34/Lib/site-packages/django/core/validators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.306156" vertical-offset="0" max-vertical-offset="7633">
-          <caret line="340" column="6" selection-start-line="340" selection-start-column="6" selection-end-line="340" selection-end-column="6" />
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_initiation">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/updatedb.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="272">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_feedbackloa">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_attendance">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..django_session">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..classfacsub">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="306">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..student">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..faculty">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_category">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..classes">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_config">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_fdbkquestions">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1099,324 +1278,277 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/db_updater.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84988964" vertical-offset="2001" max-vertical-offset="2992">
+          <caret line="168" column="24" selection-start-line="168" selection-start-column="24" selection-end-line="168" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_loaquestions">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/feedback/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.60596025" vertical-offset="2086" max-vertical-offset="3077">
           <caret line="157" column="14" selection-start-line="157" selection-start-column="14" selection-end-line="157" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.7692308" vertical-offset="565" max-vertical-offset="1445">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/tree_builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1938">
+          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/static/fonts/fontawesome-webfont.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="45509">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/static/stars.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7048093" vertical-offset="0" max-vertical-offset="799">
+          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/static/fonts/font-awesome.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="39831">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5529801" vertical-offset="13949" max-vertical-offset="15266">
+          <caret line="865" column="33" selection-start-line="865" selection-start-column="33" selection-end-line="865" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/questions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.561707" vertical-offset="788" max-vertical-offset="1717">
+          <caret line="75" column="74" selection-start-line="75" selection-start-column="74" selection-end-line="75" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_feedback">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph_2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="2414">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph_3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="2414">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/static/analytics/chosen.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="893">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/static/analytics/semantic.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60918254" vertical-offset="0" max-vertical-offset="6273">
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentFeedback/onlineconnector.cnf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="906">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentFeedback/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2040" max-vertical-offset="3111">
+          <caret line="144" column="23" selection-start-line="144" selection-start-column="23" selection-end-line="144" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentFeedback/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.807693" vertical-offset="0" max-vertical-offset="697">
+          <caret line="15" column="79" selection-start-line="15" selection-start-column="79" selection-end-line="15" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="850">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/graph_builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1516" max-vertical-offset="4607">
+          <caret line="101" column="8" selection-start-line="101" selection-start-column="8" selection-end-line="101" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#22#49#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="417" max-vertical-offset="1020">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/director.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28522727" vertical-offset="446" max-vertical-offset="1360">
+          <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/analytics/libs/drilldown_chart.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4746137" vertical-offset="148" max-vertical-offset="1054">
-          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="276" max-vertical-offset="1207">
+          <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentFeedback/settings.py">
+    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="3060">
-          <caret line="132" column="23" selection-start-line="132" selection-start-column="23" selection-end-line="132" selection-end-column="23" />
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="2482">
+          <caret line="23" column="61" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/loaquestions.html">
+    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/select_bars.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1564">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/static/loginj.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/includes/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="527">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/forgotPassword.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/invalid_user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="306">
-          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/static/navbar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="6222">
-          <caret line="4" column="46" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="833">
-          <caret line="19" column="0" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/static/stars.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1479">
-          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2026" max-vertical-offset="2465">
-          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/conduct.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1108" max-vertical-offset="2397">
-          <caret line="74" column="23" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/mysessions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="194" max-vertical-offset="663">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/latelogin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="1122">
-          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/changepass.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1258">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="16" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/student_login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="447" max-vertical-offset="1275">
-          <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/meta.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="249" max-vertical-offset="6307">
-          <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="2499">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="697">
-          <caret line="12" column="82" selection-start-line="12" selection-start-column="82" selection-end-line="12" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/includes/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.030630631" vertical-offset="0" max-vertical-offset="555">
-          <caret line="1" column="153" selection-start-line="1" selection-start-column="153" selection-end-line="1" selection-end-column="153" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/static/loginc.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1853">
-          <caret line="26" column="18" selection-start-line="18" selection-start-column="2" selection-end-line="26" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/static/data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05851979" vertical-offset="0" max-vertical-offset="581">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/libs/db_updater.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.319865" vertical-offset="205" max-vertical-offset="2992">
-          <caret line="168" column="24" selection-start-line="168" selection-start-column="24" selection-end-line="168" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/8ad230f8/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_category">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/externals/faculty-questions.csv">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.1" vertical-offset="0" max-vertical-offset="357">
-          <caret line="9" column="64" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/8ad230f8/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..classes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43889844" vertical-offset="1581" max-vertical-offset="15215">
-          <caret line="123" column="51" selection-start-line="123" selection-start-column="51" selection-end-line="123" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/libs/graph_builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1530" max-vertical-offset="4607">
-          <caret line="112" column="26" selection-start-line="112" selection-start-column="26" selection-end-line="112" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="426" max-vertical-offset="1020">
-          <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+        <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="561">
+          <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/timeline_graph.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="222" max-vertical-offset="816">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1190" max-vertical-offset="2635">
-          <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/director.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1496">
-          <caret line="70" column="18" selection-start-line="59" selection-start-column="12" selection-end-line="70" selection-end-column="18" />
+        <state vertical-scroll-proportion="-21.115385" vertical-offset="165" max-vertical-offset="2635">
+          <caret line="42" column="78" selection-start-line="42" selection-start-column="78" selection-end-line="42" selection-end-column="78" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/faculty.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="112" max-vertical-offset="833">
-          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/8ad230f8/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..classfacsub">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/8ad230f8/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_feedback">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/8ad230f8/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..faculty">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="86" max-vertical-offset="680">
-          <caret line="28" column="48" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
+          <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/views.py">
+    <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="341" max-vertical-offset="1003">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2537" max-vertical-offset="6222">
+          <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
+    <entry file="file://$PROJECT_DIR$/analytics/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="6341">
-          <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="625" max-vertical-offset="1581">
+          <caret line="75" column="79" selection-start-line="75" selection-start-column="79" selection-end-line="75" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/faculty.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6181818" vertical-offset="0" max-vertical-offset="884">
+          <caret line="32" column="10" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
           <folding />
         </state>
       </provider>

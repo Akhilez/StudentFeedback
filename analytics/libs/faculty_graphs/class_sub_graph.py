@@ -1,5 +1,5 @@
 from analytics.libs import db_helper
-from analytics.libs.db_helper import selected_questions
+from analytics.libs.db_helper import Timeline
 from analytics.libs.drilldown_chart import Series, Graphable, Bar
 
 __author__ = 'Akhil'
@@ -43,7 +43,7 @@ class ClassSubGraph(Graphable):
         series = Series(str(cfs), str(cfs), self)
 
         for i in range(len(questions)):
-            if i in selected_questions:
+            if i in Timeline.selected_questions:
                 bars.append(Bar(
                     questions[i].question,
                     db_helper.get_question_value_for_cfs(cfs.cfs_id, questions[i]),

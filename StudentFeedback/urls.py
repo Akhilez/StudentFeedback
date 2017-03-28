@@ -27,4 +27,4 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', views.login_view, name='login_view'),
     url(r'^logout/$', logout, {'next_page': '/login'}),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
