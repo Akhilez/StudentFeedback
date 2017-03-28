@@ -53,6 +53,7 @@ def faculty_info(request):
                 return render(request, 'analytics/faculty.html', context)
 
             context['faculty'] = faculty
+            context['facultys'] = db_helper.get_all_faculty()
 
             context['graph'] = faculty_graph.FacultyGraph(faculty=faculty.name)
             context['graph2'] = class_sub_graph.ClassSubGraph(faculty=faculty.name)

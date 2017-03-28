@@ -32,7 +32,7 @@ class TimelineGraph(Graphable):
         for timeline in timelines:
             bars.append(
                 Bar(
-                    str(timeline.date),
+                    timeline.date.strftime('%d-%b-%Y'),
                     sum(timeline.rating) / len(timeline.rating),
                     'null'
                 )

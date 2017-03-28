@@ -1,4 +1,5 @@
 from analytics.libs import db_helper
+from analytics.libs.db_helper import selected_questions
 from analytics.libs.drilldown_chart import Graphable, Series, Bar
 
 __author__ = 'Akhil'
@@ -18,19 +19,16 @@ class FacultyGraph(Graphable):
     def build_faculty_ques_series(self):
         questions = db_helper.get_all_question_texts()
 
-        if self.type == Graphable.types['bar']:
-            if self.height < len(questions) * self.height_per_bar:
-                self.height = len(questions) * self.height_per_bar
-
         bars = []
         series = Series(self.faculty, self.faculty, self)
 
         for i in range(len(questions)):
-            bars.append(Bar(
-                questions[i].question,
-                db_helper.get_question_value(self.faculty, questions[i]),
-                'null'
-            ))
+            if i in selected_questions:
+                bars.append(Bar(
+                    questions[i].question,
+                    db_helper.get_question_value(self.faculty, questions[i]),
+                    'null'
+                ))
 
         series.bars = bars
         series.color_by_point = 'false'

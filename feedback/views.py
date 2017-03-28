@@ -854,10 +854,6 @@ def LoaQuestions(request):
             else:
                 student_no = student_no.order_by('-student_no')[0].student_no + 1
 
-
-
-
-
             for i in range(len(subjects)):
                  loaratings = ""
                  temp=[]
@@ -884,6 +880,7 @@ def LoaQuestions(request):
 def updatedb(request):
     template = 'feedback/updatedb.html'
     context = {}
+    data = None
 
     #data = db_updater.update_classes()
     #data = db_updater.update_students()
@@ -892,7 +889,7 @@ def updatedb(request):
     #data = db_updater.update_class_fac_sub()
     #data = db_updater.update_faculty_questions()
 
-    #context['classes'] = data
+    context['classes'] = data
 
     return render(request, template, context)
 

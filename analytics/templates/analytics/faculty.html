@@ -15,6 +15,18 @@
 {% block maincontent %}
     <br/><br/><br/><br/>
 
+    <div style="float:right">
+        <form action="/analytics/faculty/" method="post">
+            {% csrf_token %}
+          <input list="facultys" name="faculty" placeholder="Search faculty">
+          <datalist id="facultys">
+              {% for faculty in facultys %}<option value="{{ faculty.name }}">{% endfor %}
+          </datalist>
+          <button class="searchbutton" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+    </div>
     {% if error %}
         ERROR: {{ error }}
     {% else %}

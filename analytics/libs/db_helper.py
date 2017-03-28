@@ -3,6 +3,8 @@ from feedback.models import *
 formatter = {'1': 'I', '2': 'II', '3': 'III', '4': 'IV', }
 deformatter = {'I': '1', 'II': '2', 'III': '3', 'IV': '4', }
 
+selected_questions = [x for x in range(6)]
+
 
 class Timeline:
     def __init__(self, date, rating):
@@ -63,6 +65,20 @@ def get_faculty(year, branch, section):
     return subjects
 
 
+def get_average(summ, itr, session=None, rel=None):
+    if rel is None:
+        feedbacks = Feedback.objects.filter(session_id=session, category=Category.objects.get(category='faculty'))
+    else:
+        feedbacks = Feedback.objects.filter(relation_id=rel, category=Category.objects.get(category='faculty'))
+    for feedback in feedbacks:
+        ratings = feedback.ratings.split(',')
+        for i in range(len(ratings)):
+            if i in selected_questions:
+                summ += int(ratings[i])
+                itr += 1
+    return summ, itr
+
+
 def get_year_value(year):
     classes = Classes.objects.filter(year=deformatter[year])
     sum = 0
@@ -72,12 +88,7 @@ def get_year_value(year):
         for initiation in initiations:
             sessions = Session.objects.filter(initiation_id=initiation)
             for session in sessions:
-                feedbacks = Feedback.objects.filter(session_id=session, category=Category.objects.get(category='faculty'))
-                for feedback in feedbacks:
-                    ratings = feedback.ratings.split(',')
-                    for rating in ratings:
-                        sum += int(rating)
-                        itr += 1
+                (sum, itr) = get_average(sum, itr, session=session)
     if itr != 0:
         avg = sum/itr
     else:
@@ -93,12 +104,7 @@ def get_branch_value(year, branch):
         for initiation in initiations:
             sessions = Session.objects.filter(initiation_id=initiation)
             for session in sessions:
-                feedbacks = Feedback.objects.filter(session_id=session, category=Category.objects.get(category='faculty'))
-                for feedback in feedbacks:
-                    ratings = feedback.ratings.split(',')
-                    for rating in ratings:
-                        sum += int(rating)
-                        itr += 1
+                (sum, itr) = get_average(sum, itr, session=session)
     if itr != 0:
         avg = sum/itr
     else:
@@ -114,12 +120,7 @@ def get_section_value(year, branch, section):
         for initiation in initiations:
             sessions = Session.objects.filter(initiation_id=initiation)
             for session in sessions:
-                feedbacks = Feedback.objects.filter(session_id=session, category=Category.objects.get(category='faculty'))
-                for feedback in feedbacks:
-                    ratings = feedback.ratings.split(',')
-                    for rating in ratings:
-                        sum += int(rating)
-                        itr += 1
+                (sum, itr) = get_average(sum, itr, session=session)
     if itr != 0:
         avg = sum/itr
     else:
@@ -137,12 +138,7 @@ def get_cfs(faculty, year, branch, section):
 def get_cfs_value(cfs):
     sum = 0
     itr = 0
-    feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id, category=Category.objects.get(category='faculty'))
-    for feedback in feedbacks:
-        ratings = feedback.ratings.split(',')
-        for rating in ratings:
-            sum += int(rating)
-            itr += 1
+    (sum, itr) = get_average(sum, itr, rel=cfs.cfs_id)
     if itr != 0:
         avg = sum/itr
     else:
@@ -171,12 +167,7 @@ def get_faculty_value(faculty):
     itr = 0
     cfss = ClassFacSub.objects.filter(faculty_id=faculty)
     for cfs in cfss:
-        feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id, category=Category.objects.get(category='faculty'))
-        for feedback in feedbacks:
-            ratings = feedback.ratings.split(',')
-            for rating in ratings:
-                sum += int(rating)
-                itr += 1
+        (sum, itr) = get_average(sum, itr, rel=cfs.cfs_id)
     if itr != 0:
         avg = sum/itr
     else:
@@ -250,12 +241,7 @@ def get_subject_value(subject):
     subject = Subject.objects.get(name=subject)
     cfss = ClassFacSub.objects.filter(subject_id=subject)
     for cfs in cfss:
-        feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id)
-        for feedback in feedbacks:
-            ratings_list = feedback.ratings.split(",")
-            for rating in ratings_list:
-                sum += int(rating)
-                itr += 1
+        (sum, itr) = get_average(sum, itr, rel=cfs.cfs_id)
     if itr != 0:
         avg = sum/itr
     else:
@@ -285,12 +271,7 @@ def get_faculty_value_for_subject(subject, faculty):
     subject = Subject.objects.get(name=subject)
     cfss = ClassFacSub.objects.filter(subject_id=subject, faculty_id=faculty)
     for cfs in cfss:
-        feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id)
-        for feedback in feedbacks:
-            ratings = feedback.ratings.split(',')
-            for rating in ratings:
-                sum += int(rating)
-                itr += 1
+        (sum, itr) = get_average(sum, itr, rel=cfs.cfs_id)
     if itr != 0:
         avg = sum/itr
     else:
@@ -370,8 +351,9 @@ def get_all_timelines(faculty):
                     old_ratings = date_dict[date_obj]
                     cur_ratings = feedback.ratings.split(',')
                     for i in range(len(old_ratings)):
-                        old_ratings[i] = (old_ratings[i] + float(cur_ratings[i])) / 2.0
-                        date_dict[date_obj] = old_ratings
+                        if i in selected_questions:
+                            old_ratings[i] = (old_ratings[i] + float(cur_ratings[i])) / 2.0
+                            date_dict[date_obj] = old_ratings
                 except KeyError:
                     str_list = feedback.ratings.split(',')
                     float_list = []
