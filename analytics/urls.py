@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^all/(\w+)/(\w+)/(\w+)/()()$', views.director, name="director"),
     url(r'^all/(\w+)/(\w+)/(\w+)/(\w+)/()$', views.director, name="director"),
     url(r'^all/(\w+)/(\w+)/(\w+)/(\w+)/(\w+)/$', views.director, name="director"),
+    url(r'^reviews/', views.reviews, name="reviews"),
+
 ]

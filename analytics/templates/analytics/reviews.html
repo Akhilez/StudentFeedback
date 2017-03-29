@@ -1,0 +1,82 @@
+{% extends 'feedback/base.html' %}
+
+{% block navbar %}
+    {% include 'includes/analytics/navbar.html' %}
+{% endblock %}
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>
+
+
+{% block maincontent %}
+    <br><br><br><br>
+    <h2 align="center"><strong>Reviews Given by the Students</strong></h2><br><center>
+   <form id="bootstrapSelectForm" method="post" class="form-horizontal" align="center">
+   {% csrf_token %}
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Year</label>
+        <div class="col-xs-3 selectContainer">
+            <select name="year" class="form-control" id="year">
+                <option value="1">I</option>
+                <option value="2">II</option>
+                <option value="3">III</option>
+                <option value="4">IV</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Branch</label>
+        <div class="col-xs-3 selectContainer">
+            <select name="branch" class="form-control">
+                <option value="CSE">CSE</option>
+                <option value="IT">IT</option>
+                <option value="ECE">ECE</option>
+                <option value="EIE">EIE</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Section</label>
+        <div class="col-xs-3 selectContainer">
+            <select name="section" class="form-control">
+                <option value="">Leave Blank for IT&EIE</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-xs-5 col-xs-offset-3">
+            <button type="submit" class="btn btn-default" name="submit">Get Reviews</button>
+        </div>
+    </div>
+</form>
+    {% if not error %}
+        <table class="table table-bordered table-hover table-striped">
+            <thead><h2><strong>Reviews of {{ year }} Year {{ branch }} {{ section }}Students</strong></h2></thead><br>
+            {% for note in notes %}
+                        <tr><td>{{ note.note }}</td></tr>
+                    {% endfor %}
+
+        </table>
+    {% else %}
+        <br><strong>{{ error }}</strong>
+    {% endif %}
+
+</center>
+{% endblock %}
+
+
+
+
+{% block footer %}
+    {% include 'feedback/includes/footer.html' %}
+{% endblock %}

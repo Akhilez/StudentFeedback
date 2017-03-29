@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from analytics.libs.db_helper import Timeline
 
-from feedback.models import Faculty, ClassFacSub, Feedback
+from feedback.models import *
 from .libs import tree_builder, graph_builder
 from StudentFeedback.settings import DIRECTOR_GROUP
 from analytics.libs import db_helper
@@ -91,3 +91,37 @@ def faculty_info(request):
         return render(request, 'analytics/faculty.html', context)
     else:
         return redirect('/analytics/all')
+
+@login_required
+def reviews(request):
+    template = 'analytics/reviews.html'
+    context = []
+
+    if 'submit' in request.POST:
+        try:
+            year = request.POST.get('year')
+            branch = request.POST.get('branch')
+            section = request.POST.get('section')
+            cid = Classes.objects.get(year=year, branch=branch, section=section)
+            initid = Initiation.objects.get(class_id=cid.class_id)
+            sid = Session.objects.get(initiation_id=initid.initiation_id)
+            notes = Notes.objects.all().filter(session_id=sid)
+            context ={'year': year, 'branch':branch, 'section':section, 'notes':notes}
+        except TypeError:
+            context['error'] = 'Please Check if the class has completed their Review or not'
+
+
+
+    '''if year:
+        context ={'year': year, }
+    if year and branch:
+        allClasses = Classes.objects.all().filter(year=year,branch=branch)
+        context = {'year': year, 'sections' : allClasses}
+    if year and branch and section:
+        cid = Classes.objects.get(year=year,branch=branch,section=section)
+        initid = Initiation.objects.get(class_id=cid.class_id)
+        sid = Session.objects.get(initiation_id=initid.initiation_id)
+        notes = Notes.objects.get(session_id=sid)
+        context = {'year': year, 'sections': allClasses, 'sid': notes}'''
+
+    return render(request, template, context)
