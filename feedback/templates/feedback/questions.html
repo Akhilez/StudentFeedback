@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block maincontent %}
-    <br/><br/>
-    <h3>{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
+    <h2 align="center" ><strong>RATE YOUR FACULTY</strong></h2>
+
+    <h3 align="center">{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
     <div>
         <div style="float:left">
             {% if category == 'facility' %}
@@ -70,15 +71,16 @@
         <div align="center">
             <ul class="pager">
                 {% if pager.has_next %}
-                    <input id="next_button" class="btn btn-default" type="submit" value="next" name="next">
+                    <input id="next_button" class="btn btn-primary" type="submit" value="Rate next Faculty" name="next">
                 {% else %}
                     <textarea class="form-control" id="remarks" placeholder="Remarks" name="remarks" ></textarea><br/>
-                    <input id="confirm_finish" type="submit" value="Finish" name="finish" class="btn btn-default" form="questionForm">
+                    <p align="center">By Clicking Finish, You'll be redirected to LOA Page.</p>
+                    <input id="confirm_finish" type="submit" value="Finish" name="finish" class="btn btn-success" form="questionForm">
                 {% endif %}
             </ul>
         </div>
 
-    </form>
+    </form><br><br>
 
     <script>
         var next = document.getElementById("next_button");

@@ -1,0 +1,52 @@
+<div style="padding: 30px">
+
+<!-- 3 setup a container element -->
+    <div id="jstree">
+    <!-- in this example the tree is populated from inline HTML -->
+        <ul>
+            <li id="LOAanalysis/class">By Class
+                <ul>
+                    <li id="LOAanalysis/class/all_branches">All Branches</li>
+                    <li id="LOAanalysis/class/all_sections">All sections</li>
+                </ul>
+            </li>
+
+
+
+            <li id="LOAanalysis/stu">By Subject
+                <ul>
+                    {% for year in year_objs %}
+                        <li id="ignorestu/{{ year }}">{{ year }} year
+                            <ul>
+                                {% for branch in year.branches %}
+                                    <li id="LOAanalysis/stu/{{ year }}/{{ branch }}">{{ branch }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- 4 include the jQuery library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <!-- 5 include the minified jstree source -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
+  <script>
+  $(function () {
+    // 6 create an instance when the DOM is ready
+    $('#jstree').jstree();
+    // 7 bind to events triggered on the tree
+    $('#jstree').on("changed.jstree", function (e, data) {
+      console.log(data.selected);
+        if(!/ignore/.test(data.selected))
+            window.location.href = '/analytics/'+ data.selected
+    });
+  });
+  </script>
+
+</div>

@@ -76,13 +76,17 @@ function toggle(source) {
     {% else %}
         {% if classes %}
              <h3>Select a class to start the session:</h3>
+
             <form method="post" action="" id="confirmForm">
                 {% csrf_token %}
-                <select name="selectClass">
+            <div class="form-group"></div>
+        <div class="col-xs-3 selectContainer">
+                <select name="selectClass" class="form-control">
                     {% for cls in classes %}
                         <option value="{{ cls.class_id.class_id }}">{{ cls.class_id }}</option>
                     {% endfor %}
                 </select>
+            </div>
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Select</button>
              </form>
         {% else %}

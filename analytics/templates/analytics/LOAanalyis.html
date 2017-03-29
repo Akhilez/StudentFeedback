@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %} feedback {% endblock %}
+
+
+
+{% block head %}
+
+    <style>
+        .row.content {height: auto}
+
+        .sidenav {
+          background-color: #f1f1f1;
+          height: 100%;
+        }
+
+        footer {
+          background-color: #555;
+          color: white;
+          padding: 15px;
+        }
+
+        @media screen and (max-width: 767px) {
+          .sidenav {
+            height: auto;
+            padding: 15px;
+          }
+          .row.content {height: auto;}
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+{% endblock head %}
+
+{% block navbar %}
+    {% include 'includes/analytics/navbar.html' %}
+{% endblock %}
+
+
+{% block maincontent %}
+
+    <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-3 sidenav">
+          {% include 'includes/analytics/LOAtree.html' %}
+        </div>
+
+        <div class="col-sm-9">
+            {% include 'includes/analytics/LOAgraph.html' %}
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

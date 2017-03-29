@@ -5,7 +5,7 @@ from analytics.libs.db_helper import Timeline
 from feedback.models import *
 from .libs import tree_builder, graph_builder
 from StudentFeedback.settings import DIRECTOR_GROUP
-from analytics.libs import db_helper
+from analytics.libs import db_helper,LOAdb_helper,LOAgraph_builder,LOAtree_builder
 from analytics.libs.faculty_graphs import faculty_graph, class_sub_graph, timeline_graph
 
 
@@ -123,5 +123,22 @@ def reviews(request):
         sid = Session.objects.get(initiation_id=initid.initiation_id)
         notes = Notes.objects.get(session_id=sid)
         context = {'year': year, 'sections': allClasses, 'sid': notes}'''
+
+    return render(request, template, context)
+
+def LOAanalysis(request,category, year, branch, sub, subsub):
+    template = 'analytics/LOAanalyis.html'
+    context = {'category': category, 'year': year, 'branch': branch, 'sub': sub, 'subsub': subsub,
+               'year_objs': LOAtree_builder.getTree(), 'active': 'home'}
+    graph_type = 'null'
+    if request.method == 'POST':
+        for typ in LOAgraph_builder.Graph.types:
+            if typ in request.POST:
+                graph_type = typ
+                break
+
+    context['graph'] = LOAgraph_builder.Graph(category, year, branch, sub, subsub, graph_type=graph_type)
+    context['Drilldown'] = LOAgraph_builder.Graph.drilldown
+
 
     return render(request, template, context)

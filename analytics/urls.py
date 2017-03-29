@@ -15,5 +15,11 @@ urlpatterns = [
     url(r'^all/(\w+)/(\w+)/(\w+)/(\w+)/()$', views.director, name="director"),
     url(r'^all/(\w+)/(\w+)/(\w+)/(\w+)/(\w+)/$', views.director, name="director"),
     url(r'^reviews/', views.reviews, name="reviews"),
+    url(r'^LOAanalysis/()()()()()$', views.LOAanalysis, name="LOAAnalysis"),
+    url(r'^LOAanalysis/(\w+)/()()()()$', views.LOAanalysis, name="LOAAnalysis"),
+    url(r'^LOAanalysis/(\w+)/(\w+)/(\w+)/()()$', views.LOAanalysis, name="LOAAnalysis"),
+    url(r'^LOAanalysis/(\w+)/(\w+)/(\w+)/(\w+)/()$', views.LOAanalysis, name="LOAAnalysis"),
+    url(r'^LOAanalysis/(\w+)/(\w+)/(\w+)/(\w+)/(\w+)/$', views.LOAanalysis, name="LOAAnalysis"),
+
 
 ]

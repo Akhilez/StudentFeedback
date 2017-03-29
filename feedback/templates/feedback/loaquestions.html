@@ -14,9 +14,7 @@
 <body>
 
 <div id="header" align="center">
-    {% block navbar %}
-    {% include 'feedback/includes/navbar.html' %}
-    {% endblock %}
+
 {% block maincontent %}
         <h2>Learning Outcomes Assessment</h2><hr>
     <table>
@@ -31,7 +29,7 @@
     <h4>PLEASE EVALUATE ON THE FOLLOWING SCALE</h4>
 </div>
 
-<form method="post" action="" id="questionPage">
+<form method="post" action="" id="questionPage" >
  {% csrf_token %}
 <table>
  <tr>

@@ -10,7 +10,7 @@
 
 {% block maincontent %}
     <br><br><br><br>
-    <h2 align="center"><strong>Reviews Given by the Students</strong></h2><br><center>
+    <h2 align="center">Reviews Given by the Students</h2><br><center>
    <form id="bootstrapSelectForm" method="post" class="form-horizontal" align="center">
    {% csrf_token %}
     <div class="form-group">
@@ -59,9 +59,9 @@
         </div>
     </div>
 </form>
-    {% if not error %}
+    {% if year %}
         <table class="table table-bordered table-hover table-striped">
-            <thead><h2><strong>Reviews of {{ year }} Year {{ branch }} {{ section }}Students</strong></h2></thead><br>
+            <thead><h2>Reviews of {{ year }} Year {{ branch }} {{ section }} Students</h2></thead><br>
             {% for note in notes %}
                         <tr><td>{{ note.note }}</td></tr>
                     {% endfor %}
