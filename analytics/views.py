@@ -9,6 +9,11 @@ from analytics.libs import db_helper
 from analytics.libs.faculty_graphs import faculty_graph, class_sub_graph, timeline_graph
 
 
+@login_required
+def index_view(request):
+    return render(request, 'analytics/index.html', {})
+
+
 def set_selected_questions(request):
     if 'select_ques' in request.POST:
         questions = request.POST.getlist('ques')
@@ -62,7 +67,7 @@ def faculty_info(request):
         elif request.session.get('faculty') is not None:
             faculty = request.session.get('faculty')
         else:
-            return redirect('/')
+            return redirect('/analytics/all')
 
         set_selected_questions(request)
 
@@ -85,4 +90,4 @@ def faculty_info(request):
 
         return render(request, 'analytics/faculty.html', context)
     else:
-        return redirect('/')
+        return redirect('/analytics/all')

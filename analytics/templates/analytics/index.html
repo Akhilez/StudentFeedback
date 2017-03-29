@@ -1,0 +1,32 @@
+{% extends 'feedback/base.html' %}
+
+{% block navbar %} {% include 'includes/analytics/navbar.html' %} {% endblock navbar %}
+
+{% block maincontent %}
+    <div class="row" style="text-align: center; background-color: #0e492d; color: white; padding: 50px">
+        <h1 style="margin-top: 100px;">Welcome, {{ user.username }}</h1>
+        KMIT Student Feedback
+    </div>
+    <div class="row" style="alignment: center; height: 600px; text-align: center">
+
+        <div class="col-sm-4" style="background-color: #f6f6f6; padding: 30px; height: inherit;  color: #0e492d;">
+            <a class="btn btn-default btn-outline btn-lg btn-block" href="/analytics/all">Faculty</a>
+            <p style="padding:30px;">
+                <b>The feedback on faculty taken from students.</b>
+            </p>
+        </div>
+        <div class="col-sm-4" style="padding: 30px; height: inherit">
+            <a class="btn btn-default btn-outline btn-lg btn-block" href="#">Facility</a>
+            <p style="padding:30px;">
+                <b>The feedback on college facility taken from students.</b>
+            </p>
+        </div>
+        <div class="col-sm-4" style="background-color: #f6f6f6; padding: 30px; height: inherit">
+            <a class="btn btn-default btn-outline btn-lg btn-block" href="">Learning Outcome Assessment</a>
+            <p style="padding:30px;">
+                <b>The feedback on learning outcome assessment taken from students.</b>
+            </p>
+        </div>
+
+    </div>
+{% endblock maincontent %}

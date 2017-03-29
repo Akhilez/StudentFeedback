@@ -32,6 +32,14 @@
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
+    {% load static %}
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'analytics/metisMenu/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'analytics/metisMenu/sb-admin-2.css' %}" rel="stylesheet">
+
+
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
 
@@ -45,27 +53,27 @@
 {% endblock head %}
 
 {% block navbar %}
-    {% include 'feedback/includes/navbar.html' %}
+    {% include 'includes/analytics/navbar.html' %}
 {% endblock %}
 
-{% block maincontent %}
+{% block fullcontent %}
     <br><br><br><br>
-    <div class="container-fluid">
-      <div class="row content">
-        <div class="col-sm-3 sidenav">
-          {% include 'includes/analytics/tree.html' %}
-        </div>
 
-        <div class="col-sm-9">
+    {% include 'includes/analytics/select_bars.html' %}
 
-            {% include 'includes/analytics/select_bars.html' %}
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{% static 'analytics/metisMenu/metisMenu.min.js' %}"></script>
 
-            <div class="row">
-                {% include 'includes/analytics/graph.html' %}
-            </div>
-        </div>
-      </div>
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static 'analytics/metisMenu/sb-admin-2.js' %}"></script>
+
+
+    {% include 'includes/analytics/tree.html' %}
+
+    <div class="container">
+        {% include 'includes/analytics/graph.html' %}
     </div>
+
     <br><br>
 
 {% endblock %}
