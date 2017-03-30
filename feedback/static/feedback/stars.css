@@ -1,4 +1,4 @@
-@import 'fonts/font-awesome.css';
+@import '../fonts/font-awesome.css';
 
 fieldset, label { margin: 0; padding: 0; }
 body{ margin: 20px; }
