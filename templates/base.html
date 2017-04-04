@@ -2,29 +2,29 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>{% block title %}Base{% endblock %}</title>
+    <title>{% block title %}Student Feedback{% endblock %}</title>
     {% block staticfiles %}{% endblock %}
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+    {% load static %}
 
 
-       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <style>
-            .w3-bar .w3-button {
-                padding: 16px;
-            }
-        </style>
+
+    <link rel="stylesheet" href="{% static 'feedback/bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'feedback/bootstrap/bootstrap-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'feedback/fonts/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'analytics/metisMenu/bootstrap.min.css' %}">
+
+    <style>
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+    </style>
     {% block head %}{% endblock %}
 </head>
 <body>
+<br/><br/><br/><br/>
 
-
+<script src="{% static 'feedback/bootstrap/jquery.js' %}"></script>
+<script src="{% static 'feedback/bootstrap/bootstrap.min.js' %}"></script>
 
 
 {% block navbar %}
@@ -32,9 +32,11 @@
 
 <div class="container">
 {% block maincontent %}
-    main content
 {% endblock %}
 </div>
+
+{% block fullcontent %}
+{% endblock fullcontent %}
 
 {% block footer %}
 {% endblock %}

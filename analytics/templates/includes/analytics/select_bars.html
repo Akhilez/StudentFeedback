@@ -1,10 +1,22 @@
 <div class="container">
+
+    {% load static %}
+<!-- Latest compiled and minified JavaScript -->
+    <script src="{% static 'analytics/selectors/bootstrap-select.js' %}"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+
+
+    {% load static %}
+    <script src="{% static 'analytics/selectors/chosen.jquery.min.js' %}"></script>
+    <script src="{% static 'analytics/selectors/select2.js' %}"></script>
+
 <div class="row">
-    <div class="col-sm-9" style=" margin-bottom: 50px" >
+    <div class="col-sm-8" style=" margin-bottom: 50px" >
         <form action="" method="post">
             {% csrf_token %}
             <label for="ques_selec">Select criteria: </label>
-            <select id="ques_selec" class="selectpicker" multiple tabindex="4" name="ques">
+            <select id="ques_selec" class="selectpicker show-tick" multiple tabindex="4" name="ques">
                 {% for question in all_questions %}
                     <option value="q{{ forloop.counter0 }}" {% if forloop.counter0 in selected_indices %}selected{% endif %}>{{ forloop.counter }}. {{ question.question }}</option>
                 {% endfor %}
@@ -16,16 +28,28 @@
     <form action="/analytics/faculty/" method="post">
         {% csrf_token %}
         <div class="col-sm-2">
-            <select id="fac_selec" data-placeholder="Search faculty" class="selectpicker" name="faculty" style="width: 200px">
-                <option selected disabled>Search faculty</option>
+            <select id="fac_selec" data-placeholder="Choose a Faculty..." class="chosen-select" name="faculty" style="width:350px; margin-right: 25%" tabindex="4">
                 {% for faculty in facultys %}<option value="{{ faculty.name }}">{{ faculty.name }}</option>{% endfor %}
             </select>
         </div>
-        <div style="float: right;">
+        <div style="margin-left: 100%">
             <button class="btn btn-default" type="submit">
                 <i class="fa fa-search"></i>
             </button>
         </div>
     </form>
+
+    <script type="text/javascript">
+        $(".chosen-select").select2();
+
+        $('.selectpicker').selectpicker({
+            noneSelectedText: 'Select a question',
+            iconBase: 'glyphicon',
+            tickIcon: 'glyphicon-ok'
+        });
+
+
+    </script>
+
 </div>
 </div>

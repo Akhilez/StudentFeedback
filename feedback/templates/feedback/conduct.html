@@ -19,7 +19,6 @@ function toggle(source) {
 {% endblock %}
 
 {% block maincontent %}
-    <br><br><br>
     {% if warning %}
         <div class="alert alert-warning">
             <strong>Warning!</strong> {{ warning }}
@@ -38,7 +37,6 @@ function toggle(source) {
             <br/><br/>
         </div>
     {% endif %}
-    <br><br>
     {% if otp %}
         <p> Session Started for {{ classSelected }}</p>
         <h2>Session ID : {{ otp }}</h2>

@@ -10,16 +10,16 @@
 
     <h3 align="center">{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
     <div>
-        <div style="float:left">
+        <div>
             {% if category == 'facility' %}
                 <h2>Facility feedback</h2>
             {% elif category == 'faculty' %}
-                <h2>{{ subject }} - {{ faculty }}</h2><br/>
+                <p class="h2">{{ subject }} - <b>{{ faculty }}</b></p><br/>
             {% endif %}
         </div>
 
-        <div style="float:right">
-            <ul class="pagination" style="float:right">
+        <div>
+            <ul class="pagination">
                 {% for i in subjects %}
                     <li {% ifequal forloop.counter pager.number %}class="active" {% else %}class="disabled"{% endifequal %}><a>{{ forloop.counter }}</a></li>
                 {% endfor %}
@@ -86,6 +86,11 @@
         var next = document.getElementById("next_button");
         var finish = document.getElementById("confirm_finish");
         next.onclick = function(){
+            if ( $("input[type=radio]:checked").length < {{ questions|length }} ) {
+                document.getElementById('fillall').innerHTML = 'Please answer all of the questions';
+            }
+        };
+        finish.onclick = function(){
             if ( $("input[type=radio]:checked").length < {{ questions|length }} ) {
                 document.getElementById('fillall').innerHTML = 'Please answer all of the questions';
             }

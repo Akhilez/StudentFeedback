@@ -1,7 +1,5 @@
 {% extends 'feedback/base.html' %}
 
-{% block title %} feedback {% endblock %}
-
 {% block head %}
 
     <style>
@@ -27,27 +25,13 @@
         }
     </style>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/data.js"></script>
-    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
-
     {% load static %}
-    <!-- Bootstrap Core CSS -->
-    <link href="{% static 'analytics/metisMenu/bootstrap.min.css' %}" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="{% static 'analytics/metisMenu/sb-admin-2.css' %}" rel="stylesheet">
-
-
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-
-<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
+    <link rel="stylesheet" href="{% static 'analytics/metisMenu/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'analytics/metisMenu/sb-admin-2.css' %}">
+    <link rel="stylesheet" href="{% static 'feedback/fonts/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'analytics/selectors/select2.css' %}">
+    <link rel="stylesheet" href="{% static 'analytics/selectors/bootstrap-select.css' %}">
 
 
 {% endblock head %}
@@ -57,7 +41,11 @@
 {% endblock %}
 
 {% block fullcontent %}
-    <br><br><br><br>
+
+    <script src="{% static 'analytics/highcharts/highcharts.js' %}"></script>
+    <script src="{% static 'analytics/highcharts/data.js' %}"></script>
+    <script src="{% static 'analytics/highcharts/drilldown.js' %}"></script>
+
 
     {% include 'includes/analytics/select_bars.html' %}
 
@@ -70,7 +58,7 @@
 
     {% include 'includes/analytics/tree.html' %}
 
-    <div class="container">
+    <div class="container" style="margin-left: 20%">
         {% include 'includes/analytics/graph.html' %}
     </div>
 

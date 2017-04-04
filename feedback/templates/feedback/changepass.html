@@ -1,7 +1,5 @@
 {% extends 'feedback/base.html' %}
 
-{% block title %} Home {% endblock %}
-
 {% block navbar %}
     {% if user.groups.all.0 == conductor_group %}
         {% include 'feedback/includes/conductor_navbar.html' %}

@@ -1,19 +1,13 @@
 {% extends 'feedback/base.html' %}
 
 {% block head %}
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/data.js"></script>
-    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
+    {% load static %}
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="{% static 'analytics/selectors/bootstrap-select.css' %}">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-
-    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
+    <link rel="stylesheet" href="{% static 'analytics/selectors/select2.css' %}">
 
 {% endblock head %}
 
@@ -24,7 +18,10 @@
 {% endblock %}
 
 {% block maincontent %}
-    <br/><br/><br/><br/>
+
+    <script src="{% static 'analytics/highcharts/highcharts.js' %}"></script>
+    <script src="{% static 'analytics/highcharts/data.js' %}"></script>
+    <script src="{% static 'analytics/highcharts/drilldown.js' %}"></script>
 
     {% include 'includes/analytics/select_bars.html' %}
     <div>

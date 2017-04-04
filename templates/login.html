@@ -1,6 +1,6 @@
 <html>
     <head>
-        {% block title %} College Feedback {% endblock %}
+        <title>{% block title %} Student Feedback {% endblock %}</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
@@ -9,11 +9,11 @@
             <link rel="stylesheet" type="text/css" href="{% static 'feedback/loginc.css' %}">
             <link rel="stylesheet" type="text/css" href="{% static 'feedback/loginj.js' %}">
             <link rel="stylesheet" type="text/css" href="{% static 'feedback/navbar.css' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.css' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.min.css' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.js' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap-theme.css' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/jquery.js' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap.min.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap.min.js' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap-theme.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/jquery.js' %}">
 
         {% endblock %}
 
@@ -87,6 +87,8 @@
     <!-- Navbar (sit on top) -->
     <div class="w3-top">
       <div class="w3-bar w3-white w3-card-2" id="myNavbar">
+          {% load static %}
+      <a href="/" class="w3-bar-item"><img src="{% static 'feedback/kmitlogo.jpg' %}" height="38px"></a>
         <a href="/" class="w3-bar-item w3-button w3-wide">Keshav Memorial Institute of Technology</a>
         <!-- Right-sided navbar links -->
             <div class="w3-right w3-hide-small">
