@@ -19,18 +19,20 @@
 
 {% block maincontent %}
 
-    <script src="{% static 'analytics/highcharts/highcharts.js' %}"></script>
-    <script src="{% static 'analytics/highcharts/data.js' %}"></script>
-    <script src="{% static 'analytics/highcharts/drilldown.js' %}"></script>
-
-    {% include 'includes/analytics/select_bars.html' %}
-    <div>
-        <h1 align="center">Faculty: <b>{{ faculty }}</b></h1>
-        <h2 align="center">Score: <b>{{ faculty_value }}/5</b></h2>
-    </div>
     {% if error %}
         ERROR: {{ error }}
     {% else %}
+
+        <script src="{% static 'analytics/highcharts/highcharts.js' %}"></script>
+        <script src="{% static 'analytics/highcharts/data.js' %}"></script>
+        <script src="{% static 'analytics/highcharts/drilldown.js' %}"></script>
+
+        {% include 'includes/analytics/select_bars.html' %}
+        <div>
+            <h1 align="center">Faculty: <b>{{ faculty }}</b></h1>
+            <h2 align="center">Score: <b>{{ faculty_value }}/5</b></h2>
+        </div>
+
         {% include 'includes/analytics/graph1.html' %}
         {% include 'includes/analytics/graph_2.html' %}
         {% include 'includes/analytics/graph_3.html' %}

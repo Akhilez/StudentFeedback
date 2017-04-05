@@ -16,7 +16,7 @@
         <form action="" method="post">
             {% csrf_token %}
             <label for="ques_selec">Select criteria: </label>
-            <select id="ques_selec" class="selectpicker show-tick" multiple tabindex="4" name="ques">
+            <select id="ques_selec" class="selectpicker" multiple tabindex="4" name="ques">
                 {% for question in all_questions %}
                     <option value="q{{ forloop.counter0 }}" {% if forloop.counter0 in selected_indices %}selected{% endif %}>{{ forloop.counter }}. {{ question.question }}</option>
                 {% endfor %}
@@ -25,22 +25,20 @@
         </form>
     </div>
 
-    <form action="/analytics/faculty/" method="post">
-        {% csrf_token %}
-        <div class="col-sm-2">
-            <select id="fac_selec" data-placeholder="Choose a Faculty..." class="chosen-select" name="faculty" style="width:350px; margin-right: 25%" tabindex="4">
-                {% for faculty in facultys %}<option value="{{ faculty.name }}">{{ faculty.name }}</option>{% endfor %}
-            </select>
-        </div>
-        <div style="margin-left: 100%">
-            <button class="btn btn-default" type="submit">
-                <i class="fa fa-search"></i>
-            </button>
-        </div>
-    </form>
+    <div >
+        <select id="fac_selec" data-placeholder="Choose a Faculty..." class="chosen-select" name="faculty" style="width:250px; margin-right: 25%" tabindex="4">
+            {% for faculty in facultys %}<option value="{{ faculty.faculty_id }}">{{ faculty.name }}</option>{% endfor %}
+        </select>
+        <a id="make_url" href="#" style="margin-left: 5px"><i class="fa fa-search"></i></a>
+    </div>
+
+
 
     <script type="text/javascript">
-        $(".chosen-select").select2();
+
+        var $select2Elm = $('.chosen-select');
+
+        $select2Elm.select2();
 
         $('.selectpicker').selectpicker({
             noneSelectedText: 'Select a question',
@@ -48,8 +46,14 @@
             tickIcon: 'glyphicon-ok'
         });
 
+        $('#make_url').click(function(e) {
+            e.preventDefault();
+            window.location = "/analytics/faculty/" + $('#fac_selec').val();
+        });
 
     </script>
 
 </div>
+
+
 </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from analytics.libs.db_helper import Timeline
 
@@ -53,44 +53,30 @@ def director(request, category, year, branch, sub, subsub):
 
 
 @login_required
-def faculty_info(request):
+def faculty_info(request, faculty):
 
     if not request.user.groups.filter(name=DIRECTOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
 
     context = {}
 
-    if request.method == 'POST':
-        if 'faculty' in request.POST:
-            faculty = request.POST.getlist('faculty')[0]
-            request.session['faculty'] = faculty
-        elif request.session.get('faculty') is not None:
-            faculty = request.session.get('faculty')
-        else:
-            return redirect('/analytics/all')
+    faculty = get_object_or_404(Faculty, faculty_id=faculty)
 
-        set_selected_questions(request)
+    set_selected_questions(request)
 
-        try:
-            faculty = Faculty.objects.get(name=faculty)
-        except:
-            context['error'] = "Sorry, the faculty: "+faculty+' is not found'
-            return render(request, 'analytics/faculty.html', context)
+    context['faculty'] = faculty
+    context['faculty_value'] = round(db_helper.get_faculty_value(faculty), 2)
 
-        context['faculty'] = faculty
-        context['faculty_value'] = round(db_helper.get_faculty_value(faculty), 2)
+    context['graph'] = faculty_graph.FacultyGraph(faculty=faculty.name)
+    context['graph2'] = class_sub_graph.ClassSubGraph(faculty=faculty.name)
+    context['graph3'] = timeline_graph.TimelineGraph(faculty=faculty.name)
 
-        context['graph'] = faculty_graph.FacultyGraph(faculty=faculty.name)
-        context['graph2'] = class_sub_graph.ClassSubGraph(faculty=faculty.name)
-        context['graph3'] = timeline_graph.TimelineGraph(faculty=faculty.name)
+    context['facultys'] = db_helper.get_all_faculty()
+    context['all_questions'] = db_helper.get_all_question_texts()
+    context['selected_indices'] = db_helper.get_selected_questions()
 
-        context['facultys'] = db_helper.get_all_faculty()
-        context['all_questions'] = db_helper.get_all_question_texts()
-        context['selected_indices'] = db_helper.get_selected_questions()
+    return render(request, 'analytics/faculty.html', context)
 
-        return render(request, 'analytics/faculty.html', context)
-    else:
-        return redirect('/analytics/all')
 
 @login_required
 def reviews(request):

@@ -1,142 +1,121 @@
 <html>
-    <head>
-        <title>{% block title %} Student Feedback {% endblock %}</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-        {% block staticfiles %}
-            {% load static %}
-            <link rel="stylesheet" type="text/css" href="{% static 'feedback/loginc.css' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'feedback/loginj.js' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'feedback/navbar.css' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap.css' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap.min.css' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap.min.js' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap-theme.css' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/jquery.js' %}">
+<head>
+    <title>{% block title %} Student Feedback {% endblock %}</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+    {% block staticfiles %}
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'feedback/loginc.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'feedback/loginj.js' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'feedback/navbar.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap.min.js' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/bootstrap-theme.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'feedback/bootstrap/jquery.js' %}">
 
-        {% endblock %}
+    {% endblock %}
 
-        <style>
-            .w3-bar .w3-button {
-                padding: 16px;
-            }
-            @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-                        hr.star-light,
-            hr.star-primary {
-                margin: 25px auto 30px;
-                padding: 0;
-                max-width: 250px;
-                border: 0;
-                border-top: solid 5px;
-                text-align: center;
-            }
+    <style>
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
 
-            hr.star-light:after,
-            hr.star-primary:after {
-                content: "\2605";
-                display: inline-block;
-                position: relative;
-                top: -.8em;
-                padding: 0 .25em;
-                font-family: FontAwesome;
-                font-size: 2em;
-            }
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+        hr.star-light,
+        hr.star-primary {
+            margin: 25px auto 30px;
+            padding: 0;
+            max-width: 250px;
+            border: 0;
+            border-top: solid 5px;
+            text-align: center;
+        }
 
-            hr.star-light {
-                border-color: #fff;
-            }
+        hr.star-light:after,
+        hr.star-primary:after {
+            content: "\2605";
+            display: inline-block;
+            position: relative;
+            top: -.8em;
+            padding: 0 .25em;
+            font-family: FontAwesome;
+            font-size: 2em;
+        }
 
-            hr.star-light:after {
-                color: #fff;
-                background-color: #18bc9c;
-            }
+        hr.star-light {
+            border-color: #fff;
+        }
 
-            hr.star-primary {
-                border-color: #2c3e50;
-            }
+        hr.star-light:after {
+            color: #fff;
+            background-color: #18bc9c;
+        }
 
-            hr.star-primary:after {
-                color: #2c3e50;
-                background-color: #18bc9c;
-            }
-        </style>
-        <script>
-            $('.message a').click(function(){
+        hr.star-primary {
+            border-color: #2c3e50;
+        }
+
+        hr.star-primary:after {
+            color: #2c3e50;
+            background-color: #18bc9c;
+        }
+    </style>
+    <script>
+        $('.message a').click(function () {
             $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-            });
-            // Toggle between showing and hiding the sidenav when clicking the menu icon
-            var mySidenav = document.getElementById("mySidenav");
-        </script>
-        <script>
-            function w3_open() {
-                if (mySidenav.style.display === 'block') {
-                    mySidenav.style.display = 'none';
-                } else {
-                    mySidenav.style.display = 'block';
-                }
+        });
+        // Toggle between showing and hiding the sidenav when clicking the menu icon
+        var mySidenav = document.getElementById("mySidenav");
+    </script>
+    <script>
+        function w3_open() {
+            if (mySidenav.style.display === 'block') {
+                mySidenav.style.display = 'none';
+            } else {
+                mySidenav.style.display = 'block';
             }
+        }
 
-            // Close the sidenav with the close button
-            function w3_close() {
-                mySidenav.style.display = "none";
-            }
-        </script>
-    </head>
+        // Close the sidenav with the close button
+        function w3_close() {
+            mySidenav.style.display = "none";
+        }
+    </script>
+</head>
 
-    <!-- Navbar (sit on top) -->
-    <div class="w3-top">
-      <div class="w3-bar w3-white w3-card-2" id="myNavbar">
-          {% load static %}
-      <a href="/" class="w3-bar-item"><img src="{% static 'feedback/kmitlogo.jpg' %}" height="38px"></a>
-        <a href="/" class="w3-bar-item w3-button w3-wide">Keshav Memorial Institute of Technology</a>
-        <!-- Right-sided navbar links -->
-            <div class="w3-right w3-hide-small">
-              <a href="/feedback/forgotPassword/" class="w3-bar-item w3-button">FORGOT PASSWORD</a>
-              <a href="/feedback/updatedb" class="w3-bar-item w3-button"><i class="fa fa-user"></i> UPDATE DATABASE</a>
-              <a href="/feedback/student/" class="w3-bar-item w3-button"><i class="fa fa-th"></i>FEEDBACK</a>
-              <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
-            </div>
-            <!-- Hide right-floated links on small screens and replace them with a menu icon -->
-            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
-              <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
-            </a>
-      </div>
+<body>
+{% include 'includes/login_navbar.html' %}
+
+<br><br><br/><br/>
+{% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <strong>Please Check your Login Credentials and Login Again.</strong>
     </div>
+{% endif %}
 
-    <!-- Sidenav on small screens when clicking the menu icon -->
-    <nav class="w3-sidenav w3-black w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidenav">
-      <a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Close ×</a>
-      <a href="#about" onclick="w3_close()">ABOUT</a>
-      <a href="#" onclick="w3_close()">PROFILE</a>
-      <a href="#" onclick="w3_close()">SOMETHING</a>
-      <a href="#contact" onclick="w3_close()">CONTACT</a>
-    </nav>
-    <br><br>
-    {% if error %}
-            <div class="alert alert-danger">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                <strong>Please Check your Login Credentials and Login Again.</strong>
-            </div>
-    {% endif %}
-    <body><br>
-        <h1 align="center" style="color:#FFFFFF">College Feedback Application</h1>
-        <hr class="star-light">
-        <div class="login-page">
-            <div class="form">
-                <form method="post" action="" class="login-form">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" value="SIGN IN" name="login">SIGN IN</button>
-                </form>
-            </div>
-        </div>
-    </body>
+<h1 align="center" style="color:#FFFFFF">College Feedback Application</h1>
+<hr class="star-light">
+<div class="login-page">
+    <div class="form">
+        <form method="post" action="" class="login-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" value="SIGN IN" name="login">SIGN IN</button>
+        </form>
+    </div>
+</div>
 
-    <!-- Footer -->
-    <footer class="w3-center w3-black w3-padding-50" style="position: absolute;right: 0;bottom: 0;height:30px;left: 0;background-color: #efefef;text-align: center;">
-      <p>Copyright &copy;2017 Keshav Memorial Institute of Technology</p>
-    </footer>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-50"
+        style="position: absolute;right: 0;bottom: 0;height:30px;left: 0;background-color: #efefef;text-align: center;">
+    <p>Copyright &copy;2017 Keshav Memorial Institute of Technology</p>
+</footer>
+
+</body>
 </html>
 
 

@@ -46,9 +46,6 @@
     <script src="{% static 'analytics/highcharts/data.js' %}"></script>
     <script src="{% static 'analytics/highcharts/drilldown.js' %}"></script>
 
-
-    {% include 'includes/analytics/select_bars.html' %}
-
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{% static 'analytics/metisMenu/metisMenu.min.js' %}"></script>
 
@@ -59,6 +56,7 @@
     {% include 'includes/analytics/tree.html' %}
 
     <div class="container" style="margin-left: 20%">
+        {% include 'includes/analytics/select_bars.html' %}
         {% include 'includes/analytics/graph.html' %}
     </div>
 

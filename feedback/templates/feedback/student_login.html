@@ -1,4 +1,3 @@
-<html>
 {% extends 'feedback/base.html' %}
 
 {% block head %}
@@ -8,59 +7,40 @@
 {% endblock %}
 
 {% block navbar %}
-    <div class="w3-top">
-  <div class="w3-bar w3-white w3-card-2" id="myNavbar">
-      {% load static %}
-      <a href="/" class="w3-bar-item"><img src="{% static 'feedback/kmitlogo.jpg' %}" height="38px"></a>
-    <a href="/" class="w3-bar-item w3-button w3-wide">Keshav Memorial Institute of Technology</a>
-    <!-- Right-sided navbar links -->
-    <div class="w3-right w3-hide-small">
-      <a href="#" class="w3-bar-item w3-button"></a>
-      <a href="#" class="w3-bar-item w3-button"></a>
-        <a href="#" class="w3-bar-item w3-button"></a>
-        <a href="/logout/" class="w3-bar-item w3-button"><i class="fa fa-user"></i> FACULTY LOGIN</a>
-    </div>
-    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
-
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
-      <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
-    </a>
-  </div>
-</div>
-
+    {% include 'feedback/includes/student_navbar.html' %}
 {% endblock %}
 
 {% block maincontent %}
 
     {% if disabled %}
-        <br><br><br><br>
-         <h2 style="color:#ffffff">Disabled</h2>
-         <div class="alert alert-danger">
+        <h2 style="color:#ffffff">Disabled</h2>
+        <div class="alert alert-danger">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
             <strong>The feedback page is disabled, your coordinator must initiate feedback sessions</strong>
         </div>
     {% else %}
 
-    {% if error %}
-        <div class="alert alert-danger">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-            <strong>Error!</strong> {{ error }}
+        {% if error %}
+            <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                <strong>Error!</strong> {{ error }}
+            </div>
+        {% endif %}
+        <h1 style="color:#FFFFFF;">RATE YOUR FACULTY</h1>
+        <hr class="star-light">
+        <div class="login-page" align="center">
+            <div class="form">
+                <h3>Enter OTP</h3>
+
+                <p>Enter the OTP that is written on the writing board</p>
+
+                <form method="POST" action="" class="login-form">
+                    {% csrf_token %}
+                    <input type="text" id="OTP" name="OTP" required="true" placeholder="OTP">
+                    <button type="submit">TAKE FEEDBACK</button>
+                </form>
+            </div>
         </div>
-    {% endif %}
-    <br><br><br><br>
-    <h1 style="color:#FFFFFF;">RATE YOUR FACULTY</h1>
-    <hr class="star-light">
-    <div class="login-page" align="center">
-        <div class="form">
-            <h3>Enter OTP</h3>
-            <p>Enter the OTP that is written on the writing board</p>
-            <form method="POST" action="" class="login-form">
-                {% csrf_token %}
-                <input type="text" id="OTP" name="OTP" required="true" placeholder="OTP">
-                <button type="submit">TAKE FEEDBACK</button>
-            </form>
-        </div>
-    </div>
     {% endif %}
 
 

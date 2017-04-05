@@ -1,0 +1,31 @@
+<div class="w3-top">
+    <div class="w3-bar w3-white w3-card-2" id="myNavbar">
+        {% load static %}
+        <a href="/" class="w3-bar-item"><img src="{% static 'feedback/kmitlogo.jpg' %}" height="38px"></a>
+        <a href="/" class="w3-bar-item w3-button w3-wide">KMIT Student Feedback</a>
+        <div class="w3-left w3-hide-small">
+            {% block leftlinks %}
+                <!--FORMAT = <a href="/" class="w3-bar-item w3-button">Home</a>-->
+            {% endblock leftlinks %}
+        </div>
+        <div class="w3-right w3-hide-small">
+            {% block rightlinks %}
+                <!--FORMAT = <a href="/" class="w3-bar-item w3-button"><i class="fa fa-th"></i> LOGOUT</a>-->
+            {% endblock rightlinks %}
+        </div>
+        <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+           onclick="w3_open()">
+            <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
+        </a>
+    </div>
+</div>
+
+<!-- Sidenav on small screens when clicking the menu icon -->
+<nav class="w3-sidenav w3-black w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidenav">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Close ×</a>
+    <a href="#about" onclick="w3_close()">ABOUT</a>
+    <a href="#" onclick="w3_close()">PROFILE</a>
+    <a href="#" onclick="w3_close()">SOMETHING</a>
+    <a href="#contact" onclick="w3_close()">CONTACT</a>
+</nav>
