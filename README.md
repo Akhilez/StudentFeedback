@@ -3,6 +3,7 @@
 Instructions:
    
 $ cd ~/StudentFeedback
+
 $ python3 manage.py runserver 0.0.0.0:8000
 
 This will run the project with the current IP as the URL with port 8000

@@ -500,7 +500,9 @@ def LoaQuestions(request):
     cfs = ClassFacSub.objects.filter(class_id=classObj)
     for i in cfs:
         cfsList.append(i)
-        subjects.append(i.subject_id)
+        con = LOAquestions.objects.filter(subject_id=i.subject_id)
+        if len(con) > 0:
+            subjects.append(i.subject_id)
     context['subjects'] = subjects
     paging = subjects
 
@@ -590,6 +592,7 @@ def updatedb(request):
     #data = db_updater.update_subjects()
     #data = db_updater.update_class_fac_sub()
     #data = db_updater.update_faculty_questions()
+    data = db_updater.update_loa_questions()
 
     context['classes'] = data
 

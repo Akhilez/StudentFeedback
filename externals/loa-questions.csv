@@ -1,6 +1,6 @@
 Has the course achieved its stated objectives?  ,General Objectives
 Have you gained the stated skills?,General Objectives
-Whether the teaching – learning process has helped in acquiring the stated skills?,General Objectives
+Whether the teaching ï¿½ learning process has helped in acquiring the stated skills?,General Objectives
 Whether the teacher has helped to get exposure to real time applications of the course?,General Objectives
 Can you solve simple engineering problems by using concept of probability distributions,General Objectives
 Whether the syllabus is adequate to achieve the objectives?,General Objectives
@@ -20,7 +20,7 @@ Can you apply Algorithms for solving problems like sorting; searching; insertion
 Explain  data structure concepts for realistic problems,DATA STRUCTURES THROUGH C
 Can you analyse performance of algorithms,DATA STRUCTURES THROUGH C
 Can you identify problems independently and think critically,DATA STRUCTURES THROUGH C
-Can you solve binary addition and subtraction 2’s complement representation and operations with this representation,DIGITAL LOGIC DESIGN AND COMPUTERORGANIZATION
+Can you solve binary addition and subtraction 2ï¿½s complement representation and operations with this representation,DIGITAL LOGIC DESIGN AND COMPUTERORGANIZATION
 Evaluate Boolean algebra; Karnaugh map.Explain Tabulation Method and be able to  bi-stable elements and different types of latches; flip-flops.,DIGITAL LOGIC DESIGN AND COMPUTERORGANIZATION
 Can you design procedures of Combinational and Sequential logic circuits;  memory organizations; PAL.and be able to distinguish theComputer Arithmetic and different types of operations; ,DIGITAL LOGIC DESIGN AND COMPUTERORGANIZATION
 Distinguish Instruction formats classification based on number of operands; size of instruction; and way of accessing the data.,DIGITAL LOGIC DESIGN AND COMPUTERORGANIZATION
@@ -34,4 +34,75 @@ Can you develop circuit models for elementary electronic components,BASIC ELECTR
 Do you use various methods of circuit analysis; including simplified methods such as series-parallel reductions; voltage and current dividers; and the node method,BASIC ELECTRICAL ENGINEERING 
 Do you understand the  principle of superposition and Thevenin Norton equivalent circuits?,BASIC ELECTRICAL ENGINEERING 
 Can you identify the type of electrical machine used for that particular application,BASIC ELECTRICAL ENGINEERING 
-Do you understand   to identify the type of electrical machine used for that particular application,BASIC ELECTRICAL ENGINEERING 
+Do you understand   to identify the type of electrical machine used for that particular application,BASIC ELECTRICAL ENGINEERING
+Can you able to identify the fundamental principles underlying various programming language features,Principles of Programming Language (PPL)
+Are you able to express the syntax and semantics of languages in formal notations?,Principles of Programming Language (PPL)
+Can u apply the concepts of sub programs and blocks to various programming languages,Principles of Programming Language (PPL)
+Can you describe the implementation of object?oriented languages? ,Principles of Programming Language (PPL)
+"Are you able to demonstrate the concepts of functional, logic and scripting programming languages",Principles of Programming Language (PPL)
+Can you explain the basic concepts and the applications of database systems,Data Base Management System (DBMS)
+Develop SQL Queries to perform CURD operations on database. Design unary/binary/set/aggregate queries in Relational Algebra,Data Base Management System (DBMS)
+Can you classify and apply different database normalization principles,Data Base Management System (DBMS)
+Can you explain the basic concepts& the applications of database systems,Data Base Management System (DBMS)
+Can you apply Object Oriented Programming concepts in problem solving,JAVA Programming
+Can you apply exception handling multitasking and collection framework for real time problem,JAVA Programming
+Do you able to identify the classes in JAVA API related for application development,JAVA Programming
+Can you apply swings aspects in graphical database,JAVA Programming
+Can you explain Interactive application/applet development and implement event handling mechanisms,JAVA Programming
+Can you apply Object Oriented Programming concepts in problem solving,JAVA Programming
+Can you do exception handling multitasking and collection framework for real time problem,JAVA Programming
+Do you able to recognize the importance of every form of living and nonliving things,Environmental Science (ES)
+"Can you develop engineering applications by using different mineral resource, raw materials",Environmental Science (ES)
+"Can you design models for Govt,other NGOs for the conservation of biodiversity",Environmental Science (ES)
+Can you choose to minimize the pollution level by simple adaptations to nature,Environmental Science (ES)
+Can you explain the importance of data communications and the Internet in supporting business communications and daily activities,Data Communication (DC)
+Do you know how communication works in data networks and the Internet. Recognize the different internetworking devices and their functions,Data Communication (DC)
+Can you analyze the services and features of the various layers of data networks,Data Communication (DC)
+"Analyze the features and operations of various application layer protocols such as Http, DNS, and SMTP",Data Communication (DC)
+Are you able to analyze worst-case running times of algorithms using asymptotic analysis,Design Analysis Algorithm (DAA)
+Can you derive and solve recurrences describing the performance of divide-and-conquer algorithms,Design Analysis Algorithm (DAA)
+"Can you do recite algorithms that employ this paradigm. Synthesize dynamic-programming algorithms, and analyze them",Design Analysis Algorithm (DAA)
+"Canyou do recite algorithms that employ this paradigm. Synthesize greedy algorithms, and analyze them",Design Analysis Algorithm (DAA)
+Explain the different ways to analyze randomized algorithms,Design Analysis Algorithm (DAA)
+Can you able to describe statistical data analysis techniques used in decision making,INTRODUCTION TO ANALYTICS(IA)
+Do you understand principles of Data Science to the analysis of large-scale problems,INTRODUCTION TO ANALYTICS(IA)
+"Can you work with R and R Hadoop to analyze structured, unstructured and Big Data",INTRODUCTION TO ANALYTICS(IA)
+Can you create competitive advantage from both structured and unstructured data,INTRODUCTION TO ANALYTICS(IA)
+Did you understand the need of data warehousing in addition to database systems,DATAMINING & DATAWAREHOUSING(DWDM)
+Can you Practice the pre-processing of data and apply mining techniques,DATAMINING & DATAWAREHOUSING(DWDM)
+Can you able to solve real world problems in business and scientific information using data mining,DATAMINING & DATAWAREHOUSING(DWDM)
+Can you do parse and use XML data with Java applications,WEB TECHNOLOGIES(WT)
+Do you understand the concepts of Servlets to develop dynamic web content,WEB TECHNOLOGIES(WT)
+Can you able to describe the syntax and functions available to deal with file processing for files residing on the web server,WEB TECHNOLOGIES(WT)
+Can you Separate business logic of the application from its presentation to develop more efficient server side scripts by using the concepts of PHP and Java Server Pages,WEB TECHNOLOGIES(WT)
+Can you Interpret a model for testing and understand the process of testing,SOFTWARE TESTING METHODOLOGIES(STM)
+Can you identify the components of a control flow diagram and compare the same with a flowchart,SOFTWARE TESTING METHODOLOGIES(STM)
+Do you compare and analyze various strategies of data flow testing,SOFTWARE TESTING METHODOLOGIES(STM)
+Can you design reduction procedure algorithm to a control flow graph and simplify it into a single path expression,SOFTWARE TESTING METHODOLOGIES(STM)
+Can you describe how the specifications can be transformed into sentences and how they can be mapped to KV Charts,SOFTWARE TESTING METHODOLOGIES(STM)
+"Conclude key principles in OO analysis, design, and development",OBJECT ORIENTED ANALYSIS AND DESIGN(OOAD)
+Do you Able to analyze application of the Unified Modelling Language (UML) towards      analysis  and design,OBJECT ORIENTED ANALYSIS AND DESIGN(OOAD)
+Can you describe Object Oriented Software Development Process,OBJECT ORIENTED ANALYSIS AND DESIGN(OOAD)
+"Can you  Identify basic OO concepts such as types, inheritance & interfaces, & know how to use them",OBJECT ORIENTED ANALYSIS AND DESIGN(OOAD)
+Can you describe OO analysis and design& its difference from structured design,OBJECT ORIENTED ANALYSIS AND DESIGN(OOAD)
+"Can you describe the architecture of parallel and distributed computing, including shared and distributed memory, data and task parallel computing and analyze their advantages and disadvantages",CLOUD COMPUTING(CC)
+"Do you understand how to characterize the distinctions between Infrastructure, Platform and Software as a Service (IaaS, PaaS, SaaS) abstractions, and Public and Private Clouds, description of virtualization and their role in elastic computing",CLOUD COMPUTING(CC)
+Can you describe the federated architecture and to enable students exploring some important cloud computing driven commercial systems such as Google Apps and Amazon Web Services and other businesses cloud applications,CLOUD COMPUTING(CC)
+Can you explain the security aspects and legal issues in cloud computing,CLOUD COMPUTING(CC)
+"Can you write advanced SQL queries and stored procedures to preprocess data (using integration, cleaning and transformation) for visualization, modeling and interpretation",PREDICTIVE ANALYTICS
+Do you able to Identify appropriate database technologies to meet a set of requirements and to recommend possible solutions,PREDICTIVE ANALYTICS
+"Can you create predictive models using statistical, data mining and machine learning techniques, and evaluate and interpret such models to support fact-based decision making",PREDICTIVE ANALYTICS
+Do you work both independently and in a team to solve large data analysis projects,PREDICTIVE ANALYTICS
+"Can you clearly communicate and present complex analytics results to business clients, using practical and simple business terms that can be understood by a general non-technical audience",PREDICTIVE ANALYTICS
+Can you use data visualization tools to communicate data mining results in an effective way,PREDICTIVE ANALYTICS
+Can you identify and evaluate appropriate data analytics techniques to be used depending on the specific information needs of the project,PREDICTIVE ANALYTICS
+Do you understand Storage Area Networks characteristics and components. ,STORAGE AREA NETWORKS
+Describe the challenges associated with data center networking and the need for switch network convergence,STORAGE AREA NETWORKS
+"Do you understand how Storage Area Networks including storage architectures, logical and physical components of a storage infrastructure, managing and monitoring the data center",STORAGE AREA NETWORKS
+ Can you describe the concept of RAID and different RAID levels and their suitability for different application environments,STORAGE AREA NETWORKS
+Do you know how to learn Fibre Channel protocols and how SAN components use them to communicate with each other,STORAGE AREA NETWORKS
+Can you describe files sharing operations on NAS and IP-SAN of the different network,STORAGE AREA NETWORKS
+Can you define Management and plan an organizational structure for a given   context,MANAGEMENT SCIENCE
+Can you apply production control techniques through work strudy,MANAGEMENT SCIENCE
+Can you explain how the plan and control Human Resources functions better,MANAGEMENT SCIENCE
+"Can you explain how the Plan , schedule and control projects through PERT and CPM",MANAGEMENT SCIENCE

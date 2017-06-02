@@ -1,4 +1,5 @@
 from _mysql import DatabaseError
+import csv
 import datetime
 import re
 from analytics.libs import db_helper
@@ -39,7 +40,7 @@ def update_classes():
 
         except:
             pass
-
+    file.close()
     return classes
 
 def update_students():
@@ -69,6 +70,7 @@ def update_students():
             except:
                 pass
 
+    file.close()
     return classes
 
 
@@ -86,12 +88,14 @@ def update_faculty():
         except:
             pass
 
+    file.close()
     return faculty
 
 
 def update_subjects():
     file = open('externals/class-faculty-subject.csv', 'r')
     lines = file.readlines()
+    file.close()
     subjects = set()
     for line in lines:
         fields = line.split(',')
@@ -109,6 +113,7 @@ def update_subjects():
 def update_class_fac_sub():
     file = open('externals/class-faculty-subject.csv', 'r')
     lines = file.readlines()
+    file.close()
     relations = set()
     for line in lines:
         fields = line.split(',')
@@ -135,6 +140,7 @@ def update_class_fac_sub():
 def update_faculty_questions():
     file = open('externals/faculty-questions.csv', 'r')
     lines = file.readlines()
+    file.close()
     questions = set()
     try:
         category = Category.objects.get(category='faculty')
@@ -155,22 +161,12 @@ def update_faculty_questions():
 
 
 def update_loa_questions():
-    file = open('externals/loa-questions.csv', 'r')
-    lines = file.readlines()
-    questions = set()
-    for line in lines:
-        fields = line.split(',')
-        question = fields[0].strip()
-        subcategory = fields[1].strip()
-        try:
-            try:
-                subject = Subject.objects.get(subcategory)
-            except:
-                continue
-            LOAquestions.objects.get(question=question, subject_id=subject)
-            continue
-        except:
-            LOAquestions.objects.create(question=question, subject_id=subcategory)
-            questions.add(question+'\t'+subcategory)
+    #file = open('externals/loa-questions.csv', 'r')
+    file = open('externals/IT.csv', 'r')
+    reader = csv.reader(file)
+    questions = []
+    for row in reader:
+        questions.append(row)
 
+    file.close()
     return questions
