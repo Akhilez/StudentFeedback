@@ -1,26 +1,39 @@
 from django.contrib.auth.models import User, Group
 from django.core.validators import MinValueValidator, MaxValueValidator, validate_comma_separated_integer_list
 from django.db import models
-from django.dispatch import receiver
 
 
 # Create your models here.
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import pre_save
 from StudentFeedback.settings import MAX_QUESTIONS
+
+
+class QSet(models.Model):
+    qset_id = models.AutoField(primary_key=True)
+    date = models.DateField()
+    description = models.TextField()
+
+
+class Sem(models.Model):
+    sem_id = models.AutoField(primary_key=True)
+    form = models.IntegerField()
+    to = models.IntegerField()
+    no = models.IntegerField(null=True)
 
 
 class Classes(models.Model):
     class Meta:
         db_table = 'classes'
-        unique_together = (('year', 'branch', 'section'),)
+        unique_together = (('year', 'branch', 'section', 'sem'),)
 
     class_id = models.AutoField(primary_key=True)
     year = models.IntegerField(
-        validators=[MaxValueValidator(4), MinValueValidator(1)] #use IntegerRangeField when admin enters the years
+        validators=[MaxValueValidator(4), MinValueValidator(1)]  # use IntegerRangeField when admin enters the years
     )
     branch = models.CharField(max_length=10)
     section = models.CharField(max_length=1, null=True)
-    no_of_students = models.IntegerField(default=75)
+    #no_of_students = models.IntegerField(default=75)
+    sem = models.ForeignKey(Sem, on_delete=models.CASCADE)
 
     def __str__(self):
         yearDict = {1: 'I', 2: 'II', 3: 'III', 4: 'IV'}
@@ -28,7 +41,7 @@ class Classes(models.Model):
             sec = ""
         else:
             sec = str(self.section)
-        return str(yearDict[self.year]+" "+str(self.branch)+" "+sec)
+        return str(yearDict[self.year] + " " + str(self.branch) + " " + sec)
 
 
 class Faculty(models.Model):
@@ -60,7 +73,7 @@ class ClassFacSub(models.Model):
     subject_id = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.class_id) +"------------"+ str(self.faculty_id) + "-------------" + str(self.subject_id)
+        return str(self.class_id) + "------------" + str(self.faculty_id) + "-------------" + str(self.subject_id)
 
     class Meta:
         db_table = 'classFacSub'
@@ -72,7 +85,7 @@ class Student(models.Model):
     class_id = models.ForeignKey(Classes, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.hallticket_no+" --- "+str(self.class_id)
+        return self.hallticket_no + " --- " + str(self.class_id)
 
     class Meta:
         db_table = 'student'
@@ -92,7 +105,8 @@ class Session(models.Model):
     taken_by = models.ForeignKey(User, on_delete=models.CASCADE)
     master = models.BooleanField(default=False)
     stutimeout = models.IntegerField(default=5)
-    mastersession = models.CharField(max_length=5, null=True)#references master session
+    mastersession = models.CharField(max_length=5, null=True)  # references master session
+    qset = models.ForeignKey(QSet, on_delete=models.CASCADE, null=True)
 
 
 class Attendance(models.Model):
@@ -115,6 +129,7 @@ class FdbkQuestions(models.Model):
     question = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     subcategory = models.CharField(max_length=30, null=True)
+    qset = models.ForeignKey(QSet, on_delete=models.CASCADE, null=True)
 
 
 class Config(models.Model):
@@ -126,6 +141,7 @@ class Config(models.Model):
 class Feedback(models.Model):
     class Meta:
         unique_together = (('session_id', 'student_no', 'relation_id', 'category'),)
+
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     student_no = models.IntegerField()
@@ -133,45 +149,42 @@ class Feedback(models.Model):
 
     ratings = models.CharField(
         validators=[validate_comma_separated_integer_list],
-        max_length=MAX_QUESTIONS*4
+        max_length=MAX_QUESTIONS * 4
     )
-
-def create_branch_group(sender, **kwargs):
-        allBranches = []
-        branchesQlist = Classes.objects.values_list('branch').distinct()
-        for branch in branchesQlist:
-            allBranches.append(branch[0])
-        currentBranch = kwargs['instance'].branch
-        if currentBranch not in allBranches:
-            try:
-                Group.objects.create(name=currentBranch)
-            except:
-                pass
-
-pre_save.connect(create_branch_group, sender=Classes)
-
 
 
 class LOAquestions(models.Model):
     question_id = models.AutoField(primary_key=True)
     question = models.TextField()
-    subject_id=models.ForeignKey(Subject,on_delete=models.CASCADE)
+    subject_id = models.ForeignKey(Subject, on_delete=models.CASCADE)
+
 
 class FeedbackLoa(models.Model):
     class Meta:
         unique_together = (('session_id', 'student_no', 'relation_id'),)
+
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
     student_no = models.IntegerField()
     relation_id = models.CharField(null=True, max_length=25)
 
     loaratings = models.CharField(
         validators=[validate_comma_separated_integer_list],
-        max_length=MAX_QUESTIONS*4
+        max_length=MAX_QUESTIONS * 4
 
     )
 
-class User_Otp(models.Model):
-    Userid = models.ForeignKey(User, on_delete=models.CASCADE,)
-    otp = models.IntegerField()
+
+def create_branch_group(sender, **kwargs):
+    allBranches = []
+    branchesQlist = Classes.objects.values_list('branch').distinct()
+    for branch in branchesQlist:
+        allBranches.append(branch[0])
+    currentBranch = kwargs['instance'].branch
+    if currentBranch not in allBranches:
+        try:
+            Group.objects.create(name=currentBranch)
+        except:
+            pass
 
 
+pre_save.connect(create_branch_group, sender=Classes)

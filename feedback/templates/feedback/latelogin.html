@@ -23,7 +23,7 @@
                 <tr>
                     <td>{{ student.hallticket_no }}</td>
                     <td>
-                        <input type="checkbox" value="{{ student.hallticket_no }}" name="attendance" >
+                        <input type="checkbox" value="{{ student.hallticket_no }}" name="attendance">
                     </td>
                 </tr>
             {% endfor %}
@@ -33,23 +33,23 @@
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Confirmation</h4>
-          </div>
-          <div class="modal-body">
-              <p>You are about to enable feedback form.<br/>Are you sure about the attendance?</p>
-          </div>
-          <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <input type="submit" value="Confirm" name="enable" class="btn btn-default" form="confirm">
-          </div>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You are about to enable feedback form.<br/>Are you sure about the attendance?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input type="submit" value="Confirm" name="enable" class="btn btn-default" form="confirm">
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
 {% endblock %}

@@ -1,358 +1,110 @@
-from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import HttpResponse, Http404
-from django.shortcuts import render, redirect, get_object_or_404
+
 from django.utils.datastructures import MultiValueDictKeyError
-from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, LOGIN_URL, DIRECTOR_GROUP
-from feedback.forms import *
 from django.contrib.auth.decorators import login_required
-from feedback.models import *
-import random
-import string
 from django.contrib.auth.hashers import check_password
-from django.core.signing import *
-import re
-from analytics.libs import db_updater
-from django.core.mail import send_mail,EmailMessage
+from django.core.mail import EmailMessage
 
+from StudentFeedback.settings import LOGIN_URL
 
-def get_todays_initiations():
-    all_initiations = Initiation.objects.all()
-    initiations_list = []
-    for initiation in all_initiations:
-        if initiation.timestamp.date() == datetime.date.today():
-            initiations_list.append(initiation)
-    return initiations_list
-
-
-def get_session_length():
-    return 45
+from feedback.forms import *
+from feedback.libs.view_helper import *
+from feedback.libs.view_helpers.login_helper import *
+from feedback.libs.view_helpers.conduct_helper import *
+from feedback.libs.view_helpers.initiate_helper import *
 
 
 def login_redirect(request):
+    # if any user already logged in, take to their homepage
     if request.user.is_authenticated():
-        return redirect(LOGIN_URL)
+        return goto_user_page(request.user)
+
     # is any initiation open? then go to student otp page.
     if len(get_todays_initiations()) > 0:
         return redirect('/feedback/student')
+
     return redirect(LOGIN_URL)
 
 
 def login_view(request):
-    if request.session.get('sessionObj') is not None:
-        maxPage = request.session.get('maxPage', [1, 'faculty'])
-        return goto_questions_page(maxPage[0], maxPage[1])
+    if feedback_running(request):
+        return goto_max_page(request)
 
     if request.user.is_authenticated:
         return goto_user_page(request.user)
+
     template = "login.html"
     context = {}
+
     if request.method == "POST":
         if 'login' in request.POST:
-            form = LoginForm(request.POST)
-            if form.is_valid():
-                username = request.POST['username']
-                password = request.POST['password']
-                user = authenticate(username=username, password=password)
-                if user is not None:
-                    login(request, user)
-                    return goto_user_page(user)
-                else:
-                    context['error'] = 'login error'
-                context['form'] = form
-        if 'updatedb' in request.POST:
-            return redirect('/feedback/updatedb')
+            return login_result(request, template, context)
     else:
         context['form'] = LoginForm()
+
     return render(request, template, context)
-
-
-def goto_user_page(user):
-    if user.groups.filter(name=COORDINATOR_GROUP).exists():
-        return redirect('/feedback/initiate/')
-    elif user.groups.filter(name=CONDUCTOR_GROUP).exists():
-        return redirect('/feedback/conduct/')
-    elif user.groups.filter(name=DIRECTOR_GROUP).exists():
-        return redirect('/analytics/')
-    elif user.is_superuser:
-        return redirect('/admin/')
-    return HttpResponse("You are already logged in")
 
 
 @login_required
 def initiate(request):
-    if request.session.get('sessionObj') is not None:
-        maxPage = request.session.get('maxPage', [1, 'faculty'])
-        return goto_questions_page(maxPage[0], maxPage[1])
+    if feedback_running(request):
+        return goto_max_page(request)
 
-    groups = request.user.groups.all()
-    if not groups.filter(name=COORDINATOR_GROUP).exists():
-        return render(request, 'feedback/invalid_user.html')
+    if not_coordinator(request):
+        return invalid_user_page(request)
 
+    template = 'feedback/initiate.html'
     context = {'active': 'home'}
 
-    myBranches = []
-    for group in groups:
-        if group.name != COORDINATOR_GROUP:
-            myBranches.append(group.name)
+    # adding history - recent initiations and sessions
+    add_history(context)
 
-    context['groups'] = myBranches
-
-    context['total_history'] = Initiation.objects.all().order_by('-timestamp')[:10]
-    template = 'feedback/initiate.html'
-
-    context['recent_feedbacks'] = Session.objects.all().order_by('-timestamp')[:10]
-
-    years = Classes.objects.order_by('year').values_list('year').distinct()  # returns a list of tuples
-    years = [years[x][0] for x in range(len(years))]  # makes a list of first element of tuples in years
-    context['years'] = years
-    context['allYears'] = years
+    # filling classes table with years
+    context['years'] = db_helper.get_years()
 
     # handling the submit buttons
     if request.method == 'POST':
-
         if 'nextSection' in request.POST:
-            allClasses = Classes.objects.all().order_by('year')
-            notEligible = []
-
-            selectedYears = request.POST.getlist('class')
-            classesOfYears = []
-            for yr in selectedYears:
-                myYear = allClasses.filter(year=yr)
-                for myYr in myYear:
-                    for myBranch in myBranches:
-                        if myYr.branch == myBranch:
-                            classesOfYears.append(myYr)
-                            break
-            context['myClasses'] = classesOfYears
-
-            for i in range(len(classesOfYears)):
-                if isNotEligible(classesOfYears[i]):
-                    notEligible.append(i + 1)
-            context['notEligible'] = notEligible
+            return next_section_result(request, template, context)
 
         if 'confirmSelected' in request.POST:
-            checkedList = request.POST.getlist('class')
-            lst = []
-            for i in checkedList:
-                inst = i.split('-')
-                status = initiateFor(inst[0], inst[1], inst[2], request.user)
-                lst.append(inst[0] + inst[1] + inst[2] + " - " + status)
-            context['status'] = lst
+            return confirm_selected_class_result(request, template, context)
 
     return render(request, template, context)
-
-
-def get_cur_time_offset(session):
-    return int((datetime.datetime.now(datetime.timezone.utc) - session.timestamp).total_seconds() / 60)
 
 
 @login_required
 def conduct(request, editable):
-    if request.session.get('sessionObj') is not None:
-        maxPage = request.session.get('maxPage', [1, 'faculty'])
-        return goto_questions_page(maxPage[0], maxPage[1])
+    if feedback_running(request):
+        return goto_max_page(request)
 
-    if not request.user.groups.filter(name=CONDUCTOR_GROUP).exists():
-        return render(request, 'feedback/invalid_user.html')
+    if not_conductor(request):
+        return invalid_user_page(request)
 
     context = {'active': 'home'}
     template = 'feedback/conduct.html'
 
+    # if his session is selected to edit:
     if editable != '':
-        session = get_object_or_404(Session, session_id=editable)
-        if get_cur_time_offset(session) > get_session_length():
-            raise Http404
-        context['otp'] = editable
-        context['classSelected'] = session.initiation_id.class_id
+        return get_editable_result(request, template, context, editable)
 
-        cur_time = get_cur_time_offset(session)
-        if session.stutimeout > cur_time:
-            context['warning'] = "The student login page is enabled!"
-        else:
-            context['success'] = "Enable the student page"
-
-        if request.method == 'POST':
-            if 'disableStuLogin' in request.POST:
-                try:
-                    session = Session.objects.get(session_id=editable)
-                    session.stutimeout = getStudentTimeout()
-                    session.save()
-                    del context['warning']
-                    context['success'] = "Enable the student page"
-                except KeyError: pass
-            if 'enableStuLogin' in request.POST:
-                try:
-                    session = Session.objects.get(session_id=editable)
-                    session.stutimeout = get_cur_time_offset(session) + getGracePeriod()
-                    session.save()
-                    del context['success']
-                    context['warning'] = "The student login page is enabled!"
-                except KeyError:pass
-
-        return render(request, template, context)
-
-    allSessions = Session.objects.all().order_by('-timestamp')
-
-
-    # GET ALL SESSIONS TO RESTRICT THE INITIATIONS
-    sessionsList = []
-    for session in allSessions:
-        if session.timestamp.date() == datetime.date.today():
-            if session.master == False:
-                sessionsList.append(session.initiation_id)
-
-    # GET ALL INITIATIONS
-    allInits = Initiation.objects.all()
-    initlist = []
-    for i in allInits:
-        if i.timestamp.date() == datetime.date.today():
-            if i not in sessionsList:
-                initlist.append(i)
-    if len(initlist) != 0:
-        context['classes'] = initlist
-
-    masterSession = None
+    add_classes_for_session_selection(context)
 
     if request.method == 'POST':
 
         if 'confirmSession' in request.POST:
-
-            #is the session required to split? if yes, the current session is master
-            split = request.POST.getlist('master')
-            if len(split) > 0:
-                master = True
-            else:
-                master = False
-
-            #get the class from session
-            classFromSelect = request.session.get('class')
-
-
-            #get the attendance
-            checkValues = request.POST.getlist("attendanceList")
-
-            #generate otp
-            otp = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
-
-            dt = str(datetime.datetime.now())
-            alreadyThere = False
-
-            #get the initiation obj from selected class
-            initObj = None
-            for init in initlist:
-                if str(init.class_id.class_id) == str(classFromSelect):
-                    initObj = init
-                    break
-            context['classSelected'] = initObj.class_id
-
-            #check if session exists
-            for session0 in allSessions:
-                if initObj == session0.initiation_id:
-                    masterSession = session0
-                    alreadyThere = True
-                    break
-
-            #insert new session record
-            if not alreadyThere:
-                session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj,
-                                                       session_id=otp, master=master, stutimeout=getStudentTimeout())
-            else:
-                masterSession.master = False
-                masterSession.save()
-                session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj,
-                                                 session_id=otp, master=False, mastersession=masterSession.session_id,
-                                                 stutimeout=getStudentTimeout())
-
-            #Add disable button
-            context['warning'] = "The student login page is enabled!"
-
-            #save the otp in session
-            context['otp'] = otp
-
-            #insert the attendance into table
-            for htno in checkValues:
-                Attendance.objects.create(student_id=Student.objects.get(hallticket_no=htno), session_id=session)
+            return confirm_session_result(request, template, context)
 
         if 'take_attendance' in request.POST:
-            master = False
-
-            # get the class obj from the dropdown
-            classFromSelect = request.POST.getlist('selectClass')[0]
-            classObj = Classes.objects.get(class_id=classFromSelect)
-
-            # set the context and session with class
-            context['classSelected'] = classObj
-            request.session['class'] = classObj.class_id
-
-            alreadyThere = False
-
-            # get the initiation object of the selected class
-            initObj = None
-            for init in initlist:
-                if str(init.class_id.class_id) == str(classFromSelect):
-                    initObj = init
-                    break
-
-            # check if there are any sessions with the initiation id, if yes, is it a master session?
-            for session in allSessions:
-                if initObj == session.initiation_id:
-                    if session.master:
-                        alreadyThere = True
-                        masterSession = session
-                        context['master'] = True
-                    break
-
-            # get all the student roll numbers for attendance
-            allStudents = Student.objects.filter(class_id=classObj)
-            if alreadyThere:
-                absentStudents = []
-                presentStudentsList = []
-                presentStudents = Attendance.objects.filter(session_id=masterSession)
-                for pS in presentStudents: presentStudentsList.append(pS.student_id)
-                for student in allStudents:
-                    if student not in presentStudentsList:
-                        absentStudents.append(student)
-                allStudents = absentStudents
-
-            context['allStudetns'] = allStudents
+            return take_attendance_result(request, template, context)
 
         if 'disableStuLogin' in request.POST:
-            try:
-                session = Session.objects.get(session_id=context['otp'])
-                session.stutimeout = getStudentTimeout()
-                session.save()
-                del context['warning']
-                context['success'] = "Enable the student page"
-
-            except KeyError:
-                pass
+            disable_student_login(context['otp'], context)
 
         if 'enableStuLogin' in request.POST:
-            try:
-                session = Session.objects.get(session_id=context['otp'])
-                session.stutimeout = get_cur_time_offset(session) + getGracePeriod()
-                session.save()
-                del context['success']
-                context['warning'] = "The student login page is enabled!"
-            except KeyError:
-                pass
+            enable_student_login(context['otp'], context)
 
     return render(request, template, context)
-
-
-def get_master_session(session):
-    if session.mastersession is None:
-        return session
-    return Session.objects.get(session_id=session.mastersession)
-
-
-def get_slave(session):
-    sessions = Session.objects.all().order_by('-timestamp')[:20]
-    for sess in sessions:
-        if sess.mastersession == session.session_id:
-            return sess
-    return None
 
 
 @login_required()
@@ -360,7 +112,7 @@ def latelogin(request, session_id):
     context = {}
     template = 'feedback/latelogin.html'
 
-    #get the session from session_id url
+    # get the session from session_id url
     session = get_object_or_404(Session, session_id=session_id)
     if get_cur_time_offset(session) > get_session_length():
         raise Http404
@@ -368,17 +120,17 @@ def latelogin(request, session_id):
     context['session'] = session
     presentClass = session.initiation_id.class_id
 
-    #get all the students
+    # get all the students
     allStudents = Student.objects.filter(class_id=presentClass)
     presentStudents = Attendance.objects.filter(session_id=session)
     presentStudents = [x for x in presentStudents]
     if session.mastersession is not None:
-        more_students =  Attendance.objects.filter(session_id=get_master_session(session))
+        more_students = Attendance.objects.filter(session_id=get_master_session(session))
         for att in more_students:
             presentStudents.append(att)
     slav = get_slave(session)
     if slav is not None:
-        more_students =  Attendance.objects.filter(session_id=slav)
+        more_students = Attendance.objects.filter(session_id=slav)
         for att in more_students:
             presentStudents.append(att)
     presentStudents = [student.student_id for student in presentStudents]
@@ -389,14 +141,13 @@ def latelogin(request, session_id):
 
     context['students'] = absentStudents
 
-
     if request.method == 'POST':
         attendance = request.POST.getlist('attendance')
         for stud in attendance:
             Attendance.objects.create(student_id=Student.objects.get(hallticket_no=stud), session_id=session)
 
         cur_time = get_cur_time_offset(session)
-        if cur_time > int(session.stutimeout)-getGracePeriod():
+        if cur_time > int(session.stutimeout) - getGracePeriod():
             tempTime = cur_time + getGracePeriod()
             session.stutimeout = tempTime
             session.save()
@@ -423,9 +174,10 @@ def student(request):
             max_timeout = session.stutimeout
 
     # disable page condition:
-    if len(sessions) == 0 or (datetime.datetime.now(datetime.timezone.utc) - sessions[0].timestamp).total_seconds() / 60 > max_timeout:
+    if len(sessions) == 0 or (
+                datetime.datetime.now(datetime.timezone.utc) - sessions[
+                0].timestamp).total_seconds() / 60 - 30 > max_timeout:
         context['disabled'] = True
-
 
     if request.method == 'POST':
         otpFromBox = request.POST.getlist('OTP')[0]
@@ -433,16 +185,20 @@ def student(request):
         for session in sessions:
             if str(session.session_id) == otpFromBox:
                 # check if session is open
-                if (datetime.datetime.now(datetime.timezone.utc) - session.timestamp).total_seconds() / 60 > session.stutimeout:
+                if (datetime.datetime.now(
+                        datetime.timezone.utc) - session.timestamp).total_seconds() / 60 - 30 > session.stutimeout:
                     context['error'] = "Feedback session expired, please contact your lab in-charge"
                     return render(request, template, context)
 
-                #check the attendance
+                # check the attendance
                 attendance = Attendance.objects.filter(session_id=session).count()
-                attendanceCount = Feedback.objects.filter(session_id=session).values_list('student_no').distinct().count()
+                attendanceCount = Feedback.objects.filter(session_id=session).values_list(
+                    'student_no').distinct().count()
                 if session.mastersession is not None:
                     attendance += Attendance.objects.filter(session_id=get_master_session(session)).count()
-                    attendanceCount += Feedback.objects.filter(session_id=get_master_session(session)).values_list('student_no').distinct().count()
+                    attendanceCount += Feedback.objects.filter(
+                        session_id=get_master_session(session)).values_list(
+                        'student_no').distinct().count()
                 context['attendance'] = str(attendance) + ' ' + str(attendanceCount)
                 if attendanceCount >= attendance:
                     context['error'] = "Sorry, the attendance limit has been reached."
@@ -483,7 +239,7 @@ def questions(request, category):
     if category == '': category = 'faculty'
     try:
         category = Category.objects.get(category=category)
-    except :
+    except:
         del request.session['sessionObj']
         return HttpResponse("Thank you for the feedback. There is an error, please call your lab coordinator")
     context['category'] = category.category
@@ -493,7 +249,7 @@ def questions(request, category):
     classObj = session.initiation_id.class_id
     context['class_obj'] = classObj
 
-    #GET ALL THE CONTENT DETAILS - CLASSES, CFS, ETC
+    # GET ALL THE CONTENT DETAILS - CLASSES, CFS, ETC
     paging = [0]
     subjects = []
     faculty = []
@@ -508,7 +264,7 @@ def questions(request, category):
         paging = subjects
     paginator = Paginator(paging, 1)
 
-    #GET THE PAGE INFORMATION
+    # GET THE PAGE INFORMATION
     page = request.GET.get('page')
     try:
         pager = paginator.page(page)
@@ -519,7 +275,7 @@ def questions(request, category):
     context['pager'] = pager
     pgno = str(pager.number)
 
-    #CHECK IF WE ARE ON THE RIGHT PAGE NUMBER
+    # CHECK IF WE ARE ON THE RIGHT PAGE NUMBER
     if pager.number != maxPage[0]:
         return redirect('/feedback/questions/' + maxPage[1] + '/?page=' + str(maxPage[0]))
 
@@ -633,7 +389,7 @@ def mysessions(request):
     template = "feedback/mysessions.html"
     context = {'active': 'mysessions'}
 
-    #get all sessions started by the user
+    # get all sessions started by the user
     allSessions = Session.objects.filter(taken_by=request.user).order_by('-timestamp')[:50]
 
     running_sessions = []
@@ -649,58 +405,14 @@ def mysessions(request):
     return render(request, template, context)
 
 
-def initiateFor(year, branch, section, by):
-    classobj = Classes.objects.get(year=year, branch=branch, section=section)
-    history = Initiation.objects.filter(class_id=classobj)
-    if len(history) == 0 or history[len(history) - 1].timestamp.date() != datetime.date.today():
-        dt = str(datetime.datetime.now())
-        Initiation.objects.create(timestamp=dt, initiated_by=by, class_id=classobj)
-        return 'success'
-    else:
-        return 'failed'
-
-
-def getStudentTimeout():
-    try:
-        timeInMin = Config.objects.get(key='studentTimeout')
-        return int(timeInMin.value)
-    except Exception:
-        Config.objects.create(key='studentTimeout', value='5',
-                              description="Expire the student login page after these many seconds")
-        return 5
-
-
-def goto_questions_page(page_no, category='faculty'):
-    if page_no is None:
-        return redirect('/feedback/questions/')
-    return redirect('/feedback/questions/' + category + '/?page=' + str(page_no))
-
-
-def isNotEligible(cls):
-    initiations = Initiation.objects.all()
-    for initiation in initiations:
-        if initiation.timestamp.date() == datetime.date.today():
-            if cls == initiation.class_id:
-                return True
-
-    return False
-
-
-def getGracePeriod():
-    try:
-        gp = Config.objects.get(key="gracePeriod")
-        return int(gp)
-    except :
-        return 2
-
 @login_required
 def changepass(request):
     template = 'feedback/changepass.html'
     context = {'conductor_group': CONDUCTOR_GROUP, 'active': 'changepass'}
     if request.method == "POST":
-        formset=ProfileForm(request.POST)
-        if(formset.is_valid()):
-            #formset.save()
+        formset = ProfileForm(request.POST)
+        if (formset.is_valid()):
+            # formset.save()
             firstname = request.POST.get('firstname', '')
             lastname = request.POST.get('lastname', '')
             newpass = request.POST.get('newpass', '')
@@ -709,41 +421,41 @@ def changepass(request):
             password = request.POST.get('password', '')
             if check_password(password, request.user.password):
                 if firstname:
-                    u = User.objects.get(username =request.user)
+                    u = User.objects.get(username=request.user)
                     u.first_name = firstname
                     u.save()
                     context['fir'] = 'notnull'
                 if lastname:
-                    u = User.objects.get(username =request.user)
+                    u = User.objects.get(username=request.user)
                     u.last_name = lastname
                     u.save()
                     context['sec'] = 'notnull'
                 if email:
-                    u = User.objects.get(username =request.user)
+                    u = User.objects.get(username=request.user)
                     u.email = email
                     u.save()
                     context['ec'] = 'notnull'
                 if newpass:
                     if repass:
-                        if newpass==repass:
+                        if newpass == repass:
                             x = True
                             while x:
-                                if (len(newpass)<6 or len(newpass)>12):
+                                if (len(newpass) < 6 or len(newpass) > 12):
                                     break
-                                elif not re.search("[a-z]",newpass):
+                                elif not re.search("[a-z]", newpass):
                                     break
-                                elif not re.search("[0-9]",newpass):
+                                elif not re.search("[0-9]", newpass):
                                     break
-                                elif not re.search("[A-Z]",newpass):
+                                elif not re.search("[A-Z]", newpass):
                                     break
-                                elif re.search("\s",newpass):
+                                elif re.search("\s", newpass):
                                     break
                                 else:
-                                    user=request.user
+                                    user = request.user
                                     user.set_password(newpass)
                                     user.save()
                                     context['pas'] = 'notnull'
-                                    x=False
+                                    x = False
                                     break
                             if x:
                                 context['passnotvalid'] = 'notnull'
@@ -766,11 +478,8 @@ def LoaQuestions(request):
         maxPage = [1, 'LOA']
         request.session['maxPage'] = maxPage
 
-
     template = 'feedback/loaquestions.html'
     context = {}
-
-
 
     session = Session.objects.get(session_id=session_id)
 
@@ -781,10 +490,9 @@ def LoaQuestions(request):
         del request.session['sessionObj']
         return HttpResponse("Sorry, the attendance limit has been reached.")
 
-
     classObj = session.initiation_id.class_id
     context['class_obj'] = classObj
-    #paging = [0]
+    # paging = [0]
     subjects = []
 
     cfsList = []
@@ -795,8 +503,6 @@ def LoaQuestions(request):
         subjects.append(i.subject_id)
     context['subjects'] = subjects
     paging = subjects
-
-
 
     paginator = Paginator(subjects, 1)
     page = request.GET.get('page')
@@ -809,31 +515,31 @@ def LoaQuestions(request):
     context['pager'] = pager
     pgno = str(pager.number)
 
-    #CHECK IF WE ARE ON THE RIGHT PAGE NUMBER
+    # CHECK IF WE ARE ON THE RIGHT PAGE NUMBER
     if pager.number != maxPage[0]:
         return redirect('/feedback/questions/' + 'LoaQuestions' + '/?page=' + str(maxPage[0]))
 
-    context['current']=subjects[pager.number-1]
-    mysubid=subjects[pager.number-1]
-    #return HttpResponse(mysubid)
-    myques=LOAquestions.objects.filter(subject_id=mysubid)
-    loaquestions=[]
+    context['current'] = subjects[pager.number - 1]
+    mysubid = subjects[pager.number - 1]
+    # return HttpResponse(mysubid)
+    myques = LOAquestions.objects.filter(subject_id=mysubid)
+    loaquestions = []
     for q in myques:
         loaquestions.append(q.question)
-    context['learningquestions']=loaquestions
+    context['learningquestions'] = loaquestions
 
-    context['akhilrat']=request.session.get(pgno)
+    context['akhilrat'] = request.session.get(pgno)
     if request.method == 'POST':
         try:
             ratings = []
 
-            for i in range(1, len(loaquestions)+1):
+            for i in range(1, len(loaquestions) + 1):
                 name = 'star' + str(i)
                 value = request.POST[name]
                 ratings.append(value)
 
             request.session[pgno] = ratings
-            context['currat']=ratings
+            context['currat'] = ratings
             max = request.session.get('maxPage', [1, 'LOA'])
             max[0] += 1
             request.session['maxPage'] = max
@@ -843,8 +549,7 @@ def LoaQuestions(request):
             return render(request, template, context)
 
         if 'next' in request.POST:
-
-            return redirect('/feedback/LoaQuestions/?page='+str(pager.number+1))
+            return redirect('/feedback/LoaQuestions/?page=' + str(pager.number + 1))
 
         if 'submit' in request.POST:
             student_no = FeedbackLoa.objects.filter(session_id=session)
@@ -855,14 +560,15 @@ def LoaQuestions(request):
                 student_no = student_no.order_by('-student_no')[0].student_no + 1
 
             for i in range(len(subjects)):
-                 loaratings = ""
-                 temp=[]
-                 temp=request.session.get(str(i+1))
-                 for k in range(len(temp)):
-                    loaratings+=temp[k]
-                    if k!= len(temp)-1:
-                        loaratings+=','
-                 FeedbackLoa.objects.create(session_id=session,student_no=student_no, relation_id=subjects[i].subject_id,loaratings=loaratings)
+                loaratings = ""
+                temp = []
+                temp = request.session.get(str(i + 1))
+                for k in range(len(temp)):
+                    loaratings += temp[k]
+                    if k != len(temp) - 1:
+                        loaratings += ','
+                FeedbackLoa.objects.create(session_id=session, student_no=student_no,
+                                           relation_id=subjects[i].subject_id, loaratings=loaratings)
 
             del request.session['sessionObj']
             del request.session['maxPage']
@@ -870,11 +576,7 @@ def LoaQuestions(request):
             response.set_cookie('class_id', session.initiation_id.class_id.class_id)
             return response
 
-
-
-
-
-    return render(request,template,context)
+    return render(request, template, context)
 
 
 def updatedb(request):
@@ -882,9 +584,9 @@ def updatedb(request):
     context = {}
     data = None
 
-    #data = db_updater.update_classes()
-    #data = db_updater.update_students()
-    #data = db_updater.update_faculty()
+    # data = db_updater.update_classes()
+    # data = db_updater.update_students()
+    # data = db_updater.update_faculty()
     #data = db_updater.update_subjects()
     #data = db_updater.update_class_fac_sub()
     #data = db_updater.update_faculty_questions()
@@ -893,12 +595,12 @@ def updatedb(request):
 
     return render(request, template, context)
 
-def forgotPassword(request):
 
-    template='feedback/forgotPassword.html/'
-    email = EmailMessage('hii','hiiiiii',to=['rajrocksdeworld@gmail.com'])
+def forgotPassword(request):
+    template = 'feedback/forgotPassword.html/'
+    email = EmailMessage('hii', 'hiiiiii', to=['rajrocksdeworld@gmail.com'])
     email.send()
-    return render(request, template, context)
+    return render(request, template, {})
 
 
 

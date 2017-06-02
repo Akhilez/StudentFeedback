@@ -19,6 +19,14 @@
 {% block maincontent %}
     <body>
 
+    {% if success_status %}
+        <div class="alert alert-success">
+            {% for i in success_status %}
+                <strong>{{ i }}</strong> Success!<br/>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <form method="post" action="" id="checks">
         {% csrf_token %}
         <div class="container">
@@ -52,7 +60,7 @@
                             <td>{{ class.branch }}</td>
                             <td>{{ class.section }}</td>
                             <td>
-                                {% if forloop.counter in notEligible %}
+                                {% if forloop.counter in not_eligible %}
                                     Already initiated.
                                 {% else %}
                                     <input type="checkbox" name="class"
@@ -64,6 +72,7 @@
                 {% else %}
                     {% for yrrr in years %}
                         <tr>
+                        <tr>
                             <td>{{ yrrr }}</td>
                             <td><input type="checkbox" name="class" value="{{ yrrr }}"></td>
                         </tr>
@@ -74,14 +83,6 @@
             </table>
         </div>
     </form>
-
-
-    {% if status %}
-        STATUS : <br/>
-        {% for i in status %}
-            {{ i }}<br/>
-        {% endfor %}
-    {% endif %}
 
     <br><br>
 

@@ -1,8 +1,5 @@
-from feedback import views
-from django.contrib.auth.views import password_reset_confirm
 from django.conf.urls import url
-from django.contrib import admin
-
+from feedback import views
 
 urlpatterns = [
     url(r'^$', views.login_redirect, name="login_redirect"),

@@ -20,7 +20,6 @@ class Timeline:
 
 def get_years():
     years = Classes.objects.values_list('year').distinct().order_by('year')
-
     return [formatter[str(x[0])] for x in years]
 
 
