@@ -4,14 +4,14 @@
 
 
 {% block head %}
-<script language="JavaScript">
-function toggle(source) {
-  checkboxes = document.getElementsByName('attendanceList');
-  for(var i=0, n=checkboxes.length;i<n;i++) {
-    checkboxes[i].checked = source.checked;
-  }
-}
-</script>
+    <script language="JavaScript">
+        function toggle(source) {
+            checkboxes = document.getElementsByName('attendanceList');
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = source.checked;
+            }
+        }
+    </script>
 {% endblock head %}
 
 {% block navbar %}
@@ -19,110 +19,116 @@ function toggle(source) {
 {% endblock %}
 
 {% block maincontent %}
-    {% if warning %}
-        <div class="alert alert-warning">
-            <strong>Warning!</strong> {{ warning }}
-            <div style="float: right;">
-                <form action="" method="post">{% csrf_token %}<input class="btn btn-warning" type="submit" value="disable" name="disableStuLogin"></form>
-            </div>
-            <br/><br/>
-        </div>
-    {% endif %}<br><br>
-    {% if success %}
-        <div class="alert alert-success">
-            {{ success }}
-            <div style="float: right;">
-                <form action="" method="post">{% csrf_token %}<input class="btn btn-success" type="submit" value="enable" name="enableStuLogin"></form>
-            </div>
-            <br/><br/>
-        </div>
-    {% endif %}
-    {% if otp %}
-        <p> Session Started for {{ classSelected }}</p>
-        <h2>Session ID : {{ otp }}</h2>
-        <a href="/feedback/latelogin/{{ otp }}/">Latelogin</a>
-        <br/><br/>
-    {% elif classSelected %}
-       <form method="post" action="" id="attendance">
+
+    <div style="padding: 50px">
+    {% if classSelected %}
+        <form method="post" action="" id="attendance">
             {% csrf_token %}
             <h2>Please take attendance for {{ classSelected }}</h2><br/>
             <table class="table table-bordered table-hover table-striped">
                 <thead>
-                  <tr>
+                <tr>
                     <th>Serial No.</th>
                     <th>Hallticket No.</th>
                     <th><input type="checkbox" onClick="toggle(this)"> present/absent</th>
-                  </tr>
+                </tr>
                 </thead>
                 <tbody>
-                    {% for student in allStudetns %}
-                        <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{ student.hallticket_no }}</td>
-                            <td><input type="checkbox" name="attendanceList" value="{{ student.hallticket_no }}" ></td>
-                        </tr>
-                    {% endfor %}
+                {% for student in allStudetns %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ student.hallticket_no }}</td>
+                        <td><input type="checkbox" name="attendanceList" value="{{ student.hallticket_no }}"></td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
             {% if not master %}
-                <input type="checkbox" name="master" id="master" >
+                <input type="checkbox" name="master" id="master">
                 <label for="master">Split into two labs.</label><br/>
             {% endif %}
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit</button>
         </form>
-        <br><br><br><br>
     {% else %}
         {% if classes %}
-             <h3>Select a class to start the session:</h3>
+            <h3>Select a class to start the session:</h3>
 
             <form method="post" action="" id="confirmForm">
                 {% csrf_token %}
-            <div class="form-group"></div>
-        <div class="col-xs-3 selectContainer">
-                <select name="selectClass" class="form-control">
-                    {% for cls in classes %}
-                        <option value="{{ cls.class_id.class_id }}">{{ cls.class_id }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+                <div class="form-group"></div>
+                <div class="col-xs-3 selectContainer">
+                    <select name="selectClass" class="form-control">
+                        {% for cls in classes %}
+                            <option value="{{ cls.class_id.class_id }}">{{ cls.class_id }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Select</button>
-             </form>
+            </form>
         {% else %}
-            <h4>There are no feedback sessions initiated. Please contact the corresponding coordinator to initiate a feedback session.</h4>
+            <h4>There are no feedback sessions initiated. Please contact the corresponding coordinator to initiate a
+                feedback session.</h4>
         {% endif %}
-
     {% endif %}
+
+    <div id="mysessions" style="margin-top: 50px ">
+        <h3>My Sessions</h3>
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <th>Session id</th>
+                <th>Class</th>
+                <th>Date and time</th>
+            </tr>
+            {% for session in allSessions %}
+                <tr>
+                    <td>
+                        {{ session.session_id }}
+                        {% if session.session_id in running %}
+                            <a href="/feedback/latelogin/{{ session.session_id }}">LateLogin</a>
+                        {% endif %}
+                    </td>
+                    <td>{{ session.initiation_id.class_id }}</td>
+                    <td>{{ session.timestamp }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    </div>
+
     <!--#After Inserting-->
 
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Confirmation</h4>
-          </div>
-          <div class="modal-body">
-              {% if classSelected %}
-                <p>You are about to start a session for the selected class {{ classSelected }} Are you sure about the attendance taken?</p>
-              {% else %}
-                <p>Are you sure about the class selected?</p>
-              {% endif %}
-          </div>
-          <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                {% if classSelected %}
-                    <input type="submit" value="Confirm session" name="confirmSession" class="btn btn-default" form="attendance">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    {% if classSelected %}
+                        <p>You are about to start a session for the selected class {{ classSelected }} Are you sure
+                            about the attendance taken?</p>
+                    {% else %}
+                        <p>Are you sure about the class selected?</p>
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    {% if classSelected %}
+                        <input type="submit" value="Confirm session" name="confirmSession" class="btn btn-default"
+                               form="attendance">
 
-                {% else %}
-                    <input type="submit" value="Confirm class" name="take_attendance" class="btn btn-default" form="confirmForm">
-                {% endif %}
-          </div>
+                    {% else %}
+                        <input type="submit" value="Confirm class" name="take_attendance" class="btn btn-default"
+                               form="confirmForm">
+                    {% endif %}
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 {% endblock %}
 

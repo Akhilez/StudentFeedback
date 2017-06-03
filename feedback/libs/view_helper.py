@@ -26,12 +26,6 @@ def get_master_session(session):
     return Session.objects.get(session_id=session.mastersession)
 
 
-def goto_questions_page(page_no, category='faculty'):
-    if page_no is None:
-        return redirect('/feedback/questions/')
-    return redirect('/feedback/questions/' + category + '/?page=' + str(page_no))
-
-
 def get_cur_time_offset(session):
     # how long has it been since the session started?
     current_time = datetime.datetime.now(datetime.timezone.utc)
@@ -51,11 +45,6 @@ def get_todays_initiations():
 
 def feedback_running(request):
     return request.session.get('sessionObj') is not None
-
-
-def goto_max_page(request):
-    max_page = request.session.get('maxPage', [1, 'faculty'])
-    return goto_questions_page(max_page[0], max_page[1])
 
 
 def invalid_user_page(request):

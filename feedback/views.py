@@ -1,17 +1,17 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
 from django.core.mail import EmailMessage
 
-from StudentFeedback.settings import LOGIN_URL
-
+from StudentFeedback.settings import LOGIN_URL, ALLOWED_HOSTS
+from analytics.libs import db_updater
 from feedback.forms import *
 from feedback.libs.view_helper import *
 from feedback.libs.view_helpers.login_helper import *
 from feedback.libs.view_helpers.conduct_helper import *
 from feedback.libs.view_helpers.initiate_helper import *
+from feedback.libs import log
 
 
 def login_redirect(request):
@@ -28,7 +28,7 @@ def login_redirect(request):
 
 def login_view(request):
     if feedback_running(request):
-        return goto_max_page(request)
+        return redirect('/feedback/questions/')
 
     if request.user.is_authenticated:
         return goto_user_page(request.user)
@@ -48,7 +48,7 @@ def login_view(request):
 @login_required
 def initiate(request):
     if feedback_running(request):
-        return goto_max_page(request)
+        return redirect('/feedback/questions/')
 
     if not_coordinator(request):
         return invalid_user_page(request)
@@ -74,9 +74,9 @@ def initiate(request):
 
 
 @login_required
-def conduct(request, editable):
+def conduct(request):
     if feedback_running(request):
-        return goto_max_page(request)
+        return redirect('/feedback/questions/')
 
     if not_conductor(request):
         return invalid_user_page(request)
@@ -84,31 +84,25 @@ def conduct(request, editable):
     context = {'active': 'home'}
     template = 'feedback/conduct.html'
 
-    # if his session is selected to edit:
-    if editable != '':
-        return get_editable_result(request, template, context, editable)
-
+    add_my_sessions(request.user, context)
     add_classes_for_session_selection(context)
 
     if request.method == 'POST':
 
         if 'confirmSession' in request.POST:
-            return confirm_session_result(request, template, context)
+            return confirm_session_result(request)
 
         if 'take_attendance' in request.POST:
             return take_attendance_result(request, template, context)
-
-        if 'disableStuLogin' in request.POST:
-            disable_student_login(context['otp'], context)
-
-        if 'enableStuLogin' in request.POST:
-            enable_student_login(context['otp'], context)
 
     return render(request, template, context)
 
 
 @login_required()
 def latelogin(request, session_id):
+    if feedback_running(request):
+        return redirect('/feedback/questions/')
+
     context = {}
     template = 'feedback/latelogin.html'
 
@@ -158,37 +152,19 @@ def latelogin(request, session_id):
 
 
 def student(request):
-    if request.session.get('sessionObj') is not None:
-        maxPage = request.session.get('maxPage', [1, 'faculty'])
-        return goto_questions_page(maxPage[0], maxPage[1])
+    if feedback_running(request):
+        return redirect('/feedback/questions/')
 
     template = 'feedback/student_login.html'
     context = {}
     # Are any sessions open?
     sessions = Session.objects.all().order_by('-timestamp')[:50]
 
-    # get max stutimeout
-    max_timeout = 0
-    for session in sessions:
-        if session.stutimeout > max_timeout:
-            max_timeout = session.stutimeout
-
-    # disable page condition:
-    if len(sessions) == 0 or (
-                datetime.datetime.now(datetime.timezone.utc) - sessions[
-                0].timestamp).total_seconds() / 60 - 30 > max_timeout:
-        context['disabled'] = True
-
     if request.method == 'POST':
-        otpFromBox = request.POST.getlist('OTP')[0]
+        otpFromBox = request.POST.getlist('OTP')[0].strip()
         classObj = None
         for session in sessions:
             if str(session.session_id) == otpFromBox:
-                # check if session is open
-                if (datetime.datetime.now(
-                        datetime.timezone.utc) - session.timestamp).total_seconds() / 60 - 30 > session.stutimeout:
-                    context['error'] = "Feedback session expired, please contact your lab in-charge"
-                    return render(request, template, context)
 
                 # check the attendance
                 attendance = Attendance.objects.filter(session_id=session).count()
@@ -213,15 +189,10 @@ def student(request):
     return render(request, template, context)
 
 
-def questions(request, category):
+def questions(request):
     session_id = request.session.get('sessionObj')
     if session_id is None:
         return redirect('/')
-
-    maxPage = request.session.get('maxPage')
-    if maxPage is None:
-        maxPage = [1, 'faculty']
-        request.session['maxPage'] = maxPage
 
     template = 'feedback/questions.html'
     context = {}
@@ -230,66 +201,29 @@ def questions(request, category):
 
     attendance = Attendance.objects.filter(session_id=session).count()
     attendanceCount = Feedback.objects.filter(session_id=session).values_list('student_no').distinct().count()
-    context['attendance'] = str(attendance) + ' ' + str(attendanceCount)
     if attendanceCount > attendance:
         del request.session['sessionObj']
         return HttpResponse("Sorry, the attendance limit has been reached.")
 
     # GET CATEGORY
-    if category == '': category = 'faculty'
-    try:
-        category = Category.objects.get(category=category)
-    except:
-        del request.session['sessionObj']
-        return HttpResponse("Thank you for the feedback. There is an error, please call your lab coordinator")
-    context['category'] = category.category
-
+    category = Category.objects.get(category='faculty')
 
     # GET CLASS OBJECT
     classObj = session.initiation_id.class_id
     context['class_obj'] = classObj
 
     # GET ALL THE CONTENT DETAILS - CLASSES, CFS, ETC
-    paging = [0]
-    subjects = []
-    faculty = []
     cfsList = []
-    if category.category == 'faculty':
-        cfs = ClassFacSub.objects.filter(class_id=classObj)
-        for i in cfs:
-            cfsList.append(i)
-            subjects.append(i.subject_id.name)
-            faculty.append(i.faculty_id)
-            context['subjects'] = subjects
-        paging = subjects
-    paginator = Paginator(paging, 1)
+    for cfs in ClassFacSub.objects.filter(class_id=classObj):
+        if not re.compile("^.* [Ll][Aa][Bb]$").match(cfs.subject_id.name) and not re.compile(
+                "[Mm][eE][nN][tT][oO][rR][iI][nN][gG]").match(cfs.subject_id.name):
+            cfsList.append(cfs)
 
-    # GET THE PAGE INFORMATION
-    page = request.GET.get('page')
-    try:
-        pager = paginator.page(page)
-    except PageNotAnInteger:
-        pager = paginator.page(1)
-    except EmptyPage:
-        pager = paginator.page(paginator.num_pages)
-    context['pager'] = pager
-    pgno = str(pager.number)
+    context['cfs_list'] = cfsList
 
-    # CHECK IF WE ARE ON THE RIGHT PAGE NUMBER
-    if pager.number != maxPage[0]:
-        return redirect('/feedback/questions/' + maxPage[1] + '/?page=' + str(maxPage[0]))
-
-    if category.category == 'faculty':
-        context['subject'] = subjects[pager.number - 1]
-        context['faculty'] = faculty[pager.number - 1]
-
-    questionsList = []
-    subCategsList = []
-    questionsQList = FdbkQuestions.objects.filter(category=category)
-
-    for i in questionsQList:
-        questionsList.append(i)
+    questionsList = [ques for ques in FdbkQuestions.objects.filter(category=category)]
     context['questions'] = questionsList
+
     currentSubCategory = ''
     subcategoryOrder = []
     for i in range(len(questionsList)):
@@ -298,115 +232,42 @@ def questions(request, category):
             subcategoryOrder.append(i + 1)
     context['subcategory'] = subcategoryOrder
 
-    myRating = request.session.get(pgno, None)
-    if myRating is not None:
-        context['allRatings'] = request.session[pgno]
-    else:
-        request.session[pgno] = None
-
     if request.method == 'POST':
-        try:
-            ratings = []
-            for i in range(1, len(questionsList) + 1):
-                name = 'star' + str(i)
-                value = request.POST[name]
-                ratings.append(value)
-            request.session[pgno] = ratings
-            max = request.session.get('maxPage', [1, 'faculty'])
-            max[0] += 1
-            request.session['maxPage'] = max
-        except MultiValueDictKeyError:
-            context['error'] = "Please enter all the ratings"
-            return render(request, template, context)
-
-        if 'next' in request.POST:
-            #return render(request, template, context)
-            return redirect('/feedback/questions/' + category.category + '/?page=' + str(pager.number + 1))
-
         if 'finish' in request.POST:
-            del request.session['maxPage']
             student_no = Feedback.objects.filter(session_id=session, category=category)
             if len(student_no) == 0:
                 student_no = 1
             else:
                 student_no = student_no.order_by('-student_no')[0].student_no + 1
 
-            #GET THE REMARKS FROM HTML
+            # GET THE REMARKS FROM HTML
             remarks = request.POST.getlist('remarks')
             if remarks is not None and len(remarks) == 1 and remarks[0] != '':
-                remarks = Notes.objects.create(note=remarks[0], session_id=session)
+                Notes.objects.create(note=remarks[0], session_id=session)
 
-            if category.category == 'faculty':
-                for i in range(1, pager.end_index() + 1):
-                    if request.session.get(str(i)) is None or None in request.session[str(i)]:
-                        return redirect('/feedback/questions/?page=' + str(i))
-
-                for i in range(0, len(cfsList)):
-                    ratingsString = ""
-                    for j in range(0, len(questionsList)):
-                        ratingsString += str(request.session[str(i + 1)][j])
-                        if j != len(questionsList) - 1:
-                            ratingsString += ","
-                    Feedback.objects.create(session_id=session, category=category,
-                                            relation_id=str(cfsList[i].cfs_id), student_no=student_no,
-                                            ratings=ratingsString)
-
-                # Setting up the classs_id cookie for facility feedback
-                class_id_for_cookie = str(session.initiation_id.class_id.class_id)
-                request.session['class_id'] = class_id_for_cookie
-                response = HttpResponse('blah')
-                response.set_cookie('class_id2', class_id_for_cookie)
-
-
-                # Deleting all the session variables
-                #del request.session['sessionObj']
-                #for key in list(request.session.keys()):
-                #    del request.session[key]
-
-
-                #TODO store macaddress so that this PC is not used again with the session id
-                #return HttpResponse("Thank you for the most valuable review!")
-                #return redirect('http://facility.feedback.com/')#('/feedback/questions/facility')
-                return redirect('/feedback/LoaQuestions')
-
-            if category.category == 'facility':
+            for i in range(0, len(cfsList)):
                 ratingsString = ""
-                for i in range(0, len(ratings)):
-                    ratingsString += str(ratings[i])
-                    if i != len(ratings) - 1:
+                for j in range(0, len(questionsList)):
+                    ratingsString += str(
+                        request.POST['star-' + str(questionsList[j].question_id) + '-' + str(cfsList[i].cfs_id)])
+                    if j != len(questionsList) - 1:
                         ratingsString += ","
-                Feedback.objects.create(session_id=session, category=category, student_no=student_no,
+                Feedback.objects.create(session_id=session, category=category,
+                                        relation_id=str(cfsList[i].cfs_id), student_no=student_no,
                                         ratings=ratingsString)
-                del request.session['sessionObj']
-                return HttpResponse("Thank you for the most valuable review!")
-                #return redirect('/feedback/questions/LOA')
 
-    return render(request, template, context)
-
-
-@login_required
-def mysessions(request):
-    template = "feedback/mysessions.html"
-    context = {'active': 'mysessions'}
-
-    # get all sessions started by the user
-    allSessions = Session.objects.filter(taken_by=request.user).order_by('-timestamp')[:50]
-
-    running_sessions = []
-
-    for session in allSessions:
-        cur_time = get_cur_time_offset(session)
-        if session.timestamp.date() == datetime.date.today() and get_session_length() > cur_time:
-            running_sessions.append(session.session_id)
-
-    context['allSessions'] = allSessions
-    context['running'] = running_sessions
+            # return HttpResponse("Thank you for the most valuable review!")
+            #return redirect('http://facility.feedback.com/')#('/feedback/questions/facility')
+            return redirect('/feedback/LoaQuestions')
 
     return render(request, template, context)
 
 
 @login_required
 def changepass(request):
+    if feedback_running(request):
+        return redirect('/feedback/questions/')
+
     template = 'feedback/changepass.html'
     context = {'conductor_group': CONDUCTOR_GROUP, 'active': 'changepass'}
     if request.method == "POST":
@@ -500,11 +361,10 @@ def LoaQuestions(request):
     cfs = ClassFacSub.objects.filter(class_id=classObj)
     for i in cfs:
         cfsList.append(i)
-        con = LOAquestions.objects.filter(subject_id=i.subject_id)
-        if len(con) > 0:
-            subjects.append(i.subject_id)
+        #con = LOAquestions.objects.filter(subject_id=i.subject_id)
+        #if len(con) > 0:
+        subjects.append(i.subject_id)
     context['subjects'] = subjects
-    paging = subjects
 
     paginator = Paginator(subjects, 1)
     page = request.GET.get('page')
@@ -519,7 +379,9 @@ def LoaQuestions(request):
 
     # CHECK IF WE ARE ON THE RIGHT PAGE NUMBER
     if pager.number != maxPage[0]:
-        return redirect('/feedback/questions/' + 'LoaQuestions' + '/?page=' + str(maxPage[0]))
+        return redirect('/feedback/LoaQuestions/?page=' + str(maxPage[0]))
+
+    log.write(str(pager.number))
 
     context['current'] = subjects[pager.number - 1]
     mysubid = subjects[pager.number - 1]
@@ -563,7 +425,6 @@ def LoaQuestions(request):
 
             for i in range(len(subjects)):
                 loaratings = ""
-                temp = []
                 temp = request.session.get(str(i + 1))
                 for k in range(len(temp)):
                     loaratings += temp[k]
@@ -574,7 +435,7 @@ def LoaQuestions(request):
 
             del request.session['sessionObj']
             del request.session['maxPage']
-            response = redirect('http://10.11.46.162/')
+            response = redirect('http://'+str(ALLOWED_HOSTS[len(ALLOWED_HOSTS)-1])+'/')
             response.set_cookie('class_id', session.initiation_id.class_id.class_id)
             return response
 
@@ -589,8 +450,8 @@ def updatedb(request):
     # data = db_updater.update_classes()
     # data = db_updater.update_students()
     # data = db_updater.update_faculty()
-    #data = db_updater.update_subjects()
-    #data = db_updater.update_class_fac_sub()
+    # data = db_updater.update_subjects()
+    # data = db_updater.update_class_fac_sub()
     #data = db_updater.update_faculty_questions()
     data = db_updater.update_loa_questions()
 

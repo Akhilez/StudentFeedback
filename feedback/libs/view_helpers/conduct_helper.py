@@ -41,14 +41,15 @@ def get_editable_result(request, template, context, editable):
     context['otp'] = editable
     context['classSelected'] = session.initiation_id.class_id
 
-    set_student_login_enabled_status(context, session)
-
+    #set_student_login_enabled_status(context, session)
+    '''
     if request.method == 'POST':
         if 'disableStuLogin' in request.POST:
             disable_student_login(editable, context)
 
         if 'enableStuLogin' in request.POST:
             enable_student_login(editable, context)
+    '''
 
     return render(request, template, context)
 
@@ -82,6 +83,21 @@ def add_classes_for_session_selection(context):
         context['classes'] = initlist
 
 
+def add_my_sessions(user, context):
+    # get all sessions started by the user
+    allSessions = Session.objects.filter(taken_by=user).order_by('-timestamp')[:15]
+
+    running_sessions = []
+
+    for session in allSessions:
+        cur_time = get_cur_time_offset(session)
+        if session.timestamp.date() == datetime.date.today() and get_session_length() > cur_time:
+            running_sessions.append(session.session_id)
+
+    context['allSessions'] = allSessions
+    context['running'] = running_sessions
+
+
 def get_init_for_sessions():
     sessionsList = []
     allSessions = Session.objects.all().order_by('-timestamp')
@@ -103,7 +119,7 @@ def get_init_for_no_session():
     return initlist
 
 
-def confirm_session_result(request, template, context):
+def confirm_session_result(request):
     # is the session required to split? if yes, the current session is master
     split = request.POST.getlist('master')
     if len(split) > 0:
@@ -128,7 +144,6 @@ def confirm_session_result(request, template, context):
         if str(init.class_id.class_id) == str(classFromSelect):
             initObj = init
             break
-    context['classSelected'] = initObj.class_id
 
     # check if session exists
     allSessions = Session.objects.all().order_by('-timestamp')
@@ -152,17 +167,12 @@ def confirm_session_result(request, template, context):
                                          session_id=otp, master=False, mastersession=masterSession.session_id,
                                          stutimeout=getStudentTimeout())
 
-    # Add disable button
-    context['warning'] = "The student login page is enabled!"
-
-    # save the otp in session
-    context['otp'] = otp
-
     # insert the attendance into table
     for htno in checkValues:
         Attendance.objects.create(student_id=Student.objects.get(hallticket_no=htno), session_id=session)
 
-    return render(request, template, context)
+    return redirect('/')
+
 
 
 def take_attendance_result(request, template, context):

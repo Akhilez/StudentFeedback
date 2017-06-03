@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%">
 <head lang="en">
     <meta charset="UTF-8">
     <title>{% block title %}Student Feedback{% endblock %}</title>
@@ -19,8 +19,7 @@
     </style>
     {% block head %}{% endblock %}
 </head>
-<body>
-<br/><br/><br/><br/>
+<body style="{% block body_color %}background-color: #4CAF50;{% endblock %} height: 100%">
 
 <script src="{% static 'feedback/bootstrap/jquery.js' %}"></script>
 <script src="{% static 'feedback/bootstrap/bootstrap.min.js' %}"></script>
@@ -29,7 +28,7 @@
 {% block navbar %}
 {% endblock %}
 
-<div class="container">
+<div class="container" style="{% block container_color %}{% endblock %} padding-top: 75px;">
     {% block maincontent %}
     {% endblock %}
 </div>

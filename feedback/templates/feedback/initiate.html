@@ -17,7 +17,6 @@
 
 
 {% block maincontent %}
-    <body>
 
     {% if success_status %}
         <div class="alert alert-success">
@@ -29,7 +28,7 @@
 
     <form method="post" action="" id="checks">
         {% csrf_token %}
-        <div class="container">
+        <div class="container" style="padding-right: 50px">
             <h2>Initiate a feedback session</h2>
 
             <p>Select the desired class to initiate and click next:</p>
@@ -40,7 +39,7 @@
             {% else %}
                 <input type="submit" class="btn btn-default" name="nextSection" value="NEXT" style="float: right">
             {% endif %}
-            <table class="table table-bordered table-hover table-striped">
+            <table class="table table-bordered table-hover table-striped" style="margin-top: 75px" >
                 <thead>
                 <tr>
                     <th>Year</th>
@@ -86,23 +85,44 @@
 
     <br><br>
 
-    <div class="container">
-        <div style="float:left">
+    <div class="container" style="padding-right: 50px">
+    <table class="table">
+    <tr>
+    <td>
+        <div >
             <h3>Recent Initiations</h3>
+            <table class="table table-bordered table-hover table-striped">
+                <tr><th>Class</th><th>Date and Time</th><th>Coordinator</th></tr>
             {% for his in total_history %}
-                {{ his.class_id }} on {{ his.timestamp }} by {{ his.initiated_by.username }}<br/>
+                <tr>
+                    <td>{{ his.class_id }}</td>
+                    <td>{{ his.timestamp }}</td>
+                    <td>{{ his.initiated_by.username }}</td>
+                </tr>
             {% endfor %}
+            </table>
         </div>
-        <div style="float:right">
+    </td>
+    <td>
+        <div >
             <h3>Recent Feedbacks</h3>
+        <table class="table table-bordered table-hover table-striped">
+                <tr><th>Class</th><th>Date and Time</th><th>Coordinator</th></tr>
             {% for recent in recent_feedbacks %}
-                {{ recent.initiation_id.class_id }} at {{ recent.timestamp }} by {{ recent.taken_by }} <br/>
+                <tr>
+                    <td>{{ recent.initiation_id.class_id }}</td>
+                    <td>{{ recent.timestamp }}</td>
+                    <td>{{ recent.taken_by }}</td>
+                </tr>
             {% endfor %}
+            </table>
         </div>
+    </td>
+    </tr>
+    </table>
     </div>
 
 
-    </body>
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">

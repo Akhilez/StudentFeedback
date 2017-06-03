@@ -24,7 +24,7 @@ class Sem(models.Model):
 class Classes(models.Model):
     class Meta:
         db_table = 'classes'
-        unique_together = (('year', 'branch', 'section', 'sem'),)
+        unique_together = (('year', 'branch', 'section'),)
 
     class_id = models.AutoField(primary_key=True)
     year = models.IntegerField(

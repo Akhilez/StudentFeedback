@@ -39,7 +39,7 @@ def confirm_selected_class_result(request, template, context):
         inst = i.split('-')
         status = initiate_for(inst[0], inst[1], inst[2], request.user)
         if status:
-            success_lst.append(inst[0] + inst[1] + inst[2])
+            success_lst.append(inst[0] + "-" + inst[1] + "-" + inst[2])
     context['success_status'] = success_lst
     return render(request, template, context)
 

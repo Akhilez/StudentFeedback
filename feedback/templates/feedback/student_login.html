@@ -10,41 +10,34 @@
     {% include 'feedback/includes/student_navbar.html' %}
 {% endblock %}
 
+{% block container_color %} {% endblock %}
+
 {% block maincontent %}
 
-    {% if disabled %}
-        <h2 style="color:#ffffff">Disabled</h2>
+    {% if error %}
         <div class="alert alert-danger">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-            <strong>The feedback page is disabled, your coordinator must initiate feedback sessions</strong>
-        </div>
-    {% else %}
-
-        {% if error %}
-            <div class="alert alert-danger">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                <strong>Error!</strong> {{ error }}
-            </div>
-        {% endif %}
-        <h1 style="color:#FFFFFF;">RATE YOUR FACULTY</h1>
-        <hr class="star-light">
-        <div class="login-page" align="center">
-            <div class="form">
-                <h3>Enter OTP</h3>
-
-                <p>Enter the OTP that is written on the writing board</p>
-
-                <form method="POST" action="" class="login-form">
-                    {% csrf_token %}
-                    <input type="text" id="OTP" name="OTP" required="true" placeholder="OTP">
-                    <button type="submit">TAKE FEEDBACK</button>
-                </form>
-            </div>
+            <strong>Error!</strong> {{ error }}
         </div>
     {% endif %}
+    <h1 style="color:#FFFFFF;">RATE YOUR FACULTY</h1>
+    <hr class="star-light">
+    <div class="login-page" align="center">
+        <div class="form">
+            <h3>Enter OTP</h3>
 
+            <p>Enter the OTP that is written on the writing board</p>
+
+            <form method="POST" action="" class="login-form">
+                {% csrf_token %}
+                <input type="text" id="OTP" name="OTP" required="true" placeholder="OTP">
+                <button type="submit">TAKE FEEDBACK</button>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}
+
 {% block footer %}
     {% include 'feedback/includes/footer.html' %}
 {% endblock %}

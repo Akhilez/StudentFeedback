@@ -5,93 +5,89 @@
     <link rel="stylesheet" type="text/css" href="{% static 'feedback/stars.css' %}">
 {% endblock %}
 
+{% block body_color %} background-color:#ffffff; {% endblock %}
+
 {% block maincontent %}
-    <h2 align="center" ><strong>RATE YOUR FACULTY</strong></h2>
+    <!-- *kmit logo* KMIT Student Feedback -->
+{% endblock %}
 
-    <h3 align="center">{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
-    <div>
-        <div>
-            {% if category == 'facility' %}
-                <h2>Facility feedback</h2>
-            {% elif category == 'faculty' %}
-                <p class="h2">{{ subject }} - <b>{{ faculty }}</b></p><br/>
-            {% endif %}
-        </div>
+{% block fullcontent %}
+    <div style="padding-left: 30px; padding-right: 30px">
+        <h2 align="center"><strong>KMIT Student Feedback</strong></h2>
 
-        <div>
-            <ul class="pagination">
-                {% for i in subjects %}
-                    <li {% ifequal forloop.counter pager.number %}class="active" {% else %}class="disabled"{% endifequal %}><a>{{ forloop.counter }}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+        <h3 align="center">{{ class_obj.year }} {{ class_obj.branch }} {{ class_obj.section }}</h3>
 
+        {% if error %}
+            <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Error!</strong> {{ error }}
+            </div>
+        {% endif %}
 
-    {% if error %}
-        <div class="alert alert-danger">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Error!</strong> {{ error }}
-        </div>
-    {% endif %}
+        <p align="center">Rate your faculty from 1 to 5 for all the following questions.</p>
 
-    <form method="post" action="" id="questionForm">
-        {% csrf_token %}
-        <table class="table" >
-            <thead>
-              <tr>
-                <th>Questions</th>
-                <th>Rating</th>
-              </tr>
-            </thead>
-            <tbody>
+        <form method="post" action="" id="questionForm">
+            {% csrf_token %}
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Questions</th>
+                    {% for cfs in cfs_list %}
+                        <th><p style="font-size: smaller; width: 150px">{{ cfs.faculty_id }}</p>
+
+                            <p style="font-size: x-small; width: 150px">{{ cfs.subject_id }}</p></th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
                 {% for question in questions %}
                     {% if forloop.counter in subcategory %}
-                        <tr><td colspan="3"><b>{{ question.subcategory }}</b></td></tr>
+                        <tr>
+                            <td colspan="3"><b>{{ question.subcategory }}</b></td>{% for cfs in cfs_list %}<td></td>{% endfor %}
+                        </tr>
                     {% endif %}
-                  <tr>
-                    <td>{{ question.question }}</td>
-                      <td>
-                        <fieldset class="rating" name="review">
-                            <input type="radio" id="star5-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="5" required /><label class = "full" for="star5-{{ forloop.counter }}" title="Excellent"></label>
-                            <input type="radio" id="star4-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="4" /><label class = "full" for="star4-{{ forloop.counter }}" title="Good"></label>
-                            <input type="radio" id="star3-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="3" /><label class = "full" for="star3-{{ forloop.counter }}" title="Average"></label>
-                            <input type="radio" id="star2-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="2" /><label class = "full" for="star2-{{ forloop.counter }}" title="Poor"></label>
-                            <input type="radio" id="star1-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="1" /><label class = "full" for="star1-{{ forloop.counter }}" title="Very poor"></label>
-                        </fieldset>
-                    </td>
+                    <tr>
+                        <td>{{ question.question }}</td>
+                        {% for cfs in cfs_list %}
+                            <td>
+                                <fieldset class="rating" name="review">
+                                    {% for i in "54321" %}
+                                        <input type="radio" id="star{{ i }}-{{ question.question_id }}-{{ cfs.cfs_id }}"
+                                               name="star-{{ question.question_id }}-{{ cfs.cfs_id }}"
+                                               value="{{ i }}" {% if forloop.counter == 1 %}required{% endif %}/><label class="full"
+                                                                                for="star{{ i }}-{{ question.question_id }}-{{ cfs.cfs_id }}"
+                                                                                title="{{ i }}"></label>
+                                    {% endfor %}
+                                </fieldset>
+                            </td>
+                        {% endfor %}
 
-                  </tr>
+                    </tr>
                 {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-        <div id="fillall" align="center" style="color:orangered"></div>
+            <div id="fillall" align="center" style="color:orangered"></div>
 
-        <div align="center">
-            <ul class="pager">
-                {% if pager.has_next %}
-                    <input id="next_button" class="btn btn-primary" type="submit" value="Rate next Faculty" name="next">
-                {% else %}
-                    <textarea class="form-control" id="remarks" placeholder="Remarks" name="remarks" ></textarea><br/>
+            <div align="center">
+                <ul class="pager">
+                    <textarea class="form-control" id="remarks" placeholder="Remarks" name="remarks"></textarea><br/>
+
                     <p align="center">By Clicking Finish, You'll be redirected to LOA Page.</p>
-                    <input id="confirm_finish" type="submit" value="Finish" name="finish" class="btn btn-success" form="questionForm">
-                {% endif %}
-            </ul>
-        </div>
+                    <input id="confirm_finish" type="submit" value="Next" name="finish" class="btn btn-success"
+                           form="questionForm">
+                </ul>
+            </div>
 
-    </form><br><br>
+        </form>
+
+        <br/><br/><br/>
+    </div>
 
     <script>
-        var next = document.getElementById("next_button");
         var finish = document.getElementById("confirm_finish");
-        next.onclick = function(){
-            if ( $("input[type=radio]:checked").length < {{ questions|length }} ) {
-                document.getElementById('fillall').innerHTML = 'Please answer all of the questions';
-            }
-        };
-        finish.onclick = function(){
-            if ( $("input[type=radio]:checked").length < {{ questions|length }} ) {
+        finish.onclick = function () {
+            if ($("input[type=radio]:checked").length < {{ questions|length }}) {
                 document.getElementById('fillall').innerHTML = 'Please answer all of the questions';
             }
         };
