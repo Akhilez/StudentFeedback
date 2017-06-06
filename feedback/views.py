@@ -12,6 +12,7 @@ from feedback.libs.view_helpers.login_helper import *
 from feedback.libs.view_helpers.conduct_helper import *
 from feedback.libs.view_helpers.initiate_helper import *
 from feedback.libs import log
+from feedback.libs.view_helpers.questions_helper import *
 
 
 def login_redirect(request):
@@ -100,6 +101,17 @@ def conduct(request):
 
 @login_required()
 def latelogin(request, session_id):
+    """
+    1. get session from url
+    2. if session invalid or expired, throw 404
+    3. add absent students into context
+    4. handle button event-
+        a. get attendance from checkboxes
+        b. insert attendance into attendance table
+    :param request:
+    :param session_id:
+    :return: html response
+    """
     if feedback_running(request):
         return redirect('/feedback/questions/')
 
@@ -111,85 +123,70 @@ def latelogin(request, session_id):
     if get_cur_time_offset(session) > get_session_length():
         raise Http404
 
-    context['session'] = session
-    presentClass = session.initiation_id.class_id
-
-    # get all the students
-    allStudents = Student.objects.filter(class_id=presentClass)
-    presentStudents = Attendance.objects.filter(session_id=session)
-    presentStudents = [x for x in presentStudents]
-    if session.mastersession is not None:
-        more_students = Attendance.objects.filter(session_id=get_master_session(session))
-        for att in more_students:
-            presentStudents.append(att)
-    slav = get_slave(session)
-    if slav is not None:
-        more_students = Attendance.objects.filter(session_id=slav)
-        for att in more_students:
-            presentStudents.append(att)
-    presentStudents = [student.student_id for student in presentStudents]
-    absentStudents = []
-    for student in allStudents:
-        if student not in presentStudents:
-            absentStudents.append(student)
-
-    context['students'] = absentStudents
-
     if request.method == 'POST':
         attendance = request.POST.getlist('attendance')
         for stud in attendance:
             Attendance.objects.create(student_id=Student.objects.get(hallticket_no=stud), session_id=session)
 
-        cur_time = get_cur_time_offset(session)
-        if cur_time > int(session.stutimeout) - getGracePeriod():
-            tempTime = cur_time + getGracePeriod()
-            session.stutimeout = tempTime
-            session.save()
-
         return redirect('/feedback/conduct')
+
+    context['session'] = session
+    context['students'] = get_absent_students_for_late_login(session)
 
     return render(request, template, context)
 
 
 def student(request):
+    """
+    1. get otp from text box
+    2. validate from session table
+    3. validate attendance
+    4. Start a django session and redirect to the feedback questions page
+    :param request:
+    :return: http response
+    """
     if feedback_running(request):
         return redirect('/feedback/questions/')
 
     template = 'feedback/student_login.html'
     context = {}
-    # Are any sessions open?
-    sessions = Session.objects.all().order_by('-timestamp')[:50]
 
     if request.method == 'POST':
+
+        # 1. get otp from text box
         otpFromBox = request.POST.getlist('OTP')[0].strip()
-        classObj = None
-        for session in sessions:
-            if str(session.session_id) == otpFromBox:
 
-                # check the attendance
-                attendance = Attendance.objects.filter(session_id=session).count()
-                attendanceCount = Feedback.objects.filter(session_id=session).values_list(
-                    'student_no').distinct().count()
-                if session.mastersession is not None:
-                    attendance += Attendance.objects.filter(session_id=get_master_session(session)).count()
-                    attendanceCount += Feedback.objects.filter(
-                        session_id=get_master_session(session)).values_list(
-                        'student_no').distinct().count()
-                context['attendance'] = str(attendance) + ' ' + str(attendanceCount)
-                if attendanceCount >= attendance:
-                    context['error'] = "Sorry, the attendance limit has been reached."
-                    return render(request, template, context)
-
-                # Start a django session and redirect to the feedback questions page
-                request.session['sessionObj'] = session.session_id
-                request.session['classId'] = session.initiation_id.class_id.__str__()
-                return redirect('/feedback/questions')
-        if classObj is None:
+        # 2. validate from session table
+        try:
+            session = Session.objects.get(session_id=otpFromBox)
+        except:
             context['error'] = 'The OTP you have entered is invalid'
+            return render(request, template, context)
+
+        # 3. validate attendance
+        if attendance_from_session(session) >= attendance_from_attendance(session):
+            context['error'] = "Sorry, the attendance limit has been reached."
+            return render(request, template, context)
+
+        # 4. Start a django session and redirect to the feedback questions page
+        request.session['sessionObj'] = session.session_id
+        request.session['classId'] = str(session.initiation_id.class_id)
+        return redirect('/feedback/questions')
+
     return render(request, template, context)
 
 
 def questions(request):
+    """
+    1. get session from http session variables
+    2. validate attendance
+    3. add cfs list to context, ignore labs and mentoring
+    4. add questions-set to context
+    5. add sub-category order to context
+    6. Handle finish button
+    :param request:
+    :return: http response
+    """
     session_id = request.session.get('sessionObj')
     if session_id is None:
         return redirect('/')
@@ -197,68 +194,30 @@ def questions(request):
     template = 'feedback/questions.html'
     context = {}
 
+    # 1. get session from http session variables
     session = Session.objects.get(session_id=session_id)
 
-    attendance = Attendance.objects.filter(session_id=session).count()
-    attendanceCount = Feedback.objects.filter(session_id=session).values_list('student_no').distinct().count()
-    if attendanceCount > attendance:
+    # 2. validate attendance
+    if attendance_from_session(session) >= attendance_from_attendance(session):
         del request.session['sessionObj']
         return HttpResponse("Sorry, the attendance limit has been reached.")
 
-    # GET CATEGORY
-    category = Category.objects.get(category='faculty')
-
-    # GET CLASS OBJECT
-    classObj = session.initiation_id.class_id
-    context['class_obj'] = classObj
-
-    # GET ALL THE CONTENT DETAILS - CLASSES, CFS, ETC
-    cfsList = []
-    for cfs in ClassFacSub.objects.filter(class_id=classObj):
-        if not re.compile("^.* [Ll][Aa][Bb]$").match(cfs.subject_id.name) and not re.compile(
-                "[Mm][eE][nN][tT][oO][rR][iI][nN][gG]").match(cfs.subject_id.name):
-            cfsList.append(cfs)
-
+    # 3. add cfs list to context, ignore labs and mentoring
+    cfsList = get_cfs_for(class_id=session.initiation_id.class_id)
     context['cfs_list'] = cfsList
+    context['class_obj'] = session.initiation_id.class_id
 
-    questionsList = [ques for ques in FdbkQuestions.objects.filter(category=category)]
+    # 4. add questions-set to context
+    questionsList = [ques for ques in FdbkQuestions.objects.filter(qset=get_current_qset())]
     context['questions'] = questionsList
 
-    currentSubCategory = ''
-    subcategoryOrder = []
-    for i in range(len(questionsList)):
-        if questionsList[i].subcategory != currentSubCategory and questionsList[i].subcategory is not None:
-            currentSubCategory = questionsList[i].subcategory
-            subcategoryOrder.append(i + 1)
-    context['subcategory'] = subcategoryOrder
+    # 5. add sub-category order to context
+    context['subcategory'] = get_subcategory_order(questionsList)
 
+    # 6. Handle finish button:
     if request.method == 'POST':
         if 'finish' in request.POST:
-            student_no = Feedback.objects.filter(session_id=session, category=category)
-            if len(student_no) == 0:
-                student_no = 1
-            else:
-                student_no = student_no.order_by('-student_no')[0].student_no + 1
-
-            # GET THE REMARKS FROM HTML
-            remarks = request.POST.getlist('remarks')
-            if remarks is not None and len(remarks) == 1 and remarks[0] != '':
-                Notes.objects.create(note=remarks[0], session_id=session)
-
-            for i in range(0, len(cfsList)):
-                ratingsString = ""
-                for j in range(0, len(questionsList)):
-                    ratingsString += str(
-                        request.POST['star-' + str(questionsList[j].question_id) + '-' + str(cfsList[i].cfs_id)])
-                    if j != len(questionsList) - 1:
-                        ratingsString += ","
-                Feedback.objects.create(session_id=session, category=category,
-                                        relation_id=str(cfsList[i].cfs_id), student_no=student_no,
-                                        ratings=ratingsString)
-
-            # return HttpResponse("Thank you for the most valuable review!")
-            #return redirect('http://facility.feedback.com/')#('/feedback/questions/facility')
-            return redirect('/feedback/LoaQuestions')
+            return get_finish_result(request, cfsList, questionsList, session)
 
     return render(request, template, context)
 
@@ -361,7 +320,7 @@ def LoaQuestions(request):
     cfs = ClassFacSub.objects.filter(class_id=classObj)
     for i in cfs:
         cfsList.append(i)
-        #con = LOAquestions.objects.filter(subject_id=i.subject_id)
+        # con = LOAquestions.objects.filter(subject_id=i.subject_id)
         #if len(con) > 0:
         subjects.append(i.subject_id)
     context['subjects'] = subjects
@@ -435,7 +394,7 @@ def LoaQuestions(request):
 
             del request.session['sessionObj']
             del request.session['maxPage']
-            response = redirect('http://'+str(ALLOWED_HOSTS[len(ALLOWED_HOSTS)-1])+'/')
+            response = redirect('http://' + str(ALLOWED_HOSTS[len(ALLOWED_HOSTS) - 1]) + '/')
             response.set_cookie('class_id', session.initiation_id.class_id.class_id)
             return response
 
@@ -452,7 +411,7 @@ def updatedb(request):
     # data = db_updater.update_faculty()
     # data = db_updater.update_subjects()
     # data = db_updater.update_class_fac_sub()
-    #data = db_updater.update_faculty_questions()
+    # data = db_updater.update_faculty_questions()
     data = db_updater.update_loa_questions()
 
     context['classes'] = data

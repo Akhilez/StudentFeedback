@@ -3,8 +3,7 @@ import csv
 import datetime
 import re
 from analytics.libs import db_helper
-from feedback.models import Classes, Student, Faculty, Subject, ClassFacSub, Feedback, FdbkQuestions, Category, \
-    LOAquestions
+from feedback.models import *
 
 __author__ = 'Akhil'
 

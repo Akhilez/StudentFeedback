@@ -1,9 +1,6 @@
 from django.contrib.auth.models import User, Group
 from django.core.validators import MinValueValidator, MaxValueValidator, validate_comma_separated_integer_list
 from django.db import models
-
-
-# Create your models here.
 from django.db.models.signals import pre_save
 from StudentFeedback.settings import MAX_QUESTIONS
 
@@ -13,18 +10,24 @@ class QSet(models.Model):
     date = models.DateField()
     description = models.TextField()
 
+    def __str__(self):
+        return str(self.qset_id)
+
 
 class Sem(models.Model):
     sem_id = models.AutoField(primary_key=True)
-    form = models.IntegerField()
+    frm = models.IntegerField()
     to = models.IntegerField()
     no = models.IntegerField(null=True)
+
+    def __str__(self):
+        return str("SEM: "+str(self.no)+" | from "+str(self.frm)+" to "+str(self.to))
 
 
 class Classes(models.Model):
     class Meta:
         db_table = 'classes'
-        unique_together = (('year', 'branch', 'section'),)
+        unique_together = (('year', 'branch', 'section', 'sem'),)
 
     class_id = models.AutoField(primary_key=True)
     year = models.IntegerField(
@@ -104,7 +107,6 @@ class Session(models.Model):
     initiation_id = models.ForeignKey(Initiation, on_delete=models.CASCADE)
     taken_by = models.ForeignKey(User, on_delete=models.CASCADE)
     master = models.BooleanField(default=False)
-    stutimeout = models.IntegerField(default=5)
     mastersession = models.CharField(max_length=5, null=True)  # references master session
     qset = models.ForeignKey(QSet, on_delete=models.CASCADE, null=True)
 
@@ -120,30 +122,24 @@ class Notes(models.Model):
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE, null=True)
 
 
-class Category(models.Model):
-    category = models.CharField(max_length=30, primary_key=True)
-
-
 class FdbkQuestions(models.Model):
     question_id = models.AutoField(primary_key=True)
     question = models.TextField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     subcategory = models.CharField(max_length=30, null=True)
     qset = models.ForeignKey(QSet, on_delete=models.CASCADE, null=True)
 
 
 class Config(models.Model):
-    key = models.CharField(max_length=20)
+    key = models.CharField(max_length=20, unique=True)
     value = models.CharField(max_length=20)
     description = models.TextField()
 
 
 class Feedback(models.Model):
     class Meta:
-        unique_together = (('session_id', 'student_no', 'relation_id', 'category'),)
+        unique_together = (('session_id', 'student_no', 'relation_id'),)
 
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     student_no = models.IntegerField()
     relation_id = models.CharField(null=True, max_length=25)
 

@@ -9,8 +9,8 @@ from django.core.signing import *
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, DIRECTOR_GROUP
 from analytics.libs import db_helper
 from feedback.forms import LoginForm
-from feedback.libs.config_helper import getStudentTimeout, get_session_length, getGracePeriod
-from feedback.libs.view_helper import get_cur_time_offset
+from feedback.libs.config_helper import get_session_length, getGracePeriod, get_current_qset
+from feedback.libs.view_helper import get_cur_time_offset, get_slave, get_master_session
 from feedback.models import *
 
 __author__ = 'Akhil'
@@ -19,15 +19,6 @@ __author__ = 'Akhil'
 def not_conductor(request):
     groups = request.user.groups.all()
     return not groups.filter(name=CONDUCTOR_GROUP).exists()
-
-
-def set_student_login_enabled_status(context, session):
-    # get elapsed time = cur_time
-    cur_time = get_cur_time_offset(session)
-    if session.stutimeout > cur_time:
-        context['warning'] = "The student login page is enabled!"
-    else:
-        context['success'] = "Enable the student page"
 
 
 def get_editable_result(request, template, context, editable):
@@ -52,28 +43,6 @@ def get_editable_result(request, template, context, editable):
     '''
 
     return render(request, template, context)
-
-
-def enable_student_login(editable, context):
-    try:
-        session = Session.objects.get(session_id=editable)
-        session.stutimeout = get_cur_time_offset(session) + getGracePeriod()
-        session.save()
-        context['warning'] = "The student login page is enabled!"
-        del context['success']
-    except KeyError:
-        pass
-
-
-def disable_student_login(editable, context):
-    try:
-        session = Session.objects.get(session_id=editable)
-        session.stutimeout = getStudentTimeout()
-        session.save()
-        context['success'] = "Enable the student page"
-        del context['warning']
-    except KeyError:
-        pass
 
 
 def add_classes_for_session_selection(context):
@@ -121,101 +90,126 @@ def get_init_for_no_session():
 
 def confirm_session_result(request):
     # is the session required to split? if yes, the current session is master
-    split = request.POST.getlist('master')
-    if len(split) > 0:
-        master = True
-    else:
-        master = False
-
-    # get the class from session
-    classFromSelect = request.session.get('class')
-
-    # get the attendance
-    checkValues = request.POST.getlist("attendanceList")
-
-    # generate otp
-    otp = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+    master = True if len(request.POST.getlist('master')) > 0 else False
 
     dt = str(datetime.datetime.now())
 
     # get the initiation obj from selected class
     initObj = None
     for init in get_init_for_no_session():
-        if str(init.class_id.class_id) == str(classFromSelect):
+        if str(init.class_id.class_id) == str(request.session.get('class')):
             initObj = init
             break
 
     # check if session exists
-    allSessions = Session.objects.all().order_by('-timestamp')
     masterSession = None
     alreadyThere = False
-    for session0 in allSessions:
+    for session0 in Session.objects.all().order_by('-timestamp'):
         if initObj == session0.initiation_id:
             masterSession = session0
             alreadyThere = True
             break
 
+    # generate otp
+    otp = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+
     # insert new session record
     if not alreadyThere:
         session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj,
                                          session_id=otp, master=master,
-                                         stutimeout=getStudentTimeout())
+                                         qset=get_current_qset())
     else:
         masterSession.master = False
         masterSession.save()
         session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj,
                                          session_id=otp, master=False, mastersession=masterSession.session_id,
-                                         stutimeout=getStudentTimeout())
+                                         qset=get_current_qset())
 
     # insert the attendance into table
-    for htno in checkValues:
+    for htno in request.POST.getlist("attendanceList"):
         Attendance.objects.create(student_id=Student.objects.get(hallticket_no=htno), session_id=session)
 
     return redirect('/')
 
 
+def get_session_for_running_class(classObj):
+    """
+    1. get initiation for the class
+    2. get session for the initiation
+    :param classObj:
+    :return: session
+    """
+
+    # 1. get the initiation object of the selected class
+    initObj = None
+    for init in get_init_for_no_session():
+        if init.class_id.class_id == classObj.class_id:
+            initObj = init
+            break
+
+    # 2. get session for the initiation
+    for session in Session.objects.all().order_by('-timestamp'):
+        if initObj == session.initiation_id:
+            return session
+
+
+def get_absent_students(session):
+    absentStudents = []
+    presentStudentsList = []
+    presentStudents = Attendance.objects.filter(session_id=session)
+    for pS in presentStudents: presentStudentsList.append(pS.student_id)
+    for student in Student.objects.filter(class_id=session.initiation_id.class_id):
+        if student not in presentStudentsList:
+            absentStudents.append(student)
+    return absentStudents
+
 
 def take_attendance_result(request, template, context):
+    """
+    1. get the class from drop down
+    2. if session is slave session, add absent students to context
+    3. else add all students to the context
+    :param request:
+    :param template:
+    :param context:
+    :return: context
+    """
 
-    # get the class obj from the dropdown
-    classFromSelect = request.POST.getlist('selectClass')[0]
-    classObj = Classes.objects.get(class_id=classFromSelect)
+    # 1. get the class obj from the dropdown
+    classObj = Classes.objects.get(class_id=request.POST.getlist('selectClass')[0])
 
     # set the context and session with class
     context['classSelected'] = classObj
     request.session['class'] = classObj.class_id
 
-    alreadyThere = False
+    # 2. if session is slave session, add absent students to context
+    session = get_session_for_running_class(classObj)
+    if session is not None and session.master:
+        context['master'] = True
+        context['allStudetns'] = get_absent_students(session)
 
-    # get the initiation object of the selected class
-    initObj = None
-    for init in get_init_for_no_session():
-        if str(init.class_id.class_id) == str(classFromSelect):
-            initObj = init
-            break
+    # 3. else add all students to the context
+    else:
+        context['allStudetns'] = Student.objects.filter(class_id=classObj)
 
-    # check if there are any sessions with the initiation id, if yes, is it a master session?
-    allSessions = Session.objects.all().order_by('-timestamp')
-    masterSession = None
-    for session in allSessions:
-        if initObj == session.initiation_id:
-            if session.master:
-                alreadyThere = True
-                masterSession = session
-                context['master'] = True
-            break
-
-    # get all the student roll numbers for attendance
-    allStudents = Student.objects.filter(class_id=classObj)
-    if alreadyThere:
-        absentStudents = []
-        presentStudentsList = []
-        presentStudents = Attendance.objects.filter(session_id=masterSession)
-        for pS in presentStudents: presentStudentsList.append(pS.student_id)
-        for student in allStudents:
-            if student not in presentStudentsList:
-                absentStudents.append(student)
-        allStudents = absentStudents
-
-    context['allStudetns'] = allStudents
     return render(request, template, context)
+
+
+def get_absent_students_for_late_login(session):
+    presentStudents = [x for x in Attendance.objects.filter(session_id=session)]
+    if session.mastersession is not None:
+        more_students = Attendance.objects.filter(session_id=get_master_session(session))
+        for att in more_students:
+            presentStudents.append(att)
+    slav = get_slave(session)
+    if slav is not None:
+        more_students = Attendance.objects.filter(session_id=slav)
+        for att in more_students:
+            presentStudents.append(att)
+    presentStudents = [student.student_id for student in presentStudents]
+    absentStudents = []
+    for student in Student.objects.filter(class_id=session.initiation_id.class_id):
+        if student not in presentStudents:
+            absentStudents.append(student)
+
+    return absentStudents
