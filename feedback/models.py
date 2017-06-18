@@ -5,23 +5,18 @@ from django.db.models.signals import pre_save
 from StudentFeedback.settings import MAX_QUESTIONS
 
 
-class QSet(models.Model):
-    qset_id = models.AutoField(primary_key=True)
-    date = models.DateField()
-    description = models.TextField()
-
-    def __str__(self):
-        return str(self.qset_id)
-
-
 class Sem(models.Model):
+    class Meta:
+        db_table = 'sem'
+        unique_together = (('frm', 'to', 'no'),)
+
     sem_id = models.AutoField(primary_key=True)
     frm = models.IntegerField()
     to = models.IntegerField()
     no = models.IntegerField(null=True)
 
     def __str__(self):
-        return str("SEM: "+str(self.no)+" | from "+str(self.frm)+" to "+str(self.to))
+        return str("SEM: " + str(self.no) + " | from " + str(self.frm) + " to " + str(self.to))
 
 
 class Classes(models.Model):
@@ -35,7 +30,6 @@ class Classes(models.Model):
     )
     branch = models.CharField(max_length=10)
     section = models.CharField(max_length=1, null=True)
-    #no_of_students = models.IntegerField(default=75)
     sem = models.ForeignKey(Sem, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -106,9 +100,14 @@ class Session(models.Model):
     timestamp = models.DateTimeField()
     initiation_id = models.ForeignKey(Initiation, on_delete=models.CASCADE)
     taken_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    master = models.BooleanField(default=False)
-    mastersession = models.CharField(max_length=5, null=True)  # references master session
-    qset = models.ForeignKey(QSet, on_delete=models.CASCADE, null=True)
+
+
+class SlaveSession(models.Model):
+    class Meta:
+        unique_together = (('master', 'slave'),)
+
+    master = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='master', primary_key=True)
+    slave = models.ForeignKey(Session, on_delete=models.CASCADE, null=True, related_name='slave')
 
 
 class Attendance(models.Model):
@@ -126,7 +125,10 @@ class FdbkQuestions(models.Model):
     question_id = models.AutoField(primary_key=True)
     question = models.TextField()
     subcategory = models.CharField(max_length=30, null=True)
-    qset = models.ForeignKey(QSet, on_delete=models.CASCADE, null=True)
+    enabled = models.BooleanField(default=True)
+
+    def __str__(self):
+        return str(str(self.question_id) + ". " + str(self.question))
 
 
 class Config(models.Model):
@@ -137,13 +139,16 @@ class Config(models.Model):
 
 class Feedback(models.Model):
     class Meta:
-        unique_together = (('session_id', 'student_no', 'relation_id'),)
+        unique_together = (('session_id', 'student_no', 'cfs_id'),)
 
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
     student_no = models.IntegerField()
-    relation_id = models.CharField(null=True, max_length=25)
-
+    cfs_id = models.ForeignKey(ClassFacSub, on_delete=models.CASCADE)
     ratings = models.CharField(
+        validators=[validate_comma_separated_integer_list],
+        max_length=MAX_QUESTIONS * 4
+    )
+    questions = models.CharField(
         validators=[validate_comma_separated_integer_list],
         max_length=MAX_QUESTIONS * 4
     )
@@ -153,23 +158,30 @@ class LOAquestions(models.Model):
     question_id = models.AutoField(primary_key=True)
     question = models.TextField()
     subject_id = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    enabled = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.question
 
 
 class FeedbackLoa(models.Model):
     class Meta:
-        unique_together = (('session_id', 'student_no', 'relation_id'),)
+        unique_together = (('session_id', 'student_no', 'subject_id'),)
 
     session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
     student_no = models.IntegerField()
-    relation_id = models.CharField(null=True, max_length=25)
-
-    loaratings = models.CharField(
+    subject_id = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    ratings = models.CharField(
         validators=[validate_comma_separated_integer_list],
         max_length=MAX_QUESTIONS * 4
-
+    )
+    questions = models.CharField(
+        validators=[validate_comma_separated_integer_list],
+        max_length=MAX_QUESTIONS * 4
     )
 
 
+# TRIGGER for every new branch (cse, ece), add its group to groups table.
 def create_branch_group(sender, **kwargs):
     allBranches = []
     branchesQlist = Classes.objects.values_list('branch').distinct()

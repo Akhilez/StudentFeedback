@@ -6,7 +6,6 @@ __author__ = 'Akhil'
 
 
 class ClassSubGraph(Graphable):
-
     def __init__(self, faculty):
         self.faculty = faculty
         super().__init__()
@@ -28,7 +27,7 @@ class ClassSubGraph(Graphable):
 
         for i in range(len(cfs)):
             bars.append(Bar(
-                str(cfs[i].class_id)+' ( '+cfs[i].subject_id.name+' )',
+                str(cfs[i].class_id) + ' ( ' + cfs[i].subject_id.name + ' )',
                 db_helper.get_cfs_value(cfs[i]),
                 self.build_faculty_ques_series(cfs[i])
             ))

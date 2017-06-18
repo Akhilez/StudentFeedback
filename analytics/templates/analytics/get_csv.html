@@ -1,0 +1,12 @@
+
+{% block maincontent %}
+
+    {% for ratings in ratings_list %}
+        {{ ratings }}<br/>
+    {% endfor %}
+    <hr/>
+    {% for ratings in ratings_list_faculty %}
+        {{ ratings }}<br/>
+    {% endfor %}
+
+{% endblock %}

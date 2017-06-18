@@ -1,9 +1,8 @@
 from analytics.libs.drilldown_chart import Graphable, Series, Bar
-
-__author__ = 'Akhil'
-
 from analytics.libs import db_helper
 from analytics.libs.db_helper import Timeline
+
+__author__ = 'Akhil'
 
 
 class Graph(Graphable):
@@ -68,7 +67,7 @@ class Graph(Graphable):
                 itr = 6
             else:
                 # Selected subject graph - year, branch
-                title = self.year+'-'+self.branch
+                title = self.year + '-' + self.branch
                 series = Series(title, title, self)
                 itr = 7
         self.s_no = itr
@@ -176,7 +175,7 @@ class Graph(Graphable):
         return series.rev_sort()
 
     def build_section_series(self, year, branch):
-        series = Series(year+' '+branch, year+' '+branch, self)
+        series = Series(year + ' ' + branch, year + ' ' + branch, self)
         sections = db_helper.get_sections(year, branch)
         bars = []
 
@@ -191,17 +190,17 @@ class Graph(Graphable):
         return series.rev_sort()
 
     def build_faculty_series(self, year, branch, section):
-        series = Series(year+' '+branch+' '+section, year+' '+branch+' '+section, self)
+        series = Series(year + ' ' + branch + ' ' + section, year + ' ' + branch + ' ' + section, self)
         faculty = db_helper.get_faculty(year, branch, section)
         bars = []
         for i in range(len(faculty)):
             cfss = db_helper.get_cfs(faculty[i].name, year, branch, section)
             for cfs in cfss:
                 bars.append(Bar(
-                    faculty[i].name+' ('+cfs.subject_id.name+')',
+                    faculty[i].name + ' (' + cfs.subject_id.name + ')',
                     db_helper.get_cfs_value(cfs),
                     self.build_faculty_ques_series(faculty[i].name)
-                    #'null'
+                    # 'null'
                 ))
         series.bars = bars
         return series.rev_sort()
@@ -211,11 +210,11 @@ class Graph(Graphable):
         all_years_branches = db_helper.get_all_year_branches()
 
         if self.type == 'bar':
-            self.height = self.height_per_bar * len(all_years_branches)/2
+            self.height = self.height_per_bar * len(all_years_branches) / 2
 
         for each in all_years_branches:
             bars.append(Bar(
-                db_helper.formatter[str(each[0])]+' '+each[1],
+                db_helper.formatter[str(each[0])] + ' ' + each[1],
                 db_helper.get_branch_value(db_helper.formatter[str(each[0])], each[1]),
                 'null'
             ))
@@ -230,7 +229,7 @@ class Graph(Graphable):
 
         for each in all_years_sections:
             bars.append(Bar(
-                db_helper.formatter[str(each[0])]+' '+each[1]+' '+each[2],
+                db_helper.formatter[str(each[0])] + ' ' + each[1] + ' ' + each[2],
                 db_helper.get_section_value(db_helper.formatter[str(each[0])], each[1], each[2]),
                 'null'
             ))

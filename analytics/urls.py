@@ -20,6 +20,6 @@ urlpatterns = [
     url(r'^LOAanalysis/(\w+)/(\w+)/(\w+)/()()$', views.LOAanalysis, name="LOAAnalysis"),
     url(r'^LOAanalysis/(\w+)/(\w+)/(\w+)/(\w+)/()$', views.LOAanalysis, name="LOAAnalysis"),
     url(r'^LOAanalysis/(\w+)/(\w+)/(\w+)/(\w+)/(\w+)/$', views.LOAanalysis, name="LOAAnalysis"),
-
+    url(r'^get_csv/(\w+)', views.get_csv, name="get_csv"),
 
 ]

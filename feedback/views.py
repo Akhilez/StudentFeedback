@@ -1,18 +1,19 @@
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.decorators import login_required
+
 from django.contrib.auth.hashers import check_password
 from django.core.mail import EmailMessage
 
-from StudentFeedback.settings import LOGIN_URL, ALLOWED_HOSTS
+from StudentFeedback.settings import LOGIN_URL
 from analytics.libs import db_updater
+
 from feedback.forms import *
+from feedback.libs.config_helper import get_max_subjects_each_page_loa, get_max_cfs_each
 from feedback.libs.view_helper import *
 from feedback.libs.view_helpers.login_helper import *
 from feedback.libs.view_helpers.conduct_helper import *
 from feedback.libs.view_helpers.initiate_helper import *
-from feedback.libs import log
-from feedback.libs.view_helpers.questions_helper import *
+from feedback.libs.view_helpers import loa_helper
+from feedback.libs.view_helpers import questions_helper
 
 
 def login_redirect(request):
@@ -96,6 +97,9 @@ def conduct(request):
         if 'take_attendance' in request.POST:
             return take_attendance_result(request, template, context)
 
+        if 'makemaster' in request.POST:
+            return make_master_result(request.POST['makemaster'])
+
     return render(request, template, context)
 
 
@@ -118,7 +122,7 @@ def latelogin(request, session_id):
     context = {}
     template = 'feedback/latelogin.html'
 
-    # get the session from session_id url
+    # 1. get the session from session_id url
     session = get_object_or_404(Session, session_id=session_id)
     if get_cur_time_offset(session) > get_session_length():
         raise Http404
@@ -164,7 +168,7 @@ def student(request):
             return render(request, template, context)
 
         # 3. validate attendance
-        if attendance_from_session(session) >= attendance_from_attendance(session):
+        if questions_helper.attendance_from_session(session) >= questions_helper.attendance_from_attendance(session):
             context['error'] = "Sorry, the attendance limit has been reached."
             return render(request, template, context)
 
@@ -180,7 +184,11 @@ def questions(request):
     """
     1. get session from http session variables
     2. validate attendance
-    3. add cfs list to context, ignore labs and mentoring
+    2.1 make pagination
+    2.2 get maxPage if exists else create maxPage
+    2.3 get pager indices
+    2.4 get cfs for current page
+    3. add cfs list of the page to context, ignore labs and mentoring
     4. add questions-set to context
     5. add sub-category order to context
     6. Handle finish button
@@ -198,26 +206,46 @@ def questions(request):
     session = Session.objects.get(session_id=session_id)
 
     # 2. validate attendance
-    if attendance_from_session(session) >= attendance_from_attendance(session):
+    if questions_helper.attendance_from_session(session) >= questions_helper.attendance_from_attendance(session):
         del request.session['sessionObj']
         return HttpResponse("Sorry, the attendance limit has been reached.")
 
+    # get necessary details
+    all_cfs_list = questions_helper.get_cfs_for(class_id=session.initiation_id.class_id)
+    max_cfs_each = get_max_cfs_each()
+
+    # 2.1 make pagination
+    pager = loa_helper.get_pager(request, all_cfs_list, max_cfs_each)
+    context['pager'] = pager
+
+    # 2.2 get maxPage if exists else create maxPage
+    if questions_helper.set_max_page(request, pager.number):
+        return redirect('/feedback/questions/?page=' + str(request.session['maxPage'][0]))
+
+    # 2.3 get pager indices
+    context['page_index_list'] = [i for i in range(1, max_cfs_each + 1)]
+
+    # 2.4 get cfs for current page
+    cfs_list = all_cfs_list[((pager.number - 1) * max_cfs_each): (pager.number * max_cfs_each)]
+
     # 3. add cfs list to context, ignore labs and mentoring
-    cfsList = get_cfs_for(class_id=session.initiation_id.class_id)
-    context['cfs_list'] = cfsList
+    context['cfs_list'] = cfs_list
     context['class_obj'] = session.initiation_id.class_id
 
     # 4. add questions-set to context
-    questionsList = [ques for ques in FdbkQuestions.objects.filter(qset=get_current_qset())]
-    context['questions'] = questionsList
+    questions_list = [ques for ques in FdbkQuestions.objects.filter(enabled=True)]
+    context['questions'] = questions_list
 
     # 5. add sub-category order to context
-    context['subcategory'] = get_subcategory_order(questionsList)
+    context['subcategory'] = questions_helper.get_subcategory_order(questions_list)
 
     # 6. Handle finish button:
     if request.method == 'POST':
+        if 'next' in request.POST:
+            return questions_helper.get_next_result(request, cfs_list, questions_list, pager)
+
         if 'finish' in request.POST:
-            return get_finish_result(request, cfsList, questionsList, session)
+            return questions_helper.get_finish_result(request, cfs_list, questions_list, session, all_cfs_list)
 
     return render(request, template, context)
 
@@ -289,114 +317,58 @@ def changepass(request):
 
 
 def LoaQuestions(request):
+    """
+    1. get session obj or go to /
+    2. make pagination
+    3. get maxPage if exists else create maxPage
+    4. get the subjects for current page
+    5. for each subject obj, get its questions, make a SubQues object and pass it to context
+    6. handle next button click
+    7. handle submit button click
+    :param request:
+    :return:
+    """
+    # 1. get session obj or go to /
     session_id = request.session.get('sessionObj')
     if session_id is None:
         return redirect('/')
 
-    maxPage = request.session.get('maxPage')
-    if maxPage is None:
-        maxPage = [1, 'LOA']
-        request.session['maxPage'] = maxPage
-
     template = 'feedback/loaquestions.html'
     context = {}
 
+    # get all the necessary details
     session = Session.objects.get(session_id=session_id)
+    class_obj = session.initiation_id.class_id
+    context['class_obj'] = class_obj
+    all_subjects = loa_helper.get_all_subjects(class_obj)
+    max_sub_each = get_max_subjects_each_page_loa()
 
-    attendance = Attendance.objects.filter(session_id=session).count()
-    attendanceCount = FeedbackLoa.objects.filter(session_id=session).values_list('student_no').distinct().count()
-    context['attendance'] = str(attendance) + ' ' + str(attendanceCount)
-    if attendanceCount > attendance:
-        del request.session['sessionObj']
-        return HttpResponse("Sorry, the attendance limit has been reached.")
-
-    classObj = session.initiation_id.class_id
-    context['class_obj'] = classObj
-    # paging = [0]
-    subjects = []
-
-    cfsList = []
-
-    cfs = ClassFacSub.objects.filter(class_id=classObj)
-    for i in cfs:
-        cfsList.append(i)
-        # con = LOAquestions.objects.filter(subject_id=i.subject_id)
-        #if len(con) > 0:
-        subjects.append(i.subject_id)
-    context['subjects'] = subjects
-
-    paginator = Paginator(subjects, 1)
-    page = request.GET.get('page')
-    try:
-        pager = paginator.page(page)
-    except PageNotAnInteger:
-        pager = paginator.page(1)
-    except EmptyPage:
-        pager = paginator.page(paginator.num_pages)
+    # 2. make pagination
+    pager = loa_helper.get_pager(request, all_subjects, max_sub_each)
     context['pager'] = pager
-    pgno = str(pager.number)
 
-    # CHECK IF WE ARE ON THE RIGHT PAGE NUMBER
-    if pager.number != maxPage[0]:
-        return redirect('/feedback/LoaQuestions/?page=' + str(maxPage[0]))
+    # 3. get maxPage if exists else create maxPage
+    if loa_helper.set_max_page(request, pager.number):
+        return redirect('/feedback/LoaQuestions/?page=' + str(request.session['maxPage'][0]))
 
-    log.write(str(pager.number))
+    # get the pager indices
+    context['page_index_list'] = [i for i in range(1, max_sub_each + 1)]
 
-    context['current'] = subjects[pager.number - 1]
-    mysubid = subjects[pager.number - 1]
-    # return HttpResponse(mysubid)
-    myques = LOAquestions.objects.filter(subject_id=mysubid)
-    loaquestions = []
-    for q in myques:
-        loaquestions.append(q.question)
-    context['learningquestions'] = loaquestions
+    # 4. get the subjects for current page
+    subjects = all_subjects[((pager.number - 1) * max_sub_each): (pager.number * max_sub_each)]
 
-    context['akhilrat'] = request.session.get(pgno)
+    # 5. for each subject obj, get its questions, make a SubQues object and pass it to context
+    sub_ques_list = loa_helper.get_sub_ques_list(subjects)
+    context['sub_ques_list'] = sub_ques_list
+
     if request.method == 'POST':
-        try:
-            ratings = []
-
-            for i in range(1, len(loaquestions) + 1):
-                name = 'star' + str(i)
-                value = request.POST[name]
-                ratings.append(value)
-
-            request.session[pgno] = ratings
-            context['currat'] = ratings
-            max = request.session.get('maxPage', [1, 'LOA'])
-            max[0] += 1
-            request.session['maxPage'] = max
-
-        except MultiValueDictKeyError:
-            context['error'] = "Please enter all the ratings"
-            return render(request, template, context)
-
+        # 6. handle next button click
         if 'next' in request.POST:
-            return redirect('/feedback/LoaQuestions/?page=' + str(pager.number + 1))
+            return loa_helper.next_button_result(request, template, context)
 
+        # 7. handle submit button click
         if 'submit' in request.POST:
-            student_no = FeedbackLoa.objects.filter(session_id=session)
-
-            if len(student_no) == 0:
-                student_no = 1
-            else:
-                student_no = student_no.order_by('-student_no')[0].student_no + 1
-
-            for i in range(len(subjects)):
-                loaratings = ""
-                temp = request.session.get(str(i + 1))
-                for k in range(len(temp)):
-                    loaratings += temp[k]
-                    if k != len(temp) - 1:
-                        loaratings += ','
-                FeedbackLoa.objects.create(session_id=session, student_no=student_no,
-                                           relation_id=subjects[i].subject_id, loaratings=loaratings)
-
-            del request.session['sessionObj']
-            del request.session['maxPage']
-            response = redirect('http://' + str(ALLOWED_HOSTS[len(ALLOWED_HOSTS) - 1]) + '/')
-            response.set_cookie('class_id', session.initiation_id.class_id.class_id)
-            return response
+            return loa_helper.submit_button_result(request, context, session, all_subjects)
 
     return render(request, template, context)
 
@@ -412,7 +384,7 @@ def updatedb(request):
     # data = db_updater.update_subjects()
     # data = db_updater.update_class_fac_sub()
     # data = db_updater.update_faculty_questions()
-    data = db_updater.update_loa_questions()
+    # data = db_updater.update_loa_questions()
 
     context['classes'] = data
 
@@ -424,7 +396,3 @@ def forgotPassword(request):
     email = EmailMessage('hii', 'hiiiiii', to=['rajrocksdeworld@gmail.com'])
     email.send()
     return render(request, template, {})
-
-
-
-

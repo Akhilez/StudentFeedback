@@ -9,8 +9,8 @@ from django.core.signing import *
 from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, DIRECTOR_GROUP
 from analytics.libs import db_helper
 from feedback.forms import LoginForm
-from feedback.libs.config_helper import get_session_length, getGracePeriod, get_current_qset
-from feedback.libs.view_helper import get_cur_time_offset, get_slave, get_master_session
+from feedback.libs.config_helper import get_session_length
+from feedback.libs.view_helper import get_cur_time_offset, get_master_of, get_slave_of
 from feedback.models import *
 
 __author__ = 'Akhil'
@@ -52,19 +52,37 @@ def add_classes_for_session_selection(context):
         context['classes'] = initlist
 
 
+def make_master_result(session):
+    SlaveSession.objects.create(master=Session.objects.get(session_id=session))
+    return redirect('/')
+
+
 def add_my_sessions(user, context):
     # get all sessions started by the user
     allSessions = Session.objects.filter(taken_by=user).order_by('-timestamp')[:15]
 
     running_sessions = []
+    running_masters = []
 
     for session in allSessions:
         cur_time = get_cur_time_offset(session)
         if session.timestamp.date() == datetime.date.today() and get_session_length() > cur_time:
             running_sessions.append(session.session_id)
+            try:
+                SlaveSession.objects.get(master=session)
+            except:
+                running_masters.append(session.session_id)
 
     context['allSessions'] = allSessions
     context['running'] = running_sessions
+    context['running_masters'] = running_masters
+
+
+def is_master(session):
+    for sess in SlaveSession.objects.all():
+        if sess.master == session and sess.slave is None:
+            return True
+    return False
 
 
 def get_init_for_sessions():
@@ -72,7 +90,7 @@ def get_init_for_sessions():
     allSessions = Session.objects.all().order_by('-timestamp')
     for session in allSessions:
         if session.timestamp.date() == datetime.date.today():
-            if not session.master:
+            if not is_master(session):
                 sessionsList.append(session.initiation_id)
     return sessionsList
 
@@ -92,6 +110,8 @@ def confirm_session_result(request):
     # is the session required to split? if yes, the current session is master
     master = True if len(request.POST.getlist('master')) > 0 else False
 
+    # generate otp
+    otp = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
     dt = str(datetime.datetime.now())
 
     # get the initiation obj from selected class
@@ -101,29 +121,19 @@ def confirm_session_result(request):
             initObj = init
             break
 
-    # check if session exists
-    masterSession = None
-    alreadyThere = False
-    for session0 in Session.objects.all().order_by('-timestamp'):
-        if initObj == session0.initiation_id:
-            masterSession = session0
-            alreadyThere = True
-            break
-
-    # generate otp
-    otp = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
-
     # insert new session record
-    if not alreadyThere:
-        session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj,
-                                         session_id=otp, master=master,
-                                         qset=get_current_qset())
+    session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj, session_id=otp)
+
+    if master:
+        SlaveSession.objects.create(master=session)
     else:
-        masterSession.master = False
-        masterSession.save()
-        session = Session.objects.create(timestamp=dt, taken_by=request.user, initiation_id=initObj,
-                                         session_id=otp, master=False, mastersession=masterSession.session_id,
-                                         qset=get_current_qset())
+        # check if session exists
+        for session0 in Session.objects.all().order_by('-timestamp'):
+            if initObj == session0.initiation_id and session != session0:
+                master_session = SlaveSession.objects.get(master=session0)
+                master_session.slave = session
+                master_session.save()
+                break
 
     # insert the attendance into table
     for htno in request.POST.getlist("attendanceList"):
@@ -195,21 +205,37 @@ def take_attendance_result(request, template, context):
     return render(request, template, context)
 
 
-def get_absent_students_for_late_login(session):
-    presentStudents = [x for x in Attendance.objects.filter(session_id=session)]
-    if session.mastersession is not None:
-        more_students = Attendance.objects.filter(session_id=get_master_session(session))
-        for att in more_students:
-            presentStudents.append(att)
-    slav = get_slave(session)
-    if slav is not None:
-        more_students = Attendance.objects.filter(session_id=slav)
-        for att in more_students:
-            presentStudents.append(att)
-    presentStudents = [student.student_id for student in presentStudents]
-    absentStudents = []
-    for student in Student.objects.filter(class_id=session.initiation_id.class_id):
-        if student not in presentStudents:
-            absentStudents.append(student)
+def filter_attendance(session, presentStudents):
+    for attendance in Attendance.objects.filter(session_id=session):
+        for student in presentStudents:
+            if attendance.student_id == student:
+                presentStudents.remove(student)
 
-    return absentStudents
+
+def get_absent_students_for_late_login(session):
+    """
+    1. get all students
+    2. filter attendance form session
+    3. filter attendance from master session
+    3.1 filter attendance from slave session
+    5. return the remaining students
+    :param session:
+    :return:
+    """
+    # 1. get all students
+    students = [x for x in Student.objects.filter(class_id=session.initiation_id.class_id)]
+
+    # 2. filter attendance form session
+    filter_attendance(session, students)
+
+    # 3. filter attendance from master session
+    master = get_master_of(session)
+    if master is not None:
+        filter_attendance(master, students)
+
+    # 3.1 filter attendance from slave session
+    slave = get_slave_of(session)
+    if slave is not None:
+        filter_attendance(slave, students)
+
+    return students

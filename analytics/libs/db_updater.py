@@ -1,15 +1,15 @@
-from _mysql import DatabaseError
 import csv
 import datetime
 import re
-from analytics.libs import db_helper
+
 from feedback.models import *
+
 
 __author__ = 'Akhil'
 
 
 def is_unassigned(year, branch, classes):
-    pattern = year+','+branch+',*'
+    pattern = year + ',' + branch + ',*'
     for cls in classes:
         if re.search(pattern, cls):
             return True
@@ -26,21 +26,23 @@ def update_classes():
         branch = fields[1].strip()
         if branch == '':
             continue
-        year = str(int(now.year) - int('20'+fields[0][0]+fields[0][1]))
+        year = str(int(now.year) - int('20' + fields[0][0] + fields[0][1]))
         section = fields[2].strip()
         if section == '' and is_unassigned(year, branch, classes):
             continue
-        classes.add(year+','+branch+','+section)
+        classes.add(year + ',' + branch + ',' + section)
 
+    sem = Sem.objects.get(sem_id=1)
     for cls in classes:
         lst = cls.split(',')
         try:
-            Classes.objects.create(year=lst[0], branch=lst[1], section=lst[2])
+            Classes.objects.create(year=lst[0], branch=lst[1], section=lst[2], sem=sem)
 
         except:
             pass
     file.close()
     return classes
+
 
 def update_students():
     file = open('externals/student-class.csv', 'r')
@@ -53,7 +55,7 @@ def update_students():
         branch = fields[1].strip()
         if branch == '':
             continue
-        year = str(int(now.year) - int('20'+fields[0][0]+fields[0][1]))
+        year = str(int(now.year) - int('20' + fields[0][0] + fields[0][1]))
         section = fields[2].strip()
         if section == '' and is_unassigned(year, branch, classes):
             continue
@@ -64,8 +66,8 @@ def update_students():
             classes.add(student)
         except:
             try:
-               stu = Student.objects.get(hallticket_no=student)
-               stu.class_id = Classes.objects.get(year=year, branch=branch, section=section)
+                stu = Student.objects.get(hallticket_no=student)
+                stu.class_id = Classes.objects.get(year=year, branch=branch, section=section)
             except:
                 pass
 
@@ -122,7 +124,7 @@ def update_class_fac_sub():
         year = cls[2].strip()[0]
         faculty = fields[1].strip()
         subject = fields[2].strip()
-        relations.add(year+'-|-'+branch+'-|-'+section+'-|-'+faculty+'-|-'+subject)
+        relations.add(year + '-|-' + branch + '-|-' + section + '-|-' + faculty + '-|-' + subject)
     for relation in relations:
         params = relation.split('-|-')
         try:
@@ -141,10 +143,6 @@ def update_faculty_questions():
     lines = file.readlines()
     file.close()
     questions = set()
-    try:
-        category = Category.objects.get(category='faculty')
-    except:
-        category = Category.objects.create(category='faculty')
     for line in lines:
         fields = line.split(',')
         question = fields[0].strip()
@@ -153,19 +151,22 @@ def update_faculty_questions():
             FdbkQuestions.objects.get(question=question, subcategory=subcategory)
             continue
         except:
-            FdbkQuestions.objects.create(question=question, subcategory=subcategory, category=category)
-            questions.add(question+'\t'+subcategory)
+            FdbkQuestions.objects.create(question=question, subcategory=subcategory)
+            questions.add(question + '\t' + subcategory)
 
     return questions
 
 
 def update_loa_questions():
-    #file = open('externals/loa-questions.csv', 'r')
-    file = open('externals/IT.csv', 'r')
-    reader = csv.reader(file)
-    questions = []
-    for row in reader:
-        questions.append(row)
-
+    op = []
+    with open("externals/loa-questions.csv") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            op.append(row)
     file.close()
-    return questions
+
+    for row in op:
+        subject = Subject.objects.filter(name=row[1])[0]
+        LOAquestions.objects.create(question=row[0], subject_id=subject)
+
+    return op

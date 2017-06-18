@@ -1,4 +1,6 @@
+from django.shortcuts import render
 from feedback.models import *
+from feedback.libs import log
 
 formatter = {'1': 'I', '2': 'II', '3': 'III', '4': 'IV', }
 deformatter = {'I': '1', 'II': '2', 'III': '3', 'IV': '4', }
@@ -32,6 +34,8 @@ def get_year_value(year):
             for session in sessions:
                 feedbacks = FeedbackLoa.objects.filter(session_id=session)
                 for feedback in feedbacks:
+                    if feedback.ratings == "":
+                        return 0.0
                     ratings = feedback.ratings.split(',')
                     for rating in ratings:
                         sum += int(rating)
@@ -53,6 +57,8 @@ def get_branch_value(year, branch):
             for session in sessions:
                 feedbacks = FeedbackLoa.objects.filter(session_id=session)
                 for feedback in feedbacks:
+                    if feedback.ratings == "":
+                        return 0.0
                     ratings = feedback.ratings.split(',')
                     for rating in ratings:
                         sum += int(rating)
@@ -74,6 +80,8 @@ def get_section_value(year, branch, section):
             for session in sessions:
                 feedbacks = FeedbackLoa.objects.filter(session_id=session)
                 for feedback in feedbacks:
+                    if feedback.ratings == "":
+                        return 0.0
                     ratings = feedback.ratings.split(',')
                     for rating in ratings:
                         sum += int(rating)
@@ -130,15 +138,14 @@ def get_subject_value(subject):#done
     for cfs in cfss:
         feedbacks = FeedbackLoa.objects.filter(relation_id=cfs.subject_id)
         for feedback in feedbacks:
+            if feedback.ratings == "":
+                return 0.0
             ratings_list = feedback.ratings.split(",")
             for rating in ratings_list:
                 sum += int(rating)
                 itr += 1
-    if itr != 0:
-        avg = sum/itr
-    else:
-        avg = 0.0
-    return avg
+
+    return sum/itr if itr != 0 else 0.0
 
 def get_sections_for_subject(subject):
     subject = Subject.objects.get(name=subject)

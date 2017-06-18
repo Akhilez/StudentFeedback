@@ -12,18 +12,19 @@ from feedback.forms import LoginForm
 from feedback.models import *
 
 
-def get_slave(session):
-    sessions = Session.objects.all().order_by('-timestamp')[:20]
-    for sess in sessions:
-        if sess.mastersession == session.session_id:
-            return sess
+
+def get_slave_of(session):
+    for sess in SlaveSession.objects.all():
+        if sess.master == session:
+            return sess.slave
     return None
 
 
-def get_master_session(session):
-    if session.mastersession is None:
-        return session
-    return Session.objects.get(session_id=session.mastersession)
+def get_master_of(session):
+    for sess in SlaveSession.objects.all():
+        if sess.slave == session:
+            return sess.master
+    return None
 
 
 def get_cur_time_offset(session):

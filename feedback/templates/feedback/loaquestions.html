@@ -1,84 +1,85 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" width="device-width" initial-scale="1.0">
-    {% load static %}
-        <link rel="stylesheet"  type="text/css" href="{% static 'feedback/loamain.css' %}" />
-    {% load static %}
-        <link rel="stylesheet" type="text/css"  href="{% static 'feedback/stars.css' %}"  />
+{% extends 'feedback/base.html' %}
 
-    <title></title>
-</head>
-<body>
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'feedback/stars.css' %}">
+{% endblock %}
 
-<div id="header" align="center">
+{% block body_color %} background-color:#ffffff; {% endblock %}
+
+{% block full_pad_top %}1px{% endblock %}
 
 {% block maincontent %}
-        <h2>Learning Outcomes Assessment</h2><hr>
-    <table>
-        <tr colspan="3">
-            <td>2015-2016</td>
-            <td>{{ subjects.number }} </td>
-            <td>Excellent-3</td>
-            <td>Average-2</td>
-            <td>Poor-1</td>
-        </tr>
+
+    <h2 style="text-align: center">Learning Outcomes Assessment</h2>
+    <h3 style="text-align: center">{{ class_obj }}</h3>
+    <p style="text-align: center">Please answer the questions for each subject.</p>
+
+    <form method="post" action="">
+        {% csrf_token %}
+        <table class="table table-hover">
+            {% for sub_ques in sub_ques_list %}
+
+                <tr>
+                    <th style="padding-top: 30px">
+                        {{ sub_ques.subject }}
+                    </th>
+                    <th></th>
+                </tr>
+
+                {% for question in sub_ques.questions %}
+                    <tr>
+                        <td>{{ forloop.counter }}. {{ question }}</td>
+                        <td>
+                             <span class="star-rating star-3">
+
+                                <input type="radio"
+                                       name="star-{{ sub_ques.subject.subject_id }}-{{ question.question_id }}"
+                                       value="3"
+                                       id="star3-{{ sub_ques.subject.subject_id }}-{{ question.question_id }}"
+                                       required/><i></i>
+                                <input type="radio"
+                                       name="star-{{ sub_ques.subject.subject_id }}-{{ question.question_id }}"
+                                       value="2"
+                                       id="star2-{{ sub_ques.subject.subject_id }}-{{ question.question_id }}"/><i></i>
+                                <input type="radio"
+                                       name="star-{{ sub_ques.subject.subject_id }}-{{ question.question_id }}"
+                                       value="1"
+                                       id="star1-{{ sub_ques.subject.subject_id }}-{{ question.question_id }}"/><i></i>
+
+                            </span>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+
+            {% endfor %}
         </table>
-    <h4>PLEASE EVALUATE ON THE FOLLOWING SCALE</h4>
-</div>
 
-<form method="post" action="" id="questionPage" >
- {% csrf_token %}
-<table>
- <tr>
-     <th style="float: left">Subject</th>
-     <th>Rating</th>
- </tr>
+        <div align="center">
+            <ul class="pager">
+                {% if pager.has_next %}
+                    <input id="next" class="btn btn-primary" type="submit" value="Next" name="next">
+                {% else %}
+                    <p align="center">By Clicking Finish, You'll be redirected to Facility Page.</p>
+                    <input id="submit" type="submit" value="Submit" name="submit" class="btn btn-success">
+                {% endif %}
+            </ul>
+        </div>
 
 
-    <tr><td><strong>{{ current }}</strong></td></tr>
-    {% for n in learningquestions %}
-        <tr><td style="font-size: smaller">{{ n }}</td>
-         <td></td>
-        <td>
-            <fieldset class="rating" name="review">
-
-                            <input type="radio" id="star3-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="3" /><label class = "full" for="star3-{{ forloop.counter }}" title="Excellent"></label>
-                            <input type="radio" id="star2-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="2" /><label class = "full" for="star2-{{ forloop.counter }}" title="Average"></label>
-                            <input type="radio" id="star1-{{ forloop.counter }}" name="star{{ forloop.counter }}" value="1" /><label class = "full" for="star1-{{ forloop.counter }}" title="Poor"></label>
-            </fieldset>
-        </td>
-        </tr>
-    {% endfor %}
+    </form>
 
 
 
-</table>
-<div class="pagination" align="center">
-    <span class="step-links">
-
-        <span class="current">
-            Page {{ pager.number }} of {{ pager.paginator.num_pages }}.
-        </span>
-
-        {% if pager.has_next %}
-            <input type="submit" value="next" name="next">
-        {% else %}
-            <input type="submit" value="submit" name="submit">
-
-        {% endif %}
-    </span>
-</div>
-
-</form>
+    <div>
+        <ul class="pagination">
+            {% for i in page_index_list %}
+                <li {% if pager.number == i %}class="active" {% else %} class="disabled" {% endif %}>
+                    <a>{{ forloop.counter }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 
 
-
-
-    </body>
-</html>
-{% endblock %}
-{% block footer %}
-    {% include 'feedback/includes/footer.html' %}
 {% endblock %}

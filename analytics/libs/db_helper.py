@@ -10,12 +10,13 @@ def get_selected_questions():
 
 class Timeline:
     selected_questions = [x for x in range(len(FdbkQuestions.objects.values_list('question')))]
+
     def __init__(self, date, rating):
         self.date = date
         self.rating = rating
 
     def __str__(self):
-        return str(self.date)+self.rating
+        return str(self.date) + self.rating
 
 
 def get_years():
@@ -69,9 +70,9 @@ def get_faculty(year, branch, section):
 
 def get_average(summ, itr, session=None, rel=None):
     if rel is None:
-        feedbacks = Feedback.objects.filter(session_id=session, category=Category.objects.get(category='faculty'))
+        feedbacks = Feedback.objects.filter(session_id=session)
     else:
-        feedbacks = Feedback.objects.filter(relation_id=rel, category=Category.objects.get(category='faculty'))
+        feedbacks = Feedback.objects.filter(relation_id=rel)
     for feedback in feedbacks:
         ratings = feedback.ratings.split(',')
         for i in range(len(ratings)):
@@ -92,10 +93,11 @@ def get_year_value(year):
             for session in sessions:
                 (sum, itr) = get_average(sum, itr, session=session)
     if itr != 0:
-        avg = sum/itr
+        avg = sum / itr
     else:
         avg = 0.0
     return avg
+
 
 def get_branch_value(year, branch):
     classes = Classes.objects.filter(year=deformatter[year], branch=branch)
@@ -108,10 +110,11 @@ def get_branch_value(year, branch):
             for session in sessions:
                 (sum, itr) = get_average(sum, itr, session=session)
     if itr != 0:
-        avg = sum/itr
+        avg = sum / itr
     else:
         avg = 0.0
     return avg
+
 
 def get_section_value(year, branch, section):
     classes = Classes.objects.filter(year=deformatter[year], branch=branch, section=section)
@@ -124,10 +127,11 @@ def get_section_value(year, branch, section):
             for session in sessions:
                 (sum, itr) = get_average(sum, itr, session=session)
     if itr != 0:
-        avg = sum/itr
+        avg = sum / itr
     else:
         avg = 0.0
     return avg
+
 
 def get_cfs(faculty, year, branch, section):
     cls = Classes.objects.get(year=deformatter[year], branch=branch, section=section)
@@ -137,12 +141,13 @@ def get_cfs(faculty, year, branch, section):
         cfs_list.append(cfs)
     return cfs_list
 
+
 def get_cfs_value(cfs):
     sum = 0
     itr = 0
     (sum, itr) = get_average(sum, itr, rel=cfs.cfs_id)
     if itr != 0:
-        avg = sum/itr
+        avg = sum / itr
     else:
         avg = 0.0
     return avg
@@ -159,6 +164,7 @@ def get_all_faculty():
                 break
     return faculty_set
 
+
 def get_all_subjects():
     subjects = Subject.objects.all().values_list('name')
     return [subject[0] for subject in subjects]
@@ -171,15 +177,14 @@ def get_faculty_value(faculty):
     for cfs in cfss:
         (sum, itr) = get_average(sum, itr, rel=cfs.cfs_id)
     if itr != 0:
-        avg = sum/itr
+        avg = sum / itr
     else:
         avg = 0.0
     return avg
 
 
-
 def get_all_question_texts():
-    questions = FdbkQuestions.objects.filter(category=Category.objects.get(category='faculty'))
+    questions = FdbkQuestions.objects.all()
     return [question for question in questions]
 
 
@@ -191,20 +196,20 @@ def get_question_value(faculty, question):
     itr = 0
     cfss = ClassFacSub.objects.filter(faculty_id=Faculty.objects.get(name=faculty))
     for cfs in cfss:
-        feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id, category=Category.objects.get(category='faculty'))
+        feedbacks = Feedback.objects.filter(relation_id=cfs.cfs_id)
         for feedback in feedbacks:
             ratings = feedback.ratings.split(',')
             sum += int(ratings[question_number])
             itr += 1
     if itr != 0:
-        avg = sum/itr
+        avg = sum / itr
     else:
         avg = 0.0
     return avg
 
 
 def get_question_number(question, category):
-    questions = FdbkQuestions.objects.filter(category=Category.objects.get(category=category))
+    questions = FdbkQuestions.objects.all()
     for i in range(len(questions)):
         if questions[i] == question:
             return i
@@ -214,8 +219,10 @@ def get_question_number(question, category):
 def get_all_year_branches():
     return Classes.objects.values_list('year', 'branch')
 
+
 def get_all_year_sections():
     return Classes.objects.values_list('year', 'branch', 'section')
+
 
 def get_all_subjects_all_years():
     subjects = Subject.objects.all()
@@ -228,6 +235,7 @@ def get_all_subjects_all_years():
             if cfs.cfs_id in get_fdbk_cfs():
                 subject_list.append(subject.name)
     return subject_list
+
 
 def get_subject_value(subject):
     """
@@ -245,10 +253,11 @@ def get_subject_value(subject):
     for cfs in cfss:
         (sum, itr) = get_average(sum, itr, rel=cfs.cfs_id)
     if itr != 0:
-        avg = sum/itr
+        avg = sum / itr
     else:
         avg = 0.0
     return avg
+
 
 def get_faculty_for_subject(subject):
     subject = Subject.objects.get(name=subject)
@@ -258,6 +267,7 @@ def get_faculty_for_subject(subject):
     for cfs in cfss:
         faculty.append(Faculty.objects.get(faculty_id=cfs))
     return faculty
+
 
 def get_faculty_value_for_subject(subject, faculty):
     """
@@ -275,7 +285,7 @@ def get_faculty_value_for_subject(subject, faculty):
     for cfs in cfss:
         (sum, itr) = get_average(sum, itr, rel=cfs.cfs_id)
     if itr != 0:
-        avg = sum/itr
+        avg = sum / itr
     else:
         avg = 0.0
     return avg
@@ -318,13 +328,13 @@ def get_question_value_for_cfs(cfs, question):
     sum = 0
     itr = 0
 
-    feedbacks = Feedback.objects.filter(relation_id=cfs, category=Category.objects.get(category='faculty'))
+    feedbacks = Feedback.objects.filter(relation_id=cfs)
     for feedback in feedbacks:
         ratings = feedback.ratings.split(',')
         sum += int(ratings[question_number])
         itr += 1
     if itr != 0:
-        avg = sum/itr
+        avg = sum / itr
     else:
         avg = 0.0
     return avg
@@ -352,8 +362,10 @@ def get_all_timelines(faculty):
                         if i in Timeline.selected_questions:
                             summ += int(ratings[i])
                             itr += 1
-            if itr == 0: avg = 0.0
-            else: avg = summ/itr
+            if itr == 0:
+                avg = 0.0
+            else:
+                avg = summ / itr
             timeline_objs.append(Timeline(timeline, avg))
 
     return timeline_objs

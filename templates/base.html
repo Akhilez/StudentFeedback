@@ -29,7 +29,7 @@
 {% endblock %}
 
 {% block fullcontent %}
-<div class="container" style="{% block container_color %}background-color: #ffffff; {% endblock %} padding-top: 75px;">
+<div class="container" style="{% block container_color %}background-color: #ffffff; {% endblock %} padding-top: {% block full_pad_top %}75px{% endblock %};">
     {% block maincontent %}
     {% endblock %}
 </div>

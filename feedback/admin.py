@@ -5,8 +5,11 @@ from feedback.models import *
 
 admin.site.site_header = "Administration"
 
+
+admin.site.register(Sem)
 admin.site.register(Classes)
 admin.site.register(Subject)
 admin.site.register(Faculty)
 admin.site.register(ClassFacSub)
 admin.site.register(Student)
+admin.site.register(Config)

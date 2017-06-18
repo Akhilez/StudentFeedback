@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from analytics.libs.db_helper import Timeline
 
+from analytics.libs.db_helper import Timeline
 from feedback.models import *
 from .libs import tree_builder, graph_builder
 from StudentFeedback.settings import DIRECTOR_GROUP
-from analytics.libs import db_helper,LOAdb_helper,LOAgraph_builder,LOAtree_builder
+from analytics.libs import db_helper, LOAgraph_builder, LOAtree_builder, LOAdb_helper
 from analytics.libs.faculty_graphs import faculty_graph, class_sub_graph, timeline_graph
 
 
@@ -25,7 +25,6 @@ def set_selected_questions(request):
 
 @login_required
 def director(request, category, year, branch, sub, subsub):
-
     if not request.user.groups.filter(name=DIRECTOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
 
@@ -54,7 +53,6 @@ def director(request, category, year, branch, sub, subsub):
 
 @login_required
 def faculty_info(request, faculty):
-
     if not request.user.groups.filter(name=DIRECTOR_GROUP).exists():
         return render(request, 'feedback/invalid_user.html')
 
@@ -92,11 +90,9 @@ def reviews(request):
             initid = Initiation.objects.get(class_id=cid.class_id)
             sid = Session.objects.get(initiation_id=initid.initiation_id)
             notes = Notes.objects.all().filter(session_id=sid)
-            context ={'year': year, 'branch':branch, 'section':section, 'notes':notes}
+            context = {'year': year, 'branch': branch, 'section': section, 'notes': notes}
         except TypeError:
             context['error'] = 'Please Check if the class has completed their Review or not'
-
-
 
     '''if year:
         context ={'year': year, }
@@ -112,7 +108,8 @@ def reviews(request):
 
     return render(request, template, context)
 
-def LOAanalysis(request,category, year, branch, sub, subsub):
+
+def LOAanalysis(request, category, year, branch, sub, subsub):
     template = 'analytics/LOAanalyis.html'
     context = {'category': category, 'year': year, 'branch': branch, 'sub': sub, 'subsub': subsub,
                'year_objs': LOAtree_builder.getTree(), 'active': 'home'}
@@ -126,5 +123,32 @@ def LOAanalysis(request,category, year, branch, sub, subsub):
     context['graph'] = LOAgraph_builder.Graph(category, year, branch, sub, subsub, graph_type=graph_type)
     context['Drilldown'] = LOAgraph_builder.Graph.drilldown
 
+    return render(request, template, context)
+
+
+def get_csv(request, class_name):
+    template = "analytics/get_csv.html"
+
+    ratings_list = ["-------------------Learning outcome assessment----------------------"]
+    ratings_list_faculty = ["-------------------FACULTY----------------------"]
+
+    for cls in Classes.objects.filter(branch=class_name):
+        for initiation in Initiation.objects.filter(class_id=cls):
+            for session in Session.objects.filter(initiation_id=initiation):
+                for feedback in FeedbackLoa.objects.filter(session_id=session):
+                    subject_name = Subject.objects.get(subject_id=feedback.relation_id).name
+                    ratings_list.append(str(str(cls)+","+subject_name+","+str(session.timestamp.date())+","+str(feedback.loaratings)))
+                for feedback in Feedback.objects.filter(session_id=session):
+                    subject_name = ClassFacSub.objects.get(cfs_id=feedback.relation_id).subject_id.name
+                    ratings_list_faculty.append(str(str(cls)+","+str(subject_name)+","+str(session.timestamp.date())+","+str(feedback.ratings)))
+
+    context = {'ratings_list': ratings_list, 'ratings_list_faculty': ratings_list_faculty}
+
+    file = open('ratings.csv', 'w')
+    for ratings in ratings_list:
+        file.write(ratings + "\n")
+    for ratings in ratings_list_faculty:
+        file.write(ratings + "\n")
+    file.close()
 
     return render(request, template, context)

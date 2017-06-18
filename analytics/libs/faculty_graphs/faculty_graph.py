@@ -1,13 +1,14 @@
+import math
+
 from analytics.libs import db_helper
 from analytics.libs.db_helper import Timeline
 from analytics.libs.drilldown_chart import Graphable, Series, Bar
-import math
+
 
 __author__ = 'Akhil'
 
 
 class FacultyGraph(Graphable):
-
     def __init__(self, faculty):
         self.faculty = faculty
         super().__init__()

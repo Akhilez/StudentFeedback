@@ -1,7 +1,8 @@
 from django.db.models import Max
-from feedback.models import Config, QSet
+from feedback.models import Config
 
 __author__ = 'Akhil'
+
 
 def get_session_length():
     try:
@@ -13,34 +14,21 @@ def get_session_length():
     return int(duration)
 
 
-def getGracePeriod():
+def get_max_subjects_each_page_loa():
     try:
-        gp = Config.objects.get(key="gracePeriod").value
+        config = Config.objects.get(key="max_subs_loa").value
     except:
-        Config.objects.create(key="gracePeriod", value="5",
-                              description="Enable stu login page voluntarily for this time.")
-        gp = 5
-    return int(gp)
+        Config.objects.create(key="max_subs_loa", value=3, description="Maximum no. of subjects in LOA ratings page")
+        config = 3
+
+    return int(config)
 
 
-def get_current_qset():
-    """
-    1. if qset not in config, go to 2, else go to 3
-    2. get latest qset from qset table and add into config
-    3. return current qset object
-    :return: qset object
-    """
-    qset = None
+def get_max_cfs_each():
     try:
-        config = Config.objects.get(key="qset").value
-        if config is not None:
-            qset = QSet.objects.get(qset_id=config)
+        config = Config.objects.get(key="max_cfs_each").value
     except:
-        try:
-            qset = QSet.objects.get(qset_id=QSet.objects.all().aggregate(Max('qset_id')))
-            config = Config.objects.create(key="qset", value=str(qset), description="default questions set for the feedback and analysis").value
-        except:
-            pass
+        Config.objects.create(key="max_cfs_each", value=3, description="Maximum no. of faculty in faculty ratings page")
+        config = 3
 
-
-    return qset
+    return int(config)

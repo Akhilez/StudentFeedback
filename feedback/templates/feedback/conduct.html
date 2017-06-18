@@ -1,8 +1,5 @@
 {% extends 'feedback/base.html' %}
 
-{% block title %} Home {% endblock %}
-
-
 {% block head %}
     <script language="JavaScript">
         function toggle(source) {
@@ -63,7 +60,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Select</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Select</button>
             </form>
         {% else %}
             <h4>There are no feedback sessions initiated. Please contact the corresponding coordinator to initiate a
@@ -82,10 +79,14 @@
             {% for session in allSessions %}
                 <tr>
                     <td>
-                        {{ session.session_id }}
+                        <p style="font-size: medium;">{{ session.session_id }}&nbsp;&nbsp;&nbsp;
                         {% if session.session_id in running %}
-                            <a href="/feedback/latelogin/{{ session.session_id }}">LateLogin</a>
+                            <a class="btn btn-default" href="/feedback/latelogin/{{ session.session_id }}">LateLogin</a>
+                            {% if session.session_id in running_masters %}
+                                <button form="confirmForm" type="submit" class="btn btn-default" name="makemaster" value="{{ session.session_id }}">Split</button>
+                            {% endif %}
                         {% endif %}
+                        </p>
                     </td>
                     <td>{{ session.initiation_id.class_id }}</td>
                     <td>{{ session.timestamp }}</td>
@@ -132,12 +133,6 @@
     </div>
 {% endblock %}
 
-
-
 {% block footer %}
     {% include 'feedback/includes/footer.html' %}
 {% endblock %}
-
-
-
-

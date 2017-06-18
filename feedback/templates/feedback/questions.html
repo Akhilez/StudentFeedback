@@ -43,22 +43,29 @@
                 {% for question in questions %}
                     {% if forloop.counter in subcategory %}
                         <tr>
-                            <td colspan="3"><b>{{ question.subcategory }}</b></td>{% for cfs in cfs_list %}<td></td>{% endfor %}
+                            <td colspan="3"><b>{{ question.subcategory }}</b></td>{% for cfs in cfs_list %}
+                            <td></td>{% endfor %}
                         </tr>
                     {% endif %}
                     <tr>
                         <td>{{ question.question }}</td>
                         {% for cfs in cfs_list %}
                             <td>
-                                <fieldset class="rating" name="review">
-                                    {% for i in "54321" %}
-                                        <input type="radio" id="star{{ i }}-{{ question.question_id }}-{{ cfs.cfs_id }}"
+
+                                    <span class="star-rating star-5">
+
+                                    {% for i in "12345" %}
+
+                                        <input type="radio" required
+                                               id="star{{ i }}-{{ question.question_id }}-{{ cfs.cfs_id }}"
                                                name="star-{{ question.question_id }}-{{ cfs.cfs_id }}"
-                                               value="{{ i }}" {% if forloop.counter == 1 %}required{% endif %}/><label class="full"
-                                                                                for="star{{ i }}-{{ question.question_id }}-{{ cfs.cfs_id }}"
-                                                                                title="{{ i }}"></label>
+                                               value="{{ i }}"/> <i></i>
+
+
+
                                     {% endfor %}
-                                </fieldset>
+
+                                </span>
                             </td>
                         {% endfor %}
 
@@ -71,15 +78,29 @@
 
             <div align="center">
                 <ul class="pager">
-                    <textarea class="form-control" id="remarks" placeholder="Remarks" name="remarks"></textarea><br/>
+                    {% if pager.has_next %}
+                        <input id="next" class="btn btn-primary" type="submit" value="Next" name="next">
+                    {% else %}
+                        <textarea class="form-control" id="remarks" placeholder="Remarks" name="remarks"></textarea>
+                        <br/>
 
-                    <p align="center">By Clicking Finish, You'll be redirected to LOA Page.</p>
-                    <input id="confirm_finish" type="submit" value="Next" name="finish" class="btn btn-success"
-                           form="questionForm">
+                        <p align="center">By Clicking Finish, You'll be redirected to LOA Page.</p>
+                        <input id="confirm_finish" type="submit" value="Next" name="finish" class="btn btn-success"
+                               form="questionForm">
+                    {% endif %}
                 </ul>
             </div>
 
         </form>
+
+        <div>
+            <ul class="pagination">
+                {% for i in page_index_list %}
+                    <li {% if pager.number == i %}class="active" {% else %} class="disabled" {% endif %}>
+                        <a>{{ forloop.counter }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
 
         <br/><br/><br/>
     </div>
@@ -87,7 +108,9 @@
     <script>
         var finish = document.getElementById("confirm_finish");
         finish.onclick = function () {
-            if ($("input[type=radio]:checked").length < {{ questions|length }}) {
+            var quesLength = {{ questions|length }};
+            var cfsLength = {{ cfs_list|length }};
+            if ($("input[type=radio]:checked").length < (quesLength * cfsLength)) {
                 document.getElementById('fillall').innerHTML = 'Please answer all of the questions';
             }
         };

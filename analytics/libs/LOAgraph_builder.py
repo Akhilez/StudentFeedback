@@ -9,6 +9,7 @@ class Series:
         self.id = series_id
         self.bars = []
         Graph.drilldown.append(self)
+
     def __str__(self):
         return str(self.id)
 
@@ -37,12 +38,12 @@ class Graph:
         self.width = 'null'
         self.title = "Title"
         self.subtitle = "click a bar for more info."
-        self.type = graph_type # 'column' "pie" , bar, scatter, line
+        self.type = graph_type  # 'column' "pie" , bar, scatter, line
         self.y_title = "Performance"
         Graph.drilldown = []
         self.series = self.get_series()
 
-    def get_series(self): # arey, till this method get_series, I'll
+    def get_series(self):  # arey, till this method get_series, I'll
         itr = 0
         series = None
         title = 'Title'
@@ -80,7 +81,7 @@ class Graph:
                 itr = 6
             else:
                 # Selected subject graph - year, branch
-                title = self.year+'-'+self.branch
+                title = self.year + '-' + self.branch
                 series = Series(title, title)
                 itr = 7
         self.s_no = itr
@@ -90,7 +91,7 @@ class Graph:
         return series
 
 
-    def build_all_subjects_series(self):#subject graphs
+    def build_all_subjects_series(self):  # subject graphs
         subjects = LOAdb_helper.get_subjects_in_feedback()
 
         if self.type == Graph.types['bar']:
@@ -111,7 +112,7 @@ class Graph:
         series.bars = bars
         return series
 
-    def build_sections_for_subject_series(self, subject):#sections in subjects graph
+    def build_sections_for_subject_series(self, subject):  # sections in subjects graph
         sections = LOAdb_helper.get_feedback_sections_subject(subject)
 
         bars = []
@@ -119,7 +120,7 @@ class Graph:
 
         for i in range(len(sections)):
             bars.append(Bar(
-                sections[i],#my code
+                sections[i],  #my code
                 LOAdb_helper.get_sections_value_for_subject(subject, sections[i]),
                 'null'
             ))
@@ -134,9 +135,9 @@ class Graph:
 
         for i in range(len(years)):
             bars.append(Bar(
-                years[i], # name
-                LOAdb_helper.get_year_value(years[i]), # value
-                self.build_class_branch_series(years[i]) # Where to go after click/drilldown
+                years[i],  # name
+                LOAdb_helper.get_year_value(years[i]),  # value
+                self.build_class_branch_series(years[i])  # Where to go after click/drilldown
             ))
 
         return bars
@@ -149,24 +150,24 @@ class Graph:
         for i in range(len(branches)):
             bars.append(
                 Bar(
-                    branches[i],#name of the branch
-                    LOAdb_helper.get_branch_value(year, branches[i]),#value of the branch
-                    self.build_section_series(year, branches[i])#drilldown to sections
+                    branches[i],  # name of the branch
+                    LOAdb_helper.get_branch_value(year, branches[i]),  #value of the branch
+                    self.build_section_series(year, branches[i])  #drilldown to sections
                 )
             )
         series.bars = bars
         return series
 
     def build_section_series(self, year, branch):
-        series = Series(year+' '+branch, year+' '+branch)
+        series = Series(year + ' ' + branch, year + ' ' + branch)
         sections = LOAdb_helper.get_sections(year, branch)
         bars = []
 
         for i in range(len(sections)):
             bars.append(Bar(
-                sections[i],#section name
-                LOAdb_helper.get_section_value(year, branch, sections[i]),#section value
-                self.get_all_subject_values(year, branch, sections[i])#my code
+                sections[i],  # section name
+                LOAdb_helper.get_section_value(year, branch, sections[i]),  #section value
+                self.get_all_subject_values(year, branch, sections[i])  #my code
                 #'null'
             ))
 
@@ -174,13 +175,12 @@ class Graph:
         return series
 
 
-
     def get_all_branches_bars(self):
         bars = []
         all_years_branches = LOAdb_helper.get_all_year_branches()
         for each in all_years_branches:
             bars.append(Bar(
-                LOAdb_helper.formatter[str(each[0])]+' '+each[1],
+                LOAdb_helper.formatter[str(each[0])] + ' ' + each[1],
                 LOAdb_helper.get_branch_value(LOAdb_helper.formatter[str(each[0])], each[1]),
                 'null'
             ))
@@ -191,24 +191,23 @@ class Graph:
         all_years_sections = LOAdb_helper.get_all_year_sections()
         for each in all_years_sections:
             bars.append(Bar(
-                LOAdb_helper.formatter[str(each[0])]+' '+each[1]+' '+each[2],
+                LOAdb_helper.formatter[str(each[0])] + ' ' + each[1] + ' ' + each[2],
                 LOAdb_helper.get_section_value(LOAdb_helper.formatter[str(each[0])], each[1], each[2]),
                 'null'
             ))
         return bars
 
-    def get_all_subject_values(self,year, branch,section):#my code
-        series = Series(year+' '+branch+' '+section, year+' '+branch+' '+section)
-        bars=[]
+    def get_all_subject_values(self, year, branch, section):  # my code
+        series = Series(year + ' ' + branch + ' ' + section, year + ' ' + branch + ' ' + section)
+        bars = []
         subject = LOAdb_helper.get_subjects(year, branch)
         bars = []
         for i in range(len(subject)):
-
-                bars.append(Bar(
-                    subject[i],
-                    LOAdb_helper.get_subject_value(subject[i]),#this is the one i should take care
-                    'null'
-                ))
+            bars.append(Bar(
+                subject[i],
+                LOAdb_helper.get_subject_value(subject[i]),  #this is the one i should take care
+                'null'
+            ))
         series.bars = bars
         return series
 

@@ -1,82 +1,74 @@
-@import 'fonts/font-awesome.css';
-
-fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
-h1 { font-size: 1.5em; margin: 10px; }
-
-/****** Style Star Rating Widget *****/
-
-.rating {
-  border: none;
-  float: left;
-}
-
-.rating > input { display: none; }
-.rating > label:before {
-  margin: 5px;
-  font-size: 1.25em;
-    font-family: FontAwesome, serif;
+.star-rating {
+  font-size: 0;
+  white-space: nowrap;
   display: inline-block;
-  content: "\f005";
+  /* width: 250px; remove this */
+  height: 30px;
+  overflow: hidden;
+  position: relative;
+  background: url('star-off.svg');
+  background-size: contain;
 }
-
-.rating > .half:before {
-  content: "\f089";
+.star-rating i {
+  opacity: 0;
   position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+  background: url("star-on.svg");
+  background-size: contain;
+}
+.star-rating input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  opacity: 0;
+  display: inline-block;
+  /* width: 20%; remove this */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  position: relative;
+}
+.star-rating input:hover + i,
+.star-rating input:checked + i {
+  opacity: 1;
+}
+.star-rating i ~ i {
+  width: 40%;
+}
+.star-rating i ~ i ~ i {
+  width: 60%;
+}
+.star-rating i ~ i ~ i ~ i {
+  width: 80%;
+}
+.star-rating i ~ i ~ i ~ i ~ i {
+  width: 100%;
+}
+::after,
+::before {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-align: center;
+  vertical-align: middle;
 }
 
-.rating > label {
-  color: #ddd;
- float: right;
-}
+.star-rating.star-5 {width: 150px;}
+.star-rating.star-5 input,
+.star-rating.star-5 i {width: 20%;}
+.star-rating.star-5 i ~ i {width: 40%;}
+.star-rating.star-5 i ~ i ~ i {width: 60%;}
+.star-rating.star-5 i ~ i ~ i ~ i {width: 80%;}
+.star-rating.star-5 i ~ i ~ i ~ i ~i {width: 100%;}
 
-/***** CSS Magic to Highlight Stars on Hover *****/
+.star-rating.star-3 {width: 92px;}
+.star-rating.star-3 input,
+.star-rating.star-3 i {width: 33.33%;}
+.star-rating.star-3 i ~ i {width: 66.66%;}
+.star-rating.star-3 i ~ i ~ i {width: 100%;}
 
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
-
-.rating > input:checked + label:hover, /* hover current star when changing rating */
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
-
-
-hr.star-light,
-            hr.star-primary {
-                margin: 25px auto 30px;
-                padding: 0;
-                max-width: 250px;
-                border: 0;
-                border-top: solid 5px;
-                text-align: center;
-            }
-
-            hr.star-light:after,
-            hr.star-primary:after {
-                content: "\2605";
-                display: inline-block;
-                position: relative;
-                top: -.8em;
-                padding: 0 .25em;
-                font-family: FontAwesome;
-                font-size: 2em;
-            }
-
-            hr.star-light {
-                border-color: #fff;
-            }
-
-            hr.star-light:after {
-                color: #fff;
-                background-color: #18bc9c;
-            }
-
-            hr.star-primary {
-                border-color: #2c3e50;
-            }
-
-            hr.star-primary:after {
-                color: #2c3e50;
-                background-color: #18bc9c;
-            }
