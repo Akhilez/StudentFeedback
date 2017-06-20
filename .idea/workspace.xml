@@ -1,46 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f28d184d-98d4-4de7-b367-663dfacc6202" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analytics/templates/analytics/get_csv.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/libs/view_helpers/loa_helper.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/static/feedback/star-off.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/static/feedback/star-on.svg" />
-      <change type="DELETED" beforePath="F:\Programming\Django projects\StudentFeedback\analytics\templates\drawables\graph.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/externals/student-class.csv" afterPath="$PROJECT_DIR$/externals/student-class.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/LOAdb_helper.py" afterPath="$PROJECT_DIR$/analytics/libs/LOAdb_helper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/LOAgraph_builder.py" afterPath="$PROJECT_DIR$/analytics/libs/LOAgraph_builder.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/LOAtree_builder.py" afterPath="$PROJECT_DIR$/analytics/libs/LOAtree_builder.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/admin.py" afterPath="$PROJECT_DIR$/feedback/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py" afterPath="$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/conduct.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/conduct.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/libs/view_helpers/conduct_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/view_helpers/conduct_helper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/libs/config_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/config_helper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/db_helper.py" afterPath="$PROJECT_DIR$/analytics/libs/db_helper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/db_updater.py" afterPath="$PROJECT_DIR$/analytics/libs/db_updater.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/analytics/director.html" afterPath="$PROJECT_DIR$/analytics/templates/analytics/director.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/drilldown_chart.py" afterPath="$PROJECT_DIR$/analytics/libs/drilldown_chart.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py" afterPath="$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/static/feedback/fonts/font-awesome.css" afterPath="$PROJECT_DIR$/feedback/static/feedback/fonts/font-awesome.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html" afterPath="$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/graph_builder.py" afterPath="$PROJECT_DIR$/analytics/libs/graph_builder.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/analytics/index.html" afterPath="$PROJECT_DIR$/analytics/templates/analytics/index.html" />
+    <list default="true" id="f28d184d-98d4-4de7-b367-663dfacc6202" name="Default" comment="Akhil- modularity in views">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/libs/views/change_pass_view.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/libs/views/forgot_password_view.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/libs/views/late_login_view.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/libs/views/questions_view.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/libs/views/student_view.py" />
+      <change type="DELETED" beforePath="F:\Programming\Django projects\StudentFeedback\feedback\libs\view_helpers\questions_helper.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/loaquestions.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/loaquestions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logger" afterPath="$PROJECT_DIR$/logger" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/includes/login_navbar.html" afterPath="$PROJECT_DIR$/templates/includes/login_navbar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/models.py" afterPath="$PROJECT_DIR$/feedback/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/questions.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/questions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/libs/view_helpers/questions_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/view_helpers/questions_helper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/static/feedback/stars.css" afterPath="$PROJECT_DIR$/feedback/static/feedback/stars.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/tree_builder.py" afterPath="$PROJECT_DIR$/analytics/libs/tree_builder.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/urls.py" afterPath="$PROJECT_DIR$/analytics/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/libs/view_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/view_helper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/views.py" afterPath="$PROJECT_DIR$/analytics/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/views.py" afterPath="$PROJECT_DIR$/feedback/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="F:\Programming\Django projects\StudentFeedback\feedback\libs\view_helpers\conduct_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/views/conduct_view.py" />
+      <change type="MOVED" beforePath="F:\Programming\Django projects\StudentFeedback\feedback\libs\view_helpers\initiate_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/views/initiate_view.py" />
+      <change type="MOVED" beforePath="F:\Programming\Django projects\StudentFeedback\feedback\libs\view_helpers\loa_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py" />
+      <change type="MOVED" beforePath="F:\Programming\Django projects\StudentFeedback\feedback\libs\view_helpers\login_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/views/login_view_helper.py" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -91,127 +66,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="conduct.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/conduct.html">
+      <file leaf-file-name="view_helper.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feedback/libs/view_helper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="255">
-              <caret line="133" column="14" selection-start-line="133" selection-start-column="14" selection-end-line="133" selection-end-column="14" />
-              <folding>
-                <element signature="n#block#0;n#!!top" expanded="false" />
-                <element signature="n#script#0;n#!!top" expanded="false" />
-                <element signature="e#120#337#0#HTML" expanded="false" />
-                <element signature="e#256#327#0#HTML" expanded="false" />
-                <element signature="n#block#1;n#!!top" expanded="false" />
-                <element signature="n#block#2;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#!!top" expanded="false" />
-                <element signature="n#if#0;n#!!top" expanded="false" />
-                <element signature="n#form#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#table#0;n#form#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#thead#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#tr#0;n#thead#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#tbody#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#for#0;n#!!top" expanded="false" />
-                <element signature="n#tr#0;n#tbody#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#if#1;n#!!top" expanded="false" />
-                <element signature="n#if#2;n#!!top" expanded="false" />
-                <element signature="n#form#1;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#form#1;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#select#0;n#div#1;n#form#1;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#for#1;n#!!top" expanded="false" />
-                <element signature="n#h4#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#table#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#tr#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#for#2;n#!!top" expanded="false" />
-                <element signature="n#tr#1;n#table#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#td#0;n#tr#1;n#table#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#p#0;n#td#0;n#tr#1;n#table#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#if#3;n#!!top" expanded="false" />
-                <element signature="n#if#4;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#if#5;n#!!top" expanded="false" />
-                <element signature="n#p#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#if#6;n#!!top" expanded="false" />
-                <element signature="n#input#0;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#input#1;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#block#3;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.26923" vertical-offset="0" max-vertical-offset="816">
-              <caret line="31" column="155" selection-start-line="31" selection-start-column="155" selection-end-line="31" selection-end-column="155" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="initiate.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7534091" vertical-offset="459" max-vertical-offset="2975">
-              <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
+              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/feedback/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-              <caret line="91" column="32" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.26651737" vertical-offset="0" max-vertical-offset="1241">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
-                <element signature="e#709#1027#0" expanded="false" />
-                <element signature="e#1059#1490#0" expanded="false" />
-                <element signature="e#1536#2277#0" expanded="false" />
-                <element signature="e#3101#4181#0" expanded="false" />
-                <element signature="e#3101#3419#1" expanded="false" />
-                <element signature="e#4210#5559#0" expanded="false" />
-                <element signature="e#4210#4433#1" expanded="false" />
-                <element signature="e#5590#8124#0" expanded="false" />
-                <element signature="e#8172#10982#0" expanded="false" />
-                <element signature="e#11016#13028#0" expanded="false" />
-                <element signature="e#11016#11366#1" expanded="false" />
-                <element signature="e#13058#13516#0" expanded="false" />
-                <element signature="e#13552#13729#0" expanded="false" />
+                <element signature="e#0#57#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="conduct_helper.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/libs/view_helpers/conduct_helper.py">
+      <file leaf-file-name="login_view_helper.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feedback/libs/views/login_view_helper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="284" max-vertical-offset="1190">
-              <caret line="55" column="39" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
-              <folding>
-                <element signature="e#621#715#0" expanded="false" />
-                <element signature="e#785#1448#0" expanded="false" />
-                <element signature="e#1503#1658#0" expanded="false" />
-                <element signature="e#2567#2705#0" expanded="false" />
-                <element signature="e#2741#3037#0" expanded="false" />
-                <element signature="e#3075#3364#0" expanded="false" />
-                <element signature="e#3408#4748#0" expanded="false" />
-                <element signature="e#4800#5326#0" expanded="false" />
-                <element signature="e#4800#4927#1" expanded="false" />
-                <element signature="e#5367#5756#0" expanded="false" />
-                <element signature="e#5819#6769#0" expanded="false" />
-                <element signature="e#5819#6059#1" expanded="false" />
-                <element signature="e#6825#7026#0" expanded="false" />
-                <element signature="e#7082#7842#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
+              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -224,21 +106,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/test.js" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/latelogin.html" />
-        <option value="$PROJECT_DIR$/feedback/libs/log.py" />
-        <option value="$PROJECT_DIR$/feedback/libs/view_helpers/login_helper.py" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/includes/conductor_navbar.html" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/student_login.html" />
-        <option value="$PROJECT_DIR$/feedback/libs/view_helpers/initiate_helper.py" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/includes/footer.html" />
-        <option value="$PROJECT_DIR$/feedback/urls.py" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/questions3.html" />
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/questions2.html" />
-        <option value="dbtable:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/nba_projects_db..feedback_fdbkquestions" />
-        <option value="$PROJECT_DIR$/analytics/libs/loa_helper.py" />
-        <option value="$PROJECT_DIR$/analytics/templates/analytics/get_csv.html" />
-        <option value="$PROJECT_DIR$/ratings" />
         <option value="$PROJECT_DIR$/analytics/libs/drilldown_chart.py" />
         <option value="$PROJECT_DIR$/analytics/libs/LOAgraph_builder.py" />
         <option value="$PROJECT_DIR$/analytics/libs/LOAtree_builder.py" />
@@ -265,16 +132,31 @@
         <option value="$PROJECT_DIR$/feedback/admin.py" />
         <option value="$PROJECT_DIR$/analytics/libs/db_updater.py" />
         <option value="$PROJECT_DIR$/feedback/libs/config_helper.py" />
-        <option value="$PROJECT_DIR$/feedback/libs/view_helper.py" />
         <option value="$PROJECT_DIR$/feedback/models.py" />
         <option value="$PROJECT_DIR$/feedback/libs/view_helpers/questions_helper.py" />
         <option value="$PROJECT_DIR$/feedback/libs/view_helpers/loa_helper.py" />
-        <option value="$PROJECT_DIR$/feedback/views.py" />
         <option value="$PROJECT_DIR$/feedback/libs/view_helpers/conduct_helper.py" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/conduct.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/loaquestions.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/__init__.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/latelogin.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/changepass.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/loaquestions.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/forgotpassword.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/view_helpers/login_helper.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/view_helper.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/login.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/conduct.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/questions.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/initiate.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/loa_questions.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/change_pass.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/forgot_password.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/late_login.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/student.py" />
+        <option value="$PROJECT_DIR$/feedback/views.py" />
       </list>
     </option>
   </component>
@@ -329,6 +211,26 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -407,76 +309,6 @@
             <PATH_ELEMENT USER_OBJECT=".idea">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -1044,14 +876,20 @@
       <option name="project" value="LOCAL" />
       <updated>1496719202550</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Akhil- Lot of changes, can't even count. Most of the functionality remains same.">
+      <created>1497803571569</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1497803571569</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32299465" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3222698" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32655245" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1059,8 +897,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3222698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32655245" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14072494" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14392324" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23187633" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1071,7 +910,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1090,7 +928,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Akhil- questions page redirection restrictions done" />
     <MESSAGE value="Akhil- Models renamed" />
     <MESSAGE value="Akhil- update for raj" />
     <MESSAGE value="Akhil- master slave done" />
@@ -1115,7 +952,8 @@
     <MESSAGE value="Akhil- ton of modular code improvements &#10;fixed a few +30 minutes errors.&#10; Models support multiple question sets.&#10;Not for production." />
     <MESSAGE value="Akhil- removed stutimeout&#10;single questions page" />
     <MESSAGE value="Akhil- modularity&#10;dynamic questions&#10;removed category" />
-    <option name="LAST_COMMIT_MESSAGE" value="Akhil- modularity&#10;dynamic questions&#10;removed category" />
+    <MESSAGE value="Akhil- Lot of changes, can't even count. Most of the functionality remains same." />
+    <option name="LAST_COMMIT_MESSAGE" value="Akhil- Lot of changes, can't even count. Most of the functionality remains same." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1124,78 +962,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2482">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph_2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="45.115383" vertical-offset="1173" max-vertical-offset="2414">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph_3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2414">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="906">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/select_bars.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="8.5" vertical-offset="221" max-vertical-offset="1088">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.0" vertical-offset="0" max-vertical-offset="765">
-          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/faculty.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.884615" vertical-offset="0" max-vertical-offset="867">
-          <caret line="35" column="54" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/director.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.115385" vertical-offset="408" max-vertical-offset="1292">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3411371" vertical-offset="0" max-vertical-offset="897">
-          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/feedback/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24637681" vertical-offset="0" max-vertical-offset="897">
@@ -1216,7 +982,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="906">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1473,22 +1238,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46909493" vertical-offset="0" max-vertical-offset="906">
-          <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
-          <folding>
-            <element signature="e#510#560#0" expanded="false" />
-            <element signature="e#604#844#0" expanded="false" />
-            <element signature="e#927#1837#0" expanded="false" />
-            <element signature="e#1896#2727#0" expanded="false" />
-            <element signature="e#2772#4131#0" expanded="false" />
-            <element signature="e#4201#4822#0" expanded="false" />
-            <element signature="e#4863#6245#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6409">
@@ -1721,50 +1470,50 @@
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..classes">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..student">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..faculty">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..classfacsub">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1776,14 +1525,14 @@
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_loaquestions">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1795,155 +1544,110 @@
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..sem">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_config">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/config_helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#122#410#0" expanded="false" />
-            <element signature="e#455#694#0" expanded="false" />
-            <element signature="e#725#967#0" expanded="false" />
-          </folding>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_initiation">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/view_helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30022076" vertical-offset="0" max-vertical-offset="1530">
-          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_fdbkquestions">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..django_session">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_session">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_feedbackloa">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_feedback">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/view_helpers/loa_helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53303474" vertical-offset="850" max-vertical-offset="2363">
-          <caret line="98" column="63" selection-start-line="98" selection-start-column="63" selection-end-line="98" selection-end-column="63" />
-          <folding>
-            <element signature="e#555#744#1" expanded="false" />
-            <element signature="e#1189#1429#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/view_helpers/questions_helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3807947" vertical-offset="794" max-vertical-offset="2108">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..subject">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1952,7 +1656,7 @@
         <state vertical-scroll-proportion="0.58719647" vertical-offset="624" max-vertical-offset="1598">
           <caret line="168" column="67" selection-start-line="168" selection-start-column="57" selection-end-line="168" selection-end-column="67" />
           <folding>
-            <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#0#50#0" expanded="false" />
             <element signature="e#319#676#0" expanded="false" />
             <element signature="e#339#404#0" expanded="false" />
             <element signature="e#589#676#0" expanded="false" />
@@ -1986,51 +1690,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-          <caret line="91" column="32" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
-          <folding>
-            <element signature="e#709#1027#0" expanded="false" />
-            <element signature="e#1059#1490#0" expanded="false" />
-            <element signature="e#1536#2277#0" expanded="false" />
-            <element signature="e#3101#4181#0" expanded="false" />
-            <element signature="e#3101#3419#1" expanded="false" />
-            <element signature="e#4210#5559#0" expanded="false" />
-            <element signature="e#4210#4433#1" expanded="false" />
-            <element signature="e#5590#8124#0" expanded="false" />
-            <element signature="e#8172#10982#0" expanded="false" />
-            <element signature="e#11016#13028#0" expanded="false" />
-            <element signature="e#11016#11366#1" expanded="false" />
-            <element signature="e#13058#13516#0" expanded="false" />
-            <element signature="e#13552#13729#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_slavesession">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_attendance">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -2038,32 +1718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36704546" vertical-offset="0" max-vertical-offset="1547">
           <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/view_helpers/conduct_helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1190">
-          <caret line="55" column="39" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
-          <folding>
-            <element signature="e#621#715#0" expanded="false" />
-            <element signature="e#785#1448#0" expanded="false" />
-            <element signature="e#1503#1658#0" expanded="false" />
-            <element signature="e#2567#2705#0" expanded="false" />
-            <element signature="e#2741#3037#0" expanded="false" />
-            <element signature="e#3075#3364#0" expanded="false" />
-            <element signature="e#3408#4748#0" expanded="false" />
-            <element signature="e#4800#5326#0" expanded="false" />
-            <element signature="e#4800#4927#1" expanded="false" />
-            <element signature="e#5367#5756#0" expanded="false" />
-            <element signature="e#5819#6769#0" expanded="false" />
-            <element signature="e#5819#6059#1" expanded="false" />
-            <element signature="e#6825#7026#0" expanded="false" />
-            <element signature="e#7082#7842#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2075,73 +1729,150 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/conduct.html">
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="255">
-          <caret line="133" column="14" selection-start-line="133" selection-start-column="14" selection-end-line="133" selection-end-column="14" />
-          <folding>
-            <element signature="n#block#0;n#!!top" expanded="false" />
-            <element signature="n#script#0;n#!!top" expanded="false" />
-            <element signature="e#120#337#0#HTML" expanded="false" />
-            <element signature="e#256#327#0#HTML" expanded="false" />
-            <element signature="n#block#1;n#!!top" expanded="false" />
-            <element signature="n#block#2;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#!!top" expanded="false" />
-            <element signature="n#if#0;n#!!top" expanded="false" />
-            <element signature="n#form#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#form#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#thead#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#tr#0;n#thead#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#tbody#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#for#0;n#!!top" expanded="false" />
-            <element signature="n#tr#0;n#tbody#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#if#1;n#!!top" expanded="false" />
-            <element signature="n#if#2;n#!!top" expanded="false" />
-            <element signature="n#form#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#form#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#select#0;n#div#1;n#form#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#for#1;n#!!top" expanded="false" />
-            <element signature="n#h4#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#tr#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#for#2;n#!!top" expanded="false" />
-            <element signature="n#tr#1;n#table#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#td#0;n#tr#1;n#table#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#p#0;n#td#0;n#tr#1;n#table#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#if#3;n#!!top" expanded="false" />
-            <element signature="n#if#4;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#if#5;n#!!top" expanded="false" />
-            <element signature="n#p#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#if#6;n#!!top" expanded="false" />
-            <element signature="n#input#0;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#input#1;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#block#3;n#!!top" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.8693182" vertical-offset="255" max-vertical-offset="3111">
+          <caret line="60" column="72" selection-start-line="60" selection-start-column="72" selection-end-line="60" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.26923" vertical-offset="0" max-vertical-offset="816">
+        <state vertical-scroll-proportion="0.59886366" vertical-offset="0" max-vertical-offset="880">
           <caret line="31" column="155" selection-start-line="31" selection-start-column="155" selection-end-line="31" selection-end-column="155" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/conduct.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78431374" vertical-offset="1581" max-vertical-offset="2448">
+          <caret line="133" column="14" selection-start-line="133" selection-start-column="14" selection-end-line="133" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/config_helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#122#410#0" expanded="false" />
+            <element signature="e#455#694#0" expanded="false" />
+            <element signature="e#725#967#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
+    <entry file="file://$PROJECT_DIR$/feedback/libs/views/conduct_view.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7534091" vertical-offset="459" max-vertical-offset="2975">
-          <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.15562914" vertical-offset="2409" max-vertical-offset="4182">
+          <caret line="150" column="69" selection-start-line="150" selection-start-column="69" selection-end-line="150" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/views/questions_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33554083" vertical-offset="1447" max-vertical-offset="3230">
+          <caret line="109" column="26" selection-start-line="109" selection-start-column="26" selection-end-line="109" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3046358" vertical-offset="2133" max-vertical-offset="3689">
+          <caret line="195" column="8" selection-start-line="195" selection-start-column="8" selection-end-line="195" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/views/initiate_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9624724" vertical-offset="896" max-vertical-offset="2108">
+          <caret line="104" column="43" selection-start-line="104" selection-start-column="43" selection-end-line="104" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/views/forgot_password_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16887417" vertical-offset="0" max-vertical-offset="906">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/views/student_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46909493" vertical-offset="0" max-vertical-offset="906">
+          <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/views/late_login_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18763797" vertical-offset="0" max-vertical-offset="906">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/view_helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/views/login_view_helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/views/change_pass_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9624724" vertical-offset="369" max-vertical-offset="1343">
+          <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.2516556" vertical-offset="0" max-vertical-offset="2567">
+          <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26651737" vertical-offset="0" max-vertical-offset="1241">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

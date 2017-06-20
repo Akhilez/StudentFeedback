@@ -12,7 +12,6 @@ from feedback.forms import LoginForm
 from feedback.models import *
 
 
-
 def get_slave_of(session):
     for sess in SlaveSession.objects.all():
         if sess.master == session:

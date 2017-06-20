@@ -38,7 +38,7 @@
             {% else %}
                 <input type="submit" class="btn btn-default" name="nextSection" value="NEXT" style="float: right">
             {% endif %}
-            <table class="table table-bordered table-hover table-striped" style="margin-top: 75px" >
+            <table class="table table-bordered table-hover table-striped" style="margin-top: 75px">
                 <thead>
                 <tr>
                     <th>Year</th>
@@ -85,40 +85,48 @@
     <br><br>
 
     <div class="container" style="padding-right: 50px">
-    <table class="table">
-    <tr>
-    <td>
-        <div >
-            <h3>Recent Initiations</h3>
-            <table class="table table-bordered table-hover table-striped">
-                <tr><th>Class</th><th>Date and Time</th><th>Coordinator</th></tr>
-            {% for his in total_history %}
-                <tr>
-                    <td>{{ his.class_id }}</td>
-                    <td>{{ his.timestamp }}</td>
-                    <td>{{ his.initiated_by.username }}</td>
-                </tr>
-            {% endfor %}
-            </table>
-        </div>
-    </td>
-    <td>
-        <div >
-            <h3>Recent Feedbacks</h3>
-        <table class="table table-bordered table-hover table-striped">
-                <tr><th>Class</th><th>Date and Time</th><th>Coordinator</th></tr>
-            {% for recent in recent_feedbacks %}
-                <tr>
-                    <td>{{ recent.initiation_id.class_id }}</td>
-                    <td>{{ recent.timestamp }}</td>
-                    <td>{{ recent.taken_by }}</td>
-                </tr>
-            {% endfor %}
-            </table>
-        </div>
-    </td>
-    </tr>
-    </table>
+        <table class="table">
+            <tr>
+                <td>
+                    <div>
+                        <h3>Recent Initiations</h3>
+                        <table class="table table-bordered table-hover table-striped">
+                            <tr>
+                                <th>Class</th>
+                                <th>Date and Time</th>
+                                <th>Coordinator</th>
+                            </tr>
+                            {% for his in total_history %}
+                                <tr>
+                                    <td>{{ his.class_id }}</td>
+                                    <td>{{ his.timestamp }}</td>
+                                    <td>{{ his.initiated_by.username }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <h3>Recent Feedbacks</h3>
+                        <table class="table table-bordered table-hover table-striped">
+                            <tr>
+                                <th>Class</th>
+                                <th>Date and Time</th>
+                                <th>Coordinator</th>
+                            </tr>
+                            {% for recent in recent_feedbacks %}
+                                <tr>
+                                    <td>{{ recent.initiation_id.class_id }}</td>
+                                    <td>{{ recent.timestamp }}</td>
+                                    <td>{{ recent.taken_by }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
 

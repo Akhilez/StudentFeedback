@@ -1,17 +1,42 @@
-import random
-import string
-
-from django.http import HttpResponse, Http404
 from django.contrib.auth import authenticate, login
-from django.shortcuts import redirect, render, get_object_or_404
-from django.core.signing import *
-
-from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, DIRECTOR_GROUP
-from analytics.libs import db_helper
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from StudentFeedback.settings import LOGIN_URL, COORDINATOR_GROUP, CONDUCTOR_GROUP, DIRECTOR_GROUP
 from feedback.forms import LoginForm
-from feedback.models import *
+from feedback.libs.view_helper import feedback_running, get_todays_initiations
 
 __author__ = 'Akhil'
+
+
+def get_view(request):
+    if feedback_running(request):
+        return redirect('/feedback/questions/')
+
+    if request.user.is_authenticated:
+        return goto_user_page(request.user)
+
+    template = "login.html"
+    context = {}
+
+    if request.method == "POST":
+        if 'login' in request.POST:
+            return login_result(request, template, context)
+    else:
+        context['form'] = LoginForm()
+
+    return render(request, template, context)
+
+
+def get_redirect(request):
+    # if any user already logged in, take to their homepage
+    if request.user.is_authenticated():
+        return goto_user_page(request.user)
+
+    # is any initiation open? then go to student otp page.
+    if len(get_todays_initiations()) > 0:
+        return redirect('/feedback/student')
+
+    return redirect(LOGIN_URL)
 
 
 def goto_user_page(user):

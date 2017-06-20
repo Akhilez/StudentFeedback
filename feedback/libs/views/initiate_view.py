@@ -1,14 +1,38 @@
-from django.shortcuts import render
-
-from django.core.signing import *
-
+import datetime
+from django.shortcuts import redirect, render
 from StudentFeedback.settings import COORDINATOR_GROUP
-
 from analytics.libs import db_helper
+from feedback.libs.view_helper import feedback_running, invalid_user_page
 from feedback.models import *
 
-
 __author__ = 'Akhil'
+
+
+def get_view(request):
+    if feedback_running(request):
+        return redirect('/feedback/questions/')
+
+    if not_coordinator(request):
+        return invalid_user_page(request)
+
+    template = 'feedback/initiate.html'
+    context = {'active': 'home'}
+
+    # adding history - recent initiations and sessions
+    add_history(context)
+
+    # filling classes table with years
+    context['years'] = db_helper.get_years()
+
+    # handling the submit buttons
+    if request.method == 'POST':
+        if 'nextSection' in request.POST:
+            return next_section_result(request, template, context)
+
+        if 'confirmSelected' in request.POST:
+            return confirm_selected_class_result(request, template, context)
+
+    return render(request, template, context)
 
 
 def not_coordinator(request):

@@ -1,12 +1,71 @@
 import re
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
+
 from StudentFeedback.settings import ALLOWED_HOSTS
-from feedback.models import LOAquestions, FeedbackLoa, ClassFacSub, Subject
-from feedback.libs import log
+from feedback.libs.config_helper import get_max_subjects_each_page_loa
+from feedback.models import *
+
 
 __author__ = 'Akhil'
+
+
+def get_view(request):
+    """
+    1. get session obj or go to /
+    2. make pagination
+    3. get maxPage if exists else create maxPage
+    4. get the subjects for current page
+    5. for each subject obj, get its questions, make a SubQues object and pass it to context
+    6. handle next button click
+    7. handle submit button click
+    :param request:
+    :return:
+    """
+    # 1. get session obj or go to /
+    session_id = request.session.get('sessionObj')
+    if session_id is None:
+        return redirect('/')
+
+    template = 'feedback/loaquestions.html'
+    context = {}
+
+    # get all the necessary details
+    session = Session.objects.get(session_id=session_id)
+    class_obj = session.initiation_id.class_id
+    context['class_obj'] = class_obj
+    all_subjects = get_all_subjects(class_obj)
+    max_sub_each = get_max_subjects_each_page_loa()
+
+    # 2. make pagination
+    pager = get_pager(request, all_subjects, max_sub_each)
+    context['pager'] = pager
+
+    # 3. get maxPage if exists else create maxPage
+    if set_max_page(request, pager.number):
+        return redirect('/feedback/LoaQuestions/?page=' + str(request.session['maxPage'][0]))
+
+    # get the pager indices
+    context['page_index_list'] = [i for i in range(1, max_sub_each + 1)]
+
+    # 4. get the subjects for current page
+    subjects = all_subjects[((pager.number - 1) * max_sub_each): (pager.number * max_sub_each)]
+
+    # 5. for each subject obj, get its questions, make a SubQues object and pass it to context
+    sub_ques_list = get_sub_ques_list(subjects)
+    context['sub_ques_list'] = sub_ques_list
+
+    if request.method == 'POST':
+        # 6. handle next button click
+        if 'next' in request.POST:
+            return next_button_result(request, context)
+
+        # 7. handle submit button click
+        if 'submit' in request.POST:
+            return submit_button_result(request, context, session, all_subjects)
+
+    return render(request, template, context)
 
 
 class SubQues:
@@ -33,13 +92,12 @@ def ratings_to_session_variable(context, request):
         request.session[sub_ques.subject.name] = sub_ques.ratings
 
 
-def next_button_result(request, template, context):
+def next_button_result(request, context):
     """
     1. for each sub ques, question, get the star id value.
     2. for each sub ques, enter the ratings into session variable
     3. redirect to next page.
     :param request:
-    :param template:
     :param context:
     :return:
     """
@@ -56,7 +114,7 @@ def rating_string_from_array(array):
     rating = ""
     for i in range(len(array)):
         rating += array[i]
-        if i != (len(array)-1):
+        if i != (len(array) - 1):
             rating += ','
     return rating
 
@@ -80,7 +138,6 @@ def submit_button_result(request, context, session, subjects):
     5. deleting session
     6. Adding cookie for facility
     :param request:
-    :param template:
     :param context:
     :return: response
     """
@@ -126,7 +183,8 @@ def get_sub_ques_list(subjects):
 def get_all_subjects(class_obj):
     all_subjects = []
     for cfs in ClassFacSub.objects.filter(class_id=class_obj):
-        if not re.compile("^.* [Ll][Aa][Bb]$").match(cfs.subject_id.name) and not re.compile("[Mm][eE][nN][tT][oO][rR][iI][nN][gG]").match(cfs.subject_id.name):
+        if not re.compile("^.* [Ll][Aa][Bb]$").match(cfs.subject_id.name) and not re.compile(
+                "[Mm][eE][nN][tT][oO][rR][iI][nN][gG]").match(cfs.subject_id.name):
             all_subjects.append(cfs.subject_id)
     all_subjects.insert(0, Subject.objects.filter(name="General Objectives")[0])
     return all_subjects
