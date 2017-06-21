@@ -19,18 +19,17 @@ class FacultyGraph(Graphable):
         return self.build_faculty_ques_series()
 
     def build_faculty_ques_series(self):
-        questions = db_helper.get_all_question_texts()
+        questions = db_helper.get_selected_questions()
 
         bars = []
         series = Series(self.faculty, self.faculty, self)
 
-        for i in range(len(questions)):
-            if i in Timeline.selected_questions:
-                bars.append(Bar(
-                    questions[i].question,
-                    db_helper.get_question_value(self.faculty, questions[i]),
-                    'null'
-                ))
+        for question in questions:
+            bars.append(Bar(
+                question.question,
+                db_helper.get_question_value(self.faculty, question.question_id),
+                'null'
+            ))
 
         if self.type == 'bar':
             self.height = math.sqrt(len(bars)) * 5 * self.height_per_bar

@@ -17,10 +17,11 @@ def index_view(request):
 def set_selected_questions(request):
     if 'select_ques' in request.POST:
         questions = request.POST.getlist('ques')
-        Timeline.selected_questions = []
+        selected_questions = []
         for ques in questions:
             ques = ques[1:]
-            Timeline.selected_questions.append(int(ques))
+            selected_questions.append(int(ques))
+        Timeline.set_selected_questions(selected_questions)
 
 
 @login_required
@@ -46,7 +47,7 @@ def director(request, category, year, branch, sub, subsub):
     context['facultys'] = db_helper.get_all_faculty()
 
     context['all_questions'] = db_helper.get_all_question_texts()
-    context['selected_indices'] = db_helper.get_selected_questions()
+    context['selected_indices'] = db_helper.Timeline.get_selected_questions()
 
     return render(request, template, context)
 
@@ -71,7 +72,7 @@ def faculty_info(request, faculty):
 
     context['facultys'] = db_helper.get_all_faculty()
     context['all_questions'] = db_helper.get_all_question_texts()
-    context['selected_indices'] = db_helper.get_selected_questions()
+    context['selected_indices'] = db_helper.Timeline.get_selected_questions()
 
     return render(request, 'analytics/faculty.html', context)
 
@@ -120,8 +121,7 @@ def LOAanalysis(request, category, year, branch, sub, subsub):
                 graph_type = typ
                 break
 
-    context['graph'] = LOAgraph_builder.Graph(category, year, branch, sub, subsub, graph_type=graph_type)
-    context['Drilldown'] = LOAgraph_builder.Graph.drilldown
+    context['graph'] = LOAgraph_builder.LoaGraph(category, year, branch, sub, subsub, graph_type=graph_type)
 
     return render(request, template, context)
 

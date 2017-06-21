@@ -18,7 +18,7 @@
             <label for="ques_selec">Select criteria: </label>
             <select id="ques_selec" class="selectpicker" multiple tabindex="4" name="ques">
                 {% for question in all_questions %}
-                    <option value="q{{ forloop.counter0 }}" {% if forloop.counter0 in selected_indices %}selected{% endif %}>{{ forloop.counter }}. {{ question.question }}</option>
+                    <option value="q{{ question.question_id }}" {% if question.question_id in selected_indices %}selected{% endif %}>{{ forloop.counter }}. {{ question.question }}</option>
                 {% endfor %}
             </select>
             <input type="submit" value="Select" name="select_ques" class="btn btn-default">

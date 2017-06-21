@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f28d184d-98d4-4de7-b367-663dfacc6202" name="Default" comment="Akhil- modularity in views">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/libs/views/change_pass_view.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/libs/views/forgot_password_view.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/libs/views/late_login_view.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/libs/views/questions_view.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/libs/views/student_view.py" />
-      <change type="DELETED" beforePath="F:\Programming\Django projects\StudentFeedback\feedback\libs\view_helpers\questions_helper.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/libs/view_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/view_helper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/views.py" afterPath="$PROJECT_DIR$/feedback/views.py" />
+    <list default="true" id="f28d184d-98d4-4de7-b367-663dfacc6202" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/analytics/LOAanalyis.html" afterPath="$PROJECT_DIR$/analytics/templates/analytics/LOAanalyis.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/LOAdb_helper.py" afterPath="$PROJECT_DIR$/analytics/libs/LOAdb_helper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/LOAgraph_builder.py" afterPath="$PROJECT_DIR$/analytics/libs/LOAgraph_builder.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/includes/analytics/LOAtree.html" afterPath="$PROJECT_DIR$/analytics/templates/includes/analytics/LOAtree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py" afterPath="$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/db_helper.py" afterPath="$PROJECT_DIR$/analytics/libs/db_helper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/analytics/director.html" afterPath="$PROJECT_DIR$/analytics/templates/analytics/director.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/drilldown_chart.py" afterPath="$PROJECT_DIR$/analytics/libs/drilldown_chart.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py" afterPath="$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/graph_builder.py" afterPath="$PROJECT_DIR$/analytics/libs/graph_builder.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py" afterPath="$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/includes/analytics/select_bars.html" afterPath="$PROJECT_DIR$/analytics/templates/includes/analytics/select_bars.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html" afterPath="$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/urls.py" afterPath="$PROJECT_DIR$/analytics/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/views.py" afterPath="$PROJECT_DIR$/analytics/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="F:\Programming\Django projects\StudentFeedback\feedback\libs\view_helpers\conduct_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/views/conduct_view.py" />
-      <change type="MOVED" beforePath="F:\Programming\Django projects\StudentFeedback\feedback\libs\view_helpers\initiate_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/views/initiate_view.py" />
-      <change type="MOVED" beforePath="F:\Programming\Django projects\StudentFeedback\feedback\libs\view_helpers\loa_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py" />
-      <change type="MOVED" beforePath="F:\Programming\Django projects\StudentFeedback\feedback\libs\view_helpers\login_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/views/login_view_helper.py" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,6 +58,24 @@
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - nba_projects_db@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="nba_projects_db" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="feedback_feedbackloa" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
@@ -66,33 +86,159 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="view_helper.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/libs/view_helper.py">
+      <file leaf-file-name="db_helper.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
-              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/feedback/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26651737" vertical-offset="0" max-vertical-offset="1241">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="3077">
+              <caret line="90" column="25" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
               <folding>
-                <element signature="e#0#57#0" expanded="true" />
+                <element signature="e#173#756#0" expanded="false" />
+                <element signature="e#244#289#0" expanded="false" />
+                <element signature="e#351#568#0" expanded="false" />
+                <element signature="e#644#688#0" expanded="false" />
+                <element signature="e#721#756#0" expanded="false" />
+                <element signature="e#780#900#0" expanded="false" />
+                <element signature="e#931#1303#0" expanded="false" />
+                <element signature="e#1342#1731#0" expanded="false" />
+                <element signature="e#1778#2212#0" expanded="false" />
+                <element signature="e#2271#2672#0" expanded="false" />
+                <element signature="e#3016#3442#0" expanded="false" />
+                <element signature="e#3485#3926#0" expanded="false" />
+                <element signature="e#3979#4437#0" expanded="false" />
+                <element signature="e#4489#4756#0" expanded="false" />
+                <element signature="e#4787#4977#0" expanded="false" />
+                <element signature="e#5007#5296#0" expanded="false" />
+                <element signature="e#5327#5427#0" expanded="false" />
+                <element signature="e#5466#5739#0" expanded="false" />
+                <element signature="e#5776#5838#0" expanded="false" />
+                <element signature="e#6569#6731#0" expanded="false" />
+                <element signature="e#6959#7310#0" expanded="false" />
+                <element signature="e#7349#7536#1" expanded="false" />
+                <element signature="e#7907#8194#0" expanded="false" />
+                <element signature="e#8254#8751#0" expanded="false" />
+                <element signature="e#8254#8405#1" expanded="false" />
+                <element signature="e#8790#9073#0" expanded="false" />
+                <element signature="e#9114#9168#0" expanded="false" />
+                <element signature="e#9195#9306#0" expanded="false" />
+                <element signature="e#9343#9555#0" expanded="false" />
+                <element signature="e#11047#11215#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login_view_helper.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/libs/views/login_view_helper.py">
+      <file leaf-file-name="LOAdb_helper.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/libs/LOAdb_helper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
-              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="463" max-vertical-offset="1496">
+              <caret line="126" column="43" selection-start-line="126" selection-start-column="35" selection-end-line="126" selection-end-column="43" />
+              <folding>
+                <element signature="e#174#295#0" expanded="false" />
+                <element signature="e#326#476#0" expanded="false" />
+                <element signature="e#515#690#0" expanded="false" />
+                <element signature="e#723#1020#0" expanded="false" />
+                <element signature="e#1053#1347#0" expanded="false" />
+                <element signature="e#1380#1937#0" expanded="false" />
+                <element signature="e#1980#2552#0" expanded="false" />
+                <element signature="e#2605#3194#0" expanded="false" />
+                <element signature="e#3244#3344#0" expanded="false" />
+                <element signature="e#3380#3432#0" expanded="false" />
+                <element signature="e#3468#3531#0" expanded="false" />
+                <element signature="e#3572#3698#0" expanded="false" />
+                <element signature="e#3745#3994#0" expanded="false" />
+                <element signature="e#4496#4815#0" expanded="false" />
+                <element signature="e#5342#6170#0" expanded="false" />
+                <element signature="e#6209#6574#0" expanded="false" />
+                <element signature="e#6613#6801#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LOAgraph_builder.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/analytics/libs/LOAgraph_builder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3617021" vertical-offset="0" max-vertical-offset="893">
+              <caret line="90" column="46" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="46" />
+              <folding>
+                <element signature="e#333#500#0" expanded="false" />
+                <element signature="e#579#2262#0" expanded="false" />
+                <element signature="e#2332#2905#0" expanded="false" />
+                <element signature="e#3492#3836#0" expanded="false" />
+                <element signature="e#3893#4399#0" expanded="false" />
+                <element signature="e#4459#4975#0" expanded="false" />
+                <element signature="e#5023#5389#0" expanded="false" />
+                <element signature="e#5436#5828#0" expanded="false" />
+                <element signature="e#5910#6484#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nba_projects_db.classes" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..classes">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="drilldown_chart.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/libs/drilldown_chart.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
+              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tree.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.3454547" vertical-offset="471" max-vertical-offset="1309">
+              <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LOAtree.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/LOAtree.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.653847" vertical-offset="0" max-vertical-offset="969">
+              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+              <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LOAanalyis.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/LOAanalyis.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.153847" vertical-offset="157" max-vertical-offset="1037">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -106,19 +252,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/analytics/libs/drilldown_chart.py" />
-        <option value="$PROJECT_DIR$/analytics/libs/LOAgraph_builder.py" />
-        <option value="$PROJECT_DIR$/analytics/libs/LOAtree_builder.py" />
-        <option value="$PROJECT_DIR$/analytics/libs/tree_builder.py" />
-        <option value="$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py" />
-        <option value="$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py" />
-        <option value="$PROJECT_DIR$/analytics/views.py" />
-        <option value="$PROJECT_DIR$/analytics/urls.py" />
-        <option value="$PROJECT_DIR$/analytics/templates/analytics/index.html" />
-        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html" />
-        <option value="$PROJECT_DIR$/analytics/templates/analytics/director.html" />
-        <option value="db-console:/dcfcaa18/93c223c3-8a4e-4749-b3ea-3dc9da0cb3c8/" />
-        <option value="$PROJECT_DIR$/analytics/libs/LOAdb_helper.py" />
         <option value="$PROJECT_DIR$/logger" />
         <option value="$PROJECT_DIR$/feedback/static/feedback/star-on.svg" />
         <option value="$PROJECT_DIR$/feedback/static/feedback/star-off.svg" />
@@ -127,8 +260,6 @@
         <option value="$PROJECT_DIR$/templates/includes/login_navbar.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/includes/student_navbar.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/base.html" />
-        <option value="$PROJECT_DIR$/analytics/libs/graph_builder.py" />
-        <option value="$PROJECT_DIR$/analytics/libs/db_helper.py" />
         <option value="$PROJECT_DIR$/feedback/admin.py" />
         <option value="$PROJECT_DIR$/analytics/libs/db_updater.py" />
         <option value="$PROJECT_DIR$/feedback/libs/config_helper.py" />
@@ -157,6 +288,21 @@
         <option value="$PROJECT_DIR$/feedback/libs/views/late_login.py" />
         <option value="$PROJECT_DIR$/feedback/libs/views/student.py" />
         <option value="$PROJECT_DIR$/feedback/views.py" />
+        <option value="$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py" />
+        <option value="$PROJECT_DIR$/analytics/templates/analytics/director.html" />
+        <option value="$PROJECT_DIR$/analytics/libs/drilldown_chart.py" />
+        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/select_bars.html" />
+        <option value="$PROJECT_DIR$/analytics/libs/graph_builder.py" />
+        <option value="$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py" />
+        <option value="$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py" />
+        <option value="$PROJECT_DIR$/analytics/libs/db_helper.py" />
+        <option value="$PROJECT_DIR$/analytics/templates/analytics/LOAanalyis.html" />
+        <option value="$PROJECT_DIR$/analytics/views.py" />
+        <option value="$PROJECT_DIR$/analytics/urls.py" />
+        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html" />
+        <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/LOAtree.html" />
+        <option value="$PROJECT_DIR$/analytics/libs/LOAdb_helper.py" />
+        <option value="$PROJECT_DIR$/analytics/libs/LOAgraph_builder.py" />
       </list>
     </option>
   </component>
@@ -211,26 +357,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentFeedback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -309,6 +435,128 @@
             <PATH_ELEMENT USER_OBJECT=".idea">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faculty_graphs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -882,22 +1130,48 @@
       <option name="project" value="LOCAL" />
       <updated>1497803571569</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Akhil- modularity in views">
+      <created>1497959183033</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1497959183033</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3222698" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32655245" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32762313" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3222698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32119915" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32655245" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14392324" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14872068" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23187633" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -912,6 +1186,30 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3222698" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32655245" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32762313" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32119915" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32655245" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14872068" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23187633" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -928,7 +1226,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Akhil- Models renamed" />
     <MESSAGE value="Akhil- update for raj" />
     <MESSAGE value="Akhil- master slave done" />
     <MESSAGE value="Akhil- new database" />
@@ -953,577 +1250,16 @@
     <MESSAGE value="Akhil- removed stutimeout&#10;single questions page" />
     <MESSAGE value="Akhil- modularity&#10;dynamic questions&#10;removed category" />
     <MESSAGE value="Akhil- Lot of changes, can't even count. Most of the functionality remains same." />
-    <option name="LAST_COMMIT_MESSAGE" value="Akhil- Lot of changes, can't even count. Most of the functionality remains same." />
+    <MESSAGE value="Akhil- modularity in views" />
+    <option name="LAST_COMMIT_MESSAGE" value="Akhil- modularity in views" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="57" />
+      <option name="time" value="69" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/feedback/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24637681" vertical-offset="0" max-vertical-offset="897">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentFeedback/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="906">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/forgotPassword.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="906">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentFeedback/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.458194" vertical-offset="2205" max-vertical-offset="3111">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/get_csv.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="906">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/reviews.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1462">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://db-console:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="605">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://DATABASE/c0d5cc33-7218-48c2-be8c-b6256a6bc35c.schema:nba_projects_db">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>DATABASE</ID>
-          <OriginalElement>c0d5cc33-7218-48c2-be8c-b6256a6bc35c.schema:nba_projects_db</OriginalElement>
-          <nodes>
-            <node x="1075.3333333333333" y="767.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_groups</node>
-            <node x="370.0" y="1129.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_session</node>
-            <node x="18.0" y="767.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaratings</node>
-            <node x="197.71102150537627" y="756.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classfacsub</node>
-            <node x="1185.5833333333333" y="556.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group</node>
-            <node x="923.9932795698926" y="966.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_slavesession</node>
-            <node x="202.05510752688178" y="556.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.faculty</node>
-            <node x="1380.2849462365593" y="490.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_admin_log</node>
-            <node x="1092.9932795698924" y="966.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_notes</node>
-            <node x="0.0" y="1129.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_migrations</node>
-            <node x="564.454301075269" y="556.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.student</node>
-            <node x="1620.2849462365593" y="534.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_permission</node>
-            <node x="1460.252688172043" y="767.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_user_permissions</node>
-            <node x="0.0" y="545.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaquestions</node>
-            <node x="573.9099462365593" y="234.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classes</node>
-            <node x="965.4099462365592" y="168.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user</node>
-            <node x="832.3333333333333" y="756.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session</node>
-            <node x="1220.3333333333333" y="767.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group_permissions</node>
-            <node x="377.21102150537627" y="944.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedback</node>
-            <node x="371.454301075269" y="545.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_fdbkquestions</node>
-            <node x="1546.2849462365593" y="256.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_content_type</node>
-            <node x="67.89919354838707" y="267.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.subject</node>
-            <node x="793.627688172043" y="534.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_initiation</node>
-            <node x="185.0" y="1129.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_config</node>
-            <node x="631.454301075269" y="966.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_attendance</node>
-            <node x="584.9099462365593" y="0.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.sem</node>
-            <node x="379.454301075269" y="767.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_facultyratings</node>
-            <node x="49.25" y="955.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedbackloa</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedback" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_facultyratings">
-              <point x="0.0" y="-70.0" />
-              <point x="0.0" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaratings" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaquestions">
-              <point x="0.0" y="-48.0" />
-              <point x="0.0" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_initiation">
-              <point x="-55.749999999999886" y="-59.0" />
-              <point x="888.0833333333334" y="736.0" />
-              <point x="890.627688172043" y="736.0" />
-              <point x="0.0" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedback" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classfacsub">
-              <point x="-53.33333333333337" y="-70.0" />
-              <point x="403.8776881720429" y="894.0" />
-              <point x="278.21102150537627" y="894.0" />
-              <point x="0.0" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_user_permissions" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user">
-              <point x="-44.5" y="-48.0" />
-              <point x="1504.752688172043" y="716.0" />
-              <point x="1369.7849462365593" y="716.0" />
-              <point x="1369.7849462365593" y="470.0" />
-              <point x="1161.4099462365593" y="470.0" />
-              <point x="56.0" y="136.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group_permissions" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_permission">
-              <point x="40.25" y="-48.0" />
-              <point x="1341.0833333333333" y="726.0" />
-              <point x="1655.2849462365593" y="726.0" />
-              <point x="-35.0" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_user_permissions" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_permission">
-              <point x="44.5" y="-48.0" />
-              <point x="1593.752688172043" y="736.0" />
-              <point x="1725.2849462365593" y="736.0" />
-              <point x="35.0" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedbackloa" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaratings">
-              <point x="-37.25" y="-59.0" />
-              <point x="0.0" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_initiation" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classes">
-              <point x="-48.5" y="-59.0" />
-              <point x="842.127688172043" y="470.0" />
-              <point x="732.2432795698927" y="470.0" />
-              <point x="63.33333333333337" y="70.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_permission" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_content_type">
-              <point x="0.0" y="-59.0" />
-              <point x="1690.2849462365593" y="470.0" />
-              <point x="1653.5349462365593" y="470.0" />
-              <point x="35.75" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_facultyratings" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_fdbkquestions">
-              <point x="0.0" y="-48.0" />
-              <point x="0.0" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_groups" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user">
-              <point x="-31.25" y="-48.0" />
-              <point x="1106.5833333333333" y="470.0" />
-              <point x="1105.4099462365593" y="470.0" />
-              <point x="0.0" y="136.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_initiation" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user">
-              <point x="48.5" y="-59.0" />
-              <point x="939.127688172043" y="460.0" />
-              <point x="993.4099462365592" y="460.0" />
-              <point x="-112.0" y="136.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group_permissions" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group">
-              <point x="-40.25" y="-48.0" />
-              <point x="25.0" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaquestions" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.subject">
-              <point x="0.0" y="-48.0" />
-              <point x="86.5" y="470.0" />
-              <point x="104.14919354838707" y="470.0" />
-              <point x="-36.25" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classes" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.sem">
-              <point x="0.0" y="-70.0" />
-              <point x="0.0" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.student" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classes">
-              <point x="0.0" y="-37.0" />
-              <point x="667.454301075269" y="470.0" />
-              <point x="668.9099462365593" y="470.0" />
-              <point x="0.0" y="70.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedback" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session">
-              <point x="53.333333333333314" y="-70.0" />
-              <point x="510.5443548387096" y="914.0" />
-              <point x="888.0833333333333" y="914.0" />
-              <point x="-55.75" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classfacsub" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.faculty">
-              <point x="0.0" y="-59.0" />
-              <point x="278.21102150537627" y="736.0" />
-              <point x="273.5551075268818" y="736.0" />
-              <point x="0.0" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classfacsub" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.subject">
-              <point x="-53.66666666666663" y="-59.0" />
-              <point x="224.54435483870964" y="736.0" />
-              <point x="191.55510752688178" y="736.0" />
-              <point x="191.55510752688178" y="470.0" />
-              <point x="176.64919354838707" y="470.0" />
-              <point x="36.25" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classfacsub" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classes">
-              <point x="53.66666666666663" y="-59.0" />
-              <point x="331.8776881720429" y="736.0" />
-              <point x="355.5551075268818" y="736.0" />
-              <point x="355.5551075268818" y="470.0" />
-              <point x="605.576612903226" y="470.0" />
-              <point x="-63.333333333333314" y="70.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user">
-              <point x="55.750000000000114" y="-59.0" />
-              <point x="999.5833333333334" y="736.0" />
-              <point x="998.127688172043" y="736.0" />
-              <point x="998.127688172043" y="470.0" />
-              <point x="1049.4099462365593" y="470.0" />
-              <point x="-56.0" y="136.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_groups" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group">
-              <point x="31.25" y="-48.0" />
-              <point x="1169.0833333333333" y="736.0" />
-              <point x="1210.5833333333333" y="736.0" />
-              <point x="-25.0" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_notes" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session">
-              <point x="0.0" y="-48.0" />
-              <point x="1168.4932795698924" y="914.0" />
-              <point x="1036.75" y="914.0" />
-              <point x="92.91666666666663" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_admin_log" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_content_type">
-              <point x="55.0" y="-103.0" />
-              <point x="1545.2849462365593" y="470.0" />
-              <point x="1582.0349462365593" y="470.0" />
-              <point x="-35.75" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_attendance" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session">
-              <point x="36.0" y="-48.0" />
-              <point x="739.454301075269" y="924.0" />
-              <point x="925.2499999999999" y="924.0" />
-              <point x="-18.58333333333337" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_slavesession" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session">
-              <point x="37.25" y="-48.0" />
-              <point x="1035.7432795698926" y="924.0" />
-              <point x="999.5833333333333" y="924.0" />
-              <point x="55.75" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_attendance" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.student">
-              <point x="-36.0" y="-48.0" />
-              <point x="0.0" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_admin_log" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user">
-              <point x="-55.0" y="-103.0" />
-              <point x="1435.2849462365593" y="460.0" />
-              <point x="1217.4099462365593" y="460.0" />
-              <point x="112.0" y="136.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedbackloa" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session">
-              <point x="37.25" y="-59.0" />
-              <point x="161.0" y="904.0" />
-              <point x="850.9166666666666" y="904.0" />
-              <point x="-92.91666666666663" y="59.0" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="881.0" y="284.0" />
-          <SelectedNodes>
-            <node>c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_facultyratings</node>
-          </SelectedNodes>
-          <Categories>
-            <Category>Columns</Category>
-            <Category>Key columns</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6409">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://DATABASE/c0d5cc33-7218-48c2-be8c-b6256a6bc35c">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>DATABASE</ID>
-          <OriginalElement>c0d5cc33-7218-48c2-be8c-b6256a6bc35c</OriginalElement>
-          <nodes>
-            <node x="18.0" y="767.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaratings</node>
-            <node x="370.0" y="1129.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_session</node>
-            <node x="1087.2392473118275" y="767.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_groups</node>
-            <node x="195.64650537634373" y="756.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classfacsub</node>
-            <node x="1065.1666666666665" y="966.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_slavesession</node>
-            <node x="1197.4892473118277" y="556.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group</node>
-            <node x="203.16666666666663" y="556.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.faculty</node>
-            <node x="894.1666666666665" y="966.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_notes</node>
-            <node x="1394.407258064516" y="490.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_admin_log</node>
-            <node x="0.0" y="1129.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_migrations</node>
-            <node x="572.877688172043" y="556.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.student</node>
-            <node x="1471.6142473118275" y="767.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_user_permissions</node>
-            <node x="0.0" y="545.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaquestions</node>
-            <node x="1634.407258064516" y="534.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_permission</node>
-            <node x="582.3333333333333" y="234.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classes</node>
-            <node x="844.2392473118276" y="756.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session</node>
-            <node x="973.8333333333333" y="168.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user</node>
-            <node x="1232.2392473118277" y="767.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group_permissions</node>
-            <node x="375.1465053763438" y="944.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedback</node>
-            <node x="379.87768817204295" y="545.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_fdbkquestions</node>
-            <node x="1560.407258064516" y="256.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_content_type</node>
-            <node x="804.9892473118277" y="534.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_initiation</node>
-            <node x="72.68548387096746" y="267.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.subject</node>
-            <node x="185.0" y="1129.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_config</node>
-            <node x="639.877688172043" y="966.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_attendance</node>
-            <node x="593.3333333333333" y="0.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.sem</node>
-            <node x="387.877688172043" y="767.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_facultyratings</node>
-            <node x="49.25" y="955.0">c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedbackloa</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaratings" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaquestions">
-              <point x="0.0" y="-48.0" />
-              <point x="0.0" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedback" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_facultyratings">
-              <point x="-5.6843418860808015E-14" y="-70.0" />
-              <point x="455.1465053763437" y="894.0" />
-              <point x="466.377688172043" y="894.0" />
-              <point x="0.0" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_initiation">
-              <point x="-55.749999999999886" y="-59.0" />
-              <point x="899.9892473118277" y="736.0" />
-              <point x="901.9892473118277" y="736.0" />
-              <point x="0.0" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedback" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classfacsub">
-              <point x="-53.33333333333343" y="-70.0" />
-              <point x="401.81317204301035" y="894.0" />
-              <point x="276.1465053763437" y="894.0" />
-              <point x="0.0" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_user_permissions" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user">
-              <point x="-44.5" y="-48.0" />
-              <point x="1516.1142473118275" y="716.0" />
-              <point x="1383.907258064516" y="716.0" />
-              <point x="1383.907258064516" y="470.0" />
-              <point x="1169.8333333333333" y="470.0" />
-              <point x="56.0" y="136.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group_permissions" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_permission">
-              <point x="40.25" y="-48.0" />
-              <point x="1352.9892473118275" y="726.0" />
-              <point x="1669.407258064516" y="726.0" />
-              <point x="-35.0" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_user_permissions" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_permission">
-              <point x="44.5" y="-48.0" />
-              <point x="1605.1142473118275" y="736.0" />
-              <point x="1739.407258064516" y="736.0" />
-              <point x="35.0" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedbackloa" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaratings">
-              <point x="-37.25" y="-59.0" />
-              <point x="0.0" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_initiation" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classes">
-              <point x="-48.5" y="-59.0" />
-              <point x="853.4892473118277" y="470.0" />
-              <point x="740.6666666666667" y="470.0" />
-              <point x="63.33333333333337" y="70.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_permission" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_content_type">
-              <point x="0.0" y="-59.0" />
-              <point x="1704.407258064516" y="470.0" />
-              <point x="1667.657258064516" y="470.0" />
-              <point x="35.75" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_facultyratings" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_fdbkquestions">
-              <point x="-5.6843418860808015E-14" y="-48.0" />
-              <point x="0.0" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_groups" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user">
-              <point x="-31.25" y="-48.0" />
-              <point x="1118.4892473118275" y="470.0" />
-              <point x="1113.8333333333333" y="470.0" />
-              <point x="0.0" y="136.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_initiation" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user">
-              <point x="48.5" y="-59.0" />
-              <point x="950.4892473118277" y="470.0" />
-              <point x="1001.8333333333333" y="470.0" />
-              <point x="-112.0" y="136.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_loaquestions" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.subject">
-              <point x="0.0" y="-48.0" />
-              <point x="86.5" y="470.0" />
-              <point x="108.93548387096746" y="470.0" />
-              <point x="-36.25" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group_permissions" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group">
-              <point x="-40.25" y="-48.0" />
-              <point x="25.0" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classes" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.sem">
-              <point x="0.0" y="-70.0" />
-              <point x="0.0" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.student" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classes">
-              <point x="0.0" y="-37.0" />
-              <point x="675.877688172043" y="470.0" />
-              <point x="677.3333333333333" y="470.0" />
-              <point x="0.0" y="70.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedback" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session">
-              <point x="53.33333333333326" y="-70.0" />
-              <point x="508.47983870967704" y="914.0" />
-              <point x="899.9892473118276" y="914.0" />
-              <point x="-55.75" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classfacsub" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.faculty">
-              <point x="0.0" y="-59.0" />
-              <point x="276.1465053763437" y="736.0" />
-              <point x="274.66666666666663" y="736.0" />
-              <point x="0.0" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classfacsub" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.subject">
-              <point x="-53.66666666666663" y="-59.0" />
-              <point x="222.4798387096771" y="736.0" />
-              <point x="192.66666666666663" y="736.0" />
-              <point x="192.66666666666663" y="470.0" />
-              <point x="181.43548387096746" y="470.0" />
-              <point x="36.25" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user">
-              <point x="55.750000000000114" y="-59.0" />
-              <point x="1011.4892473118277" y="736.0" />
-              <point x="1009.4892473118277" y="736.0" />
-              <point x="1009.4892473118277" y="470.0" />
-              <point x="1057.8333333333333" y="470.0" />
-              <point x="-56.0" y="136.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user_groups" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_group">
-              <point x="31.25" y="-48.0" />
-              <point x="1180.9892473118275" y="736.0" />
-              <point x="1222.4892473118277" y="736.0" />
-              <point x="-25.0" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classfacsub" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.classes">
-              <point x="53.666666666666686" y="-59.0" />
-              <point x="329.8131720430104" y="736.0" />
-              <point x="356.6666666666667" y="736.0" />
-              <point x="356.6666666666667" y="470.0" />
-              <point x="614.0" y="470.0" />
-              <point x="-63.33333333333337" y="70.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_notes" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session">
-              <point x="0.0" y="-48.0" />
-              <point x="969.6666666666665" y="924.0" />
-              <point x="974.322580645161" y="924.0" />
-              <point x="18.58333333333337" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_admin_log" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_content_type">
-              <point x="55.0" y="-103.0" />
-              <point x="1559.407258064516" y="470.0" />
-              <point x="1596.157258064516" y="470.0" />
-              <point x="-35.75" y="48.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_attendance" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session">
-              <point x="36.0" y="-48.0" />
-              <point x="747.877688172043" y="924.0" />
-              <point x="937.1559139784943" y="924.0" />
-              <point x="-18.58333333333337" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_slavesession" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session">
-              <point x="-37.25" y="-48.0" />
-              <point x="1102.4166666666665" y="924.0" />
-              <point x="1011.4892473118276" y="924.0" />
-              <point x="55.75" y="59.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_attendance" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.student">
-              <point x="-36.0" y="-48.0" />
-              <point x="0.0" y="37.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.django_admin_log" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.auth_user">
-              <point x="-55.0" y="-103.0" />
-              <point x="1449.407258064516" y="460.0" />
-              <point x="1225.8333333333333" y="460.0" />
-              <point x="112.0" y="136.0" />
-            </edge>
-            <edge source="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_feedbackloa" target="c0d5cc33-7218-48c2-be8c-b6256a6bc35c.table:nba_projects_db.feedback_session">
-              <point x="37.25" y="-59.0" />
-              <point x="161.0" y="904.0" />
-              <point x="862.822580645161" y="904.0" />
-              <point x="-92.91666666666663" y="59.0" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="175.0" y="124.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>Columns</Category>
-            <Category>Key columns</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..classes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..student">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..faculty">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..classfacsub">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/libs/db_updater.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="352" max-vertical-offset="1258">
-          <caret line="169" column="63" selection-start-line="169" selection-start-column="53" selection-end-line="169" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_loaquestions">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1579,18 +1315,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_fdbkquestions">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..django_session">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1612,81 +1336,6 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_feedbackloa">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_feedback">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..subject">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58719647" vertical-offset="624" max-vertical-offset="1598">
-          <caret line="168" column="67" selection-start-line="168" selection-start-column="57" selection-end-line="168" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#50#0" expanded="false" />
-            <element signature="e#319#676#0" expanded="false" />
-            <element signature="e#339#404#0" expanded="false" />
-            <element signature="e#589#676#0" expanded="false" />
-            <element signature="e#712#1445#0" expanded="false" />
-            <element signature="e#1217#1445#0" expanded="false" />
-            <element signature="e#1481#1680#0" expanded="false" />
-            <element signature="e#1618#1634#0" expanded="false" />
-            <element signature="e#1660#1680#0" expanded="false" />
-            <element signature="e#1716#1915#0" expanded="false" />
-            <element signature="e#1853#1869#0" expanded="false" />
-            <element signature="e#1895#1915#0" expanded="false" />
-            <element signature="e#1955#2465#0" expanded="false" />
-            <element signature="e#2239#2345#0" expanded="false" />
-            <element signature="e#2371#2465#0" expanded="false" />
-            <element signature="e#2501#2769#0" expanded="false" />
-            <element signature="e#2667#2723#0" expanded="false" />
-            <element signature="e#2749#2769#0" expanded="false" />
-            <element signature="e#2808#3034#0" expanded="false" />
-            <element signature="e#3070#3311#0" expanded="false" />
-            <element signature="e#3352#3618#0" expanded="false" />
-            <element signature="e#3372#3412#0" expanded="false" />
-            <element signature="e#3657#3766#0" expanded="false" />
-            <element signature="e#3800#3955#0" expanded="false" />
-            <element signature="e#3997#4282#0" expanded="false" />
-            <element signature="e#4221#4282#0" expanded="false" />
-            <element signature="e#4317#4448#0" expanded="false" />
-            <element signature="e#5057#5310#0" expanded="false" />
-            <element signature="e#5290#5310#0" expanded="false" />
-            <element signature="e#6009#6351#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1725,7 +1374,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="906">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1740,7 +1388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.59886366" vertical-offset="0" max-vertical-offset="880">
           <caret line="31" column="155" selection-start-line="31" selection-start-column="155" selection-end-line="31" selection-end-column="155" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1748,7 +1395,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.78431374" vertical-offset="1581" max-vertical-offset="2448">
           <caret line="133" column="14" selection-start-line="133" selection-start-column="14" selection-end-line="133" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1756,11 +1402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#122#410#0" expanded="false" />
-            <element signature="e#455#694#0" expanded="false" />
-            <element signature="e#725#967#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1768,9 +1409,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15562914" vertical-offset="2409" max-vertical-offset="4182">
           <caret line="150" column="69" selection-start-line="150" selection-start-column="69" selection-end-line="150" selection-end-column="69" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1778,17 +1416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33554083" vertical-offset="1447" max-vertical-offset="3230">
           <caret line="109" column="26" selection-start-line="109" selection-start-column="26" selection-end-line="109" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3046358" vertical-offset="2133" max-vertical-offset="3689">
-          <caret line="195" column="8" selection-start-line="195" selection-start-column="8" selection-end-line="195" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1796,9 +1423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9624724" vertical-offset="896" max-vertical-offset="2108">
           <caret line="104" column="43" selection-start-line="104" selection-start-column="43" selection-end-line="104" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1806,9 +1430,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16887417" vertical-offset="0" max-vertical-offset="906">
           <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1816,9 +1437,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.46909493" vertical-offset="0" max-vertical-offset="906">
           <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1826,17 +1444,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18763797" vertical-offset="0" max-vertical-offset="906">
           <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/view_helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1844,7 +1451,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
           <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1852,26 +1458,348 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9624724" vertical-offset="369" max-vertical-offset="1343">
           <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.2516556" vertical-offset="0" max-vertical-offset="2567">
-          <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/feedback/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26651737" vertical-offset="0" max-vertical-offset="1241">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.9137738" vertical-offset="0" max-vertical-offset="1241">
+          <caret line="48" column="39" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/view_helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20640177" vertical-offset="0" max-vertical-offset="1326">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_feedbackloa">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2199" max-vertical-offset="3604">
+          <caret line="154" column="63" selection-start-line="154" selection-start-column="63" selection-end-line="154" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/director.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5022727" vertical-offset="0" max-vertical-offset="880">
+          <caret line="62" column="50" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="50" />
           <folding>
-            <element signature="e#0#57#0" expanded="true" />
+            <element signature="n#block#0;n#!!top" expanded="false" />
+            <element signature="e#58#499#0#HTML" expanded="false" />
+            <element signature="e#120#192#0#HTML" expanded="false" />
+            <element signature="e#209#303#0#HTML" expanded="false" />
+            <element signature="e#313#486#0#HTML" expanded="false" />
+            <element signature="e#371#437#0#HTML" expanded="false" />
+            <element signature="n#block#1;n#!!top" expanded="false" />
+            <element signature="n#block#2;n#!!top" expanded="false" />
+            <element signature="n#block#4;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..subject">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..faculty">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..classfacsub">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_fdbkquestions">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_feedback">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2482">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09659091" vertical-offset="0" max-vertical-offset="2652">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/select_bars.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.23077" vertical-offset="0" max-vertical-offset="1088">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5816777" vertical-offset="0" max-vertical-offset="906">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7560706" vertical-offset="46" max-vertical-offset="952">
+          <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/faculty_graphs/timeline_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5066225" vertical-offset="0" max-vertical-offset="906">
+          <caret line="27" column="39" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#36#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/LOAanalyis.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.153847" vertical-offset="157" max-vertical-offset="1037">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="1156">
+          <caret line="115" column="72" selection-start-line="115" selection-start-column="72" selection-end-line="115" selection-end-column="72" />
+          <folding>
+            <element signature="e#510#560#0" expanded="false" />
+            <element signature="e#604#886#0" expanded="false" />
+            <element signature="e#1947#2787#0" expanded="false" />
+            <element signature="e#2832#4191#0" expanded="false" />
+            <element signature="e#4866#6248#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/graph_builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5066225" vertical-offset="0" max-vertical-offset="2414">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding>
+            <element signature="e#2945#3385#0" expanded="false" />
+            <element signature="e#3445#4015#0" expanded="false" />
+            <element signature="e#4066#4612#0" expanded="false" />
+            <element signature="e#5120#5404#0" expanded="false" />
+            <element signature="e#5461#5903#0" expanded="false" />
+            <element signature="e#5963#6415#0" expanded="false" />
+            <element signature="e#6484#7180#0" expanded="false" />
+            <element signature="e#7227#7735#0" expanded="false" />
+            <element signature="e#7782#8312#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="3077">
+          <caret line="90" column="25" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
+          <folding>
+            <element signature="e#173#756#0" expanded="false" />
+            <element signature="e#244#289#0" expanded="false" />
+            <element signature="e#351#568#0" expanded="false" />
+            <element signature="e#644#688#0" expanded="false" />
+            <element signature="e#721#756#0" expanded="false" />
+            <element signature="e#780#900#0" expanded="false" />
+            <element signature="e#931#1303#0" expanded="false" />
+            <element signature="e#1342#1731#0" expanded="false" />
+            <element signature="e#1778#2212#0" expanded="false" />
+            <element signature="e#2271#2672#0" expanded="false" />
+            <element signature="e#3016#3442#0" expanded="false" />
+            <element signature="e#3485#3926#0" expanded="false" />
+            <element signature="e#3979#4437#0" expanded="false" />
+            <element signature="e#4489#4756#0" expanded="false" />
+            <element signature="e#4787#4977#0" expanded="false" />
+            <element signature="e#5007#5296#0" expanded="false" />
+            <element signature="e#5327#5427#0" expanded="false" />
+            <element signature="e#5466#5739#0" expanded="false" />
+            <element signature="e#5776#5838#0" expanded="false" />
+            <element signature="e#6569#6731#0" expanded="false" />
+            <element signature="e#6959#7310#0" expanded="false" />
+            <element signature="e#7349#7536#1" expanded="false" />
+            <element signature="e#7907#8194#0" expanded="false" />
+            <element signature="e#8254#8751#0" expanded="false" />
+            <element signature="e#8254#8405#1" expanded="false" />
+            <element signature="e#8790#9073#0" expanded="false" />
+            <element signature="e#9114#9168#0" expanded="false" />
+            <element signature="e#9195#9306#0" expanded="false" />
+            <element signature="e#9343#9555#0" expanded="false" />
+            <element signature="e#11047#11215#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3454547" vertical-offset="471" max-vertical-offset="1309">
+          <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/LOAtree.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.653847" vertical-offset="0" max-vertical-offset="969">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/drilldown_chart.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="335" max-vertical-offset="1241">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.0772626" vertical-offset="0" max-vertical-offset="3400">
+          <caret line="168" column="67" selection-start-line="168" selection-start-column="57" selection-end-line="168" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..classes">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/LOAdb_helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="463" max-vertical-offset="1496">
+          <caret line="126" column="43" selection-start-line="126" selection-start-column="35" selection-end-line="126" selection-end-column="43" />
+          <folding>
+            <element signature="e#174#295#0" expanded="false" />
+            <element signature="e#326#476#0" expanded="false" />
+            <element signature="e#515#690#0" expanded="false" />
+            <element signature="e#723#1020#0" expanded="false" />
+            <element signature="e#1053#1347#0" expanded="false" />
+            <element signature="e#1380#1937#0" expanded="false" />
+            <element signature="e#1980#2552#0" expanded="false" />
+            <element signature="e#2605#3194#0" expanded="false" />
+            <element signature="e#3244#3344#0" expanded="false" />
+            <element signature="e#3380#3432#0" expanded="false" />
+            <element signature="e#3468#3531#0" expanded="false" />
+            <element signature="e#3572#3698#0" expanded="false" />
+            <element signature="e#3745#3994#0" expanded="false" />
+            <element signature="e#4496#4815#0" expanded="false" />
+            <element signature="e#5342#6170#0" expanded="false" />
+            <element signature="e#6209#6574#0" expanded="false" />
+            <element signature="e#6613#6801#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/LOAgraph_builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3617021" vertical-offset="0" max-vertical-offset="893">
+          <caret line="90" column="46" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="46" />
+          <folding>
+            <element signature="e#333#500#0" expanded="false" />
+            <element signature="e#579#2262#0" expanded="false" />
+            <element signature="e#2332#2905#0" expanded="false" />
+            <element signature="e#3492#3836#0" expanded="false" />
+            <element signature="e#3893#4399#0" expanded="false" />
+            <element signature="e#4459#4975#0" expanded="false" />
+            <element signature="e#5023#5389#0" expanded="false" />
+            <element signature="e#5436#5828#0" expanded="false" />
+            <element signature="e#5910#6484#0" expanded="false" />
           </folding>
         </state>
       </provider>

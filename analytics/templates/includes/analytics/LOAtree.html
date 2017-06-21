@@ -13,13 +13,13 @@
 
 
 
-            <li id="LOAanalysis/stu">By Subject
+            <li id="LOAanalysis/subject">By Subject
                 <ul>
                     {% for year in year_objs %}
                         <li id="ignorestu/{{ year }}">{{ year }} year
                             <ul>
                                 {% for branch in year.branches %}
-                                    <li id="LOAanalysis/stu/{{ year }}/{{ branch }}">{{ branch }}</li>
+                                    <li id="LOAanalysis/subject/{{ year }}/{{ branch }}">{{ branch }}</li>
                                 {% endfor %}
                             </ul>
                         </li>

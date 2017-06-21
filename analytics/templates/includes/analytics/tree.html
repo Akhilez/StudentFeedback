@@ -1,70 +1,72 @@
 <div id="wrapper">
 
 
-            <div class="navbar-default sidebar" role="navigation">
+    <div class="navbar-default sidebar" role="navigation" style="margin-top: 100px">
 
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
 
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> By Faculty<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li><a href="/analytics/all/fac">All Faculty</a></li>
-                                {% for year in year_objs %}
-                                    <li><a><span class="fa arrow"></span>{{ year }} year</a>
-                                        <ul class="nav nav-third-level">
-                                            {% for branch in year.branches %}
-                                                <li><a><span class="fa arrow"></span>{{ branch }}</a>
-                                                    <ul class="nav nav-fourth-level">
-                                                        {% for section in branch.sections %}
-                                                            <li><a><span class="fa arrow"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{ section }}</a>
-                                                                <ul class="nav nav-second-level">
-                                                                    {% for fac in section.faculty %}
-                                                                        <li>
-                                                                            <a href="/analytics/all/fac/{{ year }}/{{ branch }}/{{ section }}/{{ fac.faculty_id }}">-{{ fac.name }}</a>
-                                                                        </li>
-                                                                    {% endfor %}
-                                                                </ul>
-                                                            </li>
-                                                        {% endfor %}
-                                                    </ul>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-
-                        <li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> By Class<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li><a href="/analytics/all/class">All Years</a></li>
-                                <li><a href="/analytics/all/class/all_branches">All Branches</a></li>
-                                <li><a href="/analytics/all/class/all_sections">All sections</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> By Subject<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li><a href="/analytics/all/stu">All Subjects</a></li>
-                                {% for year in year_objs %}
-                                    <li><a><span class="fa arrow"></span>{{ year }} year</a>
-                                        <ul class="nav nav-third-level">
-                                            {% for branch in year.branches %}
-                                                <li><a href="/analytics/all/stu/{{ year }}/{{ branch }}">{{ branch }}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                        <li><a href="/analytics/reviews/"><i class="fa fa-bar-chart-o fa-fw"></i> Reviews</a>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> By Faculty<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/analytics/all/fac">All Faculty</a></li>
+                        {% for year in year_objs %}
+                            <li><a><span class="fa arrow"></span>{{ year }} year</a>
+                                <ul class="nav nav-third-level">
+                                    {% for branch in year.branches %}
+                                        <li><a><span class="fa arrow"></span>{{ branch }}</a>
+                                            <ul class="nav nav-fourth-level">
+                                                {% for section in branch.sections %}
+                                                    <li><a><span
+                                                            class="fa arrow"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{ section }}
+                                                    </a>
+                                                        <ul class="nav nav-second-level">
+                                                            {% for fac in section.faculty %}
+                                                                <li>
+                                                                    <a href="/analytics/all/fac/{{ year }}/{{ branch }}/{{ section }}/{{ fac.faculty_id }}">-{{ fac.name }}</a>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
                     </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+                </li>
 
+                <li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> By Class<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/analytics/all/class">All Years</a></li>
+                        <li><a href="/analytics/all/class/all_branches">All Branches</a></li>
+                        <li><a href="/analytics/all/class/all_sections">All sections</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> By Subject<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/analytics/all/subject">All Subjects</a></li>
+                        {% for year in year_objs %}
+                            <li><a><span class="fa arrow"></span>{{ year }} year</a>
+                                <ul class="nav nav-third-level">
+                                    {% for branch in year.branches %}
+                                        <li><a href="/analytics/all/subject/{{ year }}/{{ branch }}">{{ branch }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="/analytics/reviews/"><i class="fa fa-bar-chart-o fa-fw"></i> Reviews</a>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
     </div>
-    <!-- /#wrapper -->
+    <!-- /.navbar-static-side -->
+    </nav>
+
+</div>
+<!-- /#wrapper -->

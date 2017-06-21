@@ -18,7 +18,7 @@ class ClassSubGraph(Graphable):
     def build_faculty_series(self):
         cfs = db_helper.get_faculty_cfs(self.faculty)
 
-        if self.type == Graphable.types['bar']:
+        if self.type == Graphable.types[1]:
             if self.height < len(cfs) * self.height_per_bar:
                 self.height = len(cfs) * self.height_per_bar
 
@@ -36,18 +36,17 @@ class ClassSubGraph(Graphable):
         return series.rev_sort()
 
     def build_faculty_ques_series(self, cfs):
-        questions = db_helper.get_all_question_texts()
+        questions = db_helper.get_selected_questions()
 
         bars = []
         series = Series(str(cfs), str(cfs), self)
 
-        for i in range(len(questions)):
-            if i in Timeline.selected_questions:
-                bars.append(Bar(
-                    questions[i].question,
-                    db_helper.get_question_value_for_cfs(cfs.cfs_id, questions[i]),
-                    'null'
-                ))
+        for question in questions:
+            bars.append(Bar(
+                question.question,
+                db_helper.get_question_value_for_cfs(cfs.cfs_id, question.question_id),
+                'null'
+            ))
 
         series.bars = bars
         return series.rev_sort()

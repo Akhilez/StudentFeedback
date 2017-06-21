@@ -153,6 +153,8 @@ def submit_button_result(request, context, session, subjects):
     questions = LOAquestions.objects.filter(enabled=True)
     for sub in subjects:
         questions_string = get_questions_string(questions, sub)
+        if questions_string == "":
+            continue
         FeedbackLoa.objects.create(session_id=session, student_no=student_no,
                                    subject_id=sub,
                                    ratings=rating_string_from_array(request.session[sub.name]),

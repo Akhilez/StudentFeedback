@@ -32,7 +32,7 @@ class Bar:
 
 
 class Graphable:
-    types = {'column': 'column', 'bar': 'bar', 'pie': 'pie', 'line': 'line', 'scatter': 'scatter'}
+    types = ['column', 'bar', 'pie', 'line', 'scatter']
     height_per_bar = 50
 
     def __init__(self, graph_type='null'):
