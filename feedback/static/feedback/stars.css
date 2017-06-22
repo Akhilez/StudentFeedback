@@ -66,7 +66,7 @@
 .star-rating.star-5 i ~ i ~ i ~ i {width: 80%;}
 .star-rating.star-5 i ~ i ~ i ~ i ~i {width: 100%;}
 
-.star-rating.star-3 {width: 92px;}
+.star-rating.star-3 {width: 90px;}
 .star-rating.star-3 input,
 .star-rating.star-3 i {width: 33.33%;}
 .star-rating.star-3 i ~ i {width: 66.66%;}

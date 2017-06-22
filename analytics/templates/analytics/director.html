@@ -3,25 +3,30 @@
 {% block head %}
 
     <style>
-        .row.content {height: auto}
+        .row.content {
+            height: auto
+        }
 
         .sidenav {
-          background-color: #f1f1f1;
-          height: 100%;
+            background-color: #f1f1f1;
+            height: 100%;
         }
 
         footer {
-          background-color: #555;
-          color: white;
-          padding: 15px;
+            background-color: #555;
+            color: white;
+            padding: 15px;
         }
 
         @media screen and (max-width: 767px) {
-          .sidenav {
-            height: auto;
-            padding: 15px;
-          }
-          .row.content {height: auto;}
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+
+            .row.content {
+                height: auto;
+            }
         }
     </style>
 
@@ -55,13 +60,15 @@
     <script src="{% static 'analytics/metisMenu/sb-admin-2.js' %}"></script>
 
 
-    <div >
-    {% include 'includes/analytics/tree.html' %}
-    </div>
+    {% block tree %}
+        {% include 'includes/analytics/tree.html' %}
+    {% endblock tree %}
 
     <div class="container" style="margin-left: 20%; padding-top: 75px">
-        {% include 'includes/analytics/select_bars.html' %}
-        {% include 'includes/analytics/graph.html' %}
+        {% block graph %}
+            {% include 'includes/analytics/select_bars.html' %}
+            {% include 'includes/analytics/graph.html' %}
+        {% endblock graph %}
     </div>
 
     <br><br>

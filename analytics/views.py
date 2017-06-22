@@ -116,7 +116,7 @@ def LOAanalysis(request, category, year, branch, sub, subsub):
                'year_objs': LOAtree_builder.getTree(), 'active': 'home'}
     graph_type = 'null'
     if request.method == 'POST':
-        for typ in LOAgraph_builder.Graph.types:
+        for typ in LOAgraph_builder.LoaGraph.types:
             if typ in request.POST:
                 graph_type = typ
                 break

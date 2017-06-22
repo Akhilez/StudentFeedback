@@ -1,52 +1,39 @@
-<div style="padding: 30px">
-
-<!-- 3 setup a container element -->
-    <div id="jstree">
-    <!-- in this example the tree is populated from inline HTML -->
-        <ul>
-            <li id="LOAanalysis/class">By Class
-                <ul>
-                    <li id="LOAanalysis/class/all_branches">All Branches</li>
-                    <li id="LOAanalysis/class/all_sections">All sections</li>
-                </ul>
-            </li>
+<div id="wrapper">
 
 
+    <div class="navbar-default sidebar" role="navigation" style="margin-top: 100px">
 
-            <li id="LOAanalysis/subject">By Subject
-                <ul>
-                    {% for year in year_objs %}
-                        <li id="ignorestu/{{ year }}">{{ year }} year
-                            <ul>
-                                {% for branch in year.branches %}
-                                    <li id="LOAanalysis/subject/{{ year }}/{{ branch }}">{{ branch }}</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </li>
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
 
-        </ul>
+                <li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> By Class<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/analytics/LOAanalysis/class">All Years</a></li>
+                        <li><a href="/analytics/LOAanalysis/class/all_branches">All Branches</a></li>
+                        <li><a href="/analytics/LOAanalysis/class/all_sections">All sections</a></li>
+                    </ul>
+                </li>
 
+                <li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> By Subject<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/analytics/LOAanalysis/subject">All Subjects</a></li>
+                        {% for year in year_objs %}
+                            <li><a><span class="fa arrow"></span>{{ year }} year</a>
+                                <ul class="nav nav-third-level">
+                                    {% for branch in year.branches %}
+                                        <li><a href="/analytics/LOAanalysis/subject/{{ year }}/{{ branch }}">{{ branch }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
     </div>
-
-    <!-- 4 include the jQuery library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
-  <!-- 5 include the minified jstree source -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
-
-  <script>
-  $(function () {
-    // 6 create an instance when the DOM is ready
-    $('#jstree').jstree();
-    // 7 bind to events triggered on the tree
-    $('#jstree').on("changed.jstree", function (e, data) {
-      console.log(data.selected);
-        if(!/ignore/.test(data.selected))
-            window.location.href = '/analytics/'+ data.selected
-    });
-  });
-  </script>
+    <!-- /.navbar-static-side -->
+    </nav>
 
 </div>
+<!-- /#wrapper -->
