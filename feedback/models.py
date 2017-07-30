@@ -93,6 +93,7 @@ class Initiation(models.Model):
     timestamp = models.DateTimeField()
     initiated_by = models.ForeignKey(User, on_delete=models.CASCADE)
     class_id = models.ForeignKey(Classes, on_delete=models.CASCADE)
+    feedback_of = models.CharField(max_length=8)
 
 
 class Session(models.Model):

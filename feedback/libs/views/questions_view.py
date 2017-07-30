@@ -1,8 +1,10 @@
 import re
+
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+
+from feedback.libs import view_helper
 from feedback.libs.config_helper import get_max_cfs_each
-from feedback.libs.view_helper import get_master_of
 from feedback.libs.views import loa_questions_view
 from feedback.models import Session, FdbkQuestions, Feedback, Attendance, ClassFacSub, Notes
 
@@ -82,17 +84,17 @@ def get_view(request):
 def attendance_from_session(session):
     attendance_count = Feedback.objects.filter(session_id=session).values_list(
         'student_no').distinct().count()
-    if get_master_of(session) is not None:
+    if view_helper.get_master_of(session) is not None:
         attendance_count += Feedback.objects.filter(
-            session_id=get_master_of(session)).values_list(
+            session_id=view_helper.get_master_of(session)).values_list(
             'student_no').distinct().count()
     return attendance_count
 
 
 def attendance_from_attendance(session):
     attendance = Attendance.objects.filter(session_id=session).count()
-    if get_master_of(session) is not None:
-        attendance += Attendance.objects.filter(session_id=get_master_of(session)).count()
+    if view_helper.get_master_of(session) is not None:
+        attendance += Attendance.objects.filter(session_id=view_helper.get_master_of(session)).count()
     return attendance
 
 
@@ -171,7 +173,7 @@ def get_finish_result(request, cfs_list, questions_list, session, all_cfs_list):
     # e. redirect to faculty feedback
     del request.session['maxPage']
     # return redirect('http://facility.feedback.com/')#('/feedback/questions/facility')
-    return redirect('/feedback/LoaQuestions')
+    return view_helper.get_next_fdbk_response(request)
 
 
 def set_max_page(request, pager_number):

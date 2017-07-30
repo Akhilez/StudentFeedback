@@ -1,14 +1,6 @@
-import random
-import string
-
-from django.http import HttpResponse, Http404
-from django.contrib.auth import authenticate, login
-from django.shortcuts import redirect, render, get_object_or_404
 from django.core.signing import *
+from django.shortcuts import redirect, render
 
-from StudentFeedback.settings import COORDINATOR_GROUP, CONDUCTOR_GROUP, DIRECTOR_GROUP
-from analytics.libs import db_helper
-from feedback.forms import LoginForm
 from feedback.models import *
 
 
@@ -44,40 +36,54 @@ def get_todays_initiations():
 
 
 def feedback_running(request):
-    return request.session.get('sessionObj') is not None
+    if request.session.get('sessionObj') is not None:
+        if request.session.get('invalid_count') is None:
+            request.session['invalid_count'] = 1
+        else:
+            request.session['invalid_count'] = request.session['invalid_count'] + 1
+        if request.session['invalid_count'] > 2:
+            del request.session['invalid_count']
+            del request.session['sessionObj']
+        else:
+            return True
+    return False
 
 
 def invalid_user_page(request):
     return render(request, 'feedback/invalid_user.html')
 
 
+def list_to_str(my_list):
+    string = ""
+    for item in my_list:
+        string += item + ","
+    return string[:-1]
 
 
+def get_next_fdbk_response(request):
+    fdbk_list = request.session.get('next_feedback')
+    if fdbk_list is None or len(fdbk_list) == 0:
+        del request.session['sessionObj']
+        del request.session['maxPage']
+        del request.session['next_feedback']
+        return redirect('http://' + request.META['HTTP_HOST'][:-5] + '/survey/Thank.py')
+    fdbk_list = fdbk_list.split(",")
 
+    if fdbk_list[0] == 'fe':
+        if len(fdbk_list) == 1:
+            del request.session['sessionObj']
+            del request.session['maxPage']
+            del request.session['next_feedback']
+        response = redirect('http://' + request.META['HTTP_HOST'][:-5] + '/')
+        response.set_cookie('class_id', request.session.get('classId'))
+        if len(fdbk_list) > 1:
+            response.set_cookie('next_link', fdbk_list[1])
+            request.session['next_feedback'] = list_to_str(fdbk_list[1:])
+        else:
+            response.set_cookie('next_link', 'thankYouPage')
+            request.session['next_feedback'] = ''
+        return response
 
+    request.session['next_feedback'] = list_to_str(fdbk_list[1:]) if len(fdbk_list) > 0 else ''
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return redirect('/feedback/questions' if fdbk_list[0] == 'fa' else '/feedback/LoaQuestions')

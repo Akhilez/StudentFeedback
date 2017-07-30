@@ -3,10 +3,9 @@ import re
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import redirect, render
 
-from StudentFeedback.settings import ALLOWED_HOSTS
+from feedback.libs import view_helper
 from feedback.libs.config_helper import get_max_subjects_each_page_loa
 from feedback.models import *
-
 
 __author__ = 'Akhil'
 
@@ -160,14 +159,7 @@ def submit_button_result(request, context, session, subjects):
                                    ratings=rating_string_from_array(request.session[sub.name]),
                                    questions=questions_string)
 
-    # 5. deleting session
-    del request.session['sessionObj']
-    del request.session['maxPage']
-
-    # 6. Adding cookie for facility
-    response = redirect('http://' + str(ALLOWED_HOSTS[len(ALLOWED_HOSTS) - 1]) + '/')
-    response.set_cookie('class_id', session.initiation_id.class_id.class_id)
-    return response
+    return view_helper.get_next_fdbk_response(request)
 
 
 def get_sub_ques_list(subjects):

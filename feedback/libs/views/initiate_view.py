@@ -1,19 +1,21 @@
 import datetime
+
 from django.shortcuts import redirect, render
+
 from StudentFeedback.settings import COORDINATOR_GROUP
 from analytics.libs import db_helper
-from feedback.libs.view_helper import feedback_running, invalid_user_page
+from feedback.libs import view_helper
 from feedback.models import *
 
 __author__ = 'Akhil'
 
 
 def get_view(request):
-    if feedback_running(request):
+    if view_helper.feedback_running(request):
         return redirect('/feedback/questions/')
 
     if not_coordinator(request):
-        return invalid_user_page(request)
+        return view_helper.invalid_user_page(request)
 
     template = 'feedback/initiate.html'
     context = {'active': 'home'}
@@ -45,23 +47,32 @@ def add_history(context):
     context['recent_feedbacks'] = Session.objects.all().order_by('-timestamp')[:10]
 
 
-def initiate_for(year, branch, section, by):
+def initiate_for(year, branch, section, by, feedback_of):
     classobj = Classes.objects.get(year=year, branch=branch, section=section)
     history = Initiation.objects.filter(class_id=classobj)
     if len(history) == 0 or history[len(history) - 1].timestamp.date() != datetime.date.today():
         dt = str(datetime.datetime.now())
-        Initiation.objects.create(timestamp=dt, initiated_by=by, class_id=classobj)
+        Initiation.objects.create(timestamp=dt, initiated_by=by, class_id=classobj, feedback_of=feedback_of)
         return True
     else:
         return False
 
 
+def list_to_str(my_list):
+    my_list.sort()
+    string = ""
+    for item in my_list:
+        string += item[1:] + ","
+    return string[:-1]
+
+
 def confirm_selected_class_result(request, template, context):
     checked_list = request.POST.getlist('class')
+    feedback_of = list_to_str(request.POST.getlist('class2'))
     success_lst = []
     for i in checked_list:
         inst = i.split('-')
-        status = initiate_for(inst[0], inst[1], inst[2], request.user)
+        status = initiate_for(inst[0], inst[1], inst[2], request.user, feedback_of)
         if status:
             success_lst.append(inst[0] + "-" + inst[1] + "-" + inst[2])
     context['success_status'] = success_lst

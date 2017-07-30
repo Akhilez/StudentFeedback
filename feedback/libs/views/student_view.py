@@ -1,4 +1,6 @@
 from django.shortcuts import redirect, render
+
+from feedback.libs import view_helper
 from feedback.libs.view_helper import feedback_running
 from feedback.libs.views import questions_view
 from feedback.models import Session
@@ -39,6 +41,7 @@ def get_view(request):
         # 4. Start a django session and redirect to the feedback questions page
         request.session['sessionObj'] = session.session_id
         request.session['classId'] = str(session.initiation_id.class_id)
-        return redirect('/feedback/questions')
+        request.session['next_feedback'] = session.initiation_id.feedback_of
+        return view_helper.get_next_fdbk_response(request)
 
     return render(request, template, context)
