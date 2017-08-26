@@ -2,20 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f28d184d-98d4-4de7-b367-663dfacc6202" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/migrations/0001_initial.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/migrations/0002_remove_initiation_feedback_of.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feedback/migrations/0003_initiation_feedback_of.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/externals/cfs_updates.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/externals/faculty_name_updates.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/libs/view_helper.py" afterPath="$PROJECT_DIR$/feedback/libs/view_helper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/libs/views/initiate_view.py" afterPath="$PROJECT_DIR$/feedback/libs/views/initiate_view.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py" afterPath="$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/libs/views/questions_view.py" afterPath="$PROJECT_DIR$/feedback/libs/views/questions_view.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/libs/views/student_view.py" afterPath="$PROJECT_DIR$/feedback/libs/views/student_view.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/models.py" afterPath="$PROJECT_DIR$/feedback/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/includes/footer.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/includes/footer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/initiate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/db_helper.py" afterPath="$PROJECT_DIR$/analytics/libs/db_helper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/libs/db_updater.py" afterPath="$PROJECT_DIR$/analytics/libs/db_updater.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/templates/analytics/reviews.html" afterPath="$PROJECT_DIR$/analytics/templates/analytics/reviews.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analytics/views.py" afterPath="$PROJECT_DIR$/analytics/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/externals/loa-questions.csv" afterPath="$PROJECT_DIR$/externals/loa-questions.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/templates/feedback/updatedb.html" afterPath="$PROJECT_DIR$/feedback/templates/feedback/updatedb.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/urls.py" afterPath="$PROJECT_DIR$/feedback/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/views.py" afterPath="$PROJECT_DIR$/feedback/views.py" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,252 +59,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="initiate.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding>
-                <element signature="n#block#0;n#!!top" expanded="false" />
-                <element signature="n#script#0;n#!!top" expanded="false" />
-                <element signature="e#120#328#0#HTML" expanded="false" />
-                <element signature="e#247#318#0#HTML" expanded="false" />
-                <element signature="e#417#1321#0#HTML" expanded="false" />
-                <element signature="e#512#746#0#HTML" expanded="false" />
-                <element signature="e#752#1311#0#HTML" expanded="false" />
-                <element signature="n#block#1;n#!!top" expanded="false" />
-                <element signature="n#block#2;n#!!top" expanded="false" />
-                <element signature="n#if#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#!!top" expanded="false" />
-                <element signature="n#for#0;n#!!top" expanded="false" />
-                <element signature="n#form#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#thead#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#tr#0;n#thead#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#if#1;n#!!top" expanded="false" />
-                <element signature="n#if#2;n#!!top" expanded="false" />
-                <element signature="n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#if#3;n#!!top" expanded="false" />
-                <element signature="n#for#1;n#!!top" expanded="false" />
-                <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#if#4;n#!!top" expanded="false" />
-                <element signature="n#input#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#for#2;n#!!top" expanded="false" />
-                <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#tr#2;n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#if#5;n#!!top" expanded="false" />
-                <element signature="n#table#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#tr#0;n#table#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#tr#1;n#table#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#tr#2;n#table#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#tr#3;n#table#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#button#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#!!top" expanded="false" />
-                <element signature="n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#td#0;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#table#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#tr#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#for#3;n#!!top" expanded="false" />
-                <element signature="n#tr#1;n#table#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#td#1;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#td#1;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#table#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#tr#0;n#table#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#for#4;n#!!top" expanded="false" />
-                <element signature="n#tr#1;n#table#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#div#2;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#2;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-                <element signature="n#if#6;n#!!top" expanded="false" />
-                <element signature="n#p#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-                <element signature="n#p#1;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-                <element signature="n#div#2;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-                <element signature="n#form#0;n#div#2;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-                <element signature="n#if#7;n#!!top" expanded="false" />
-                <element signature="n#input#0;n#form#0;n#div#2;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-                <element signature="n#block#3;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="student_view.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/libs/views/student_view.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="46" column="45" lean-forward="false" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
-              <folding>
-                <element signature="e#274#1675#0" expanded="false" />
-                <element signature="e#274#497#1" expanded="false" />
-                <element signature="e#686#1628#0" expanded="false" />
-                <element signature="e#686#712#0" expanded="false" />
-                <element signature="e#888#998#0" expanded="false" />
-                <element signature="e#1159#1279#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="questions_view.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/libs/views/questions_view.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="8" column="92" lean-forward="true" selection-start-line="8" selection-start-column="92" selection-end-line="8" selection-end-column="92" />
-              <folding>
-                <element signature="e#385#2808#0" expanded="false" />
-                <element signature="e#385#825#1" expanded="false" />
-                <element signature="e#1217#1327#0" expanded="false" />
-                <element signature="e#2525#2761#0" expanded="false" />
-                <element signature="e#2853#3222#0" expanded="false" />
-                <element signature="e#3033#3194#0" expanded="false" />
-                <element signature="e#3270#3516#0" expanded="false" />
-                <element signature="e#3550#3856#0" expanded="false" />
-                <element signature="e#3634#3836#0" expanded="false" />
-                <element signature="e#3906#4249#0" expanded="false" />
-                <element signature="e#4008#4220#0" expanded="false" />
-                <element signature="e#4124#4220#0" expanded="false" />
-                <element signature="e#4324#4696#0" expanded="false" />
-                <element signature="e#4353#4696#0" expanded="false" />
-                <element signature="e#4433#4638#0" expanded="false" />
-                <element signature="e#4744#4946#0" expanded="false" />
-                <element signature="e#4808#4925#0" expanded="false" />
-                <element signature="e#5034#6581#0" expanded="false" />
-                <element signature="e#5034#5448#1" expanded="false" />
-                <element signature="e#6159#6364#0" expanded="false" />
-                <element signature="e#6629#6848#0" expanded="false" />
-                <element signature="e#6704#6775#0" expanded="false" />
-                <element signature="e#6918#7096#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loa_questions_view.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="73" column="25" lean-forward="false" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
-              <folding>
-                <element signature="e#321#2257#0" expanded="false" />
-                <element signature="e#321#671#1" expanded="false" />
-                <element signature="e#1931#2210#0" expanded="false" />
-                <element signature="e#2279#2410#0" expanded="false" />
-                <element signature="e#2327#2410#0" expanded="false" />
-                <element signature="e#2468#3043#0" expanded="false" />
-                <element signature="e#2468#2657#1" expanded="false" />
-                <element signature="e#2712#3043#0" expanded="false" />
-                <element signature="e#2760#2905#0" expanded="false" />
-                <element signature="e#3092#3652#0" expanded="false" />
-                <element signature="e#3092#3311#1" expanded="false" />
-                <element signature="e#3316#3372#0" expanded="false" />
-                <element signature="e#3696#3844#0" expanded="false" />
-                <element signature="e#3748#3826#0" expanded="false" />
-                <element signature="e#3897#4161#0" expanded="false" />
-                <element signature="e#4015#4134#0" expanded="false" />
-                <element signature="e#4231#5528#0" expanded="false" />
-                <element signature="e#4231#4559#1" expanded="false" />
-                <element signature="e#4564#4620#0" expanded="false" />
-                <element signature="e#5073#5472#0" expanded="false" />
-                <element signature="e#5568#5831#0" expanded="false" />
-                <element signature="e#5624#5806#0" expanded="false" />
-                <element signature="e#5871#6282#0" expanded="false" />
-                <element signature="e#5960#6177#0" expanded="false" />
-                <element signature="e#6341#6625#0" expanded="false" />
-                <element signature="e#6673#6888#0" expanded="false" />
-                <element signature="e#6748#6815#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view_helper.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/libs/view_helper.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-              <folding>
-                <element signature="e#144#264#0" expanded="false" />
-                <element signature="e#192#248#0" expanded="false" />
-                <element signature="e#299#419#0" expanded="false" />
-                <element signature="e#347#403#0" expanded="false" />
-                <element signature="e#460#705#0" expanded="false" />
-                <element signature="e#742#990#0" expanded="false" />
-                <element signature="e#858#962#0" expanded="false" />
-                <element signature="e#1028#1480#0" expanded="false" />
-                <element signature="e#1086#1463#0" expanded="false" />
-                <element signature="e#1343#1425#0" expanded="false" />
-                <element signature="e#1519#1571#0" expanded="false" />
-                <element signature="e#1604#1692#0" expanded="false" />
-                <element signature="e#1736#2943#0" expanded="false" />
-                <element signature="e#1842#2048#0" expanded="false" />
-                <element signature="e#2124#2748#0" expanded="false" />
-                <element signature="e#2160#2285#0" expanded="false" />
-                <element signature="e#2479#2599#0" expanded="false" />
-                <element signature="e#2626#2724#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/feedback/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+            <state relative-caret-position="355">
+              <caret line="63" column="41" lean-forward="true" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
               <folding>
-                <element signature="e#322#368#0" expanded="false" />
-                <element signature="e#400#442#0" expanded="false" />
-                <element signature="e#488#526#0" expanded="false" />
-                <element signature="e#571#608#0" expanded="false" />
-                <element signature="e#669#721#0" expanded="false" />
-                <element signature="e#750#787#0" expanded="false" />
-                <element signature="e#818#857#0" expanded="false" />
-                <element signature="e#905#946#0" expanded="false" />
-                <element signature="e#980#1023#0" expanded="false" />
-                <element signature="e#1053#1511#0" expanded="false" />
-                <element signature="e#1127#1163#0" expanded="false" />
-                <element signature="e#1547#1592#0" expanded="false" />
+                <element signature="e#0#57#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="initiate_view.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feedback/libs/views/initiate_view.py">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feedback/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+            <state relative-caret-position="136">
+              <caret line="8" column="47" lean-forward="false" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
               <folding>
-                <element signature="e#275#1040#0" expanded="false" />
-                <element signature="e#769#993#0" expanded="false" />
-                <element signature="e#1077#1173#0" expanded="false" />
-                <element signature="e#1206#1369#0" expanded="false" />
-                <element signature="e#1434#1865#0" expanded="false" />
-                <element signature="e#1672#1834#0" expanded="false" />
-                <element signature="e#1898#2009#0" expanded="false" />
-                <element signature="e#2079#2526#0" expanded="false" />
-                <element signature="e#2242#2436#0" expanded="false" />
-                <element signature="e#2559#2785#0" expanded="false" />
-                <element signature="e#2641#2768#0" expanded="false" />
-                <element signature="e#2710#2768#0" expanded="false" />
-                <element signature="e#2832#3025#0" expanded="false" />
-                <element signature="e#2901#3001#0" expanded="false" />
-                <element signature="e#3087#3482#0" expanded="false" />
-                <element signature="e#3204#3454#0" expanded="false" />
-                <element signature="e#3306#3454#0" expanded="false" />
-                <element signature="e#3351#3454#0" expanded="false" />
-                <element signature="e#3399#3454#0" expanded="false" />
-                <element signature="e#3525#3707#0" expanded="false" />
-                <element signature="e#3606#3684#0" expanded="false" />
-                <element signature="e#3767#4101#0" expanded="false" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cfs_updates.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/externals/cfs_updates.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="42" lean-forward="false" selection-start-line="0" selection-start-column="42" selection-end-line="0" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="faculty" pinned="false" current-in-tab="false">
+        <entry file="das://table:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/faculty">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db_updater.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/libs/db_updater.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="203" column="50" lean-forward="true" selection-start-line="203" selection-start-column="50" selection-end-line="203" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="updatedb.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/updatedb.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="14" lean-forward="true" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -325,12 +135,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/feedback/templates/feedback/base.html" />
-        <option value="$PROJECT_DIR$/feedback/admin.py" />
-        <option value="$PROJECT_DIR$/analytics/libs/db_updater.py" />
-        <option value="$PROJECT_DIR$/feedback/libs/config_helper.py" />
-        <option value="$PROJECT_DIR$/feedback/libs/view_helpers/questions_helper.py" />
-        <option value="$PROJECT_DIR$/feedback/libs/view_helpers/loa_helper.py" />
         <option value="$PROJECT_DIR$/feedback/libs/view_helpers/conduct_helper.py" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/conduct.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/loaquestions.html" />
@@ -355,7 +159,6 @@
         <option value="$PROJECT_DIR$/analytics/libs/graph_builder.py" />
         <option value="$PROJECT_DIR$/analytics/libs/faculty_graphs/faculty_graph.py" />
         <option value="$PROJECT_DIR$/analytics/libs/faculty_graphs/class_sub_graph.py" />
-        <option value="$PROJECT_DIR$/analytics/libs/db_helper.py" />
         <option value="$PROJECT_DIR$/analytics/urls.py" />
         <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/tree.html" />
         <option value="$PROJECT_DIR$/analytics/libs/LOAdb_helper.py" />
@@ -363,7 +166,6 @@
         <option value="$PROJECT_DIR$/feedback/static/feedback/stars.css" />
         <option value="$PROJECT_DIR$/analytics/templates/analytics/director.html" />
         <option value="$PROJECT_DIR$/analytics/templates/analytics/LOAanalyis.html" />
-        <option value="$PROJECT_DIR$/analytics/views.py" />
         <option value="$PROJECT_DIR$/analytics/templates/includes/analytics/LOAtree.html" />
         <option value="$PROJECT_DIR$/feedback/templates/feedback/includes/footer.html" />
         <option value="$PROJECT_DIR$/feedback/models.py" />
@@ -374,8 +176,16 @@
         <option value="$PROJECT_DIR$/feedback/libs/views/questions_view.py" />
         <option value="$PROJECT_DIR$/feedback/libs/views/loa_questions_view.py" />
         <option value="$PROJECT_DIR$/feedback/libs/view_helper.py" />
-        <option value="$PROJECT_DIR$/feedback/views.py" />
         <option value="$PROJECT_DIR$/feedback/libs/views/initiate_view.py" />
+        <option value="$PROJECT_DIR$/analytics/libs/db_helper.py" />
+        <option value="$PROJECT_DIR$/analytics/views.py" />
+        <option value="$PROJECT_DIR$/analytics/templates/analytics/reviews.html" />
+        <option value="$PROJECT_DIR$/externals/faculty_name_updates.csv" />
+        <option value="$PROJECT_DIR$/feedback/urls.py" />
+        <option value="$PROJECT_DIR$/feedback/templates/feedback/updatedb.html" />
+        <option value="$PROJECT_DIR$/analytics/libs/db_updater.py" />
+        <option value="$PROJECT_DIR$/externals/cfs_updates.csv" />
+        <option value="$PROJECT_DIR$/feedback/views.py" />
       </list>
     </option>
   </component>
@@ -436,32 +246,6 @@
             <path>
               <item name="StudentFeedback" type="b2602c69:ProjectViewProjectNode" />
               <item name="StudentFeedback" type="462c0819:PsiDirectoryNode" />
-              <item name="feedback" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudentFeedback" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudentFeedback" type="462c0819:PsiDirectoryNode" />
-              <item name="feedback" type="462c0819:PsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudentFeedback" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudentFeedback" type="462c0819:PsiDirectoryNode" />
-              <item name="feedback" type="462c0819:PsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudentFeedback" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudentFeedback" type="462c0819:PsiDirectoryNode" />
-              <item name="feedback" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudentFeedback" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudentFeedback" type="462c0819:PsiDirectoryNode" />
-              <item name="feedback" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="feedback" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -1078,7 +862,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498128831289</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Akhil- feedback order by coordinator">
+      <created>1501400730302</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1501400730302</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1105,58 +896,86 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14392324" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15511727" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32580644" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14605543" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869378" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14605543" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32795697" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32762313" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3204301" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32655245" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32655245" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3222698" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3222698" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="manage.py@StudentFeedback" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@StudentFeedback" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869378" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3222698" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3222698" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32655245" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32580644" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3204301" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32795697" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32762313" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869378" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32119915" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32655245" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@StudentFeedback" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32655245" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869378" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14872068" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15351813" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23187633" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14605543" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -1170,7 +989,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Akhil- new database" />
     <MESSAGE value="Akhil- master slave done with proper timeout" />
     <MESSAGE value="Akhil- password working. Complete the form" />
     <MESSAGE value="Akhil- Graphs initial" />
@@ -1195,7 +1013,8 @@
     <MESSAGE value="Akhil- modularity in views" />
     <MESSAGE value="Akhil- analytics fix" />
     <MESSAGE value="Akhil- loa graph styling done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Akhil- loa graph styling done" />
+    <MESSAGE value="Akhil- feedback order by coordinator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Akhil- feedback order by coordinator" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1204,66 +1023,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="31" column="155" lean-forward="false" selection-start-line="31" selection-start-column="155" selection-end-line="31" selection-end-column="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/conduct.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="133" column="14" lean-forward="false" selection-start-line="133" selection-start-column="14" selection-end-line="133" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/config_helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/views/forgot_password_view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/views/late_login_view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="10" column="34" lean-forward="false" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/views/login_view_helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/views/change_pass_view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="73" column="14" lean-forward="false" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_feedbackloa" />
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..subject" />
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..faculty" />
-    <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..classfacsub" />
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_fdbkquestions" />
     <entry file="dbDummy://dbtable:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/nba_projects_db..feedback_feedback" />
     <entry file="file://$PROJECT_DIR$/analytics/templates/includes/analytics/graph1.html">
@@ -1312,13 +1071,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="90" column="25" lean-forward="false" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1797,13 +1549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/feedback/libs/views/conduct_view.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1811,26 +1556,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="95" column="48" lean-forward="true" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/classes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1838,7 +1567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1849,50 +1577,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/UML Diagrams/Class Diagram.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Screenshots/Screenshot (64).png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/feedback/libs/views/student_view.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="46" column="45" lean-forward="false" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
-          <folding>
-            <element signature="e#274#1675#0" expanded="false" />
-            <element signature="e#274#497#1" expanded="false" />
-            <element signature="e#686#1628#0" expanded="false" />
-            <element signature="e#686#712#0" expanded="false" />
-            <element signature="e#888#998#0" expanded="false" />
-            <element signature="e#1159#1279#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/feedback/libs/views/questions_view.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="8" column="92" lean-forward="true" selection-start-line="8" selection-start-column="92" selection-end-line="8" selection-end-column="92" />
-          <folding>
-            <element signature="e#385#2808#0" expanded="false" />
-            <element signature="e#385#825#1" expanded="false" />
-            <element signature="e#1217#1327#0" expanded="false" />
-            <element signature="e#2525#2761#0" expanded="false" />
-            <element signature="e#2853#3222#0" expanded="false" />
-            <element signature="e#3033#3194#0" expanded="false" />
-            <element signature="e#3270#3516#0" expanded="false" />
-            <element signature="e#3550#3856#0" expanded="false" />
-            <element signature="e#3634#3836#0" expanded="false" />
-            <element signature="e#3906#4249#0" expanded="false" />
-            <element signature="e#4008#4220#0" expanded="false" />
-            <element signature="e#4124#4220#0" expanded="false" />
-            <element signature="e#4324#4696#0" expanded="false" />
-            <element signature="e#4353#4696#0" expanded="false" />
-            <element signature="e#4433#4638#0" expanded="false" />
-            <element signature="e#4744#4946#0" expanded="false" />
-            <element signature="e#4808#4925#0" expanded="false" />
-            <element signature="e#5034#6581#0" expanded="false" />
-            <element signature="e#5034#5448#1" expanded="false" />
-            <element signature="e#6159#6364#0" expanded="false" />
-            <element signature="e#6629#6848#0" expanded="false" />
-            <element signature="e#6704#6775#0" expanded="false" />
-            <element signature="e#6918#7096#0" expanded="false" />
-          </folding>
+          <caret line="8" column="92" lean-forward="false" selection-start-line="8" selection-start-column="92" selection-end-line="8" selection-end-column="92" />
         </state>
       </provider>
     </entry>
@@ -1900,187 +1605,145 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="73" column="25" lean-forward="false" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
-          <folding>
-            <element signature="e#321#2257#0" expanded="false" />
-            <element signature="e#321#671#1" expanded="false" />
-            <element signature="e#1931#2210#0" expanded="false" />
-            <element signature="e#2279#2410#0" expanded="false" />
-            <element signature="e#2327#2410#0" expanded="false" />
-            <element signature="e#2468#3043#0" expanded="false" />
-            <element signature="e#2468#2657#1" expanded="false" />
-            <element signature="e#2712#3043#0" expanded="false" />
-            <element signature="e#2760#2905#0" expanded="false" />
-            <element signature="e#3092#3652#0" expanded="false" />
-            <element signature="e#3092#3311#1" expanded="false" />
-            <element signature="e#3316#3372#0" expanded="false" />
-            <element signature="e#3696#3844#0" expanded="false" />
-            <element signature="e#3748#3826#0" expanded="false" />
-            <element signature="e#3897#4161#0" expanded="false" />
-            <element signature="e#4015#4134#0" expanded="false" />
-            <element signature="e#4231#5528#0" expanded="false" />
-            <element signature="e#4231#4559#1" expanded="false" />
-            <element signature="e#4564#4620#0" expanded="false" />
-            <element signature="e#5073#5472#0" expanded="false" />
-            <element signature="e#5568#5831#0" expanded="false" />
-            <element signature="e#5624#5806#0" expanded="false" />
-            <element signature="e#5871#6282#0" expanded="false" />
-            <element signature="e#5960#6177#0" expanded="false" />
-            <element signature="e#6341#6625#0" expanded="false" />
-            <element signature="e#6673#6888#0" expanded="false" />
-            <element signature="e#6748#6815#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/libs/view_helper.py">
+    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/reviews.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-          <folding>
-            <element signature="e#144#264#0" expanded="false" />
-            <element signature="e#192#248#0" expanded="false" />
-            <element signature="e#299#419#0" expanded="false" />
-            <element signature="e#347#403#0" expanded="false" />
-            <element signature="e#460#705#0" expanded="false" />
-            <element signature="e#742#990#0" expanded="false" />
-            <element signature="e#858#962#0" expanded="false" />
-            <element signature="e#1028#1480#0" expanded="false" />
-            <element signature="e#1086#1463#0" expanded="false" />
-            <element signature="e#1343#1425#0" expanded="false" />
-            <element signature="e#1519#1571#0" expanded="false" />
-            <element signature="e#1604#1692#0" expanded="false" />
-            <element signature="e#1736#2943#0" expanded="false" />
-            <element signature="e#1842#2048#0" expanded="false" />
-            <element signature="e#2124#2748#0" expanded="false" />
-            <element signature="e#2160#2285#0" expanded="false" />
-            <element signature="e#2479#2599#0" expanded="false" />
-            <element signature="e#2626#2724#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="425">
+          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feedback/views.py">
+    <entry file="file://$PROJECT_DIR$/analytics/libs/db_helper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <element signature="e#322#368#0" expanded="false" />
-            <element signature="e#400#442#0" expanded="false" />
-            <element signature="e#488#526#0" expanded="false" />
-            <element signature="e#571#608#0" expanded="false" />
-            <element signature="e#669#721#0" expanded="false" />
-            <element signature="e#750#787#0" expanded="false" />
-            <element signature="e#818#857#0" expanded="false" />
-            <element signature="e#905#946#0" expanded="false" />
-            <element signature="e#980#1023#0" expanded="false" />
-            <element signature="e#1053#1511#0" expanded="false" />
-            <element signature="e#1127#1163#0" expanded="false" />
-            <element signature="e#1547#1592#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="644">
+          <caret line="377" column="0" lean-forward="false" selection-start-line="377" selection-start-column="0" selection-end-line="377" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/feedback_feedbackloa">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/classes">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/feedback/libs/views/initiate_view.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding>
-            <element signature="e#275#1040#0" expanded="false" />
-            <element signature="e#769#993#0" expanded="false" />
-            <element signature="e#1077#1173#0" expanded="false" />
-            <element signature="e#1206#1369#0" expanded="false" />
-            <element signature="e#1434#1865#0" expanded="false" />
-            <element signature="e#1672#1834#0" expanded="false" />
-            <element signature="e#1898#2009#0" expanded="false" />
-            <element signature="e#2079#2526#0" expanded="false" />
-            <element signature="e#2242#2436#0" expanded="false" />
-            <element signature="e#2559#2785#0" expanded="false" />
-            <element signature="e#2641#2768#0" expanded="false" />
-            <element signature="e#2710#2768#0" expanded="false" />
-            <element signature="e#2832#3025#0" expanded="false" />
-            <element signature="e#2901#3001#0" expanded="false" />
-            <element signature="e#3087#3482#0" expanded="false" />
-            <element signature="e#3204#3454#0" expanded="false" />
-            <element signature="e#3306#3454#0" expanded="false" />
-            <element signature="e#3351#3454#0" expanded="false" />
-            <element signature="e#3399#3454#0" expanded="false" />
-            <element signature="e#3525#3707#0" expanded="false" />
-            <element signature="e#3606#3684#0" expanded="false" />
-            <element signature="e#3767#4101#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="13" column="35" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/libs/view_helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/initiate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="508">
+          <caret line="56" column="48" lean-forward="false" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentFeedback/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/externals/faculty_name_updates.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/subject">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/dcfcaa18/c0d5cc33-7218-48c2-be8c-b6256a6bc35c/faculty">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="47" lean-forward="false" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
           <folding>
-            <element signature="n#block#0;n#!!top" expanded="false" />
-            <element signature="n#script#0;n#!!top" expanded="false" />
-            <element signature="e#120#328#0#HTML" expanded="false" />
-            <element signature="e#247#318#0#HTML" expanded="false" />
-            <element signature="e#417#1321#0#HTML" expanded="false" />
-            <element signature="e#512#746#0#HTML" expanded="false" />
-            <element signature="e#752#1311#0#HTML" expanded="false" />
-            <element signature="n#block#1;n#!!top" expanded="false" />
-            <element signature="n#block#2;n#!!top" expanded="false" />
-            <element signature="n#if#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#!!top" expanded="false" />
-            <element signature="n#for#0;n#!!top" expanded="false" />
-            <element signature="n#form#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#thead#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#tr#0;n#thead#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#if#1;n#!!top" expanded="false" />
-            <element signature="n#if#2;n#!!top" expanded="false" />
-            <element signature="n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#if#3;n#!!top" expanded="false" />
-            <element signature="n#for#1;n#!!top" expanded="false" />
-            <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#if#4;n#!!top" expanded="false" />
-            <element signature="n#input#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#for#2;n#!!top" expanded="false" />
-            <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#tr#2;n#tbody#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#if#5;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#tr#0;n#table#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#tr#1;n#table#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#tr#2;n#table#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#tr#3;n#table#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#button#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#td#0;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#tr#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#for#3;n#!!top" expanded="false" />
-            <element signature="n#tr#1;n#table#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#td#1;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#td#1;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#tr#0;n#table#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#for#4;n#!!top" expanded="false" />
-            <element signature="n#tr#1;n#table#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#2;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-            <element signature="n#if#6;n#!!top" expanded="false" />
-            <element signature="n#p#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-            <element signature="n#p#1;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-            <element signature="n#form#0;n#div#2;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-            <element signature="n#if#7;n#!!top" expanded="false" />
-            <element signature="n#input#0;n#form#0;n#div#2;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-            <element signature="n#block#3;n#!!top" expanded="false" />
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/externals/cfs_updates.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="42" lean-forward="false" selection-start-line="0" selection-start-column="42" selection-end-line="0" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/libs/db_updater.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="203" column="50" lean-forward="true" selection-start-line="203" selection-start-column="50" selection-end-line="203" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/templates/feedback/updatedb.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="14" lean-forward="true" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feedback/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="63" column="41" lean-forward="true" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
           </folding>
         </state>
       </provider>

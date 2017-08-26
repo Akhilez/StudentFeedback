@@ -2,6 +2,7 @@ import csv
 import datetime
 import re
 
+from analytics.libs import db_helper
 from feedback.models import *
 
 
@@ -170,3 +171,55 @@ def update_loa_questions():
         LOAquestions.objects.create(question=row[0], subject_id=subject)
 
     return op
+
+
+def update_faculty_names(confirm=False):
+    faculty_changes = []
+    with open("externals/faculty_name_updates.csv") as file:
+        reader = csv.reader(file)
+        i = 1
+        for row in reader:
+            try:
+                prev_name = row[0]
+                new_name = row[1]
+                faculty = Faculty.objects.get(name=prev_name)
+                faculty_changes.append(str(i)+". " + str(faculty) + ' ==== ' + str(new_name))
+                if confirm:
+                    faculty.name = new_name
+                    faculty.save()
+                i += 1
+            except:
+                pass
+
+    return faculty_changes
+
+
+def update_cfs_names(confirm=False):
+    cfs_changes = []
+    with open("externals/cfs_updates.csv") as file:
+        reader = csv.reader(file)
+        i = 1
+        for row in reader:
+            #try:
+                prev_class = get_class_for(row[0])
+                prev_subject = Subject.objects.get(name=row[1])
+                prev_faculty = Faculty.objects.get(name=row[2])
+                new_faculty = Faculty.objects.get(name=row[3])
+                cfs = ClassFacSub.objects.get(class_id=prev_class, faculty_id=prev_faculty,
+                                              subject_id=prev_subject)
+                cfs_changes.append(
+                    str(i)+") "+str(prev_class)+" - "+str(prev_subject)+" - "+str(prev_faculty)+" - "+str(new_faculty))
+                if confirm:
+                    cfs.faculty_id = new_faculty
+                    cfs.save()
+                i += 1
+            #except:
+                #pass
+    return cfs_changes
+
+
+def get_class_for(class_name):
+    for classes in Classes.objects.all():
+        if str(classes) == class_name:
+            return classes
+    return None

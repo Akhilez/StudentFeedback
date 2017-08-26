@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^LoaQuestions/$', views.LoaQuestions, name="LoaQuestions"),
     url(r'^updatedb/$', views.updatedb, name='updatedb'),
     url(r'^forgotPassword/$', views.forgotPassword, name='updatedb'),
+    url(r'^displayCfs/$', views.display_cfs, name="displayCfs"),
 ]

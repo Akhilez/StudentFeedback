@@ -1,18 +1,24 @@
 {% extends 'feedback/base.html' %}
 
 {% block navbar %}
-    {% include 'feedback/includes/navbar.html' %}
 {% endblock %}
 
 {% block maincontent %}
-{{ content }}
-{% for class in classes %}
-    {{ class }}<br/><br/>
+    {{ content }}
+    {% for class in classes %}
+        {{ class }}<br/><br/>
 
-{% endfor %}
+    {% endfor %}
+
+
+    {% if submit %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="submit" name="{{ submit }}" value="Confirm" />
+    </form>
+    {% endif %}
 
 {% endblock maincontent %}
 
 {% block footer %}
-    {% include 'feedback/includes/footer.html' %}
 {% endblock %}

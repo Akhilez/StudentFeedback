@@ -1,7 +1,9 @@
+from django.db.models import Count
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
-from analytics.libs.db_helper import Timeline
+from analytics.libs.db_helper import Timeline, get_sessions_of
 from feedback.models import *
 from .libs import tree_builder, graph_builder
 from StudentFeedback.settings import DIRECTOR_GROUP
@@ -80,32 +82,20 @@ def faculty_info(request, faculty):
 @login_required
 def reviews(request):
     template = 'analytics/reviews.html'
-    context = []
+    context = {}
 
     if 'submit' in request.POST:
-        try:
-            year = request.POST.get('year')
-            branch = request.POST.get('branch')
-            section = request.POST.get('section')
-            cid = Classes.objects.get(year=year, branch=branch, section=section)
-            initid = Initiation.objects.get(class_id=cid.class_id)
-            sid = Session.objects.get(initiation_id=initid.initiation_id)
-            notes = Notes.objects.all().filter(session_id=sid)
-            context = {'year': year, 'branch': branch, 'section': section, 'notes': notes}
-        except TypeError:
-            context['error'] = 'Please Check if the class has completed their Review or not'
+        class_selected = Classes.objects.get(class_id=request.POST.get('select_class'))
+        notes = []
+        for session in get_sessions_of(class_selected):
+            for note in Notes.objects.filter(session_id=session):
+                notes.append(note.note)
+        context['notes'] = notes
 
-    '''if year:
-        context ={'year': year, }
-    if year and branch:
-        allClasses = Classes.objects.all().filter(year=year,branch=branch)
-        context = {'year': year, 'sections' : allClasses}
-    if year and branch and section:
-        cid = Classes.objects.get(year=year,branch=branch,section=section)
-        initid = Initiation.objects.get(class_id=cid.class_id)
-        sid = Session.objects.get(initiation_id=initid.initiation_id)
-        notes = Notes.objects.get(session_id=sid)
-        context = {'year': year, 'sections': allClasses, 'sid': notes}'''
+    classes = set()
+    for attendance in Attendance.objects.values('session_id').annotate(dcount=Count('session_id')):
+        classes.add(Session.objects.get(session_id=attendance['session_id']).initiation_id.class_id)
+    context['classes'] = classes
 
     return render(request, template, context)
 

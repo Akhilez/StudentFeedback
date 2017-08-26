@@ -367,3 +367,19 @@ def get_selected_questions():
     for q_id in Timeline.get_selected_questions():
         question_list.append(FdbkQuestions.objects.get(question_id=q_id))
     return question_list
+
+
+def get_sessions_of(class_id):
+    sessions = []
+    for initiation in get_initiations_of(class_id):
+        for session in Session.objects.filter(initiation_id=initiation):
+            sessions.append(session)
+    return sessions
+
+
+def get_initiations_of(class_id):
+    initiations = []
+    for initiation in Initiation.objects.all():
+        if initiation.class_id == class_id:
+            initiations.append(initiation)
+    return initiations

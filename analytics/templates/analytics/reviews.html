@@ -9,45 +9,16 @@
 
 
 {% block maincontent %}
-    <h2 align="center">Reviews Given by the Students</h2><br><center>
-   <form id="bootstrapSelectForm" method="post" class="form-horizontal" align="center">
+    <h2 align="center">Reviews Given by the Students</h2><br>
+   <form id="bootstrapSelectForm" method="post" class="form-horizontal" >
    {% csrf_token %}
-    <div class="form-group">
-        <label class="col-xs-3 control-label">Year</label>
+    <div class="form-group" align="center">
+        <label class="col-xs-3 control-label">Class</label>
         <div class="col-xs-3 selectContainer">
-            <select name="year" class="form-control" id="year">
-                <option value="1">I</option>
-                <option value="2">II</option>
-                <option value="3">III</option>
-                <option value="4">IV</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-xs-3 control-label">Branch</label>
-        <div class="col-xs-3 selectContainer">
-            <select name="branch" class="form-control">
-                <option value="CSE">CSE</option>
-                <option value="IT">IT</option>
-                <option value="ECE">ECE</option>
-                <option value="EIE">EIE</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-xs-3 control-label">Section</label>
-        <div class="col-xs-3 selectContainer">
-            <select name="section" class="form-control">
-                <option value="">Leave Blank for IT&EIE</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="E">E</option>
-                <option value="F">F</option>
-                <option value="G">G</option>
+            <select name="select_class" class="form-control" id="year">
+                {% for cls in classes %}
+                    <option value="{{ cls.class_id }}">{{ cls }}</option>
+                {% endfor %}
             </select>
         </div>
     </div>
@@ -57,20 +28,20 @@
             <button type="submit" class="btn btn-default" name="submit">Get Reviews</button>
         </div>
     </div>
-</form>
-    {% if year %}
-        <table class="table table-bordered table-hover table-striped">
-            <thead><h2>Reviews of {{ year }} Year {{ branch }} {{ section }} Students</h2></thead><br>
-            {% for note in notes %}
-                        <tr><td>{{ note.note }}</td></tr>
-                    {% endfor %}
+    </form>
 
-        </table>
+    {% if notes %}
+    <table class="table table-bordered">
+        <tr><th>S.No.</th><th>Remarks</th></tr>
+      {% for note in notes %}
+        <tr><td>{{ forloop.counter }}</td><td>{{ note }}</td></tr>
+      {% endfor %}
+    </table>
     {% else %}
-        <br><strong>{{ error }}</strong>
+        No remarks, select another class
     {% endif %}
 
-</center>
+
 {% endblock %}
 
 
