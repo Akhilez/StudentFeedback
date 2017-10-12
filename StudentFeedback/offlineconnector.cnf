@@ -1,5 +1,5 @@
 [client]
 database = nba_projects_db
 user = root
-password = kmit
+password = root
 default-character-set = utf8
