@@ -103,12 +103,12 @@ class Session(models.Model):
     taken_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-class SlaveSession(models.Model):
+class SubordinateSession(models.Model):
     class Meta:
-        unique_together = (('master', 'slave'),)
+        unique_together = (('main', 'subordinate'),)
 
-    master = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='master', primary_key=True)
-    slave = models.ForeignKey(Session, on_delete=models.CASCADE, null=True, related_name='slave')
+    main = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='main', primary_key=True)
+    subordinate = models.ForeignKey(Session, on_delete=models.CASCADE, null=True, related_name='subordinate')
 
 
 class Attendance(models.Model):
