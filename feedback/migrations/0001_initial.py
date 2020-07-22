@@ -158,9 +158,9 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='SlaveSession',
+            name='SubordinateSession',
             fields=[
-                ('master', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, primary_key=True, related_name='master', serialize=False, to='feedback.Session')),
+                ('main', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, primary_key=True, related_name='main', serialize=False, to='feedback.Session')),
             ],
         ),
         migrations.AddField(
@@ -228,9 +228,9 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='feedback.Student'),
         ),
         migrations.AddField(
-            model_name='slavesession',
-            name='slave',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='slave', to='feedback.Session'),
+            model_name='subordinatesession',
+            name='subordinate',
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='subordinate', to='feedback.Session'),
         ),
         migrations.AlterUniqueTogether(
             name='feedbackloa',
@@ -249,7 +249,7 @@ class Migration(migrations.Migration):
             unique_together=set([('year', 'branch', 'section', 'sem')]),
         ),
         migrations.AlterUniqueTogether(
-            name='slavesession',
-            unique_together=set([('master', 'slave')]),
+            name='subordinatesession',
+            unique_together=set([('main', 'subordinate')]),
         ),
     ]

@@ -4,17 +4,17 @@ from django.shortcuts import redirect, render
 from feedback.models import *
 
 
-def get_slave_of(session):
-    for sess in SlaveSession.objects.all():
-        if sess.master == session:
-            return sess.slave
+def get_subordinate_of(session):
+    for sess in SubordinateSession.objects.all():
+        if sess.main == session:
+            return sess.subordinate
     return None
 
 
-def get_master_of(session):
-    for sess in SlaveSession.objects.all():
-        if sess.slave == session:
-            return sess.master
+def get_main_of(session):
+    for sess in SubordinateSession.objects.all():
+        if sess.subordinate == session:
+            return sess.main
     return None
 
 

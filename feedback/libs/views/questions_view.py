@@ -84,17 +84,17 @@ def get_view(request):
 def attendance_from_session(session):
     attendance_count = Feedback.objects.filter(session_id=session).values_list(
         'student_no').distinct().count()
-    if view_helper.get_master_of(session) is not None:
+    if view_helper.get_main_of(session) is not None:
         attendance_count += Feedback.objects.filter(
-            session_id=view_helper.get_master_of(session)).values_list(
+            session_id=view_helper.get_main_of(session)).values_list(
             'student_no').distinct().count()
     return attendance_count
 
 
 def attendance_from_attendance(session):
     attendance = Attendance.objects.filter(session_id=session).count()
-    if view_helper.get_master_of(session) is not None:
-        attendance += Attendance.objects.filter(session_id=view_helper.get_master_of(session)).count()
+    if view_helper.get_main_of(session) is not None:
+        attendance += Attendance.objects.filter(session_id=view_helper.get_main_of(session)).count()
     return attendance
 
 
